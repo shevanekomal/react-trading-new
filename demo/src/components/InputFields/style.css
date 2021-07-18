@@ -1,0 +1,95 @@
+/* ==========================SinglSelectDropDown =================================================*/
+/* .SinglSelectDropDown,.RadioButton,.DatePickers div{
+  display: flex!important;
+} */
+.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label{
+  /* Text/Small Text Regular */
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+  letter-spacing: 0.0215em;
+  /* Black Text */
+  color: #07213c;
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0px 0px;
+  text-align: left;
+}
+.SinglSelectDropDown div {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  padding: 4px;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
+    #fcfeff;
+  /* Black Text */
+  border: 1px solid #07213c;
+  border-radius: 6px;
+  /* Inside Auto Layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+/* @media only screen and (max-width: 600px) {
+  .SinglSelectDropDown{
+    display: flex!important;
+  } 
+} */
+/* .SinglSelectDropDown select {
+  position: static;
+  width: 232px;
+  height: 24px;
+  left: 4px;
+  top: 4px;
+  //Inside Auto Layout
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+  margin: 0px 8px;
+} */
+
+/* ==========================RadioButton =================================================*/
+
+/* ==========================DatePickers =================================================*/
+.DatePickers label {
+  /* Text/Small Text Regular */
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+
+  letter-spacing: 0.0215em;
+
+  /* Black Text */
+
+  color: #07213c;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: 0px 0px;
+  text-align: left;
+}
+.DatePicker > div > div > input{
+  width: 300px;
+  border:2px solid #a9d9ff;
+}
+       
+       
+.MuiRadio-colorSecondary.Mui-checked,.MuiCheckbox-colorSecondary.Mui-checked {
+  color:#3168A7!important
+}
