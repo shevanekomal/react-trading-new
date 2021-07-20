@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
 export default function CheckboxesGroup({children,name,options,onChange,required,error,validate}) {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className='Checkbox'>
       <FormControl component="fieldset" name={name}  onChange={onChange} onBlur={required && validate}>
-        <FormLabel component="legend">{children}{required && <span style={{color:'red'}}>*</span>}</FormLabel>
+        <label>{children}{required && <span style={{color:'red'}}>*</span>}</label>
         <FormGroup>{
           options.map(option=><FormControlLabel
           key = {option.name}

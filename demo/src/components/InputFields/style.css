@@ -2,7 +2,7 @@
 /* .SinglSelectDropDown,.RadioButton,.DatePickers div{
   display: flex!important;
 } */
-.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label{
+.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.Checkbox label{
   /* Text/Small Text Regular */
   font-family: Open Sans;
   font-style: normal;
@@ -92,4 +92,7 @@
        
 .MuiRadio-colorSecondary.Mui-checked,.MuiCheckbox-colorSecondary.Mui-checked {
   color:#3168A7!important
+}
+.Textbox div input,.MuiOutlinedInput-input{
+  padding: 7px 0px 9px 10px!important
 }
