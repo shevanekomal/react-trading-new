@@ -5,4 +5,7 @@ export { default as Textbox } from './Textbox'
 export { default as CheckboxesGroup } from './CheckboxesGroup'
 export { default as Buttons } from './Buttons'
 
+export { default as FormRow } from './FormRow'
+
+
 
