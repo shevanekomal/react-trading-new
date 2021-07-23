@@ -11,7 +11,6 @@ let BASE_URL = ''
 //   BASE_URL = window.location.origin
 // }
 
-
 const AddForm =()=> {
 const {
   cities,

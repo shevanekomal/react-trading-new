@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
-
-export default class index extends Component {
-  render() {
+const Aboutus=()=> {
     return (
       <div>
         about us
       </div>
     )
-  }
 }
+export default Aboutus

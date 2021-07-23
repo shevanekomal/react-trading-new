@@ -3,7 +3,46 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList,faHeart,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import TestPannel from '../TestPannel'
 const HealthPlan = ()=> {
-    const testsRecommanded = [
+  const testsRecommanded = {
+    testData:[
+    {
+        "testName": "Blood Test",
+        "testTypes": [
+            {
+                "checkup_id": 1,
+                "checkup_name": "Prostate Specific Antigen (PSA)",
+                "recomm_level": 1
+            },
+            {
+                "checkup_id": 2,
+                "checkup_name": "Complete Blood Count (CBC)",
+                "recomm_level": 2
+            },
+            {
+                "checkup_id": 4,
+                "checkup_name": "CA-125",
+                "recomm_level": 1
+            }
+        ]
+    },
+    {
+        "testName": "Diagnostic",
+        "testTypes": [
+            {
+                "checkup_id": 3,
+                "checkup_name": "Mammography",
+                "recomm_level": 0
+            },
+            {
+                "checkup_id": 5,
+                "checkup_name": "Transvaginal ultrasound",
+                "recomm_level": 0
+            }
+        ]
+    }
+],
+Recommendedcount: 5}
+    const testsRecommanded1 = [
       {
       testName:"Blood Test",
       provider:"xyz",
@@ -53,7 +92,7 @@ const HealthPlan = ()=> {
           <p>Recommended Checkups</p>
           <div>These checkups are recommended for you based on the health status information you shared. Click on each checkup to know more.</div>
         </div>
-        {testsRecommanded.map(test=> <TestPannel key = {test.testName} test = {test}/>)}
+        {testsRecommanded.testData.map(test=> <TestPannel key = {test.testName} test = {test}/>)}
         <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <button><FontAwesomeIcon icon={faPlusCircle} color="#F9E24D" size={'lg'} /></button><span>Create</span>

@@ -3,16 +3,7 @@ import {FormRow,CheckboxesGroup} from '../InputFields'
 import './Login.css'
 
 import { Link } from "react-router-dom";
-const activeButtonStyle = {
-  position: 'static',
-width: '90px',
-height: '40px',
-
-/* Yellow Secondary */
-background: '#F9E24D',
-borderRadius: '6px',
-}
-const validate = true; //validate for required
+const validate = false; //validate for required
 export default class index extends Component {
   render() {
     return (
@@ -36,7 +27,7 @@ export default class index extends Component {
           
         <p>Note: If you are the account creator, login using your password or OTP. 
 If you are a family member, login using the OTP.</p>
-        <button style={validate?activeButtonStyle:""}>LOGIN</button>
+        <button className={validate?'activeButtonStyle':""}>LOGIN</button>
         <p>New here? <Link
             to="/register" >Register Now</Link></p>
       </form>

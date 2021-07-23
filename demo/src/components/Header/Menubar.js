@@ -1,4 +1,3 @@
-import { Navbar } from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import linkedin from '../../assets/linkedin.svg'
@@ -27,22 +26,12 @@ const deafulClasses = {
       menu: !state.menu
     });
   };
-const addActiveCssOnClick = (linkClass) =>{
-  setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
-            
-}
+  const addActiveCssOnClick = (linkClass) =>setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
+  
   const toggleOpen = () => setState({ ...state, isOpen: !state.isOpen });
 
   const show = state.menu ? "show" : "";
   const menuClass = `dropdown-menu${state.isOpen ? " show" : ""}`;
-  const clickEvent = (event) =>{
-    event.preventDefault();
-  setState({
-    ...state,
-    menu: false
-  });
-}
-// document.getElementById('root').addEventListener('click',clickEvent);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>

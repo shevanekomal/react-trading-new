@@ -1,3 +1,10 @@
 .App{
   padding: 10px;
 }
+.activeButtonStyle{
+  position: static;
+  width: 90px;
+  height: 40px;
+  background: #F9E24D;
+  border-radius: 6px;
+}
