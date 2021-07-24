@@ -31,6 +31,15 @@ class FieldDataProvider extends Component {
   initialContext = { ...this.state }
 
   methods = {
+    registerUser: debounce(async () => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: ''
+      })
+      if (result?.data) {
+        this.setState({ purchaseOrderUserPermissions: result.data })
+      }
+    }),
   }
 
   render() {
