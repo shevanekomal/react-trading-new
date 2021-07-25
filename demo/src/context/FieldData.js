@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-// import debounce from 'debounce-promise'
-// import httpClient, { BASE_URL } from 'context/httpClient'
+ import debounce from 'debounce-promise'
+ import httpClient from './httpClient'
 
 const FieldDataContext = React.createContext()
 //const WAIT_TIME = 400
 
 class FieldDataProvider extends Component {
   state = {
+     accessToken:'',
+     loginUserId:null,
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
      diet : [{text:"Vegetarian diet",value:"vegetarian"},{text:"Non-vegetaran diet",value:"non-vegetarian"}],
@@ -31,14 +33,28 @@ class FieldDataProvider extends Component {
   initialContext = { ...this.state }
 
   methods = {
-    registerUser: debounce(async () => {
+    registerUser: debounce(async (data) => {
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: ''
+        urlEndpoint: '/register',
+        data,
       })
-      if (result?.data) {
-        this.setState({ purchaseOrderUserPermissions: result.data })
-      }
+      return result
+    }),
+     loginUser: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/login',
+        data,
+      })
+      if(result.status){
+        this.setState({
+          ...this.state,
+          accessToken:result.data.accessToken,
+          loginUserId:result.data.user_id,
+        })
+        return true
+      }else return false
     }),
   }
 

@@ -1,12 +1,8 @@
 import {FormRow} from '../InputFields'
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
-const RegisterForm =({setNextPageEnable})=>{
-  const [FormData,setFormData] = useState({
-    mobileNumber:'',
-    password:'',
-    confirmPassword:'',
-  }) 
+const RegisterForm =({FormData,setFormData,setNextPageEnable})=>{
+ 
   
   const [isValidate,setValidate] = useState(false)
 

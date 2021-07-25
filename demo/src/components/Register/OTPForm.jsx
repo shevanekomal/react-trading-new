@@ -1,6 +1,6 @@
 import {FormRow} from '../InputFields'
-const OTPForm =(props)=> {
-  console.log(props)
+
+const OTPForm =({RegisterHandler})=> {
     return (
       <form name='opt' className='Register'>
       <FormRow
@@ -12,11 +12,7 @@ const OTPForm =(props)=> {
         />
         <div><span>Resend OTP</span><span>Change Number</span></div>
         <button 
-        onClick={(e)=> {
-        e.preventDefault()
-        props.history.push("/fillDetails");
-        }
-        } >Register</button></form>
+        onClick={(e)=>RegisterHandler(e)}>Register</button></form>
     )
 }
 export default OTPForm
