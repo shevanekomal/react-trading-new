@@ -3,22 +3,17 @@ import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Butto
 import './AddForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../../components/Modal/ModalWindow'
-import axios from 'axios'
 
-let BASE_URL = ''
-
-// if (process.env.NODE_ENV !== 'development') {
-//   BASE_URL = window.location.origin
-// }
-
-const AddForm =()=> {
+const AddForm =(props)=> {
+  const {name,whatsAppNumber,self} = props.location.state
 const {
   cities,
   gender,
   diet,
   exercise,
   conditions,
-  familyHistoryConditions
+  familyHistoryConditions,
+  addDetails
 } = useContext(FieldDataContext)
 const [state,setState] = useState({
   city:{
@@ -58,8 +53,8 @@ const [state,setState] = useState({
     error:""
   },
 })
-const [open, setOpen] = React.useState(false);
-
+const [open, setOpen] = useState(false);
+console.log(props.location.state,"l")
 const handleChange =(e) =>{
   let value =  e.target.value;
   let error = ''
@@ -93,6 +88,7 @@ const _calculateAge=(birthday) =>{
 const onUpdateData = () =>{
   let validate = true;
   let data = {}
+  
 Object.entries(state).forEach(([key, value]) =>{
   if(!!+value.error){
     validate = false
@@ -116,25 +112,15 @@ if(validate){
   exercise:state.city.value,
   diagnosedCondition:state.diagnosedCondition.value,
   familyHistoryConditions:state.familyHistoryConditions.value,
+  name,
+  whatsAppNumber
 }
-let request = {
-  //params,
-  method:'POST',
-  url: `${BASE_URL}`,
-  headers: {
-    'content-type': 'application/json',
-   // ...headers
-  }
-}
-if (data) {
-  request = { ...request, data }
-}
-return axios(request)
-  .then(({ data: { data, messages, status } }) => {
-    console.log( data, messages, status)
+  addDetails(data).then((response)=>{
+    console.log(response)
   })
-  .catch(err => {
-    console.error('Something went wrong', err)
+  props.history.push({
+    pathname: '/userHome',
+   //state: { ...FormData,self:true }
   })
 }
 }
@@ -159,7 +145,7 @@ const validate =(e)=>{
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
           <DatePicker name={'birthdate'}  required={true} defaultValue={state.birthdate.value}  validate={validate} onChange={handleChange} error={state.birthdate.error}>Select your birthday</DatePicker>
           <Textbox type={'number'} endAdornment="ft' in''" required={true} name='height' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.height.error} value={state.height}>Your height</Textbox>
-          <Textbox type={'number'} endAdornment='kg lb' required={true}  name='weight'  textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.weight.error} value={state.weight}>Your Weight</Textbox>
+          <Textbox type={'number'} endAdornment='kg' required={true}  name='weight'  textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.weight.error} value={state.weight}>Your Weight</Textbox>
           </div>
           <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
@@ -170,9 +156,10 @@ const validate =(e)=>{
           <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error}>Select all conditions for which you have a family history
           Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (aunts, uncles, cousins).</CheckboxesGroup>
           { open && 
-        <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}>Working on below 18 health plans..</ModalWindow>}
+        <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
+        <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
-       <Buttons >Skip For Now</Buttons>
+       {!self && <Buttons >Skip For Now</Buttons>}
        <Buttons onClick={onUpdateData} bgColor={'#F9E24D'}>Update</Buttons>
         </form>
       </div>

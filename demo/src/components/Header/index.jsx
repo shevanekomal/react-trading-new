@@ -8,7 +8,8 @@ import Login from '../Login'
 import Menubar from "./Menubar";
 import AddDetails from '../AddDetails'
 import HealthPlan from "../HealthPlan";
-
+import AddForm from '../AddForm/AddForm'
+import UserHome from '../UserHome'
 const Header = () => {
   return (
     <div className='Home'>
@@ -20,7 +21,9 @@ const Header = () => {
         <Route path="/about" exact component={HealthPlan} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
-        <Route path='/fillDetails' exact component={AddDetails} />
+        <Route path='/addMember' exact component={AddDetails} name={`Let's Start`} />
+        <Route path='/addRisk' exact component={AddForm} name='HealthStatus'/>
+        <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
         <Route component={(<h1>Not Found 404</h1>)} />
       </Switch>
     </Router>

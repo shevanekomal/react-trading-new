@@ -1,0 +1,22 @@
+
+.UserHome .heading{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  line-height: 48px;
+  /* or 141% */
+  letter-spacing: 0.0025em;
+  /* Dark Blue Primary */
+  color: #17416B;
+}
+.self{
+  display: flex;
+  justify-content: center;
+}
+/* .Profile div{
+  flex: none;
+} */
+.Profile div {
+  align-self: flex-end;
+}

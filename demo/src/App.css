@@ -1,10 +1,28 @@
 .App{
   padding: 10px;
 }
-.activeButtonStyle{
+.activeButtonStyle,.makeStyles-ModalWindow-23 button{
   position: static;
   width: 90px;
   height: 40px;
   background: #F9E24D;
   border-radius: 6px;
+  border: none;
+}
+.makeStyles-ModalWindow-23 p{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* or 150% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  border: none;
+
+  /* Black Text */
+
+color: #07213C;
 }

@@ -9,6 +9,7 @@ class FieldDataProvider extends Component {
   state = {
      accessToken:'',
      loginUserId:null,
+     familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
      diet : [{text:"Vegetarian diet",value:"vegetarian"},{text:"Non-vegetaran diet",value:"non-vegetarian"}],
@@ -55,6 +56,14 @@ class FieldDataProvider extends Component {
         })
         return true
       }else return false
+    }),
+    addDetails: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/',
+        data,
+      })
+      return result
     }),
   }
 

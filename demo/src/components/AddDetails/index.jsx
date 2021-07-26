@@ -3,18 +3,15 @@ import {FormRow,RadioButton} from '../InputFields'
 import {useState,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle} from "@fortawesome/free-solid-svg-icons";
-import AddForm from '../AddForm/AddForm'
-import { validate } from '@babel/types';
 
-const AddDetails = () =>{
+const AddDetails = (props) =>{
   const [isNumberIsDiff,setIsNumberDiff] = useState(false)
-  const [nextPageEnable,setNextPageEnable] = useState(false)
   const [isValidate,setValidate] = useState(false)
   const [FormData,setFormData] = useState({
     name:'',
-    whatsappNo:''
+    whatsAppNumber:''
   }) 
-  
+ 
   useEffect(() => {
       let tempValidate = true
       for (const [key, value] of Object.entries(FormData)) {
@@ -38,7 +35,7 @@ const AddDetails = () =>{
   }
   return(
     <div>
-    {!nextPageEnable ?(<form >
+    { (<form >
       <FormRow
           type="text"
           label="Name"
@@ -58,12 +55,14 @@ const AddDetails = () =>{
           required={true}
           changeHandler={onChangehandler}
         /><FontAwesomeIcon icon={faInfoCircle} color="#17416B" size={'1x'} /></>)}
-        
-        <button className={validate ? 'activeButtonStyle' : ''} onClick={(e)=>{
+        <button className={isValidate ? 'activeButtonStyle' : ''} onClick={(e)=>{
           e.preventDefault()
-          isValidate && setNextPageEnable(true)
+          isValidate && props.history.push({
+          pathname: '/addRisk',
+          state: { ...FormData,self:true }
+        })
         }} >Continue</button>
-      </form>):<AddForm /> }
-</div>
+      </form>) }
+    </div>
 )}
 export default AddDetails;

@@ -1,11 +1,9 @@
 
 import './Register.css'
-import {useState} from 'react'
+import {useState,useContext} from 'react'
 import OTPForm from './OTPForm'
 import RegisterForm from './RegisterForm';
-
 import { FieldDataContext } from '../../context/FieldData' 
-import {useContext} from 'react'
 const Register = (props) => {
  const [FormData,setFormData] = useState({
     mobileNumber:'',
@@ -20,7 +18,8 @@ registerUser
 const RegisterHandler=(e)=>{
         e.preventDefault()
         registerUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
-result.status ? props.history.push("/fillDetails") : alert("something went wrong!!")
+result.status ? props.history.push("/addMember") : alert("something went wrong!!")
+//props.history.push("/addMember") 
         })
         
 }

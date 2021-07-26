@@ -4,9 +4,10 @@ import linkedin from '../../assets/linkedin.svg'
 import instagram from '../../assets/instagram.svg'
 import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
+import { useLocation } from 'react-router-dom'
 import './Menubar.css'
-const Menubar = () =>{
-  
+const Menubar = (props) =>{
+const currentPath = useLocation().pathname
 const deafulClasses = {
   homeLinkClass: "nav-item nav-link",
   featureLinkClass: "nav-item nav-link",
@@ -28,22 +29,24 @@ const deafulClasses = {
   };
   const addActiveCssOnClick = (linkClass) =>setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
   
-  const toggleOpen = () => setState({ ...state, isOpen: !state.isOpen });
-
   const show = state.menu ? "show" : "";
-  const menuClass = `dropdown-menu${state.isOpen ? " show" : ""}`;
+  const getLabel=(currentPath)=>{
+    switch(currentPath){
+      case '/addMember': return `Let's Start`;
+      case '/addRisk': return `Health Status`;
+      default : currentPath.toUpperCase().replace('/','')
+    }
+  }
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className={['/ourFeature','/about','/register','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
         <span className="navbar-toggler-icon" />
       </button>
-      <Link className="navbar-brand" to="/">
+      {['/ourFeature','/about'].includes(currentPath) ? (<><Link className="navbar-brand" to="/">
         logo
-      </Link>
-      
-      {!(state.resgisterLinkClass == 'nav-item nav-link active' || state.loginLinkClass=='nav-item nav-link active') && <button className="navbar-toggler registerButton" type="button">
+      </Link><button className="navbar-toggler registerButton" type="button">
         Register
-      </button>
+      </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       }
       <div className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">

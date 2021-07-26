@@ -18,9 +18,9 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
+  ModalWindow: {
     position: 'absolute',
-    width: 200,
+    width: 300,
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
@@ -44,10 +44,10 @@ export default function ModalWindow({children,open,handleClose,handleOpen}) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div style={modalStyle} className={classes.paper}>
+        <div style={modalStyle} className={classes.ModalWindow }>
       {children}
       <br />
-     <button onClick={()=>handleClose()}>ok</button>
+     <button onClick={()=>handleClose()}>OKAY</button>
     </div>
       </Modal>
     </div>
