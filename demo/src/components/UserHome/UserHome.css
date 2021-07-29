@@ -10,7 +10,7 @@
   /* Dark Blue Primary */
   color: #17416B;
 }
-.self{
+.Profile{
   display: flex;
   justify-content: center;
 }
@@ -19,4 +19,39 @@
 } */
 .Profile div {
   align-self: flex-end;
+}
+.NameHolder{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+/* or 150% */
+
+text-align: center;
+letter-spacing: 0.0015em;
+
+/* Black Text */
+
+color: #07213C;
+}
+.Profile .ButtonContainer{
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  height: 6rem;
+}
+.Profile .ButtonContainer div{
+  background: red;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.FamilyMemberContainer{
+  display:flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
 }

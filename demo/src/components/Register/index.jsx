@@ -18,8 +18,15 @@ registerUser
 const RegisterHandler=(e)=>{
         e.preventDefault()
         registerUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
-result.status ? props.history.push("/addMember") : alert("something went wrong!!")
-//props.history.push("/addMember") 
+result.status ? props.history.push({
+  pathname: '/addMember',
+  state: {self:true }
+}) : alert("something went wrong!!")
+
+// props.history.push({
+//     pathname: '/addMember',
+//     state: {self:true }
+//   }) 
         })
         
 }

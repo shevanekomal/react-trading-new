@@ -1,5 +1,5 @@
 import './App.css';
-import AddForm from './components/AddForm/AddForm';
+import HealthStatusForm from './components/HealthStatusForm';
 import {FieldDataProvider} from './context/FieldData'
 import HealthPlan from './components/HealthPlan'
 import Header from './components/Header'
@@ -8,7 +8,7 @@ function App() {
     <div className='App'>
       <FieldDataProvider>
     <Header />
-    {/* <AddForm /> */}
+    {/* <HealthStatusForm /> */}
     {/* <HealthPlan /> */}
     </FieldDataProvider>
     </div>

@@ -1,10 +1,10 @@
 import React,{useContext,useState,useRef} from 'react'
 import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Buttons} from '../InputFields'
-import './AddForm.css'
+import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
-import ModalWindow from '../../components/Modal/ModalWindow'
+import ModalWindow from '../Modal/ModalWindow'
 
-const AddForm =(props)=> {
+const HealthStatusForm =(props)=> {
   const {name,whatsAppNumber,self} = props.location.state
 const {
   cities,
@@ -109,7 +109,7 @@ if(validate){
   height:state.height.value,
   weight:state.weight.value,
   diet:state.diet.value,
-  exercise:state.city.value,
+  exercise:state.exercise.value,
   diagnosedCondition:state.diagnosedCondition.value,
   familyHistoryConditions:state.familyHistoryConditions.value,
   name,
@@ -165,4 +165,4 @@ const validate =(e)=>{
       </div>
     )
 }
-export default AddForm
+export default HealthStatusForm
