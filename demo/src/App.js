@@ -1,15 +1,13 @@
 import './App.css';
-import HealthStatusForm from './components/HealthStatusForm';
 import {FieldDataProvider} from './context/FieldData'
-import HealthPlan from './components/HealthPlan'
 import Header from './components/Header'
-function App() {
+import React, { useLayoutEffect, useState } from 'react';
+
+const App=()=> {
   return (
     <div className='App'>
       <FieldDataProvider>
-    <Header />
-    {/* <HealthStatusForm /> */}
-    {/* <HealthPlan /> */}
+      <Header />
     </FieldDataProvider>
     </div>
   );

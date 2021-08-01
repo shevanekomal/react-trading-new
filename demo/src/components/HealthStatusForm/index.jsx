@@ -138,14 +138,14 @@ const validate =(e)=>{
       <div className='FormContainer'>
         <h2>Set up your health details. This will allow us to create a personalized health experience for you</h2>
         <p>Please note: Your information is safe with us. It will be used to personalize the healthcare information you receive. It will not be used for marketing or advertising purposes.</p>
-        <form name='details'>
+        <form name='details' style={{padding:'2%'}}>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>Personal Details</div>
           <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
           <DatePicker name={'birthdate'}  required={true} defaultValue={state.birthdate.value}  validate={validate} onChange={handleChange} error={state.birthdate.error}>Select your birthday</DatePicker>
-          <Textbox type={'number'} endAdornment="ft' in''" required={true} name='height' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.height.error} value={state.height}>Your height</Textbox>
-          <Textbox type={'number'} endAdornment='kg' required={true}  name='weight'  textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.weight.error} value={state.weight}>Your Weight</Textbox>
+          <Textbox type={'number'} placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.height.error} value={state.height}>Your height</Textbox>
+          <Textbox type={'number'} placeholder={`Eg: 62 `} endAdornment='kg' required={true}  name='weight'  textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.weight.error} value={state.weight}>Your Weight</Textbox>
           </div>
           <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>

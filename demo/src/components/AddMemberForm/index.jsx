@@ -68,7 +68,7 @@ const AddMemberForm = (props) =>{
           required={true}
           changeHandler={onChangehandler}
         /><FontAwesomeIcon icon={faInfoCircle} color="#17416B" size={'1x'} /></>)}
-        <button className={isValidate ? 'activeButtonStyle' : ''} onClick={(e)=>{
+        <button className={isValidate?'customButton activeButtonStyle':'customButton'} onClick={(e)=>{
           e.preventDefault()
           
           isValidate &&  props.history.push({

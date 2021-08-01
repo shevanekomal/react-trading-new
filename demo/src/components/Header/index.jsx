@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../Home'
 import Features from '../Features'
@@ -11,14 +12,33 @@ import HealthPlan from "../HealthPlan";
 import HealthStatusForm from '../HealthStatusForm'
 import UserHome from '../UserHome'
 import MyProfile from '../MyProfile'
+import TestDetails from '../TestDetails'
 
 
 const Header = () => {
+  const deafulClasses = {
+    homeLinkClass: "nav-item nav-link",
+    featureLinkClass: "nav-item nav-link",
+    aboutLinkClass: "nav-item nav-link",
+    resgisterLinkClass: "nav-item nav-link",
+    loginLinkClass: "nav-item nav-link"}
+  const [state, setState] = useState({
+    menu: false,
+    isOpen: false,
+    menuClass: "",
+    ...deafulClasses
+  });
   return (
     <div className='Home'>
     <Router>
-    <Menubar />
-      <Switch>
+    <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />
+    <div onClick={()=>{
+      state.menu && setState({
+        ...state,
+        menu:false
+      })
+    }}>
+    <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/ourFeature" exact component={Features} />
         <Route path="/about" exact component={Aboutus} />
@@ -29,9 +49,11 @@ const Header = () => {
         <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
         <Route path="/healthPlan" exact component={HealthPlan} />
         <Route path="/myProfile" exact component={MyProfile} />
+        <Route path="/test" exact component={TestDetails} />
         
         <Route component={(<h1>Not Found 404</h1>)} />
       </Switch>
+     </div> 
     </Router>
     </div>
   );

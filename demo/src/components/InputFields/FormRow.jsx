@@ -2,7 +2,7 @@ import './style.css'
 const FormRow = ({ type, label, name, changeHandler ,required,...otherProps}) => {
   return (
     <div className="container">
-      <label>{label}</label>
+      <label>{label}{required && <span style={{color:'red'}}>*</span>}</label>
       <input type={type} name={name} onChange={changeHandler}  {...otherProps} required={required}/>
     </div>
   );

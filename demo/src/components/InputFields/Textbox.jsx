@@ -1,6 +1,6 @@
-import {useState} from 'react'
+
 import {OutlinedInput,InputAdornment,FormControl,FormHelperText} from '@material-ui/core';
- const Textbox=({children,type,name,endAdornment,onChange,textRef,required,error,validate}) =>{
+ const Textbox=({children,type,name,endAdornment,onChange,textRef,required,error,validate,placeholder}) =>{
   return(
       <div>
         <FormControl className='Textbox' variant="outlined"  required={true}>
@@ -11,6 +11,7 @@ import {OutlinedInput,InputAdornment,FormControl,FormHelperText} from '@material
             aria-describedby="outlined-weight-helper-text"
             name={name}
             ref={textRef} 
+            placeholder={placeholder}
             value={textRef.current.value}
             onChange={onChange}
             onBlur={required && validate}

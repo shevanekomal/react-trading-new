@@ -9,24 +9,24 @@ const Register = (props) => {
     mobileNumber:'',
     password:'',
     confirmPassword:'',
+    loginWithOtp:'',
   }) 
 const [nextPageEnable,setNextPageEnable] = useState(false)
 const {
 registerUser
 }=useContext(FieldDataContext)
-
-const RegisterHandler=(e)=>{
-        e.preventDefault()
+console.log(window.innerHeight)
+const RegisterHandler=()=>{
         registerUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
-result.status ? props.history.push({
-  pathname: '/addMember',
-  state: {self:true }
-}) : alert("something went wrong!!")
+            // result.status ? props.history.push({
+            //   pathname: '/addMember',
+            //   state: {self:true }
+            // }) : alert("something went wrong!!")
 
-// props.history.push({
-//     pathname: '/addMember',
-//     state: {self:true }
-//   }) 
+        props.history.push({
+            pathname: '/addMember',
+            state: {self:true }
+          }) 
         })
         
 }

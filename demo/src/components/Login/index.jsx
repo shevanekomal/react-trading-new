@@ -64,7 +64,7 @@ const [FormData,setFormData] = useState({
           
         <p>Note: If you are the account creator, login using your password or OTP. 
         If you are a family member, login using the OTP.</p>
-        <button className={isValidate?'activeButtonStyle':""}
+        <button className={isValidate?'customButton activeButtonStyle':'customButton'}
         onClick={(e)=>LoginHandler(e)}>LOGIN</button>
         <p>New here? <Link
             to="/register" >Register Now</Link></p>

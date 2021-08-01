@@ -1,25 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import linkedin from '../../assets/linkedin.svg'
 import instagram from '../../assets/instagram.svg'
 import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
+import homeLogo from '../../assets/homeLogo.svg'
 import { useLocation } from 'react-router-dom'
 import './Menubar.css'
-const Menubar = (props) =>{
+import { FieldDataContext } from '../../context/FieldData'
+const Menubar = ({state,setState,deafulClasses}) =>{
+  const {
+    loginUserId
+  } = useContext(FieldDataContext)
 const currentPath = useLocation().pathname
-const deafulClasses = {
-  homeLinkClass: "nav-item nav-link",
-  featureLinkClass: "nav-item nav-link",
-  aboutLinkClass: "nav-item nav-link",
-  resgisterLinkClass: "nav-item nav-link",
-  loginLinkClass: "nav-item nav-link",}
-  const [state, setState] = useState({
-    menu: false,
-    isOpen: false,
-    menuClass: "",
-    ...deafulClasses
-  });
+
+ 
   const toggleMenu = (event) => {
     event.stopPropagation();
     setState({
@@ -34,7 +29,7 @@ const deafulClasses = {
     switch(currentPath){
       case '/addMember': return `Let's Start`;
       case '/addRisk': return `Health Status`;
-      default : currentPath.toUpperCase().replace('/','')
+      default : return currentPath.toUpperCase().replace('/','')
     }
   }
   return (
@@ -48,11 +43,12 @@ const deafulClasses = {
         Register
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       }
-      <div className={"collapse navbar-collapse " + show}>
+      <div style={{padding: '10px'}}className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
         <div className="navbar-toggler">
           Logo
         </div>
+        
           <Link
             className={state.homeLinkClass}
             to="/"
@@ -103,6 +99,11 @@ const deafulClasses = {
 
         
       </div>
+      <Link
+            to={loginUserId?'/userHome':"/"}
+          >
+           <img style={{margin: '5px'}}src={homeLogo} alt="home Logo" />
+          </Link>
     </nav>
   );
 }

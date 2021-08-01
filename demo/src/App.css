@@ -1,13 +1,10 @@
-.App{
+/* .App{
   padding: 10px;
-}
+} */
 .activeButtonStyle,.makeStyles-ModalWindow-23 button{
-  position: static;
-  width: 90px;
-  height: 40px;
-  background: #F9E24D;
-  border-radius: 6px;
-  border: none;
+  /* position: static; */
+  background: #F9E24D!important;
+ 
 }
 .makeStyles-ModalWindow-23 p{
   font-family: Open Sans;
@@ -25,4 +22,23 @@
   /* Black Text */
 
 color: #07213C;
+}
+.customButton{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+margin: auto;
+position: static;
+width: auto;
+height: 40px;
+border: 0px;
+/* Grey Light */
+background: #F0F3F5;
+border-radius: 6px!important;
+/* Inside Auto Layout */
+flex: none;
+order: 4;
+flex-grow: 0;
 }

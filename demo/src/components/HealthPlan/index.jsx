@@ -2,7 +2,13 @@ import './HealthPlan.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList,faHeart,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import TestPannel from '../TestPannel'
-const HealthPlan = ()=> {
+const HealthPlan = (props)=> {
+  const clickHandler=(test)=>{
+    props.history.push({
+      pathname: '/test',
+      state: { ...test}
+    })
+  }
   const testsRecommanded = {
     testData:[
     {
@@ -92,7 +98,7 @@ Recommendedcount: 5}
           <p>Recommended Checkups</p>
           <div>These checkups are recommended for you based on the health status information you shared. Click on each checkup to know more.</div>
         </div>
-        {testsRecommanded.testData.map(test=> <TestPannel key = {test.testName} test = {test}/>)}
+        {testsRecommanded.testData.map(test=> <TestPannel key = {test.testName} test = {test} clickHandler={clickHandler} />)}
         <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <button><FontAwesomeIcon icon={faPlusCircle} color="#F9E24D" size={'lg'} /></button><span>Create</span>
