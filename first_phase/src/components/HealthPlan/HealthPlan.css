@@ -1,0 +1,38 @@
+.HealthPlan{
+  padding: 20px;
+}
+.PlanHeader{
+display: flex;
+border: 1px solid #17416B;
+border-radius: 6px;
+padding: 12px;
+}
+.PlanHeader :first-child{
+  width:30%
+}
+.PlanHeader :last-child{
+  width: 70%;
+}
+.PlanHeader + div{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.HealthPlan p{
+  /* Topic Headings/Sub-Category Heading Semi-Bold */
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+line-height: 32px;
+/* identical to box height, or 145% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.005em;
+
+/* Black Text */
+
+color: #07213C;
+
+}
