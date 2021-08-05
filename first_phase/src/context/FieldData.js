@@ -28,21 +28,39 @@ class FieldDataProvider extends Component {
   
      familyHistoryConditions : [ 
     {text:'None',name:'None'},
-    {text:'Breast or ovarian cancer',name:'Breast or ovarian cancer'},
-    {text:'Colorectal/ colon cancer',name:'Colorectal/ colon cancer'},
-    {text:'Prostate cancer',name:'Prostate cancer'},
-    {text:' Cardiovascular disease (like coronary heart disease, heart attack, stroke)',name:'Cardiovascular disease'},
-    {text:'Diabetes',name:'Diabetes'},,
-    {text:'Thyroid disease',name:'Thyroid disease'},
-    {text:'Liver disease',name:'Liver disease'}],
+    {text:'Cancer - Breast',name:'Cancer - Breast'},
+    {text:'Cancer - Ovarian',name:'Cancer - Ovarian'},
+    {text:'Cancer -  Colorectal / colon',name:'Cancer -  Colorectal / colon'},
+    {text:'Cancer -  Prostate',name:'Cancer -  Prostate'},
+    {text:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)',name:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)'},
+    {text:'Diabetes',name:'Diabetes'},
+    {text:'Kidney disease',name:'Kidney disease'},
+    {text:'Liver disease',name:'Liver disease'},
+    {text:'Thyroid disease',name:'Thyroid disease'}],
+
     otherConditions : [
-      { key: "Bone disorders (like osteoporosis)", cat: "Bone disorders (like osteoporosis)*" },
+      { key: "Anemia", cat: "Anemia" },
+      { key: "Blood disorders", cat: "Blood disorders" },
+      { key: "Bone disorders (like osteoporosis)", cat: "Bone disorders (like osteoporosis)" },
+      { key: "Bronchial Asthma", cat: "Bronchial Asthma" },
+      { key: "Cancer -  Colorectal / colon", cat: "Cancer -  Colorectal / colon" },
+      { key: "Cancer -  Prostate", cat: "Cancer -  Prostate" },
+      { key: "Cancer - Breast", cat: "Cancer - Breast" },
+      { key: "Cancer - Others", cat: "Cancer - Others" },
+      { key: "Cancer - Ovarian", cat: "Cancer - Ovarian" },
+      { key: "Cardiovascular disease (like coronary heart disease, heart attack, stroke)", cat: "Cardiovascular disease (like coronary heart disease, heart attack, stroke)" },
+      { key: "Chronic Obstructive Pulmonary Disease", cat: "Chronic Obstructive Pulmonary Disease" },
+      { key: "Diabetes", cat: "Diabetes" },
       { key: "Gestational diabetes", cat: "Gestational diabetes" },
+      { key: "Immunocompromised", cat: "Immunocompromised" },
       { key: "Inflammatory bowel disease", cat: "Inflammatory bowel disease" },
       { key: "Kidney disease", cat: "Kidney disease" },
       { key: "Liver disease", cat: "Liver disease" },
+      { key: "Lung disease", cat: "Lung disease" },
+      { key: "Pancreatic disease", cat: "Pancreatic disease" },
       { key: "Polycystic ovarian syndrome (PCOS)", cat: "Polycystic ovarian syndrome (PCOS)" },
-      { key: "Prediabetes", cat: "Prediabetes" }
+      { key: "Prediabetes", cat: "Prediabetes" },
+      { key: "Thyroid disease", cat: "Thyroid disease" }
     ],
     testsRecommanded : {
       testData:[
@@ -128,8 +146,11 @@ class FieldDataProvider extends Component {
     }),
     disableConditions: debounce(async(condition,checked)=>{
       let tempCondition = this.state[condition];
-      tempCondition = tempCondition.map(el=>el.text!='None' ? ({...el,disabled:checked}):({...el}))
-      console.log(tempCondition)
+      if(!checked){
+        tempCondition = tempCondition.map(el=>({name:el.name,text:el.text}))
+      }else{
+        tempCondition = tempCondition.map(el=>el.text!='None' ? ({...el,disabled:checked,checked:false}):({...el}))
+      } 
       this.setState({[condition]:tempCondition})
     })
   }
