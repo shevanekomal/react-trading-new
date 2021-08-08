@@ -8,7 +8,7 @@ const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
   state = {
      accessToken:'',
-     loginUserId:null,
+     user_id:null,
      familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
@@ -63,7 +63,7 @@ class FieldDataProvider extends Component {
       { key: "Thyroid disease", cat: "Thyroid disease" }
     ],
     testsRecommanded : {
-      testData:[
+      Recommended:[
       {
           "testName": "Blood Test",
           "testTypes": [
@@ -152,7 +152,26 @@ class FieldDataProvider extends Component {
         tempCondition = tempCondition.map(el=>el.text!='None' ? ({...el,disabled:checked,checked:false}):({...el}))
       } 
       this.setState({[condition]:tempCondition})
-    })
+    }),
+    updateUserId : debounce(async(user_id)=>{
+      this.setState({user_id})
+    }),
+    getHealthPlanDetails: debounce(async () => {
+      const result = await httpClient({
+        method: 'GET',
+        urlEndpoint: '/getHealthPlans',
+        params:{user_id:this.state.user_id},
+      })
+      if(result.status){
+        this.setState({
+          ...this.state,
+          testsRecommanded:result.data
+        })
+        return true
+      }else{
+        console.log(result)
+      }
+    }),
   }
 
   render() {

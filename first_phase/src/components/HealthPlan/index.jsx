@@ -1,5 +1,5 @@
 import './HealthPlan.css'
-import {useContext} from 'react'
+import {useContext,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList,faHeart,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import TestPannel from '../TestPannel'
@@ -8,20 +8,21 @@ import { FieldDataContext } from '../../context/FieldData'
 const HealthPlan = (props)=> {
   const {
     getCheckupDetails,
-    testsRecommanded
+    testsRecommanded,
+    getHealthPlanDetails
   } = useContext(FieldDataContext)
 
   const clickHandler=(test)=>{
     getCheckupDetails({checkupId:test.checkup_id}).then(result=>{
-console.log(result)
-props.history.push({
-  pathname: '/test',
-  state: { ...test}
-})
+      props.history.push({
+        pathname: '/test',
+        state: { ...test}
+      })
     })
-    
   }
-  
+  useEffect(()=>{
+    getHealthPlanDetails()
+  },[])
     return (
       <div className='HealthPlan'>
         <div className='PlanHeader'>
@@ -37,7 +38,7 @@ props.history.push({
           <p>Recommended Checkups</p>
           <div>These checkups are recommended for you based on the health status information you shared. Click on each checkup to know more.</div>
         </div>
-        {testsRecommanded.testData.map(test=> <TestPannel key = {test.testName} test = {test} clickHandler={clickHandler} />)}
+        {testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} test = {test} clickHandler={clickHandler} />)}
         <div className='SelfCheckup'>
         </div>
       </div>

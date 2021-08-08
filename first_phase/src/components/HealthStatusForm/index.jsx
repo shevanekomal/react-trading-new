@@ -17,7 +17,8 @@ const {
   addDetails,
   disableConditions,
   alcoholIntakeOption,
-  otherConditions
+  otherConditions,
+  updateUserId
 } = useContext(FieldDataContext)
 const [state,setState] = useState({
   city:{
@@ -151,11 +152,14 @@ if(validate){
   // whatsAppNumber
 }
   addDetails(data).then((response)=>{
-    console.log(response)
-  })
-  props.history.push({
-    pathname: '/healthPlan',
-   //state: { ...FormData,self:true }
+      if(response.status){
+        updateUserId(response.data.user_id)
+        props.history.push({
+          pathname: '/healthPlan',
+        //state: { ...FormData,self:true }
+        })
+      } 
+      
   })
 }
 }

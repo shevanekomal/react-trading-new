@@ -24,7 +24,7 @@ import { FieldDataContext } from '../../context/FieldData'
   }
 const getDetails=(direction)=>{
   let newCheckUpId = false;
-  testsRecommanded.testData.flatMap(el=>el.testTypes.map((chkp,index)=>{
+  testsRecommanded.Recommended.flatMap(el=>el.testTypes.map((chkp,index)=>{
     if(chkp.checkup_id==checkup_id){
       if(direction==='prev' && index != 0){
         newCheckUpId = el.testTypes[index-1].checkup_id;
