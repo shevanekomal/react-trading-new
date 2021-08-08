@@ -13,7 +13,7 @@ class FieldDataProvider extends Component {
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
      diet : [{text:"Vegetarian diet",value:"vegetarian"},{text:"Non-vegetaran diet",value:"non-vegetarian"}],
-     alcoholIntakeOption:[{text:'Yes',value:'yes'},{text:'No',value:'no'}],
+     alcoholIntakeOption:[{text:'Yes',value:'Yes'},{text:'No',value:'No'}],
      exercise :[{text:"Less than 30 minutes",value:"Less than 30 minutes"},
     {text:"More than 30 minutes but less than 1.5 hours",value:"More than 30 minutes but less than 1.5 hours"},
     {text:"More than 1.5 hour and less than 2.5 hours",value:"More than 1.5 hour and less than 2.5 hours"},

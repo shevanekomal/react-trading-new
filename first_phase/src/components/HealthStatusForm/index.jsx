@@ -1,5 +1,5 @@
 import React,{useContext,useState,useRef} from 'react'
-import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Buttons,MultiSelectDropDown} from '../InputFields'
+import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
@@ -66,6 +66,18 @@ const [state,setState] = useState({
   }
 })
 const [open, setOpen] = useState(false);
+const onMulitiselcetChange = (name,item,type)=>{
+  let arr = state[name].value;
+  //arr.includes('Others') && (arr=[...arr.slice(0,arr.indexOf('Others')),...arr.slice(arr.indexOf('Others')+1)]) 
+  type === 'onSelect' ? arr.push(item.key) : arr=[...arr.slice(0,arr.indexOf(item.key)),...arr.slice(arr.indexOf(item.key)+1)] 
+  setState({
+    ...state,
+    [name]:{
+      value:arr,
+      error:''
+    }
+    })
+}
 const handleChange =(e) =>{
   let value =  e.target.value;
   let error = ''
@@ -122,7 +134,6 @@ Object.entries(state).forEach(([key, value]) =>{
     // })
   }
 })
-console.log(state)
 if(validate){
   data = {
   city:state.city.value,
@@ -168,27 +179,25 @@ const validate =(e)=>{
           <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
           <DatePicker name={'birthdate'}  required={true} defaultValue={state.birthdate.value}  validate={validate} onChange={handleChange} error={state.birthdate.error}>Select your birthday</DatePicker>
-          <Textbox type={'number'} placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height' val = {state.height.value} textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.height.error} value={state.height}>Your height</Textbox>
-          <Textbox type={'number'} placeholder={`Eg: 62 `} endAdornment='kg' required={true}  name='weight'  textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.weight.error} value={state.weight}>Your Weight</Textbox>
-          </div>
-          <div className='DetailsContainer'>
+          <CustomTextBox setState={setState} state={state}  placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height'>Your Height</CustomTextBox>
+          <CustomTextBox setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'>Your Weight</CustomTextBox>
+        </div>
+        <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
           <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} error={state.diet.error}>Select the most appropriate style of diet</RadioButton>
           <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Update Health details page - Do you usually drink around or more than 14 units of alcohol per week?
           14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
           </RadioButton>
-         <Textbox type={'number'}  required={true} name='smoking' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.smoking.error} value={state.smoking.value}>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</Textbox>
-          
+          <Textbox type={'number'}  required={true} name='smoking' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.smoking.error} value={state.smoking.value}>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</Textbox>
           <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error}>How much moderate exercise do you usually do per week?
           Moderate exercise is an activitythat increases your heart-rate so at least a brisk walk.</RadioButton>
           <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error}>Select all conditions you have been diagnosed with</CheckboxesGroup>
-          {console.log(state.diagnosedCondition.value)}
-          {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown options={otherConditions}/>}
+          {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions}/>}
           <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error}>Select all conditions for which you have a family history
           Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (aunts, uncles, cousins).</CheckboxesGroup>
           { open && 
-        <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
-        <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
+          <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
+          <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
        {!self && <Buttons >Skip For Now</Buttons>}
        <Buttons onClick={onUpdateData} bgColor={'#F9E24D'}>Update</Buttons>
