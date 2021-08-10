@@ -8,7 +8,7 @@ const TestPannel = ({test,clickHandler}) =>{
       <div className='TestPannel'>
           <div>{test.testName}</div>
           <table><tbody>
-          {test.testTypes.map((el)=>(<tr key={el.checkup_id} onClick={()=>clickHandler(el)} > 
+          {test.testTypes.length && test.testTypes.map((el)=>(<tr key={el.checkup_id} onClick={()=>clickHandler(el)} > 
             <td>{el.recomm_level == 1 ? (<FontAwesomeIcon icon={faHeart} color="#0B7D6C" size={'1x'} />) : ''}</td>
             <td>{el.checkup_name} <FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></td>
            
