@@ -1,19 +1,14 @@
-/* ==========================SinglSelectDropDown =================================================*/
-/* .SinglSelectDropDown,.RadioButton,.DatePickers div{
-  display: flex!important;
-} */
-.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.Checkbox label{
+
+/* ==========================Label Style =================================================*/
+.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.DatePicker label,.CustomTextBoxLabel,.CheckboxHeader{
   /* Text/Small Text Regular */
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  /* identical to box height, or 143% */
   letter-spacing: 0.0215em;
-  /* Black Text */
   color: #07213c;
-  /* Inside Auto Layout */
   flex: none;
   order: 0;
   align-self: stretch;
@@ -21,6 +16,7 @@
   margin: 0px 0px;
   text-align: left;
 }
+/* ==========================SinglSelectDropDown =================================================*/
 .SinglSelectDropDown div {
   width: 250px;
   display: flex;
@@ -28,10 +24,8 @@
   padding: 4px;
   background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
     #fcfeff;
-  /* Black Text */
   border: 1px solid #07213c;
   border-radius: 6px;
-  /* Inside Auto Layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -57,90 +51,95 @@
 } */
 
 /* ==========================RadioButton =================================================*/
-
-/* ==========================DatePickers =================================================*/
-.DatePickers label {
-  /* Text/Small Text Regular */
-
-  font-family: Open Sans;
+.MuiTypography-body1 {
+  font-family: Open Sans!important;
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 143% */
-
-  letter-spacing: 0.0215em;
-
-  /* Black Text */
-
-  color: #07213c;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
-  margin: 0px 0px;
-  text-align: left;
+  font-weight: normal!important;;
+  font-size: 16px!important;;
+  line-height: 24px!important;;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em!important;;
+  color: #07213C;
+  margin: 0px 8px;
 }
+.MuiRadio-colorSecondary.Mui-checked,.MuiCheckbox-colorSecondary.Mui-checked {
+  color:#3168A7!important
+}
+/* ==========================DatePickers =================================================*/
 .DatePicker > div > div > input{
   width: 250px;
   border:2px solid #a9d9ff;
 }
-       
-       
-.MuiRadio-colorSecondary.Mui-checked,.MuiCheckbox-colorSecondary.Mui-checked {
-  color:#3168A7!important
-}
-.Textbox div input,.MuiOutlinedInput-input{
-  padding: 7px 0px 9px 10px!important
-}
 
+/* ==========================Form Row =================================================*/
 .container {
   margin-bottom: 10px;
 }
 .container input {
-  display: block;
-  /* width: 100%;
-  height: 30px; */
-  /* Auto Layout */
- 
-  
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 4px;
-
-position: static;
-width: 272px;
-height: 32px;
-left: 0px;
-top: 20px;
-
-/* Accidental Linear */
-
-background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FCFEFF;
-/* Saturated Blue */
-
-border: 1px solid #3168A7;
-border-radius: 6px;
-
-/* Inside Auto Layout */
-
-flex: none;
-order: 1;
-align-self: stretch;
-flex-grow: 0;
-margin: auto;
+  display: block;lay: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  position: static;
+  width: 272px;
+  height: 32px;
+  left: 0px;
+  top: 20px;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FCFEFF;
+  border: 1px solid #3168A7;
+  border-radius: 6px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  margin: auto;
 }
 .container label {
-  
-text-align: center;
+  text-align: center;
   display: block;
-  /* margin-left: -9.5rem; */
   margin-bottom: 5px;
 }
+
+/* ========================== CustomTextBox =================================================*/
+.CustomTextBox{
+  display: flex;
+  height: 40px;
+}
+.CustomTextBox input[type='text']:nth-child(1){
+  border-right:0px;
+  
+}
+.CustomTextBox input[type='text']:nth-child(2){
+  border-left:0px;
+  width: 50px;
+}
+.CustomTextBox input[type='text']{
+  outline: none;
+}
+
+/* ========================== Checkbox =================================================*/
+.Checkbox label{
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height, or 150% */
+  
+  align-items: center;
+  letter-spacing: 0.005em;
+  
+  /* Black Text */
+  
+  color: #07213C;
+  
+  
+  /* Inside Auto Layout */
+  
+}
+
+
 
 form{
   padding: 10%;
@@ -152,15 +151,9 @@ background:#EEF8FF!important
 .chip,.highlightOption {
     background: #3168A7!important
 }
-.CustomTextBox{
-  display: flex;
-  height: 40px;
-}
-.CustomTextBox input[type='text']:nth-child(1){
-  border-right:0px;
-  width: 200px;
-}
-.CustomTextBox input[type='text']:nth-child(2){
-  border-left:0px;
-  width: 50px;
+
+
+
+.Textbox div input,.MuiOutlinedInput-input{
+  padding: 7px 0px 9px 10px!important
 }

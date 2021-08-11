@@ -1,4 +1,4 @@
-import React,{useContext,useState,useRef} from 'react'
+import React,{useContext,useState,useRef,useEffect} from 'react'
 import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
@@ -156,7 +156,7 @@ if(validate){
         updateUserId(response.data.user_id)
         props.history.push({
           pathname: '/healthPlan',
-        //state: { ...FormData,self:true }
+         state: { ...FormData,self:true }
         })
       } 
       
@@ -183,8 +183,8 @@ const validate =(e)=>{
           <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
           <DatePicker name={'birthdate'}  required={true} defaultValue={state.birthdate.value}  validate={validate} onChange={handleChange} error={state.birthdate.error}>Select your birthday</DatePicker>
-          <CustomTextBox setState={setState} state={state}  placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height'>Your Height</CustomTextBox>
-          <CustomTextBox setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'>Your Weight</CustomTextBox>
+          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height'>Your Height</CustomTextBox>
+          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'>Your Weight</CustomTextBox>
         </div>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
@@ -192,7 +192,10 @@ const validate =(e)=>{
           <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Update Health details page - Do you usually drink around or more than 14 units of alcohol per week?
           14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
           </RadioButton>
-          <Textbox type={'number'}  required={true} name='smoking' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.smoking.error} value={state.smoking.value}>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</Textbox>
+          <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</CustomTextBox>
+        
+          {/* <Textbox type={'number'}  required={true} name='smoking' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.smoking.error} value={state.smoking.value}>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</Textbox>
+          */}
           <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error}>How much moderate exercise do you usually do per week?
           Moderate exercise is an activitythat increases your heart-rate so at least a brisk walk.</RadioButton>
           <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error}>Select all conditions you have been diagnosed with</CheckboxesGroup>

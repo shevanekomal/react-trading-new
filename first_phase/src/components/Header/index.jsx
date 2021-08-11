@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../Home'
@@ -51,8 +51,7 @@ const Header = () => {
         <Route path="/healthPlan" exact component={HealthPlan} />
         <Route path="/myProfile" exact component={MyProfile} />
         <Route path="/test" exact component={TestDetails} />
-        
-        <Route component={(<h1>Not Found 404</h1>)} />
+        <Redirect to="/" />
       </Switch>
      </div> 
     </Router>
