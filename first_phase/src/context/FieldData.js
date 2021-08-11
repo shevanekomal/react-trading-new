@@ -8,7 +8,7 @@ const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
   state = {
      accessToken:'',
-     user_id:null,
+     user_id:38,
      familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
@@ -100,8 +100,11 @@ class FieldDataProvider extends Component {
           ]
       }
   ],
-  Recommendedcount: 5}
+  Recommendedcount: 5},
+  testDetails:{
+        "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
   }
+}
   initialContext = { ...this.state }
 
   methods = {
@@ -136,13 +139,19 @@ class FieldDataProvider extends Component {
       })
       return result
     }),
-    getCheckupDetails: debounce(async (params) => {
+    getCheckupDetails: debounce(async (checkupId) => {
       const result = await httpClient({
         method: 'GET',
-        urlEndpoint: '/getCheckupDetails',
-        params,
+        urlEndpoint: '/gethealthPlanBuId/'+this.state.user_id+'/'+checkupId
       })
-      return result
+      if(result.status){
+        this.setState({
+          ...this.state,
+          testDetails:result.data
+        })
+      }else{
+        console.log(result)
+      }
     }),
     disableConditions: debounce(async(condition,checked)=>{
       let tempCondition = this.state[condition];
@@ -156,11 +165,10 @@ class FieldDataProvider extends Component {
     updateUserId : debounce(async(user_id)=>{
       this.setState({user_id})
     }),
-    getHealthPlanDetails: debounce(async () => {
+    getHealthPlanDetails: debounce(async (id) => {
       const result = await httpClient({
         method: 'GET',
-        urlEndpoint: '/getHealthPlans',
-        params:{user_id:this.state.user_id},
+        urlEndpoint: '/getHealthPlans/'+id
       })
       if(result.status){
         this.setState({

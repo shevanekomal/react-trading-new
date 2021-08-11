@@ -11,7 +11,6 @@ const HealthPlan = (props)=> {
     testsRecommanded,
     getHealthPlanDetails
   } = useContext(FieldDataContext)
-
   const clickHandler=(test)=>{
     getCheckupDetails({checkupId:test.checkup_id}).then(result=>{
       props.history.push({
@@ -21,7 +20,7 @@ const HealthPlan = (props)=> {
     })
   }
   useEffect(()=>{
-    getHealthPlanDetails()
+    getHealthPlanDetails(props.location.state.user_id)
   },[])
     return (
       <div className='HealthPlan'>
