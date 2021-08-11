@@ -142,7 +142,7 @@ class FieldDataProvider extends Component {
     getCheckupDetails: debounce(async (checkupId) => {
       const result = await httpClient({
         method: 'GET',
-        urlEndpoint: '/gethealthPlanBuId/'+this.state.user_id+'/'+checkupId
+        urlEndpoint: '/gethealthPlanById/'+this.state.user_id+'/'+checkupId
       })
       if(result.status){
         this.setState({
@@ -152,6 +152,7 @@ class FieldDataProvider extends Component {
       }else{
         console.log(result)
       }
+      return result
     }),
     disableConditions: debounce(async(condition,checked)=>{
       let tempCondition = this.state[condition];

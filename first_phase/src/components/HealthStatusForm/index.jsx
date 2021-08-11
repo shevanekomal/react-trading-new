@@ -153,10 +153,11 @@ if(validate){
 }
   addDetails(data).then((response)=>{
       if(response.status){
+      console.log(response)
         updateUserId(response.data.user_id)
         props.history.push({
           pathname: '/healthPlan',
-         state: { ...FormData,self:true }
+         state: { ...FormData,self:true,user_id:response.data.user_id }
         })
       } 
       
