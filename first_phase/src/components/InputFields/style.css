@@ -1,7 +1,6 @@
 
 /* ==========================Label Style =================================================*/
 .SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.DatePicker label,.CustomTextBoxLabel,.CheckboxHeader{
-  /* Text/Small Text Regular */
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
@@ -32,24 +31,6 @@
   flex-grow: 0;
   margin: 0px 0px;
 }
-/* @media only screen and (max-width: 600px) {
-  .SinglSelectDropDown{
-    display: flex!important;
-  } 
-} */
-/* .SinglSelectDropDown select {
-  position: static;
-  width: 232px;
-  height: 24px;
-  left: 4px;
-  top: 4px;
-  //Inside Auto Layout
-  flex: none;
-  order: 0;
-  flex-grow: 1;
-  margin: 0px 8px;
-} */
-
 /* ==========================RadioButton =================================================*/
 .MuiTypography-body1 {
   font-family: Open Sans!important;
@@ -71,7 +52,6 @@
   width: 250px;
   border:2px solid #a9d9ff;
 }
-
 /* ==========================Form Row =================================================*/
 .container {
   margin-bottom: 10px;
@@ -125,35 +105,19 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-  /* identical to box height, or 150% */
-  
   align-items: center;
   letter-spacing: 0.005em;
-  
-  /* Black Text */
-  
   color: #07213C;
-  
-  
-  /* Inside Auto Layout */
-  
 }
-
-
-
 form{
   padding: 10%;
 }
 .MuiAccordion-root{
-background:#EEF8FF!important
+  background:#EEF8FF!important
 }
-/* Multi selct drop down css */
 .chip,.highlightOption {
-    background: #3168A7!important
+  background: #3168A7!important
 }
-
-
-
 .Textbox div input,.MuiOutlinedInput-input{
   padding: 7px 0px 9px 10px!important
 }

@@ -5,22 +5,16 @@
 }
 .TestSubHeader div{
   font-family: Open Sans;
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 24px;
-/* identical to box height, or 133% */
-
-display: flex;
-align-items: center;
-letter-spacing: 0.002em;
-
-/* Black Text */
-
-color: #07213C;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.002em;
+  color: #07213C;
 }
 .TestSubHeader{
-
   margin: 10px;
 }
 .TestSubHeader table tbody tr td {
@@ -29,5 +23,4 @@ color: #07213C;
 .TestDetails{
   background: url('../../assets/Frame_test.png')  no-repeat center;
   height: 552px;
- 
 }

@@ -1,7 +1,7 @@
 import './HealthPlan.css'
 import {useContext,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboardList,faHeart,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import { faClipboardList,faHeart} from "@fortawesome/free-solid-svg-icons";
 import TestPannel from '../TestPannel'
 import { FieldDataContext } from '../../context/FieldData'
 

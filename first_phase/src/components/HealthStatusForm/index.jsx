@@ -1,75 +1,72 @@
-import React,{useContext,useState,useRef,useEffect} from 'react'
+import React,{useContext,useState} from 'react'
 import {SinglSelectDropDown,RadioButton,DatePicker,Textbox,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
-
 const HealthStatusForm =(props)=> {
-  //const {name,whatsAppNumber,self} = props.location.state
   let self = true
-const {
-  cities,
-  gender,
-  diet,
-  exercise,
-  diagnosedCondition,
-  familyHistoryConditions,
-  addDetails,
-  disableConditions,
-  alcoholIntakeOption,
-  otherConditions,
-  updateUserId
-} = useContext(FieldDataContext)
-const [state,setState] = useState({
-  city:{
-    value:'pune',
-     error:''
+  const {
+    cities,
+    gender,
+    diet,
+    exercise,
+    diagnosedCondition,
+    familyHistoryConditions,
+    addDetails,
+    disableConditions,
+    alcoholIntakeOption,
+    otherConditions,
+    updateUserId
+  } = useContext(FieldDataContext)
+  const [state,setState] = useState({
+    city:{
+      value:'pune',
+      error:''
+      },
+    gender:{
+      value:'male',
+      error:''
     },
-  gender:{
-    value:'male',
-    error:''
-  },
-  birthdate:{
-    value:"",
-    error:""
-  },
-  height:{
-    value:"",
-    error:""
-  },
-  weight:{
-    value:"",
-    error:""
-  },
-  diet:{
-    value:"",
-    error:""
-  },
-  exercise:{
-    value:"",
-    error:""
-  },
-  diagnosedCondition:{
-    value:[],
-    error:""
-  },
-  familyHistoryConditions:{
-    value:[],
-    error:""
-  },
-  alcoholIntake:{
-    value:false,
-    error:''
-  },
-  smoking:{
-    value:'',
-    error:''
-  }
+    birthdate:{
+      value:"",
+      error:""
+    },
+    height:{
+      value:"",
+      error:""
+    },
+    weight:{
+      value:"",
+      error:""
+    },
+    diet:{
+      value:"",
+      error:""
+    },
+    exercise:{
+      value:"",
+      error:""
+    },
+    diagnosedCondition:{
+      value:[],
+      error:""
+    },
+    familyHistoryConditions:{
+      value:[],
+      error:""
+    },
+    alcoholIntake:{
+      value:false,
+      error:''
+    },
+    smoking:{
+      value:'',
+      error:''
+    }
 })
 const [open, setOpen] = useState(false);
 const onMulitiselcetChange = (name,item,type)=>{
   let arr = state[name].value;
-  //arr.includes('Others') && (arr=[...arr.slice(0,arr.indexOf('Others')),...arr.slice(arr.indexOf('Others')+1)]) 
   type === 'onSelect' ? arr.push(item.key) : arr=[...arr.slice(0,arr.indexOf(item.key)),...arr.slice(arr.indexOf(item.key)+1)] 
   setState({
     ...state,
@@ -98,8 +95,8 @@ const handleChange =(e) =>{
       return
     }
     let arr = state[name].value
-  !arr.includes(`${e.target.value}`)?arr.push(e.target.value):arr=[...arr.slice(0,arr.indexOf(e.target.value)),...arr.slice(arr.indexOf(e.target.value)+1)] 
-    value=arr
+    !arr.includes(`${e.target.value}`)?arr.push(e.target.value):arr=[...arr.slice(0,arr.indexOf(e.target.value)),...arr.slice(arr.indexOf(e.target.value)+1)] 
+      value=arr
   }
   
   if(e.target.type === 'number' && e.target.name === 'height'){
@@ -126,13 +123,6 @@ const onUpdateData = () =>{
 Object.entries(state).forEach(([key, value]) =>{
   if(!!+value.error){
     validate = false
-    // setState({
-    //   ...state,
-    //   key:{
-    //     value:value.value,
-    //     error:`${key} is required`
-    //   }
-    // })
   }
 })
 if(validate){
@@ -164,14 +154,13 @@ if(validate){
 }
 }
 const validate =(e)=>{
-  if(e.target.value==='')
-  setState({
+  e.target.value==='' && setState({
     ...state,
     [e.target.name]:{
       value:e.target.value,
       error:`${e.target.name} can not be empty`
     }
-    })
+  })
 }
     return (
       <div className='FormContainer'>
@@ -193,9 +182,6 @@ const validate =(e)=>{
           14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
           </RadioButton>
           <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</CustomTextBox>
-        
-          {/* <Textbox type={'number'}  required={true} name='smoking' textRef={useRef('0')}  validate={validate} onChange={handleChange} error={state.smoking.error} value={state.smoking.value}>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</Textbox>
-          */}
           <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error}>How much moderate exercise do you usually do per week?
           Moderate exercise is an activitythat increases your heart-rate so at least a brisk walk.</RadioButton>
           <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error}>Select all conditions you have been diagnosed with</CheckboxesGroup>

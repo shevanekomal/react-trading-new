@@ -7,7 +7,6 @@ export default function DatePickers({children,name,defaultValue,onChange,require
       <TextField
         id="date"
         type="date"
-       // label={label}
         name={name}
         defaultValue={defaultValue}
         InputLabelProps={{

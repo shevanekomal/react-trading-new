@@ -1,7 +1,7 @@
 
 import {FormControl,Select,FormHelperText} from '@material-ui/core';
 import './style.css'
-const SinglSelectDropDown = ({children,name,options,defaultValue,onChange,required,error,validate}) => { 
+const SinglSelectDropDown = ({name,options,onChange,required,error,validate}) => { 
     return (
       <div>
         <FormControl className='SinglSelectDropDown'required>

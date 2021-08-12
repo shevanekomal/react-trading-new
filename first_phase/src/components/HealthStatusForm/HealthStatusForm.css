@@ -1,26 +1,17 @@
 .FormContainer {
-  /* display: flex;
-  flex: 1; */
   margin: 0 auto;
   width: 90%;
 }
 .FormContainer p {
-  /* Text/Small Text Regular */
-
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  /* or 143% */
-
   display: flex;
   align-items: center;
   text-align: initial;
   letter-spacing: 0.0215em;
-
-  /* Black 85 Text */
-
   color: rgba(7, 33, 60, 0.85);
 }
 .FormContainer h2 {
@@ -29,11 +20,9 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  /* or 133% */
   display: flex;
   text-align: initial;
   letter-spacing: 0.002em;
-  /* Black Text */
   color: #07213c;
 }
 .FormContainer form .DetailsContainer{
@@ -42,7 +31,6 @@
   border-radius: 6px;
   padding: 2%;
   margin-top: 10px;
-
 }
 .FormContainer .TopicHeading {
   font-family: Open Sans;
@@ -50,24 +38,14 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 32px;
-  /* identical to box height, or 145% */
-  
   letter-spacing: 0.005em;
-  
-  /* Black Text */
-  
   color: #07213C;
-  
-  
-  /* Inside Auto Layout */
-  
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
   margin: 40px 0px;
 }
-
 .FormContainer form .DetailsContainer > div{
   margin-bottom: 20px;
 }

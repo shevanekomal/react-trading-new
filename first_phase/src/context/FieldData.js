@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
- import debounce from 'debounce-promise'
- import httpClient from './httpClient'
-
+import debounce from 'debounce-promise'
+import httpClient from './httpClient'
 const FieldDataContext = React.createContext()
-//const WAIT_TIME = 400
-
 class FieldDataProvider extends Component {
   state = {
      accessToken:'',
@@ -158,7 +155,7 @@ class FieldDataProvider extends Component {
       if(!checked){
         tempCondition = tempCondition.map(el=>({name:el.name,text:el.text}))
       }else{
-        tempCondition = tempCondition.map(el=>el.text!='None' ? ({...el,disabled:checked,checked:false}):({...el}))
+        tempCondition = tempCondition.map(el=>el.text !== 'None' ? ({...el,disabled:checked,checked:false}):({...el}))
       } 
       this.setState({[condition]:tempCondition})
     }),

@@ -8,14 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
 const useStyles = makeStyles((theme) => ({
-  
   background: '#EEF8FF',
   root: {
     width: '100%',
-flexDirection: 'row',
-alignItems: 'center',
-padding: '8px',
-borderRadius: '6px',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '8px',
+    borderRadius: '6px',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -25,7 +24,6 @@ borderRadius: '6px',
 
 export default function SimpleAccordion({header,details}) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Accordion>
@@ -41,7 +39,6 @@ export default function SimpleAccordion({header,details}) {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      
     </div>
   );
 }

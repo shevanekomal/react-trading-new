@@ -1,14 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft,faArrowRight,faTrash} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft,faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import './TestDetails.css';
 import {useContext} from 'react'
-import Add_member from '../../assets/Add_member.svg'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
 
-
  const TestDetails = (props)=> {
-   
   const {
     getCheckupDetails,
     testsRecommanded,
@@ -16,14 +13,6 @@ import { FieldDataContext } from '../../context/FieldData'
   } = useContext(FieldDataContext)
   let checkup_id  =  props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name  =  props.location.state!=undefined ? props.location.state.checkup_name : ''
- 
-  const schedules = [{date:'3 0June 20121',dr_name:"Dr. Lal Labs"}]
-  const clickHandler = ()=>{
-    props.history.push({
-      pathname: '/addMember',
-      state: {self:false }
-    })
-  }
 const getDetails=(direction)=>{
   let newCheckUpId = false;
   let newCheckupName = ''
@@ -40,7 +29,6 @@ const getDetails=(direction)=>{
         newCheckupName = el.testTypes[index+1].checkup_name;
         console.log("next",newCheckUpId)
         return {checkup_id:newCheckUpId,checkup_name:newCheckupName}
-
       }
       return false;
       
