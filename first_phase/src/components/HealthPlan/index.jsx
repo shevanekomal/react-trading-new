@@ -12,7 +12,7 @@ const HealthPlan = (props)=> {
     getHealthPlanDetails
   } = useContext(FieldDataContext)
   const clickHandler=(test)=>{
-    getCheckupDetails({checkupId:test.checkup_id}).then(result=>{
+    getCheckupDetails(test.checkup_id).then(result=>{
       props.history.push({
         pathname: '/test',
         state: { ...test}

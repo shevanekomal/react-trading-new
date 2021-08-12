@@ -146,7 +146,7 @@ if(validate){
         updateUserId(response.data.user_id)
         props.history.push({
           pathname: '/healthPlan',
-         state: { ...FormData,self:true }
+         state: { ...FormData,self:true,user_id:response.data.user_id }
         })
       } 
       
