@@ -108,6 +108,7 @@
   align-items: center;
   letter-spacing: 0.005em;
   color: #07213C;
+  display: unset!important;
 }
 form{
   padding: 10%;

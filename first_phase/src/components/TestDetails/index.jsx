@@ -9,11 +9,13 @@ import { FieldDataContext } from '../../context/FieldData'
   const {
     getCheckupDetails,
     testsRecommanded,
-    testDetails
+    testDetails,
+    user_id
   } = useContext(FieldDataContext)
-
   let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
+
+  let testName = props.location.state!=undefined ?  props.location.state.testName : ''
 
   const getDetails=(direction)=>{
     let newCheckUpId = checkup_id;
@@ -21,11 +23,25 @@ import { FieldDataContext } from '../../context/FieldData'
     testsRecommanded.Recommended.flatMap(el=>el.testTypes.map((chkp,index)=>{
       if(chkp.checkup_id==checkup_id){
         let item; 
-        if(direction==='prev' && index != 0){
+        if(direction==='prev' ){
+        if(index != 0)
           item = el.testTypes[index-1]
+        else
+          testsRecommanded.Recommended.find((x,i)=>{
+          if(x.testName === testName && i !=0 ){
+            item = testsRecommanded.Recommended[i-1].testTypes[testsRecommanded.Recommended[i-1].testTypes.length-1]
+          }
+          })
         }
-        if(direction==='next' && index != (el.testTypes.length-1)){
-         item = el.testTypes[index+1]
+        if(direction==='next'){
+          if(index != (el.testTypes.length-1))
+             item = el.testTypes[index+1]
+          else
+            testsRecommanded.Recommended.find((x,i)=>{
+             if(x.testName === testName && i != (testsRecommanded.Recommended.length-1)){
+               item = testsRecommanded.Recommended[i+1].testTypes[0]
+            }
+          })
         }
         newCheckUpId = item ? item.checkup_id : checkup_id ;
         newCheckupName = item ? item.checkup_name : checkup_name;
@@ -39,7 +55,7 @@ const fetchDetails=(checkupId)=>{
     if(result.status){
       props.history.push({
         pathname: '/test',
-        state: {checkup_id, checkup_name}
+        state: {checkup_id, checkup_name,testName}
       })
     }
   })
@@ -58,6 +74,7 @@ const navigationHandler =(type)=>{
     <div className='TestHeader'>
       <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}:{checkup_id}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
       <SimpleAccordion header={'Tell me more'} details={testDetails.finalResult}/>
+      <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button>
     </div>
     )
   }

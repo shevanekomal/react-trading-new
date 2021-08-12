@@ -24,3 +24,10 @@
   background: url('../../assets/Frame_test.png')  no-repeat center;
   height: 552px;
 }
+.BackButton{
+  border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}

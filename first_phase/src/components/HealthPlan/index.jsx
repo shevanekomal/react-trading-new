@@ -11,11 +11,11 @@ const HealthPlan = (props)=> {
     testsRecommanded,
     getHealthPlanDetails
   } = useContext(FieldDataContext)
-  const clickHandler=(test)=>{
+  const clickHandler=(test,testName)=>{
     getCheckupDetails(test.checkup_id).then(result=>{
       props.history.push({
         pathname: '/test',
-        state: { ...test}
+        state: { ...test,testName}
       })
     })
   }
@@ -37,7 +37,7 @@ const HealthPlan = (props)=> {
           <p>Recommended Checkups</p>
           <div>These checkups are recommended for you based on the health status information you shared. Click on each checkup to know more.</div>
         </div>
-        {testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} test = {test} clickHandler={clickHandler} />)}
+        {testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test} clickHandler={clickHandler} />)}
         <div className='SelfCheckup'>
         </div>
       </div>

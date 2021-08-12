@@ -178,7 +178,7 @@ const validate =(e)=>{
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
           <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} error={state.diet.error}>Select the most appropriate style of diet</RadioButton>
-          <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Update Health details page - Do you usually drink around or more than 14 units of alcohol per week?
+          <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Do you usually drink around or more than 14 units of alcohol per week?
           14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
           </RadioButton>
           <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</CustomTextBox>
