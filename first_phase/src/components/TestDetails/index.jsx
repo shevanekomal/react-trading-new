@@ -26,22 +26,29 @@ import { FieldDataContext } from '../../context/FieldData'
         if(direction==='prev' ){
         if(index != 0)
           item = el.testTypes[index-1]
-        else
-          testsRecommanded.Recommended.find((x,i)=>{
-          if(x.testName === testName && i !=0 ){
+        else{
+        testsRecommanded.Recommended.find((x,i)=>{
+          if(x.testName == testName && i !=0 ){
             item = testsRecommanded.Recommended[i-1].testTypes[testsRecommanded.Recommended[i-1].testTypes.length-1]
+            testName = testsRecommanded.Recommended[i-1].testName
+            return {checkup_id:item.checkup_id,checkup_name:item.checkup_name}
           }
           })
+        }
         }
         if(direction==='next'){
           if(index != (el.testTypes.length-1))
              item = el.testTypes[index+1]
-          else
-            testsRecommanded.Recommended.find((x,i)=>{
-             if(x.testName === testName && i != (testsRecommanded.Recommended.length-1)){
+          else{
+          testsRecommanded.Recommended.find((x,i)=>{
+             if(x.testName == testName && i != (testsRecommanded.Recommended.length-1)){
                item = testsRecommanded.Recommended[i+1].testTypes[0]
+               testName = testsRecommanded.Recommended[i+1].testName
+               return {checkup_id:item.checkup_id,checkup_name:item.checkup_name}
             }
           })
+          }
+            
         }
         newCheckUpId = item ? item.checkup_id : checkup_id ;
         newCheckupName = item ? item.checkup_name : checkup_name;
