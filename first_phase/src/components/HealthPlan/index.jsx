@@ -1,9 +1,10 @@
 import './HealthPlan.css'
 import {useContext,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboardList,faHeart} from "@fortawesome/free-solid-svg-icons";
+import { faClipboardList} from "@fortawesome/free-solid-svg-icons";
 import TestPannel from '../TestPannel'
 import { FieldDataContext } from '../../context/FieldData'
+import Health from '../../assets/Health.svg'
 
 const HealthPlan = (props)=> {
   const {
@@ -27,11 +28,11 @@ const HealthPlan = (props)=> {
         <div className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
-          <span>19 Recommended checkups</span><br />
+        <span>{testsRecommanded.Recommendedcount} Recommended checkups</span><br />
           </div>
         </div>
         <div>
-        Tests marked are  <FontAwesomeIcon icon={faHeart} color="#0B7D6C" size={'1x'} />  highly recommended based on your health status
+        Tests marked are  <img src={Health} />  highly recommended based on your health status
         </div>
         <div>
           <p>Recommended Checkups</p>

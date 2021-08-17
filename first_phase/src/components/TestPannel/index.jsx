@@ -11,7 +11,8 @@ const [width] = useWindowSize();
           <table><tbody>
           {test.testTypes.length && test.testTypes.map((el)=>(<tr key={el.checkup_id} onClick={()=>clickHandler(el,testName)} > 
             <td>{el.recomm_level == 1 ? (<img src ={Health} />) : ''}</td>
-            <td>{width < 600 ? (<>{el.checkup_name} <FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></>):<span style={{textDecoration:'underline',    cursor: 'pointer'}}>{el.checkup_name}</span>}</td>
+            {width < 600 ? (<><td>{el.checkup_name}</td><td><FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></td> </>):<td><span style={{textDecoration:'underline',    cursor: 'pointer'}}>{el.checkup_name}</span></td>}
+            <td></td>
             </tr>))}
             </tbody>
           </table>
