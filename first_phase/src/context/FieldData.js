@@ -5,7 +5,7 @@ const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
   state = {
      accessToken:'',
-     user_id:38,
+     user_id:null,
      familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],

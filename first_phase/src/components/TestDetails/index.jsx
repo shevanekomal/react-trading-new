@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft,faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import './TestDetails.css';
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
 
@@ -12,6 +12,9 @@ import { FieldDataContext } from '../../context/FieldData'
     testDetails,
     user_id
   } = useContext(FieldDataContext)
+  useEffect(()=>{
+    !props.location.state && props.history.push("/")
+  },[])
   let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
 
@@ -24,24 +27,29 @@ import { FieldDataContext } from '../../context/FieldData'
       if(chkp.checkup_id==checkup_id){
         let item; 
         if(direction==='prev' ){
-        if(index != 0)
-          item = el.testTypes[index-1]
-        else
-          testsRecommanded.Recommended.find((x,i)=>{
-          if(x.testName === testName && i !=0 ){
-            item = testsRecommanded.Recommended[i-1].testTypes[testsRecommanded.Recommended[i-1].testTypes.length-1]
+          if(index != 0){
+            item = el.testTypes[index-1]
+          }else{
+            testsRecommanded.Recommended.find((x,i)=>{
+              if(x.testName === testName && i !=0 ){
+                item = testsRecommanded.Recommended[i-1].testTypes[testsRecommanded.Recommended[i-1].testTypes.length-1]
+                return {checkup_id:item.checkup_id,checkup_name:item.checkup_name}
+              }
+              })
           }
-          })
         }
         if(direction==='next'){
-          if(index != (el.testTypes.length-1))
-             item = el.testTypes[index+1]
-          else
+          if(index != (el.testTypes.length-1)){
+            item = el.testTypes[index+1]
+          }else{
             testsRecommanded.Recommended.find((x,i)=>{
              if(x.testName === testName && i != (testsRecommanded.Recommended.length-1)){
                item = testsRecommanded.Recommended[i+1].testTypes[0]
+               return {checkup_id:item.checkup_id,checkup_name:item.checkup_name}
             }
           })
+          }
+            
         }
         newCheckUpId = item ? item.checkup_id : checkup_id ;
         newCheckupName = item ? item.checkup_name : checkup_name;

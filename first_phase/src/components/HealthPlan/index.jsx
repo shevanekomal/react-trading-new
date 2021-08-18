@@ -21,6 +21,10 @@ const HealthPlan = (props)=> {
     })
   }
   useEffect(()=>{
+    if(!props.location.state){
+       props.history.push('/');
+      return
+    }
     getHealthPlanDetails(props.location.state.user_id)
   },[])
     return (
