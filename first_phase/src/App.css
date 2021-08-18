@@ -31,3 +31,8 @@
   order: 4;
   flex-grow: 0;
 }
+._loading_overlay_content {
+  top: 45%;
+  left: 35%;
+  position: fixed;
+}

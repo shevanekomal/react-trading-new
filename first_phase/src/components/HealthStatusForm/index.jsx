@@ -1,8 +1,9 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState, useEffect} from 'react'
 import {SinglSelectDropDown,RadioButton,DatePicker,DatePickerv1,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
+import Loader from '../../utility/Loader'
 const HealthStatusForm =(props)=> {
   let self = true
   const {
@@ -18,6 +19,7 @@ const HealthStatusForm =(props)=> {
     otherConditions,
     updateUserId
   } = useContext(FieldDataContext)
+  const [isLoaded,setLoader] =useState(false)
   const [state,setState] = useState({
     city:{
       value:'pune',
@@ -137,6 +139,7 @@ const _calculateAge=(birthday) =>{
   return Math.floor(diffDays/365)
 }
 const onUpdateData = () =>{
+  setLoader(true)
   let validate = true;
   let data = {}
   
@@ -169,11 +172,7 @@ if(validate){
          state: { ...FormData,self:true,user_id:response.data.user_id }
         })
       } 
-      
-  })
-  props.history.push({
-    pathname: '/healthPlan',
-   state: { ...FormData,self:true,user_id:'123' }
+      setLoader(false)
   })
 }
 }
@@ -188,6 +187,7 @@ const validate =(e)=>{
 }
     return (
       <div className='FormContainer'>
+      <Loader loaded={isLoaded}/>
         <h2>Set up your health details. This will allow us to create a personalized health experience for you</h2>
         <p>Please note: Your information is safe with us. It will be used to personalize the healthcare information you receive. It will not be used for marketing or advertising purposes.</p>
         <form name='details' style={{padding:'2%'}}>
