@@ -20,6 +20,7 @@ const HealthStatusForm =(props)=> {
     updateUserId
   } = useContext(FieldDataContext)
   const [isLoaded,setLoader] =useState(false)
+  const [isValidate,setValidate] =useState(false)
   const [state,setState] = useState({
     city:{
       value:'pune',
@@ -30,7 +31,7 @@ const HealthStatusForm =(props)=> {
       error:''
     },
     birthdate:{
-      value:"",
+      value:new Date(),
       error:""
     },
     height:{
@@ -66,9 +67,18 @@ const HealthStatusForm =(props)=> {
       error:''
     }
 })
-const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18'));
+useEffect(() => {
+  let check = false
+  Object.entries(state).forEach(([key, value]) =>{
+    if((!!value.error || value.value=='' || value.value.length == 0) && key!='city'){ 
+     //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
+      check = true;
+    }
+  })
+  setValidate(check)
+}, [state])
+const [selectedDate, setSelectedDate] = React.useState(new Date());
 const handleDateChange = (date) => {
-  console.log(date)
   setSelectedDate(date);
   let error = ''
   let value = date;
@@ -140,15 +150,9 @@ const _calculateAge=(birthday) =>{
 }
 const onUpdateData = () =>{
   setLoader(true)
-  let validate = true;
   let data = {}
-  
-Object.entries(state).forEach(([key, value]) =>{
-  if(!!+value.error){
-    validate = false
-  }
-})
-if(validate){
+
+if(!isValidate){
   data = {
   city:state.city.value,
   gender:state.gender.value,
@@ -164,16 +168,16 @@ if(validate){
   // name,
   // whatsAppNumber
 }
-  addDetails(data).then((response)=>{
-      if(response.status){
-        updateUserId(response.data.user_id)
-        props.history.push({
-          pathname: '/healthPlan',
-         state: { ...FormData,self:true,user_id:response.data.user_id }
-        })
-      } 
-      setLoader(false)
-  })
+addDetails(data).then((response)=>{
+  if(response.status){
+    updateUserId(response.data.user_id)
+    props.history.push({
+      pathname: '/healthPlan',
+     state: { ...FormData,self:true,user_id:response.data.user_id }
+    })
+  } 
+  setLoader(false)
+})
 }
 }
 const validate =(e)=>{
@@ -196,18 +200,14 @@ const validate =(e)=>{
           {/* <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
            */}
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
-          {/* <DatePicker name={'birthdate'}  required={true} defaultValue={state.birthdate.value}  validate={validate} onChange={handleChange} error={state.birthdate.error}>Select your birthday</DatePicker>
-          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6"`} endAdornment="ft' in''" required={true} name='height'>Your Height</CustomTextBox>
-          */}
           <DatePickerv1 name={'birthdate'}  required={true} defaultValue={selectedDate}  validate={validate} onChange={handleDateChange} error={state.birthdate.error}>Select your birthday</DatePickerv1>          
-          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'>Your Height</CustomTextBox>
-
-          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'>Your Weight</CustomTextBox>
+          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'  validate={validate}  error={state.height.error}>Your Height</CustomTextBox>
+          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
         </div>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
           <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error}>How much moderate exercise do you usually do per week?
-       <br/>  Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.</RadioButton>
+          <br/> Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.</RadioButton>
           <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} error={state.diet.error}>Select the most appropriate style of diet</RadioButton>
           <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Do you usually drink around or more than 14 units of alcohol per week?
           <br/> 14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
@@ -222,7 +222,7 @@ const validate =(e)=>{
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
        {!self && <Buttons >Skip For Now</Buttons>}
-       <Buttons onClick={onUpdateData} bgColor={'#F9E24D'}>Update</Buttons>
+       <Buttons onClick={onUpdateData}  disabled={isValidate} bgColor={!isValidate ? '#F9E24D' : '#F0F3F5 '}>Update</Buttons>
         </form>
       </div>
     )

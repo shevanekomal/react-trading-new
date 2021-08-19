@@ -1,6 +1,6 @@
 
 /* ==========================Label Style =================================================*/
-.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.DatePicker label,.CustomTextBoxLabel,.CheckboxHeader{
+.SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.DatePicker label,.CustomTextBoxLabel,.CheckboxHeader,.DatePicker1 label{
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
@@ -94,6 +94,16 @@ border-radius: 6px;
   display: flex;
   height: 32px;
 }
+.CustomTextBox input[type='number']:nth-child(1){
+  border: 1px solid #808C9A;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 250px;
+  
+}
+.CustomTextBox input[type='number']:nth-child(1):focus{
+outline: none;
+}
 .CustomTextBox input[type='text']:nth-child(1){
   border: 1px solid #808C9A;
   box-sizing: border-box;
@@ -103,7 +113,6 @@ border-radius: 6px;
   width: 200px;
   
 }
-
 .CustomTextBox input[type='text']:nth-child(2){
   width: 50px;
   border: 1px solid #808C9A;

@@ -13,7 +13,7 @@ import { FieldDataContext } from '../../context/FieldData'
     user_id
   } = useContext(FieldDataContext)
   useEffect(()=>{
-    !props.location.state && props.history.push("/")
+    !((props.location.state && props.location.state.user_id) || user_id) && props.history.push("/")
   },[])
   let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
@@ -25,9 +25,9 @@ import { FieldDataContext } from '../../context/FieldData'
     let newCheckupName = checkup_name
     testsRecommanded.Recommended.flatMap(el=>el.testTypes.map((chkp,index)=>{
       if(chkp.checkup_id==checkup_id){
+        testName = el.testName
         let item; 
         if(direction==='prev' ){
-
           if(index != 0){
             item = el.testTypes[index-1]
           }else{
@@ -38,7 +38,6 @@ import { FieldDataContext } from '../../context/FieldData'
               }
               })
           }
-        }
         }
         if(direction==='next'){
           if(index != (el.testTypes.length-1)){
@@ -51,17 +50,17 @@ import { FieldDataContext } from '../../context/FieldData'
             }
           })
           }
-            
         }
         newCheckUpId = item ? item.checkup_id : checkup_id ;
         newCheckupName = item ? item.checkup_name : checkup_name;
+      }
         return {checkup_id:newCheckUpId,checkup_name:newCheckupName}
-      }}))
+      }))
       return {checkup_id:newCheckUpId,checkup_name:newCheckupName}
 }
 
 const fetchDetails=(checkupId)=>{
-  getCheckupDetails(checkupId).then(result=>{
+  getCheckupDetails(checkupId,props.location.state.user_id).then(result=>{
     if(result.status){
       props.history.push({
         pathname: '/test',

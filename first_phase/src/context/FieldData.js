@@ -136,10 +136,11 @@ class FieldDataProvider extends Component {
       })
       return result
     }),
-    getCheckupDetails: debounce(async (checkupId) => {
+    getCheckupDetails: debounce(async (checkupId,user_id) => {
+      let current_user_id = user_id ? user_id : this.state.user_id
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: '/gethealthPlanById/'+this.state.user_id+'/'+checkupId
+        urlEndpoint: '/gethealthPlanById/'+current_user_id+'/'+checkupId
       })
       if(result.status){
         this.setState({

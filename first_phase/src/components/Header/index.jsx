@@ -18,10 +18,17 @@ const Header = () => {
     menuClass: "",
     ...deafulClasses
   });
+  const HeaderStyle = {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height:'60px',
+    background:'#A9D9FF',
+    padding:'5px'
+  }
   return (
     <div className='Home'>
     <Router>
-    <div style={{height:'60px',background:'#A9D9FF',padding:'5px'}}><img width='100&' height='100%' src={Main_logo} /></div>
+    <div style={HeaderStyle}><img width='100&' height='100%' src={Main_logo} /></div>
     <div onClick={()=>{
       state.menu && setState({
         ...state,

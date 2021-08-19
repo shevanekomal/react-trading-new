@@ -1,6 +1,23 @@
+/* common button style */
+.Button{
+  border-radius: 6px;
+  border:none!important;
+  color: rgba(7, 33, 60, 0.85)!important;
+  font-family: Open Sans!important;
+  font-style: normal!important;
+  font-weight: 600!important;
+  font-size: 14px!important;
+  line-height: 24px!important;
+  letter-spacing: 0.005em!important;
+  text-transform: uppercase!important;
+}
+/* active btn */
 .activeButtonStyle,.makeStyles-ModalWindow-23 button{
   background: #F9E24D!important;
- 
+}
+/* deactivate btn */
+.MuiButton-root.Mui-disabled {
+  background: #F0F3F5!important;
 }
 .makeStyles-ModalWindow-23 p{
   font-family: Open Sans;

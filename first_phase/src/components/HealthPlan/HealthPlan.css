@@ -8,10 +8,10 @@
   padding: 12px;
 }
 .PlanHeader :first-child{
-  width:30%
+  width:35%;
 }
-.PlanHeader :last-child{
-  width: 70%;
+.PlanHeader :nth-child(2){
+  margin: auto;
 }
 .PlanHeader + div{
   margin-top: 20px;

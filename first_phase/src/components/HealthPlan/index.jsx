@@ -10,18 +10,19 @@ const HealthPlan = (props)=> {
   const {
     getCheckupDetails,
     testsRecommanded,
-    getHealthPlanDetails
+    getHealthPlanDetails,
+    user_id
   } = useContext(FieldDataContext)
   const clickHandler=(test,testName)=>{
-    getCheckupDetails(test.checkup_id).then(result=>{
+    getCheckupDetails(test.checkup_id,props.location.state.user_id).then(result=>{
       props.history.push({
         pathname: '/test',
-        state: { ...test,testName}
+        state: { ...test,testName,user_id:props.location.state.user_id}
       })
     })
   }
   useEffect(()=>{
-    if(!props.location.state){
+    if(!((props.location.state && props.location.state.user_id) || user_id)){
        props.history.push('/');
       return
     }
@@ -31,9 +32,7 @@ const HealthPlan = (props)=> {
       <div className='HealthPlan'>
         <div className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
-          <div>
-        <span>{testsRecommanded.Recommendedcount} Recommended checkups</span><br />
-          </div>
+          <div>{testsRecommanded.Recommendedcount} Recommended checkups</div><br />
         </div>
         <div>
         Tests marked are  <img src={Health} />  highly recommended based on your health status

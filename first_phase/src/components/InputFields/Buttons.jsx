@@ -6,11 +6,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-export default function Buttons({children,bgColor,onClick}) {
+export default function Buttons({children,bgColor,onClick,disabled,...fieldsProps}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Button onClick={onClick} variant="outlined" style={{background:`${bgColor}`}}>{children}</Button>
+      <Button onClick={onClick} className ='Button' variant="outlined" disabled ={disabled} {...fieldsProps} style={{background:`${bgColor}`}}>{children}</Button>
     </div>
   );
 }

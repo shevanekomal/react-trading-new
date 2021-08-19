@@ -9,20 +9,15 @@ import {
 } from '@material-ui/pickers';
 
 const DatePickerv1=({children,name,defaultValue,onChange,required,error,validate})=> {
-  
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18'));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <div className='DatePicker1' noValidate>
     <label>{children} {required && <span style={{color:'red'}}>*</span>}</label> <br/>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker    
-          id={name}
+          name={name}
          // label={name}
+          onBlur={required && validate}
           format="dd/MM/yyyy"
           value={defaultValue}
           onChange={onChange}
