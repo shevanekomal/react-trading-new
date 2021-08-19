@@ -50,7 +50,15 @@
 /* ==========================DatePickers =================================================*/
 .DatePicker > div > div > input{
   width: 250px;
-  border:2px solid #a9d9ff;
+  border:2px solid #15191d;
+}
+.DatePicker1 > div{
+  border: 1px solid #808C9A;
+box-sizing: border-box;
+border-radius: 6px;
+}
+.MuiInput-underline:before{
+  border-bottom: none!important
 }
 /* ==========================Form Row =================================================*/
 .container {
@@ -84,15 +92,25 @@
 /* ========================== CustomTextBox =================================================*/
 .CustomTextBox{
   display: flex;
-  height: 40px;
+  height: 32px;
 }
 .CustomTextBox input[type='text']:nth-child(1){
+  border: 1px solid #808C9A;
+  box-sizing: border-box;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   border-right:0px;
+  width: 200px;
   
 }
+
 .CustomTextBox input[type='text']:nth-child(2){
-  border-left:0px;
   width: 50px;
+  border: 1px solid #808C9A;
+  box-sizing: border-box;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left:0px;
 }
 .CustomTextBox input[type='text']{
   outline: none;
@@ -121,4 +139,23 @@ form{
 }
 .Textbox div input,.MuiOutlinedInput-input{
   padding: 7px 0px 9px 10px!important
+}
+/* auto fill css for textbox */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.MuiAccordionDetails-root{
+  display: block!important;
+}
+.MuiAccordionDetails-root p{
+  flex: none!important;
+  display: block!important;
 }

@@ -5,32 +5,32 @@ const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
   state = {
      accessToken:'',
-     user_id:38,
+     user_id:null,
      familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
-     diet : [{text:"Vegetarian diet",value:"vegetarian"},{text:"Non-vegetaran diet",value:"non-vegetarian"}],
+     diet : [{text:"Vegetarian",value:"Vegetarian"},{text:"Non-vegetarian",value:"Non-vegetarian"}],
      alcoholIntakeOption:[{text:'Yes',value:'Yes'},{text:'No',value:'No'}],
      exercise :[{text:"Less than 30 minutes",value:"Less than 30 minutes"},
-    {text:"More than 30 minutes but less than 1.5 hours",value:"More than 30 minutes but less than 1.5 hours"},
-    {text:"More than 1.5 hour and less than 2.5 hours",value:"More than 1.5 hour and less than 2.5 hours"},
+     {text:"More than 30 minutes and less than 1.5 hour",value:"More than 30 minutes and less than 1.5 hour"},
+     {text:"More than 1.5 hour and less than 2.5 hour",value:"More than 1.5 hour and less than 2.5 hour"},
     {text:"More than 2.5 hours",value:"More than 2.5 hours"}],
 
     diagnosedCondition : [
-    {text:'None',name:'None'},
+    {text:'None of the below',name:'None of the below'},
     {text:'Diabetes',name:'Diabetes'},
-    {text:'Hypertension',name:'Hypertension'},
-    {text:'Hypercholesterolemia',name:'Hypercholesterolemia'},
+    {text:'Hypertension (High blood pressure)',name:'Hypertension (High blood pressure)'},
+    {text:'Hypercholesterolemia (High cholesterol)',name:'Hypercholesterolemia (High cholesterol)'},
     {text:'Others',name:'Others'}],
   
      familyHistoryConditions : [ 
-    {text:'None',name:'None'},
+    {text:'None of the below',name:'None of the below'},
     {text:'Cancer - Breast',name:'Cancer - Breast'},
     {text:'Cancer - Ovarian',name:'Cancer - Ovarian'},
     {text:'Cancer -  Colorectal / colon',name:'Cancer -  Colorectal / colon'},
     {text:'Cancer -  Prostate',name:'Cancer -  Prostate'},
     {text:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)',name:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)'},
-    {text:'Diabetes',name:'Diabetes'},
+    //{text:'Diabetes',name:'Diabetes'},
     {text:'Kidney disease',name:'Kidney disease'},
     {text:'Liver disease',name:'Liver disease'},
     {text:'Thyroid disease',name:'Thyroid disease'}],
@@ -138,7 +138,7 @@ class FieldDataProvider extends Component {
     }),
     getCheckupDetails: debounce(async (checkupId) => {
       const result = await httpClient({
-        method: 'GET',
+        method: 'POST',
         urlEndpoint: '/gethealthPlanById/'+this.state.user_id+'/'+checkupId
       })
       if(result.status){
@@ -156,7 +156,7 @@ class FieldDataProvider extends Component {
       if(!checked){
         tempCondition = tempCondition.map(el=>({name:el.name,text:el.text}))
       }else{
-        tempCondition = tempCondition.map(el=>el.text !== 'None' ? ({...el,disabled:checked,checked:false}):({...el}))
+        tempCondition = tempCondition = tempCondition.map(el=>el.text !== 'None of the below' ? ({...el,disabled:checked,checked:false}):({...el}))
       } 
       this.setState({[condition]:tempCondition})
     }),
@@ -165,7 +165,7 @@ class FieldDataProvider extends Component {
     }),
     getHealthPlanDetails: debounce(async (id) => {
       const result = await httpClient({
-        method: 'GET',
+        method: 'POST',
         urlEndpoint: '/getHealthPlans/'+id
       })
       if(result.status){

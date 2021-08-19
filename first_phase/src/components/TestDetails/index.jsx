@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft,faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import './TestDetails.css';
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
 
@@ -12,6 +12,9 @@ import { FieldDataContext } from '../../context/FieldData'
     testDetails,
     user_id
   } = useContext(FieldDataContext)
+  useEffect(()=>{
+    !props.location.state && props.history.push("/")
+  },[])
   let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
 
@@ -32,8 +35,8 @@ import { FieldDataContext } from '../../context/FieldData'
             item = testsRecommanded.Recommended[i-1].testTypes[testsRecommanded.Recommended[i-1].testTypes.length-1]
             testName = testsRecommanded.Recommended[i-1].testName
             return {checkup_id:item.checkup_id,checkup_name:item.checkup_name}
+
           }
-          })
         }
         }
         if(direction==='next'){
@@ -79,9 +82,9 @@ const navigationHandler =(type)=>{
   return (
     <div className='TestDetails'>
     <div className='TestHeader'>
-      <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}:{checkup_id}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
-      <SimpleAccordion header={'Tell me more'} details={testDetails.finalResult}/>
-      <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button>
+    <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
+      <SimpleAccordion header={'Tell me more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} finalResult={testDetails.finalResult}/>
+       <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button>
     </div>
     )
   }

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HealthPlan from "../HealthPlan";
 import HealthStatusForm from '../HealthStatusForm'
 import TestDetails from '../TestDetails'
-
+import Main_logo from '../../assets/Main_logo.svg'
 const Header = () => {
   const deafulClasses = {
     homeLinkClass: "nav-item nav-link",
@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <div className='Home'>
     <Router>
-    <div style={{height:'40px',background:'#A9D9FF'}}></div>
+    <div style={{height:'60px',background:'#A9D9FF',padding:'5px'}}><img width='100&' height='100%' src={Main_logo} /></div>
     <div onClick={()=>{
       state.menu && setState({
         ...state,
