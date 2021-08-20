@@ -202,7 +202,7 @@ const validate =(e)=>{
           <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} error={state.gender.error}>Gender</RadioButton>
           <DatePickerv1 name={'birthdate'}  required={true} defaultValue={selectedDate}  validate={validate} onChange={handleDateChange} error={state.birthdate.error}>Select your birthday</DatePickerv1>          
           <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'  validate={validate}  error={state.height.error}>Your Height</CustomTextBox>
-          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
+          <CustomTextBox type={'number'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
         </div>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>

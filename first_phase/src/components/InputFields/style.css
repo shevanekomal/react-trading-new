@@ -93,6 +93,30 @@ border-radius: 6px;
 .CustomTextBox{
   display: flex;
   height: 32px;
+  width: 251px
+}
+
+.CustomTextBox input[type='number']:nth-child(1):focus{
+outline: none;
+}
+.endAdornment input[type='number']:nth-child(1),.endAdornment input[type='text']:nth-child(1){
+  border: 1px solid #808C9A;
+  box-sizing: border-box;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-right:0px!important;
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+  width: 200px;
+  
+}
+.endAdornment input[type='text']:nth-child(2){
+  width: 50px;
+  border: 1px solid #808C9A;
+  box-sizing: border-box;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left:0px;
 }
 .CustomTextBox input[type='number']:nth-child(1){
   border: 1px solid #808C9A;
@@ -101,30 +125,19 @@ border-radius: 6px;
   width: 250px;
   
 }
-.CustomTextBox input[type='number']:nth-child(1):focus{
-outline: none;
-}
-.CustomTextBox input[type='text']:nth-child(1){
-  border: 1px solid #808C9A;
-  box-sizing: border-box;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  border-right:0px;
-  width: 200px;
-  
-}
-.CustomTextBox input[type='text']:nth-child(2){
-  width: 50px;
-  border: 1px solid #808C9A;
-  box-sizing: border-box;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-left:0px;
-}
 .CustomTextBox input[type='text']{
   outline: none;
 }
 
+.CustomTextBox input[type='number']::-webkit-outer-spin-button,
+.CustomTextBox input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.CustomTextBox input[type='number'] {
+  -moz-appearance: textfield;
+}
 /* ========================== Checkbox =================================================*/
 .Checkbox label{
   font-family: Open Sans;
