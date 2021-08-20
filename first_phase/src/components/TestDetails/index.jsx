@@ -64,7 +64,7 @@ const fetchDetails=(checkupId)=>{
     if(result.status){
       props.history.push({
         pathname: '/test',
-        state: {checkup_id, checkup_name,testName}
+        state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
       })
     }
   })
