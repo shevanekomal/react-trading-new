@@ -126,8 +126,8 @@ const handleChange =(e) =>{
   }
   if(e.target.type === 'checkbox'){
     let name = e.target.name
-    if(e.target.value==='None of the belo'){
-      setState({...state,[name]:{value:[],error:''}})
+    if(e.target.value==='None of the below'){
+      setState({...state,[name]:{value:e.target.checked?[e.target.value]:[],error:''}})
       disableConditions(name,e.target.checked)
       return
     }
