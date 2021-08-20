@@ -2,16 +2,18 @@
   padding: 20px;
 }
 .PlanHeader{
-  display: flex;
+  width: 50%;
   border: 1px solid #17416B;
   border-radius: 6px;
   padding: 12px;
+  display: flex;
 }
-.PlanHeader :first-child{
+/* .PlanHeader :first-child{
   width:35%;
-}
+} */
 .PlanHeader :nth-child(2){
-  margin: auto;
+  margin-left: 3%;
+  line-height: 3;
 }
 .PlanHeader + div{
   margin-top: 20px;
@@ -27,4 +29,12 @@
   align-items: center;
   letter-spacing: 0.005em;
   color: #07213C;
+}
+@media only screen and (max-width: 600px) {
+  .PlanHeader :nth-child(2){
+    margin: auto;
+  }
+  .PlanHeader{
+    width: 100%;
+  }
 }
