@@ -70,7 +70,7 @@ const HealthStatusForm =(props)=> {
 useEffect(() => {
   let check = false
   Object.entries(state).forEach(([key, value]) =>{
-    if((!!value.error || value.value=='' || value.value.length == 0) && key!='city'){ 
+    if((!!value.error || value.value=='' || (value.value && value.value.length == 0)) && key!='city'){ 
      //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
       check = true;
     }
