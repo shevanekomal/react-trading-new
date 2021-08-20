@@ -18,7 +18,7 @@ class FieldDataProvider extends Component {
 
     diagnosedCondition : [
     {text:'None of the below',name:'None of the below'},
-    {text:'Diabetes',name:'Diabetes'},
+    //{text:'Diabetes',name:'Diabetes'},
     {text:'Hypertension (High blood pressure)',name:'Hypertension (High blood pressure)'},
     {text:'Hypercholesterolemia (High cholesterol)',name:'Hypercholesterolemia (High cholesterol)'},
     {text:'Others',name:'Others'}],
@@ -30,7 +30,7 @@ class FieldDataProvider extends Component {
     {text:'Cancer -  Colorectal / colon',name:'Cancer -  Colorectal / colon'},
     {text:'Cancer -  Prostate',name:'Cancer -  Prostate'},
     {text:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)',name:'Cardiovascular disease (like coronary heart disease, heart attack, stroke)'},
-    //{text:'Diabetes',name:'Diabetes'},
+    {text:'Diabetes',name:'Diabetes'},
     {text:'Kidney disease',name:'Kidney disease'},
     {text:'Liver disease',name:'Liver disease'},
     {text:'Thyroid disease',name:'Thyroid disease'}],
@@ -97,7 +97,7 @@ class FieldDataProvider extends Component {
           ]
       }
   ],
-  Recommendedcount: 5},
+  recommendedcount: 5},
   testDetails:{
         "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
   }

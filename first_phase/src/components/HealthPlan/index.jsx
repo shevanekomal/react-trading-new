@@ -32,7 +32,7 @@ const HealthPlan = (props)=> {
       <div className='HealthPlan'>
         <div className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
-          <div>{testsRecommanded.Recommendedcount} Recommended checkups</div><br />
+          <div>{testsRecommanded.recommendedcount} Recommended checkups</div><br />
         </div>
         <div>
         Tests marked are  <img src={Health} />  highly recommended based on your health status
