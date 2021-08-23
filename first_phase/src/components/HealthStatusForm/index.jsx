@@ -74,9 +74,6 @@ useEffect(() => {
      //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
       check = true;
     }
-    if(key == 'birthdate' && (value.value == 'Invalid Date')){
-      check = true;
-    }
     
   })
   setValidate(check)
@@ -85,6 +82,7 @@ const [selectedDate, setSelectedDate] = React.useState(new Date());
 const handleDateChange = (date) => {
   console.log(date)
   setSelectedDate(date);
+
   let error = ''
   let value = date;
 //  setSelectedDate(date);
@@ -92,8 +90,8 @@ let age = _calculateAge(date)
 console.log(age)
 if(age<19){
   setOpen(true)
- // value = '';
- // error = 'Age is below 18'
+}else if(new Date() < date){
+  error = 'Please select date before today'
 }
 setState({
   ...state,
@@ -186,6 +184,14 @@ addDetails(data).then((response)=>{
 }
 }
 const validate =(e)=>{
+  if(window.event.target.name === 'birthdate' && window.event.target.offsetParent.offsetParent.children.length>1 && window.event.target.offsetParent.offsetParent.children[1].innerText){
+    setState({
+      ...state,
+      [e.target.name]:{
+        error:window.event.target.offsetParent.offsetParent.children[1].innerText
+      }
+    })
+  }
   e.target.value==='' && setState({
     ...state,
     [e.target.name]:{

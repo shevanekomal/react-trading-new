@@ -181,3 +181,6 @@ select:-webkit-autofill:focus {
   flex: none!important;
   display: block!important;
 }
+.MuiFormHelperText-root.Mui-error {
+display: none!important;
+}
