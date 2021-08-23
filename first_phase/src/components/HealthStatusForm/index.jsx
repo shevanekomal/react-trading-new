@@ -88,10 +88,10 @@ const handleDateChange = (date) => {
 //  setSelectedDate(date);
 let age = _calculateAge(date)
 console.log(age)
-if(age<19){
-  setOpen(true)
-}else if(new Date() < date){
+if(new Date() < date){
   error = 'Please select date before today'
+}else if(age<19){
+  setOpen(true)
 }
 setState({
   ...state,
