@@ -6,23 +6,20 @@ const CustomTextBox=({type,name,state,setState,endAdornment,children,required,va
     (e.key === 'ArrowUp' || e.key === 'ArrowDown' || keyCode == 69 || keyCode == 101) && e.preventDefault();
   }
   const restrictAlphabet =(e)=>{
-   /*var x = e.which || e.keycode;
-   var key_codes = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 0, 8,9, 96,97,98,99,100,101,102,103,104,105];
-   	if(!key_codes.includes(x))
-     e.preventDefault();*/
-     var allowedChars = "0123456789'";
-     function contains(stringValue, charValue) {
-       return stringValue.indexOf(charValue) > -1;
-     }
-     function startsWith(stringValue, charValue) {
-      return stringValue.indexOf(charValue) > -1;
+    /*var x = e.which || e.keycode;
+    var key_codes = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 0, 8,9, 96,97,98,99,100,101,102,103,104,105];
+     if(!key_codes.includes(x))
+      e.preventDefault();*/
+      var allowedChars = "0123456789'";
+      function contains(stringValue, charValue) {
+        return stringValue.indexOf(charValue) > -1;
+      }
+      var invalidKey =(e.key.length === 1 && !contains(allowedChars, e.key));
+      invalidKey && e.preventDefault();
     }
-     var invalidKey =(e.key.length === 1 && (!contains(allowedChars, e.key)));
-     invalidKey && e.preventDefault();
-   }
   return (
     <div>
-    <label className='CustomTextBoxLabel'>{children}</label>{required && <span style={{color:'red'}}>*</span>}
+    <label className='CustomTextBoxLabel'>{children}{required && <span style={{color:'red'}}>*</span>}</label>
     <label className='CustomTextBoxLabel'>{valueText}</label>
     <div className={endAdornment ? 'endAdornment CustomTextBox': 'CustomTextBox '}>
     <input type={type} name={name} value={state[name].value} {...fiedProps} onChange={e => {
