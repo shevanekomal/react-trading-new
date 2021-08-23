@@ -1,8 +1,9 @@
 import './style.css'
-const CustomTextBox=({type,name,state,setState,endAdornment,children,required,validate,error,...fiedProps})=> {
+const CustomTextBox=({type,name,state,setState,endAdornment,children,required,validate,error,valueText,...fiedProps})=> {
   const restrictArrowEvent =(e)=>{
+    var keyCode = e.which || e.keycode;
     (e.type === 'wheel') && e.target.blur();
-    (e.key === 'ArrowUp' || e.key === 'ArrowDown') && e.preventDefault();
+    (e.key === 'ArrowUp' || e.key === 'ArrowDown' || keyCode == 69 || keyCode == 101) && e.preventDefault();
   }
   const restrictAlphabet =(e)=>{
    var x = e.which || e.keycode;
@@ -13,6 +14,7 @@ const CustomTextBox=({type,name,state,setState,endAdornment,children,required,va
   return (
     <div>
     <label className='CustomTextBoxLabel'>{children}</label>{required && <span style={{color:'red'}}>*</span>}
+    <label className='CustomTextBoxLabel'>{valueText}</label>
     <div className={endAdornment ? 'endAdornment CustomTextBox': 'CustomTextBox '}>
     <input type={type} name={name} value={state[name].value} {...fiedProps} onChange={e => {
        let value = e.target.value;

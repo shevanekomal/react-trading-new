@@ -1,5 +1,8 @@
 import axios from 'axios'
 let BASE_URL = 'http://localhost:8081/api/users'
+if (process.env.NODE_ENV !== 'development') {
+  BASE_URL = window.location.origin+':8081/api/users'
+}
 export { BASE_URL }
 export default ({ method, urlEndpoint, params, module, headers, data }) => {
   let request = {

@@ -70,10 +70,14 @@ const HealthStatusForm =(props)=> {
 useEffect(() => {
   let check = false
   Object.entries(state).forEach(([key, value]) =>{
-    if((!!value.error || value.value=='' || (value.value && value.value.length == 0)) && key!='city'){ 
+    if((!!value.error || value.value=='' || (value.value && value.value.length == 0) ) && key!='city'){ 
      //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
       check = true;
     }
+    if(key == 'birthdate' && (value.value == 'Invalid Date')){
+      check = true;
+    }
+    
   })
   setValidate(check)
 }, [state])
@@ -206,16 +210,16 @@ const validate =(e)=>{
         </div>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
-          <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error}>How much moderate exercise do you usually do per week?
-          <br/> Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.</RadioButton>
-          <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} error={state.diet.error}>Select the most appropriate style of diet</RadioButton>
-          <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error}>Do you usually drink around or more than 14 units of alcohol per week?
-          <br/> 14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.
+          <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} error={state.exercise.error} valueText = 'Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.'>How much moderate exercise do you usually do per week?
+           </RadioButton>
+          <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} error={state.diet.error} >Select the most appropriate style of diet</RadioButton>
+          <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error} valueText={'14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.'}>Do you usually drink around or more than 14 units of alcohol per week?
+          
           </RadioButton>
-          <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? <br/>If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.</CustomTextBox>
+          <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking' valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
           <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error}>Select all conditions you have been diagnosed with</CheckboxesGroup>
           {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
-          <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error}>Select all conditions for which you have a family history
+          <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} >Select all conditions for which you have a family history
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
           <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>

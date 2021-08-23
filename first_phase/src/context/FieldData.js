@@ -18,7 +18,7 @@ class FieldDataProvider extends Component {
 
     diagnosedCondition : [
     {text:'None of the below',name:'None of the below'},
-    //{text:'Diabetes',name:'Diabetes'},
+    {text:'Diabetes',name:'Diabetes'},
     {text:'Hypertension (High blood pressure)',name:'Hypertension (High blood pressure)'},
     {text:'Hypercholesterolemia (High cholesterol)',name:'Hypercholesterolemia (High cholesterol)'},
     {text:'Others',name:'Others'}],
@@ -47,7 +47,7 @@ class FieldDataProvider extends Component {
       { key: "Cancer - Ovarian", cat: "Cancer - Ovarian" },
       { key: "Cardiovascular disease (like coronary heart disease, heart attack, stroke)", cat: "Cardiovascular disease (like coronary heart disease, heart attack, stroke)" },
       { key: "Chronic Obstructive Pulmonary Disease", cat: "Chronic Obstructive Pulmonary Disease" },
-      { key: "Diabetes", cat: "Diabetes" },
+    //  { key: "Diabetes", cat: "Diabetes" },
       { key: "Gestational diabetes", cat: "Gestational diabetes" },
       { key: "Immunocompromised", cat: "Immunocompromised" },
       { key: "Inflammatory bowel disease", cat: "Inflammatory bowel disease" },
