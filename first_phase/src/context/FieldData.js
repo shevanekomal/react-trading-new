@@ -6,7 +6,7 @@ class FieldDataProvider extends Component {
   state = {
      accessToken:'',
      user_id:null,
-     familyMembers:[{realtion:'daughter',profile:'Girl',name:'swap'}],
+     familyMembers:[{id:'45454',realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
      diet : [{text:"Vegetarian",value:"Vegetarian"},{text:"Non-vegetarian",value:"Non-vegetarian"}],
@@ -111,6 +111,13 @@ class FieldDataProvider extends Component {
         urlEndpoint: '/register',
         data,
       })
+      if(result.status){
+        this.setState({
+          ...this.state,
+          accessToken:result.data.accessToken,
+          loginUserId:result.data.user_id,
+        })
+      }
       return result
     }),
      loginUser: debounce(async (data) => {

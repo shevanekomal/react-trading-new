@@ -4,7 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HealthPlan from "../HealthPlan";
 import HealthStatusForm from '../HealthStatusForm'
 import TestDetails from '../TestDetails'
+import Login from '../Login'
+import Register from '../Register'
+import UserHome from '../UserHome'
+import MyProfile from '../MyProfile'
 import Main_logo from '../../assets/Main_logo.svg'
+
 const Header = () => {
   const deafulClasses = {
     homeLinkClass: "nav-item nav-link",
@@ -36,10 +41,13 @@ const Header = () => {
       })
     }}>
     <Switch>
-        <Route path="/" exact component={HealthStatusForm} />
+        <Route path="/" exact component={Register} />
+        <Route path="/login" exact component={Login} />
         <Route path='/addRisk' exact component={HealthStatusForm} name='HealthStatus'/>
         <Route path="/healthPlan" exact component={HealthPlan} />
         <Route path="/test" exact component={TestDetails} />
+        <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
+        <Route path="/myProfile" exact component={MyProfile} />
         <Redirect to="/" />
       </Switch>
      </div> 

@@ -175,8 +175,8 @@ addDetails(data).then((response)=>{
   if(response.status){
     updateUserId(response.data.user_id)
     props.history.push({
-      pathname: '/healthPlan',
-     state: { ...FormData,self:true,user_id:response.data.user_id }
+      pathname: '/userHome',
+     state: {self:true,user_id:response.data.user_id }
     })
   } 
   setLoader(false)

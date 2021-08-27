@@ -1,0 +1,67 @@
+.Register p,.Register p a{
+  text-align: center;
+  /* Text/Small Text Regular */
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+/* identical to box height, or 143% */
+/* 
+display: flex; */
+letter-spacing: 0.0215em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 1;
+margin: 0px 4px;
+}
+.otpForm div:nth-child(2){
+  display: flex;
+  justify-content: space-around;
+}
+.otpForm div:nth-child(2) div{
+  /* Text/Extra small text */
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+display: flex;
+align-items: center;
+text-align: right;
+letter-spacing: 0.0215em;
+
+/* Dark Blue Primary */
+
+color: #17416B;
+}
+.Register .Header{
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 60px;
+line-height: 72px;
+/* identical to box height, or 120% */
+
+text-align: center;
+
+/* Saturated Blue */
+
+color: #3168A7;
+
+backdrop-filter: blur(4px);
+margin-bottom: 30px;
+}
