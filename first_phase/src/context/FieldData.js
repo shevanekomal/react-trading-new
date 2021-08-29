@@ -103,7 +103,22 @@ class FieldDataProvider extends Component {
   }
 }
   initialContext = { ...this.state }
-
+getProfilePicture=(relation)=>{
+  switch(relation){
+    case 'daughter':
+      return 'Girl'
+    case 'father':
+      return 'Old-man'
+    case 'mother':
+      return 'Old-woman'
+    case 'son':
+      return 'Boy'
+    case 'wife':
+     return 'Woman'
+     case 'husband':
+       return 'Man'
+  }
+}
   methods = {
     registerUser: debounce(async (data) => {
       const result = await httpClient({
@@ -114,9 +129,9 @@ class FieldDataProvider extends Component {
       if(result.status){
         this.setState({
           ...this.state,
-          accessToken:result.data.accessToken,
           loginUserId:result.data.user_id,
         })
+        window.localStorage.setItem('x-access-token',result.data["x-access-token"])
       }
       return result
     }),
@@ -186,6 +201,22 @@ class FieldDataProvider extends Component {
         console.log("Error",result)
       }
     }),
+    getFamilyMembers:debounce(async()=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/getFamilyMembers/'+this.state.user_id
+      })
+      if(result.status){
+        //process result.data here
+        this.setState({
+          ...this.state,
+          familyMembers:result.data
+        })
+        return true
+      }else{
+        console.log("Error",result)
+      }
+    })
   }
 
   render() {

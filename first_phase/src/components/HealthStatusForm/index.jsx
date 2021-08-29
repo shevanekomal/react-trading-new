@@ -170,6 +170,7 @@ if(!isValidate){
   familyHistoryConditions:state.familyHistoryConditions.value,
   // name,
   // whatsAppNumber
+  userType:self ? 'user' : 'subUser'
 }
 addDetails(data).then((response)=>{
   if(response.status){

@@ -19,11 +19,12 @@ console.log(window.innerHeight)
 const RegisterHandler=()=>{
         registerUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
             result.status ? props.history.push({
-              pathname: '/addRisk',
+              pathname: '/addMember',
               state: {self:true }
             }) : alert("something went wrong!!")
         })
 }
+
     return(
       <div>{!+nextPageEnable?<RegisterForm setNextPageEnable={setNextPageEnable} RegisterHandler ={RegisterHandler} FormData={FormData} setFormData={setFormData} />:<OTPForm history={props.history} RegisterHandler={RegisterHandler}/>}</div>
     )

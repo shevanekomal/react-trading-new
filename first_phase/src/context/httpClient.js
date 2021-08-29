@@ -5,12 +5,18 @@ if (process.env.NODE_ENV !== 'development') {
 }
 export { BASE_URL }
 export default ({ method, urlEndpoint, params, module, headers, data }) => {
+  let x_access_token = window.localStorage.getItem('x-access-token');
+  if(!x_access_token){
+    alert("User logout!!")
+    return false
+  }
   let request = {
     params,
     method,
     url: `${BASE_URL}/${urlEndpoint}`,
     headers: {
       'content-type': 'application/json',
+      'x-access-token':x_access_token,
       ...headers
     }
   }

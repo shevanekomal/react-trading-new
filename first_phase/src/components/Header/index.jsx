@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Menubar from "./Menubar";
 import HealthPlan from "../HealthPlan";
 import HealthStatusForm from '../HealthStatusForm'
 import TestDetails from '../TestDetails'
@@ -8,6 +9,7 @@ import Login from '../Login'
 import Register from '../Register'
 import UserHome from '../UserHome'
 import MyProfile from '../MyProfile'
+import AddMemberForm from '../AddMemberForm'
 import Main_logo from '../../assets/Main_logo.svg'
 
 const Header = () => {
@@ -33,7 +35,13 @@ const Header = () => {
   return (
     <div className='Home'>
     <Router>
-    <div style={HeaderStyle}><img width='100&' height='100%' src={Main_logo} /></div>
+      <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />
+    <div onClick={()=>{
+      state.menu && setState({
+        ...state,
+        menu:false
+      })
+    }}></div>
     <div onClick={()=>{
       state.menu && setState({
         ...state,
@@ -47,6 +55,7 @@ const Header = () => {
         <Route path="/healthPlan" exact component={HealthPlan} />
         <Route path="/test" exact component={TestDetails} />
         <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
+        <Route path='/addMember' exact component={AddMemberForm} name={`Let's Start`} />
         <Route path="/myProfile" exact component={MyProfile} />
         <Redirect to="/" />
       </Switch>
