@@ -1,44 +1,39 @@
-import {FormRow,CheckboxesGroup} from '../InputFields'
+import {FormRow,CheckboxesGroup,Buttons} from '../InputFields'
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useWindowSize} from '../../utility'
 const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>{
   const [isValidate,setValidate] = useState(false)
   const [width, height] = useWindowSize();
-  var passwordError = ''
   useEffect(() => {
       let tempValidate = true
       for (const [key, value] of Object.entries(FormData)) {
-        if(!value){
-          setValidate(false)
-          return;
-        }
-        if(key ==='mobileNumber' && value.length < 10){
+        if(!value.value || !!value.error){
           setValidate(false)
           return;
         }
       }
-      
       setValidate(tempValidate)
   }, [FormData])
 
   const onChangehandler = (event) =>{
     let value = event.target.value
+    let error=''
     if(event.target.name === 'loginWithOtp'){
       value=event.target.checked
     }
-    
-    if(event.target.name==='mobileNumber' && value.length < 10){
-      console.log("less than 10")    
+    if(event.target.name ==='mobileNumber' && value.length < 10){
+         error = 'Please enter valid Mobile number'
+        }
+    if(event.target.name ==='confirmPassword' && value!= FormData.password.value){
+      error = 'Password and Confirm Password should be same'
     }
-
-    if(event.target.name==='confirmPassword' && value !== FormData.password){
-      passwordError = 'Password and confirm password not matched'    
-    }
-
     setFormData({
       ...FormData,
-      [event.target.name]:value
+      [event.target.name]:{
+        value,
+        error
+      }
     })
   }
   return(
@@ -48,10 +43,12 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             type="number"
             label="Mobile number"
             name="mobileNumber"
-            maxlength = {10}
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
-            error = {''}
+            error = {FormData.mobileNumber.error}
+            onInput = {(e) =>{ 
+              e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
+            }}
           />
           <FormRow
             type="password"
@@ -59,22 +56,22 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             name="password"
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
-            error = {''}
+            error = {FormData.password.error}
           />
           <FormRow
             type="password"
             label="Confirm Password"
             name="confirmPassword"
             required={true}
-            error = {passwordError}
+            error = {FormData.confirmPassword.error}
             changeHandler={(e)=>onChangehandler(e)}
             
           />
           <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By signing up, I agree to the terms',name:'By signing up, I agree to the terms'}]} /></p>
-          <button onClick={(e)=>{
+          <Buttons onClick={(e)=>{
             e.preventDefault()
             isValidate && RegisterHandler() //setNextPageEnable(true)
-          }} className={isValidate?'customButton activeButtonStyle':'customButton'}>Register</button>
+          }}  disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>Register</Buttons>
           <p>Already have an account? <Link
               to="/login" >Login Now</Link></p>
       </form>

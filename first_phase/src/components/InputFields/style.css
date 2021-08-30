@@ -16,20 +16,41 @@
   text-align: left;
 }
 /* ==========================SinglSelectDropDown =================================================*/
-.SinglSelectDropDown div {
-  width: 250px;
+.SinglSelectDropDown,.RadioButtonant {
+  width: 100%!important;
+    padding-right: var(--bs-gutter-x,.75rem)!important;
+    padding-left: var(--bs-gutter-x,.75rem)!important;
+    margin-right: auto!important;
+    margin-left: auto!important;
+}
+.SinglSelectDropDown select,.SinglSelectDropDown select:focus{
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 4px;
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
-    #fcfeff;
-  border: 1px solid #07213c;
+  
+  width: 272px;
+  height: 32px;
+  left: 0px;
+  top: 0px;
+  
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FCFEFF;
+  /* Saturated Blue */
+  
+  border: 1px solid #3168A7;
+  box-sizing: border-box;
   border-radius: 6px;
+  
+  /* Inside Auto Layout */
+  
   flex: none;
-  order: 1;
-  align-self: stretch;
+  order: 0;
   flex-grow: 0;
   margin: 0px 0px;
+}
+
+label + .MuiInput-formControl {
+  margin-top: 5px!important;
 }
 /* ==========================RadioButton =================================================*/
 .MuiTypography-body1 {
@@ -65,7 +86,7 @@ border-radius: 6px;
   margin-bottom: 10px;
 }
 .container input {
-  display: block;lay: flex;
+  display:flex;
   flex-direction: row;
   align-items: center;
   padding: 4px;
@@ -85,10 +106,21 @@ border-radius: 6px;
 }
 .container label {
   text-align: center;
-  display: block;
+  display: flex;
   margin-bottom: 5px;
 }
-
+.container input:focus{
+  outline: none;
+  }
+.container input[type='number']::-webkit-outer-spin-button,
+.container input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+.container input[type='number'] {
+  -moz-appearance: textfield;
+}
 /* ========================== CustomTextBox =================================================*/
 .CustomTextBox{
   display: flex;
@@ -183,4 +215,9 @@ select:-webkit-autofill:focus {
 }
 .MuiFormHelperText-root.Mui-error {
 display: none!important;
+}
+
+.ButtonContainer{
+  display:flex;
+  justify-content:center
 }

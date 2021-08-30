@@ -6,10 +6,22 @@ import RegisterForm from './RegisterForm';
 import { FieldDataContext } from '../../context/FieldData' 
 const Register = (props) => {
  const [FormData,setFormData] = useState({
-    mobileNumber:'',
-    password:'',
-    confirmPassword:'',
-    loginWithOtp:'',
+    mobileNumber:{
+      value:'',
+      error:''
+    },
+    password:{
+      value:'',
+      error:''
+    },
+    confirmPassword:{
+      value:'',
+      error:''
+    },
+    loginWithOtp:{
+      value:'',
+      error:''
+    },
   }) 
 const [nextPageEnable,setNextPageEnable] = useState(false)
 const {
@@ -17,7 +29,7 @@ registerUser
 }=useContext(FieldDataContext)
 console.log(window.innerHeight)
 const RegisterHandler=()=>{
-        registerUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
+        registerUser({Mobile_Number:FormData.mobileNumber.value,password:FormData.password.value}).then((result)=>{
             result.status ? props.history.push({
               pathname: '/addMember',
               state: {self:true }

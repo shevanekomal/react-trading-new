@@ -1,12 +1,12 @@
 
 import {FormControl,Select,FormHelperText} from '@material-ui/core';
 import './style.css'
-const SinglSelectDropDown = ({name,options,onChange,required,error,validate}) => { 
+const SinglSelectDropDown = ({children,name,options,onChange,required,error,validate}) => { 
     return (
       <div>
         <FormControl className='SinglSelectDropDown'required>
         {/* <InputLabel htmlFor="age-native-required">{children}</InputLabel> */}
-        <label>Pick your location {required && <span style={{color:'red'}}>*</span>}</label>
+        <label>{children} {required && <span style={{color:'red'}}>*</span>}</label>
         <Select
           native
           onChange={onChange}

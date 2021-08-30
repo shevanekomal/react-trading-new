@@ -216,7 +216,15 @@ getProfilePicture=(relation)=>{
       }else{
         console.log("Error",result)
       }
-    })
+    }),
+    addMember: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/addMember',
+        data,
+      })
+      return result
+    }),
   }
 
   render() {
