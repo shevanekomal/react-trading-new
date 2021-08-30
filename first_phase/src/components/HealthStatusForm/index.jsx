@@ -78,7 +78,7 @@ useEffect(() => {
   })
   setValidate(check)
 }, [state])
-const [selectedDate, setSelectedDate] = React.useState(new Date());
+const [selectedDate, setSelectedDate] = React.useState(null);
 const handleDateChange = (date) => {
   console.log(date)
   setSelectedDate(date);

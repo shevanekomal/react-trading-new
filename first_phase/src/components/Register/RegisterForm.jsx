@@ -5,6 +5,7 @@ import {useWindowSize} from '../../utility'
 const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>{
   const [isValidate,setValidate] = useState(false)
   const [width, height] = useWindowSize();
+  var passwordError = ''
   useEffect(() => {
       let tempValidate = true
       for (const [key, value] of Object.entries(FormData)) {
@@ -12,7 +13,12 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
           setValidate(false)
           return;
         }
+        if(key ==='mobileNumber' && value.length < 10){
+          setValidate(false)
+          return;
+        }
       }
+      
       setValidate(tempValidate)
   }, [FormData])
 
@@ -21,6 +27,15 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
     if(event.target.name === 'loginWithOtp'){
       value=event.target.checked
     }
+    
+    if(event.target.name==='mobileNumber' && value.length < 10){
+      console.log("less than 10")    
+    }
+
+    if(event.target.name==='confirmPassword' && value !== FormData.password){
+      passwordError = 'Password and confirm password not matched'    
+    }
+
     setFormData({
       ...FormData,
       [event.target.name]:value
@@ -36,6 +51,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             maxlength = {10}
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
+            error = {''}
           />
           <FormRow
             type="password"
@@ -43,13 +59,16 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             name="password"
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
+            error = {''}
           />
           <FormRow
             type="password"
             label="Confirm Password"
             name="confirmPassword"
             required={true}
+            error = {passwordError}
             changeHandler={(e)=>onChangehandler(e)}
+            
           />
           <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By signing up, I agree to the terms',name:'By signing up, I agree to the terms'}]} /></p>
           <button onClick={(e)=>{
