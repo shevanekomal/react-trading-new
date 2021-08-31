@@ -5,7 +5,7 @@ import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
 import Loader from '../../utility/Loader'
 const HealthStatusForm =(props)=> {
-  let self = true
+  let self = props.location.state.self    //added by swap
   const {
     cities,
     gender,
@@ -170,7 +170,8 @@ if(!isValidate){
   familyHistoryConditions:state.familyHistoryConditions.value,
   // name,
   // whatsAppNumber
-  userType:self ? 'user' : 'subUser'
+  userType:self ? 'user' : 'subUser',
+  user_id:props.location.state.user_id
 }
 addDetails(data).then((response)=>{
   if(response.status){

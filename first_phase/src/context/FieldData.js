@@ -131,7 +131,7 @@ getProfilePicture=(relation)=>{
           ...this.state,
           loginUserId:result.data.user_id,
         })
-        window.localStorage.setItem('x-access-token',result.data["x-access-token"])
+        window.localStorage.setItem('x-access-token',result.data.accessToken)
       }
       return result
     }),

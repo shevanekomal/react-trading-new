@@ -19,7 +19,7 @@ const DatePickerv1=({children,name,defaultValue,onChange,required,error,validate
          // label={name}
           onBlur={required && validate}
           format="dd/MM/yyyy"
-          placeholder="dd/MM/yyyy"
+          placeholder="dd/mm/yyyy"
           value={defaultValue}
           onChange={onChange}
         />

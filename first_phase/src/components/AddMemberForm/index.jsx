@@ -29,9 +29,9 @@ const AddMemberForm = (props) =>{
       error:''
     },
   }) 
-  const {self} = props.location.state 
+  const {self} = props.location.state         //swap to komal - check here state.self needed or not
   useEffect(() => {
-    let tempValidate = true
+    let tempValidate = false //temporary made false by swap...komal verify
     for (const [key, value] of Object.entries(FormData)) {
       if(!(isNumberIsDiff == false && key === 'whatsAppNumber') && !value.value || !!value.error){
         setValidate(false)
@@ -50,21 +50,27 @@ const AddMemberForm = (props) =>{
   }, [FormData,isNumberIsDiff])
   
 const addMemberHandler = (e) =>{
+  
   e.preventDefault()
+ 
   let data = {}
+  console.log(isValidate)
 if(!isValidate){
   data = {
     name:FormData.name.value,
     Number:FormData.Number.value,
     whatsAppNumber:FormData.whatsAppNumber.value,
     userType:self ? 'user' : 'subUser',
-    Relation:self ? FormData.Relation.value: '',
+    Relation:!self ? FormData.Relation.value: '',
+    user_id:props.location.state.user_id,  // added by swap
 }
+
 addMember(data).then((response)=>{
   if(response.status){
     props.history.push({
           pathname: '/addRisk',
-          state: {self}
+          state: {self,user_id:response.data.user_id}, // added by swap
+          
         })
   } 
 })

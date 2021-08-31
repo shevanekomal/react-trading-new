@@ -32,7 +32,8 @@ const RegisterHandler=()=>{
         registerUser({Mobile_Number:FormData.mobileNumber.value,password:FormData.password.value}).then((result)=>{
             result.status ? props.history.push({
               pathname: '/addMember',
-              state: {self:true }
+              state: {self:true, user_id :result.data.user_id }     //Added by swap
+             
             }) : alert("something went wrong!!")
         })
 }
