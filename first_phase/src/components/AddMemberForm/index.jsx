@@ -1,5 +1,5 @@
 
-import {FormRow,RadioButton,SinglSelectDropDown} from '../InputFields'
+import {FormRow,RadioButton,SinglSelectDropDown,Buttons} from '../InputFields'
 import {useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,9 +29,9 @@ const AddMemberForm = (props) =>{
       error:''
     },
   }) 
-  const {self} = props.location.state         //swap to komal - check here state.self needed or not
+  const {self} = props.location.state
   useEffect(() => {
-    let tempValidate = false //temporary made false by swap...komal verify
+    let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
       if(!(isNumberIsDiff == false && key === 'whatsAppNumber') && !value.value || !!value.error){
         setValidate(false)
@@ -50,12 +50,9 @@ const AddMemberForm = (props) =>{
   }, [FormData,isNumberIsDiff])
   
 const addMemberHandler = (e) =>{
-  
   e.preventDefault()
- 
   let data = {}
-  console.log(isValidate)
-if(!isValidate){
+if(isValidate){
   data = {
     name:FormData.name.value,
     Number:FormData.Number.value,
@@ -70,7 +67,6 @@ addMember(data).then((response)=>{
     props.history.push({
           pathname: '/addRisk',
           state: {self,user_id:response.data.user_id}, // added by swap
-          
         })
   } 
 })
@@ -113,7 +109,7 @@ addMember(data).then((response)=>{
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
         />
-        <SinglSelectDropDown name={'Realtion'} required={true} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'}]} >Relation</SinglSelectDropDown>
+        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'}]} >Relation</SinglSelectDropDown>
 
         </>}
         <br/>
@@ -132,7 +128,7 @@ addMember(data).then((response)=>{
             }}
             error={FormData.whatsAppNumber.error}
         /><FontAwesomeIcon icon={faInfoCircle} color="#17416B" size={'1x'} /></>)}
-        <button className={isValidate?'customButton activeButtonStyle':'customButton'} onClick={(e)=>addMemberHandler(e)} >{!self?'Add Member':'Continue'}</button>
+        <Buttons onClick={(e)=>addMemberHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{!self?'Add Member':'Continue'}</Buttons>
       </form>) }
     </div>
 )}

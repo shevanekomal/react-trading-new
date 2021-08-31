@@ -27,14 +27,14 @@ const [nextPageEnable,setNextPageEnable] = useState(false)
 const {
 registerUser
 }=useContext(FieldDataContext)
-console.log(window.innerHeight)
 const RegisterHandler=()=>{
         registerUser({Mobile_Number:FormData.mobileNumber.value,password:FormData.password.value}).then((result)=>{
-            result.status ? props.history.push({
+          console.log(result)
+            (result.status) ? props.history.push({
               pathname: '/addMember',
               state: {self:true, user_id :result.data.user_id }     //Added by swap
              
-            }) : alert("something went wrong!!")
+            }) : alert(result.message || "something went wrong!!")
         })
 }
 

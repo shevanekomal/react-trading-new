@@ -13,7 +13,7 @@ const Menubar = ({state,setState,deafulClasses}) =>{
     loginUserId
   } = useContext(FieldDataContext)
 const currentPath = useLocation().pathname
-
+const currentState = useLocation().state
  
   const toggleMenu = (event) => {
     event.stopPropagation();
@@ -27,7 +27,7 @@ const currentPath = useLocation().pathname
   const show = state.menu ? "show" : "";
   const getLabel=(currentPath)=>{
     switch(currentPath){
-      case '/addMember': return `Let's Start`;
+      case '/addMember': return currentState!=undefined && !currentState.self ? 'Add Member' :  `Let's Start`;
       case '/addRisk': return `Health Status`;
       default : return currentPath.toUpperCase().replace('/','')
     }

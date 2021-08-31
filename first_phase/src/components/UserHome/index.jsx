@@ -9,12 +9,13 @@ import Profile from './Profile'
 const UserHome =(props)=>{
   const {
     familyMembers,
-    getFamilyMembers
+    getFamilyMembers,
+    user_id
     }=useContext(FieldDataContext)
     const clickHandler = ()=>{
       props.history.push({
         pathname: '/addMember',
-        state: {self:false }
+        state: {self:false,user_id :user_id}
       })
     }
     useEffect(() => {

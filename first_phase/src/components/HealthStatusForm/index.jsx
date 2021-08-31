@@ -5,7 +5,7 @@ import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
 import Loader from '../../utility/Loader'
 const HealthStatusForm =(props)=> {
-  let self = props.location.state.self    //added by swap
+  let self =  props.location.state.self
   const {
     cities,
     gender,
@@ -67,6 +67,11 @@ const HealthStatusForm =(props)=> {
       error:''
     }
 })
+useEffect(() => {
+  //temp added to solve disable option issue for sub user
+  disableConditions('diagnosedCondition',false);
+  disableConditions('familyHistoryConditions',false)
+},[])
 useEffect(() => {
   let check = false
   Object.entries(state).forEach(([key, value]) =>{
@@ -175,7 +180,7 @@ if(!isValidate){
 }
 addDetails(data).then((response)=>{
   if(response.status){
-    updateUserId(response.data.user_id)
+    self && updateUserId(response.data.user_id)
     props.history.push({
       pathname: '/userHome',
      state: {self:true,user_id:response.data.user_id }
@@ -226,9 +231,9 @@ const validate =(e)=>{
           
           </RadioButton>
           <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking' valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
-          <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error}>Select all conditions you have been diagnosed with</CheckboxesGroup>
+          <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
           {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
-          <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} >Select all conditions for which you have a family history
+          <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
           <ModalWindow open={open} handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)}><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
