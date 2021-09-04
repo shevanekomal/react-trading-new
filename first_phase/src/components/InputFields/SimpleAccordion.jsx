@@ -38,7 +38,7 @@ export default function SimpleAccordion({header,recommended_details,whyrecommend
           <Typography>
           <p>  {recommended_details}
          <b>  {whyrecommended_details}</b></p>
-         <p> <b>{'The recommended frequency '}</b>{'for your risk level is '}{frequency} </p>
+         <p> <b>{'The recommended frequency '}{'for your risk level is '}{frequency}</b> </p>
          <p>  {finalResult}</p>
           </Typography>
         </AccordionDetails>

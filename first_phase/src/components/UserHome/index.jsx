@@ -2,11 +2,14 @@ import { useContext,useEffect} from 'react';
 import Man from '../../assets/profile/Man.svg'
 import Add_member from '../../assets/Add_member.svg'
 import Woman from '../../assets/profile/Woman.svg'
+import OldMan from '../../assets/profile/Old-man.svg'
+import OldWoman from '../../assets/profile/Old-woman.svg'
 import './UserHome.css'
 import { FieldDataContext } from '../../context/FieldData' 
 import Profile from './Profile'
 
 const UserHome =(props)=>{
+ 
   const {
     familyMembers,
     getFamilyMembers,
@@ -24,9 +27,11 @@ const UserHome =(props)=>{
     return (
       <div className='UserHome'>
         <div className='heading'>Welcome to your Family Home</div>
-        <Profile profileIcon={Man} name={'name'} history={props.history}/>
+      { /* <Profile profileIcon={Man} name={'name'} history={props.history}/> */}
+      {familyMembers.map(member=>(member.user_type ==='user'?(<Profile key={member.name} profileIcon={member.gender==='male'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} gender={member.gender} />):''))}
         <div className='FamilyMemberContainer'>
-          {familyMembers.map(member=>(<Profile key={member.name} profileIcon={Woman} name={member.name} />))}
+          {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} />):
+          (<Profile key={member.name} profileIcon={member.relation==='brother' || member.relation==='son'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} />):''))}
           <img src={Add_member} alt="Add_member Logo" onClick={clickHandler}/>
         </div>
       </div>

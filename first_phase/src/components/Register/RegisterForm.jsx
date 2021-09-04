@@ -7,11 +7,22 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
   const [width, height] = useWindowSize();
   useEffect(() => {
       let tempValidate = true
+      let password = '',cpassword = '';
       for (const [key, value] of Object.entries(FormData)) {
         if(!value.value || !!value.error){
           setValidate(false)
           return;
         }
+        if(key === 'confirmPassword'){
+          cpassword = value.value;
+        }
+        if(key === 'password'){
+          password = value.value;
+        }
+      }
+      if(password !== cpassword){
+        setValidate(false)
+        return;
       }
       setValidate(tempValidate)
   }, [FormData])
@@ -22,12 +33,30 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
     if(event.target.name === 'loginWithOtp'){
       value=event.target.checked
     }
+   /* console.log(FormData.confirmPassword)
+    if(event.target.name ==='password' && FormData.confirmPassword.value != '' && value!= FormData.confirmPassword.value){
+      //error = 'Password and Confirm Password should be same'
+     
+    }else if(event.target.name ==='confirmPassword' && value === FormData.password.value){
+      console.log('in else')
+      error = ''
+      let val = FormData.password.value
+      setFormData({
+        ...FormData,
+        ['password']:{
+          val,
+          error
+        }
+      })
+    }*/
+       
     if(event.target.name ==='mobileNumber' && value.length < 10){
          error = 'Please enter valid Mobile number'
         }
     if(event.target.name ==='confirmPassword' && value!= FormData.password.value){
       error = 'Password and Confirm Password should be same'
     }
+   
     setFormData({
       ...FormData,
       [event.target.name]:{

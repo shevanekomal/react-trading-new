@@ -6,6 +6,7 @@ class FieldDataProvider extends Component {
   state = {
      accessToken:'',
      user_id:null,
+     userHealthDetails:[{}],
      familyMembers:[{id:'45454',realtion:'daughter',profile:'Girl',name:'swap'}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
@@ -141,14 +142,15 @@ getProfilePicture=(relation)=>{
         urlEndpoint: '/login',
         data,
       })
+      console.log('result '+result.data)
       if(result.status){
         this.setState({
           ...this.state,
           accessToken:result.data.accessToken,
           loginUserId:result.data.user_id,
         })
-        return true
-      }else return false
+        
+      } return result
     }),
     addDetails: debounce(async (data) => {
       const result = await httpClient({
@@ -216,6 +218,30 @@ getProfilePicture=(relation)=>{
       }else{
         console.log("Error",result)
       }
+    }),
+    //below 2 calls added by swap
+    getHealthStatusDetails:debounce(async(user_id)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/getHealthStatusDetails/'+user_id
+      })
+      if(result.status){
+        //process result.data here
+        this.setState({
+          ...this.state,
+          userHealthDetails:result.data
+        })
+        return result
+      }else{
+        console.log("Error",result)
+      }
+    }),
+    deleteMemberProfile:debounce(async(user_id)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/deleteMemberProfile/'+user_id
+      })
+     return result
     }),
     addMember: debounce(async (data) => {
       const result = await httpClient({

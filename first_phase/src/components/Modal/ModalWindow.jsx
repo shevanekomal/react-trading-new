@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalWindow({children,open,handleClose,handleOpen}) {
+export default function ModalWindow({children,open,handleClose,handleOpen,handleClick,option1,option2}) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -40,13 +40,15 @@ export default function ModalWindow({children,open,handleClose,handleOpen}) {
       <Modal
         open={open}
         onClose={handleClose}
+        onClick={handleClick}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.ModalWindow }>
       {children}
       <br />
-     <button className={'activeButtonStyle customButton'} onClick={()=>handleClose()}>OKAY</button>
+     <button name = {option1} className={'activeButtonStyle customButton'} onClick={()=>handleClose()}>{option1}</button>
+    { option2 !== '' && <button name = {option2} className={'activeButtonStyle customButton'} onClick={(e)=>handleClick(e)}>{option2}</button>}
     </div>
       </Modal>
     </div>

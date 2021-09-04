@@ -10,6 +10,8 @@ import Register from '../Register'
 import UserHome from '../UserHome'
 import MyProfile from '../MyProfile'
 import AddMemberForm from '../AddMemberForm'
+import UserSetting from '../UserSetting'
+import ShareWithMember from '../ShareWithMember'
 import Main_logo from '../../assets/Main_logo.svg'
 
 const Header = () => {
@@ -57,6 +59,8 @@ const Header = () => {
         <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
         <Route path='/addMember' exact component={AddMemberForm} name={`Let's Start`} />
         <Route path="/myProfile" exact component={MyProfile} />
+        <Route path="/userSetting" exact component={UserSetting} />
+        <Route path="/shareWithMember" exact component={ShareWithMember} />
         <Redirect to="/" />
       </Switch>
      </div> 

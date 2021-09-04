@@ -24,7 +24,9 @@ const [FormData,setFormData] = useState({
   const LoginHandler=(e)=>{
         e.preventDefault()
         isValidate && loginUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
-        if(result){
+         console.log('result'+result)
+        if(result.status){
+          console.log(result.data.user_id)
             updateUserId(result.data.user_id)
             props.history.push({
               pathname: '/userHome',
@@ -64,10 +66,11 @@ const [FormData,setFormData] = useState({
           name="password"
           changeHandler={(e)=>onChangehandler(e)}
         />
-        <CheckboxesGroup name='loginWithOtp'  options={[ {text:'Login with OTP instead of password',name:'loginWithOtp',checkd:false}]} />
+       { /*<CheckboxesGroup name='loginWithOtp'  options={[ {text:'Login with OTP instead of password',name:'loginWithOtp',checkd:false}]} />
           
         <p>Note: If you are the account creator, login using your password or OTP. 
-        If you are a family member, login using the OTP.</p>
+    If you are a family member, login using the OTP.</p>*/}
+    <Link to="/shareWithMember">Am I an account creater or family member?</Link>
         <button className={isValidate?'customButton activeButtonStyle':'customButton'}
         onClick={(e)=>LoginHandler(e)}>LOGIN</button>
         <p>New here? <Link

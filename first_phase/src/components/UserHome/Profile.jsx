@@ -5,7 +5,7 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import React from 'react';
 import {Button,Menu,MenuItem} from '@material-ui/core';
 
-const Profile = ({profileIcon,name,history}) =>{
+const Profile = ({profileIcon,name,history,user_id,relation,mobile,gender}) =>{
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -14,7 +14,12 @@ const Profile = ({profileIcon,name,history}) =>{
     setAnchorEl(null);
   };
   const clickHandler = ()=>{
-    history.push("/myProfile")
+    
+    history.push({
+      pathname: '/userSetting',
+     state: {user_id:user_id,name:name,relation:relation,mobile:mobile,gender:gender}
+    })
+    //history.push("/myProfile")
   }
     return (
       <div >

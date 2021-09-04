@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Health from '../../assets/Health.svg'
+import Health2 from '../../assets/Health2.svg'
 import './TestPannel.css'
 import {useWindowSize} from '../../utility'
 const TestPannel = ({test,clickHandler,testName}) =>{
@@ -10,7 +11,7 @@ const [width] = useWindowSize();
           <div>{test.testName}</div>
           <table><tbody>
           {test.testTypes.length && test.testTypes.map((el)=>(<tr key={el.checkup_id} onClick={()=>clickHandler(el,testName)} > 
-            <td>{el.recomm_level == 1 ? (<img src ={Health} />) : ''}</td>
+            <td>{el.recomm_level == 1 ? (<img src ={Health} />) : (<img src ={Health2} />)}</td>
             {width < 600 ? (<><td>{el.checkup_name}</td><td><FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></td> </>):<td><span style={{textDecoration:'underline',    cursor: 'pointer'}}>{el.checkup_name}</span></td>}
             <td></td>
             </tr>))}

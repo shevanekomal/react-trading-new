@@ -3,7 +3,8 @@ import {FormRow,RadioButton,SinglSelectDropDown,Buttons} from '../InputFields'
 import {useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle,faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const AddMemberForm = (props) =>{
   const [isNumberIsDiff,setIsNumberDiff] = useState(true)
@@ -33,7 +34,7 @@ const AddMemberForm = (props) =>{
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
-      if(!(isNumberIsDiff == false && key === 'whatsAppNumber') && !value.value || !!value.error){
+      if( (!self && key !== 'Number') && !(isNumberIsDiff == false && key === 'whatsAppNumber') && !value.value || !!value.error){
         setValidate(false)
         return;
       }
@@ -47,6 +48,7 @@ const AddMemberForm = (props) =>{
       }
     }
     setValidate(tempValidate)
+    console.log(isValidate)
   }, [FormData,isNumberIsDiff])
   
 const addMemberHandler = (e) =>{
@@ -109,8 +111,9 @@ addMember(data).then((response)=>{
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
         />
-        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'}]} >Relation</SinglSelectDropDown>
-
+        <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} />
+        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
+        <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} />
         </>}
         <br/>
         <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} defaultValue={'yes'} onChange={(e)=>{
@@ -127,7 +130,10 @@ addMember(data).then((response)=>{
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
             error={FormData.whatsAppNumber.error}
-        /><FontAwesomeIcon icon={faInfoCircle} color="#17416B" size={'1x'} /></>)}
+        /><FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} /></>)}
+        {
+          !self && <> <Link to="/shareWithMember">Am I an account creater or family member?</Link></>
+        }
         <Buttons onClick={(e)=>addMemberHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{!self?'Add Member':'Continue'}</Buttons>
       </form>) }
     </div>
