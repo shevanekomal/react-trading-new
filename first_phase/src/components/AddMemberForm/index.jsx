@@ -1,13 +1,12 @@
 
-import {FormRow,RadioButton,SinglSelectDropDown,Buttons,CheckboxesGroup} from '../InputFields'
+import {FormRow,RadioButton,SinglSelectDropDown,Buttons} from '../InputFields'
 import {useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useWindowSize} from '../../utility'
 import { Link } from "react-router-dom";
 import jeevi_on_skates from '../../assets/jeevi_on_skates.svg'
 const AddMemberForm = (props) =>{
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
   const [isNumberIsDiff,setIsNumberDiff] = useState(true)
   const [isValidate,setValidate] = useState(false)
   const {
@@ -31,7 +30,7 @@ const AddMemberForm = (props) =>{
       error:''
     },
   }) 
-  const {self} = props.location.state || true
+  const {self} = props.location.state
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
