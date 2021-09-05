@@ -53,3 +53,19 @@
   left: 35%;
   position: fixed;
 }
+
+@media only screen and (max-width: 990px) {
+.navbar {
+  position: absolute!important;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+/* .ButtonContainer
+{
+  margin-left: 200px;
+} */
+}
+.navbar-light .navbar-toggler{
+  border: none;
+}

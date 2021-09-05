@@ -1,8 +1,9 @@
-import {FormRow,CheckboxesGroup} from '../InputFields'
+import {FormRow,CheckboxesGroup,Buttons} from '../InputFields'
 import './Login.css'
 import { Link } from "react-router-dom";
 import { FieldDataContext } from '../../context/FieldData' 
 import {useState,useContext,useEffect} from 'react'
+import {useWindowSize} from '../../utility'
  
 
 const Login =(props)=> {
@@ -10,7 +11,7 @@ const {
 loginUser,
 updateUserId
 }=useContext(FieldDataContext)
-
+const [width, height] = useWindowSize();
 const [FormData,setFormData] = useState({
     mobileNumber:'',
     password:'',
@@ -51,8 +52,12 @@ const [FormData,setFormData] = useState({
   }, [FormData])
 
     return (
-      <form name='Login' className='Login'>
-      <FormRow
+      
+    <div className = 'LoginContainer'>
+    <form>
+    <div>
+    {width> 990 && <div className='Header'>Login</div>}
+    <FormRow
           type="number"
           label="Mobile number"
           name="mobileNumber"
@@ -70,12 +75,15 @@ const [FormData,setFormData] = useState({
           
         <p>Note: If you are the account creator, login using your password or OTP. 
     If you are a family member, login using the OTP.</p>*/}
-    <Link to="/shareWithMember">Am I an account creater or family member?</Link>
-        <button className={isValidate?'customButton activeButtonStyle':'customButton'}
-        onClick={(e)=>LoginHandler(e)}>LOGIN</button>
+    <div className='container'><Link to="/shareWithMember">Am I an account creater or family member?</Link></div>
+    <Buttons onClick={(e)=>LoginHandler(e)}  disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>LOGIN</Buttons>
+
         <p>New here? <Link
             to="/register" >Register Now</Link></p>
-      </form>
+            </div>
+    </form>
+    </div>
+
     )
 }
 export default Login

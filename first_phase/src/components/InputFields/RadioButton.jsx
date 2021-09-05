@@ -7,7 +7,7 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
     onChange(event);
   };
   return (
-    <div>
+    <div className='container'>
     <FormControl className='RadioButton' component="fieldset" required>
     <label>{children} {required && <span style={{color:'red'}}>*</span>} </label>
     <label>{valueText}</label>

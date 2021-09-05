@@ -4,7 +4,7 @@ import linkedin from '../../assets/linkedin.svg'
 import instagram from '../../assets/instagram.svg'
 import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
-import homeLogo from '../../assets/homeLogo.svg'
+import Main_logo from '../../assets/Main_logo.svg'
 import { useLocation } from 'react-router-dom'
 import './Menubar.css'
 import { FieldDataContext } from '../../context/FieldData'
@@ -37,16 +37,19 @@ const currentState = useLocation().state
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
         <span className="navbar-toggler-icon" />
       </button>
-      {['/ourFeature','/about'].includes(currentPath) ? (<><Link className="navbar-brand" to="/">
+      {/* {['/ourFeature','/about'].includes(currentPath) ? (<><Link className="navbar-brand" to="/">
         logo
       </Link><button className="navbar-toggler registerButton" type="button">
         Register
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
-      }
+      } */}
+
+     { !(currentState!=undefined && !currentState.self) && 
+
       <div style={{padding: '10px'}}className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
         <div className="navbar-toggler">
-          Logo
+          <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/>
         </div>
         
           <Link
@@ -99,10 +102,11 @@ const currentState = useLocation().state
 
         
       </div>
+    }
       <Link
             to={loginUserId?'/userHome':"/"}
           >
-           <img style={{margin: '5px'}}src={homeLogo} alt="home Logo" />
+           <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
           </Link>
     </nav>
   );

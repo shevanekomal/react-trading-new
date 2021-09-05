@@ -1,4 +1,4 @@
-.Register p,.Register p a{
+.Register p,.Register p a,.LoginContainer p,.LoginContainer p a{
   text-align: center;
   /* Text/Small Text Regular */
 
@@ -24,6 +24,7 @@ order: 0;
 flex-grow: 1;
 margin: 0px 4px;
 }
+
 .otpForm div:nth-child(2){
   display: flex;
   justify-content: space-around;
@@ -47,7 +48,7 @@ letter-spacing: 0.0215em;
 
 color: #17416B;
 }
-.Register .Header{
+.Register .Header,.AddMemberContainer .Header,.LoginContainer .Header{
 
 font-family: Open Sans;
 font-style: normal;
@@ -56,7 +57,7 @@ font-size: 60px;
 line-height: 72px;
 /* identical to box height, or 120% */
 
-text-align: center;
+/* text-align: center; */
 
 /* Saturated Blue */
 
@@ -64,4 +65,26 @@ color: #3168A7;
 
 backdrop-filter: blur(4px);
 margin-bottom: 30px;
+}
+
+
+@media only screen and (min-width: 990px) {
+  .Register .Header,.Register p,.AddMemberContainer .Header,.LoginContainer .Header,.LoginContainer p{
+    text-align: left;
+    margin-left: 290px;
+  }
+  .ButtonContainer
+  {
+    margin-left: 200px;
+  }
+}
+
+.jeevi_register,.jeevi_on_skates{
+  width: 384px;
+height: 384px;
+}
+.RegisterContainer,.AddMemberContainer,.LoginContainer{
+  display: flex;
+  margin-top: 90px;
+  justify-content: space-around;
 }

@@ -1,9 +1,11 @@
 
 import {FormControl,Select,FormHelperText} from '@material-ui/core';
 import './style.css'
-const SinglSelectDropDown = ({children,name,options,onChange,required,error,validate}) => { 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+const SinglSelectDropDown = ({children,name,options,onChange,required,error,validate,isTooltip}) => { 
     return (
-      <div>
+      <div className='container'>
         <FormControl className='SinglSelectDropDown'required>
         {/* <InputLabel htmlFor="age-native-required">{children}</InputLabel> */}
         <label>{children} {required && <span style={{color:'red'}}>*</span>}</label>
@@ -18,6 +20,7 @@ const SinglSelectDropDown = ({children,name,options,onChange,required,error,vali
           )
         }
         </Select>
+        {isTooltip && <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} /> }
         { error && <FormHelperText id="outlined-weight-helper-text" style={{color:"red"}}>{error}</FormHelperText> }
       </FormControl>
       </div>

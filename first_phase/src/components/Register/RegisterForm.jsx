@@ -2,6 +2,7 @@ import {FormRow,CheckboxesGroup,Buttons} from '../InputFields'
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useWindowSize} from '../../utility'
+import jeevi_register from '../../assets/jeevi_register.png'
 const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>{
   const [isValidate,setValidate] = useState(false)
   const [width, height] = useWindowSize();
@@ -66,9 +67,11 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
     })
   }
   return(
+    <div className = 'RegisterContainer'>
       <form name='Register' className='Register'>
+      <div>
       {width> 990 && <div className='Header'>Register</div>}
-        <FormRow
+      <FormRow
             type="number"
             label="Mobile number"
             name="mobileNumber"
@@ -96,13 +99,16 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             changeHandler={(e)=>onChangehandler(e)}
             
           />
-          <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By signing up, I agree to the terms',name:'By signing up, I agree to the terms'}]} /></p>
-          <Buttons onClick={(e)=>{
+         <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By signing up, I agree to the terms',name:'By signing up, I agree to the terms'}]} /></p>
+         <Buttons onClick={(e)=>{
             e.preventDefault()
             isValidate && RegisterHandler() //setNextPageEnable(true)
           }}  disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>Register</Buttons>
           <p>Already have an account? <Link
               to="/login" >Login Now</Link></p>
+         </div>
       </form>
+      {width> 990 && <img className='jeevi_register' src={jeevi_register} />}
+      </div>
 )}
 export default RegisterForm

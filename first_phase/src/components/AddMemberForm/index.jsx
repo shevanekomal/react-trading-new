@@ -1,12 +1,13 @@
 
-import {FormRow,RadioButton,SinglSelectDropDown,Buttons} from '../InputFields'
+import {FormRow,RadioButton,SinglSelectDropDown,Buttons,CheckboxesGroup} from '../InputFields'
 import {useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle,faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import {useWindowSize} from '../../utility'
 import { Link } from "react-router-dom";
-
+import jeevi_on_skates from '../../assets/jeevi_on_skates.svg'
 const AddMemberForm = (props) =>{
+  const [width, height] = useWindowSize();
   const [isNumberIsDiff,setIsNumberDiff] = useState(true)
   const [isValidate,setValidate] = useState(false)
   const {
@@ -30,7 +31,7 @@ const AddMemberForm = (props) =>{
       error:''
     },
   }) 
-  const {self} = props.location.state
+  const {self} = props.location.state || true
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
@@ -89,8 +90,11 @@ addMember(data).then((response)=>{
     })
   }
   return(
-    <div>
-    { (<form >
+    
+    <div className = 'AddMemberContainer'>
+      <form>
+      <div>
+      {width> 990 && <div className='Header'>Lets Start</div>}
       <FormRow
           type="text"
           label="Name"
@@ -107,19 +111,19 @@ addMember(data).then((response)=>{
           required={true}
           changeHandler={onChangehandler}
           error={FormData.Number.error}
+          isTooltip = {true}
           onInput = {(e) =>{ 
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
         />
-        <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} />
-        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
-        <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} />
+        
+        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler}  isTooltip = {true} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
         </>}
         <br/>
         <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} defaultValue={'yes'} onChange={(e)=>{
           e.target.value === 'yes' ? setIsNumberDiff(true) : setIsNumberDiff(false)
         }}>Is the phone number you used to register different than your whatsapp number ?</RadioButton>
-        {isNumberIsDiff && (<><FormRow
+        {isNumberIsDiff && <FormRow
           type="number"
           label="whatsApp Number"
           name="whatsAppNumber"
@@ -130,12 +134,17 @@ addMember(data).then((response)=>{
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
             error={FormData.whatsAppNumber.error}
-        /><FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} /></>)}
+            isTooltip = {true}
+        />}
         {
-          !self && <> <Link to="/shareWithMember">Am I an account creater or family member?</Link></>
+          !self && <div className='container'> <Link to="/shareWithMember">Am I an account creater or family member?</Link></div>
         }
         <Buttons onClick={(e)=>addMemberHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{!self?'Add Member':'Continue'}</Buttons>
-      </form>) }
-    </div>
+        </div>
+      </form>
+      {width> 990 && <img className='jeevi_on_skates' src={jeevi_on_skates} />}
+      </div>
+
+
 )}
 export default AddMemberForm;
