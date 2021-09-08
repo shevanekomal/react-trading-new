@@ -12,6 +12,7 @@ import MyProfile from '../MyProfile'
 import AddMemberForm from '../AddMemberForm'
 import UserSetting from '../UserSetting'
 import ShareWithMember from '../ShareWithMember'
+import CreateCheckupForm from '../CreateCheckupForm'
 import Main_logo from '../../assets/Main_logo.svg'
 
 const Header = () => {
@@ -61,6 +62,7 @@ const Header = () => {
         <Route path="/myProfile" exact component={MyProfile} />
         <Route path="/userSetting" exact component={UserSetting} />
         <Route path="/shareWithMember" exact component={ShareWithMember} />
+        <Route path="/createCheckup" exact component={CreateCheckupForm} />
         <Redirect to="/" />
       </Switch>
      </div> 

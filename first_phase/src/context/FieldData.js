@@ -251,6 +251,14 @@ getProfilePicture=(relation)=>{
       })
       return result
     }),
+    createCheckup: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/createCheckup',
+        data,
+      })
+      return result
+    }),
   }
 
   render() {

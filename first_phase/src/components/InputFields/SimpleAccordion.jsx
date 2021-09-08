@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleAccordion({header,recommended_details,whyrecommended_details,frequency,finalResult}) {
+export default function SimpleAccordion({header,recommended_details,whyrecommended_details,frequency,conditions,test_details,other_info,checkup_category}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -36,10 +36,12 @@ export default function SimpleAccordion({header,recommended_details,whyrecommend
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-          <p>  {recommended_details}
+          <p>  {'This checkup is '}<b>{recommended_details}</b>{' for you '} {'because '}
          <b>  {whyrecommended_details}</b></p>
-         <p> <b>{'The recommended frequency '}{'for your risk level is '}{frequency}</b> </p>
-         <p>  {finalResult}</p>
+         <p> {'The recommended frequency for your risk level is '} <b>{frequency}</b> </p>
+         {conditions !== '' ?(<p>{checkup_category !== 'Doctor Checkup' ? ' This checkup is used to diagnose ' :' This checkup is used to diagnose/protect against '} <b> {conditions}</b></p>):''}
+         {test_details !== '' ?(<p>{test_details}</p>):''}
+         {other_info !== '' ?(<p>{other_info}</p>):''}
           </Typography>
         </AccordionDetails>
       </Accordion>

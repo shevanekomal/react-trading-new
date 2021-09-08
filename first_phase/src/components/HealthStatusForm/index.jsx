@@ -31,7 +31,7 @@ const HealthStatusForm =(props)=> {
       error:''
       },
     gender:{
-      value:'male',
+      value:'',
       error:''
     },
     birthdate:{
@@ -78,35 +78,14 @@ useEffect(() => {
   disableConditions('familyHistoryConditions',false)
 },[])
 useEffect(() => {
+ 
  let userHealthDetails1 = props.location.state.userHealthDetails
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     let error = ''
-   
-    setState({
-      ...state,
-      ['alcoholIntake']:{
-        value:true,
-        error:error
-      },
-      ['diet']:{
-        value:[userHealthDetails1.diet],
-        error:error
-      },
-      ['birthdate']:{
-        value:[userHealthDetails1.dob],
-        error:error
-      },
-      ['exercise']:{
-        value:[userHealthDetails1.excercise],
-        error:error
-      },
-      ['gender']:{
-        value:[userHealthDetails1.gender],
-        error:error
-      },
-      })
+    let value = 'female'
+    updateValues('gender',value)
   }
-  userHealthDetails1 = ''
+  //userHealthDetails1 = ''
 },[])
 
 useEffect(() => {
@@ -121,6 +100,18 @@ useEffect(() => {
   })
   setValidate(check)
 }, [state])
+
+const updateValues = (name,value) =>{
+  let error = ''
+  setState({
+    ...state,
+    [name]:{
+      value,
+      error:error
+    }
+  })
+    console.log(state)
+}
 const [selectedDate, setSelectedDate] = React.useState(null);
 const handleDateChange = (date) => {
   setSelectedDate(date);
@@ -261,7 +252,7 @@ const validate =(e)=>{
           <div className='TopicHeading'>Personal Details</div>
           {/* <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
            */}
-          <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value} value={state.gender.value} error={state.gender.error}>Gender</RadioButton>
+          <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value}  error={state.gender.error}>Gender</RadioButton>
           <DatePickerv1 name={'birthdate'}  required={true} defaultValue={selectedDate}  validate={validate} onChange={handleDateChange} error={state.birthdate.error}>Select your birthday</DatePickerv1>          
           <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'  validate={validate}  error={state.height.error}>Your Height</CustomTextBox>
           <CustomTextBox type={'number'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>

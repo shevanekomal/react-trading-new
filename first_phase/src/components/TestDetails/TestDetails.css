@@ -31,3 +31,8 @@
     text-decoration: underline;
     color: blue;
 }
+.plusIcon {
+  color: yellow;
+  width: 24px;
+  height: 24px;
+ }

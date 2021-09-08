@@ -2,6 +2,7 @@ import './HealthPlan.css'
 import {useContext,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TestPannel from '../TestPannel'
 import { FieldDataContext } from '../../context/FieldData'
 import Health from '../../assets/Health.svg'
@@ -30,6 +31,12 @@ const HealthPlan = (props)=> {
     }
     getHealthPlanDetails(props.location.state.user_id)
   },[])
+  const createCheckupHandler = () =>{
+    props.history.push({
+      pathname: '/createCheckup',
+      state: {user_id:props.location.state.user_id}
+    })
+  }
     return (
       <div className='HealthPlan'>
         <div className='PlanHeader'>
@@ -44,15 +51,15 @@ const HealthPlan = (props)=> {
           <p>Recommended Checkups</p>
           <div>These checkups are recommended for you based on the health status information you shared. Click on each checkup to know more.</div>
         </div>
-        {testsRecommanded.recommendedcount !== 0} ?
-        ({testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test} clickHandler={clickHandler} />)})
+       { testsRecommanded.recommendedcount !== 0 ? (testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test} clickHandler={clickHandler} />))
         :(<div> <img src={girl_with_plant} />
           <div>Update your health status to view your recommended checkups</div>
           <button className='BackButton' onClick={()=>{props.history.push({pathname:'/addRisk',state:{self,user_id:props.location.state.user_id}})}}>GO TO MY HEALTH STATUS</button>
-          </div>)
+          </div>)}
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
-          <button><FontAwesomeIcon icon={faPlusCircle} color="#F9E24D" size={'lg'} /></button><span>Create</span>
+          <AddCircleIcon className = 'plusIcon' onClick={()=>createCheckupHandler()} /><span onClick={()=>createCheckupHandler()}>Create</span>
+    
         </div>
       </div>
     )

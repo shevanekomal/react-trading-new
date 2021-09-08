@@ -233,3 +233,6 @@ display: none!important;
 .MuiIconButton-label input{
 width: 0px;
 }
+.TooltipClass{
+  color:#17416B
+}

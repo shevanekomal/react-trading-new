@@ -1,6 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle,faTimesCircle,faUser,faUserFriends } from "@fortawesome/free-solid-svg-icons";
-
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import PeopleIcon from '@material-ui/icons/People';
+import PersonIcon from '@material-ui/icons/Person';
+import './ShareWithMember.css';
 const ShareWithMember = () =>{
 
   return(
@@ -13,8 +17,8 @@ const ShareWithMember = () =>{
          <tr>
            <td/>
            <td/>
-           <td><FontAwesomeIcon icon={faUser} color="#17416B" size={'lg'} /></td>
-            <td><FontAwesomeIcon icon={faUserFriends} color="#17416B" size={'lg'} /></td>
+           <td><PersonIcon size={'lg'} /></td>
+            <td><PeopleIcon size={'lg'} /></td>
          </tr>
          <tr>
          <td/>
@@ -25,44 +29,44 @@ const ShareWithMember = () =>{
          <tr>
              <td>View Own Profile</td>
               
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
          </tr>
         
          <tr>
              <td>View all profiles</td>
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-            <td><FontAwesomeIcon icon={faTimesCircle} color="red" size={'lg'} /></td>
+            <td><HighlightOffIcon className='crossCircle' size={'lg'} /></td>
 
          </tr>
          <tr>
              <td>Edit own profile</td>
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
 
          </tr>
          <tr>
              <td>Edit all profiles</td>
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-            <td><FontAwesomeIcon icon={faTimesCircle} color="red" size={'lg'} /></td>
+            <td><HighlightOffIcon className='crossCircle' size={'lg'} /></td>
 
          </tr>
          <tr>
              <td>WhatsApp notifications for own profile</td>
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
 
          </tr>
          <tr>
              <td>WhatsApp notifications for all profiles</td>
-             <td><FontAwesomeIcon icon={faCheckCircle} color="green" size={'lg'} /></td>
+             <td><CheckCircleOutlineIcon className='checkCircle' size={'lg'} /></td>
              <td/>  
-            <td><FontAwesomeIcon icon={faTimesCircle} color="red" size={'lg'} /></td>
+            <td><HighlightOffIcon className='crossCircle' size={'lg'} /></td>
 
          </tr>
             </tbody>

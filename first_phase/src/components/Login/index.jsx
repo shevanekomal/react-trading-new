@@ -25,7 +25,7 @@ const [FormData,setFormData] = useState({
   const LoginHandler=(e)=>{
         e.preventDefault()
         isValidate && loginUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
-         console.log('result'+result)
+         
         if(result.status){
           console.log(result.data.user_id)
             updateUserId(result.data.user_id)
@@ -67,8 +67,9 @@ const [FormData,setFormData] = useState({
         />
          <FormRow
           type="password"
-          label="Create Password"
+          label="Password"
           name="password"
+          required={true}
           changeHandler={(e)=>onChangehandler(e)}
         />
        { /*<CheckboxesGroup name='loginWithOtp'  options={[ {text:'Login with OTP instead of password',name:'loginWithOtp',checkd:false}]} />

@@ -70,10 +70,7 @@ const UserSetting =(props)=>{
             state: {self,user_id:user_id,userHealthDetails:result.data}, // added by swap - here main user id needed
       })
     } 
-  })
-    
-     console.log('health status clicked : '+user_id)
-        
+    })     
     }
     const handleClick = (e)=>{
        if(e.target.name === 'DELETE'){
@@ -143,7 +140,8 @@ const UserSetting =(props)=>{
            <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
             <Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons>
-            <Buttons disabled={props.location.state.relation === 'Me'} bgColor={props.location.state.relation !== 'Me' ? '#F9E24D' : '#F0F3F5 '} onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>
+            {}
+            <Buttons disabled={props.location.state.relation !== 'Me'} bgColor={props.location.state.relation !== 'Me' ? '#F9E24D' : '#F0F3F5 '} onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>
             
           </form>) }
         </div>

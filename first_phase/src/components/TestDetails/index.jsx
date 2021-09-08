@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft,faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft,faArrowRight,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
 import './TestDetails.css';
 import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
   const TestDetails = (props)=> {
   const {
@@ -78,13 +79,25 @@ const navigationHandler =(type)=>{
       checkup_id && fetchDetails(checkup_id)
     }
 }
+
+const createCheckupHandler = () =>{
+  props.history.push({
+    pathname: '/createCheckup',
+    state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
+  })
+}
   return (
     <div className='TestDetails'>
     <div className='TestHeader'>
     <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
-      <SimpleAccordion header={'Tell me more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} finalResult={testDetails.finalResult}/>
+      <SimpleAccordion header={'Tell me more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} conditions={testDetails.conditions} test_details={testDetails.test_details} other_info={testDetails.other_info} checkup_category={testDetails.checkup_category}/>
        <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button>
+    <div>
+    <label>Upcoming</label>
+    <AddCircleIcon className = 'plusIcon' onClick={()=>createCheckupHandler()} /><span onClick={()=>createCheckupHandler()}>Create</span>
     </div>
+    </div>
+
     )
   }
 export default TestDetails

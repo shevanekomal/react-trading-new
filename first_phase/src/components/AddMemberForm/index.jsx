@@ -5,6 +5,7 @@ import { FieldDataContext } from '../../context/FieldData'
 import {useWindowSize} from '../../utility'
 import { Link } from "react-router-dom";
 import jeevi_on_skates from '../../assets/jeevi_on_skates.svg'
+
 const AddMemberForm = (props) =>{
   const [width] = useWindowSize();
   const [isNumberIsDiff,setIsNumberDiff] = useState(true)
@@ -93,7 +94,7 @@ addMember(data).then((response)=>{
     <div className = 'AddMemberContainer'>
       <form>
       <div>
-      {width> 990 && <div className='Header'>Lets Start</div>}
+      {width> 990 && <div className='Header'>{self ? "Let's Start" : 'Add Member'}</div>}
       <FormRow
           type="text"
           label="Name"
@@ -105,26 +106,30 @@ addMember(data).then((response)=>{
         !self && <>
           <FormRow
           type="number"
-          label="Number"
+          label="Phone number"
           name="Number"
           required={true}
           changeHandler={onChangehandler}
           error={FormData.Number.error}
           isTooltip = {true}
+          tooltipTitle = {'If the member does not have a phone number, you can use your own phone number to register the member.'}
           onInput = {(e) =>{ 
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
         />
         
-        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler}  isTooltip = {true} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
+        <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler}  isTooltip = {true} 
+        tooltipTitle = {'This helps us in giving you relevant recommendations.'} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
         </>}
         <br/>
+       
         <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} defaultValue={'yes'} onChange={(e)=>{
           e.target.value === 'yes' ? setIsNumberDiff(true) : setIsNumberDiff(false)
-        }}>Is the phone number you used to register different than your whatsapp number ?</RadioButton>
+        }}>{self ?('Is the phone number you used to register different than your whatsapp number?') :('Is the phone number above different than the members WhatsApp number?') } 
+        </RadioButton>
         {isNumberIsDiff && <FormRow
           type="number"
-          label="whatsApp Number"
+          label="WhatsApp number"
           name="whatsAppNumber"
           maxLength = {10}
           required={true}
@@ -134,6 +139,8 @@ addMember(data).then((response)=>{
             }}
             error={FormData.whatsAppNumber.error}
             isTooltip = {true}
+            tooltipTitle={'We will use this number to send reminders about your checkups. You can switch off & control what notifications you get later.'}
+            
         />}
         {
           !self && <div className='container'> <Link to="/shareWithMember">Am I an account creater or family member?</Link></div>

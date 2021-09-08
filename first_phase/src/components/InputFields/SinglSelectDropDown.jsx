@@ -3,7 +3,19 @@ import {FormControl,Select,FormHelperText} from '@material-ui/core';
 import './style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-const SinglSelectDropDown = ({children,name,options,onChange,required,error,validate,isTooltip}) => { 
+import HelpIcon from '@material-ui/icons/Help';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+const SinglSelectDropDown = ({children,name,options,onChange,required,error,validate,isTooltip,tooltipTitle}) => { 
+  const CustomizedTooltip = withStyles(() => ({
+    tooltip: {
+      backgroundColor: '#07213C',
+      color: 'white',
+      border: '1.29682px solid #07213C',
+      borderradius: '2.66977px'
+    },
+  }))(Tooltip);
+
     return (
       <div className='container'>
         <FormControl className='SinglSelectDropDown'required>
@@ -20,7 +32,7 @@ const SinglSelectDropDown = ({children,name,options,onChange,required,error,vali
           )
         }
         </Select>
-        {isTooltip && <FontAwesomeIcon icon={faQuestionCircle} color="#17416B" size={'1x'} /> }
+        {isTooltip && <CustomizedTooltip title={tooltipTitle} placement="bottom"><HelpIcon className = "TooltipClass"/></CustomizedTooltip> }
         { error && <FormHelperText id="outlined-weight-helper-text" style={{color:"red"}}>{error}</FormHelperText> }
       </FormControl>
       </div>
