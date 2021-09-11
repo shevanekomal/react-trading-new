@@ -8,7 +8,7 @@ import Man from '../../assets/profile/Man.svg'
 import Woman from '../../assets/profile/Woman.svg'
 import OldMan from '../../assets/profile/Old-man.svg'
 import OldWoman from '../../assets/profile/Old-woman.svg'
-
+import './UserSetting.css'
 
 const UserSetting =(props)=>{
   let self = true;
@@ -100,12 +100,14 @@ const UserSetting =(props)=>{
         <div>
           
         { (<form >
+          <div>
+          <div class="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? {OldMan}:{OldWoman})
           :(props.location.state.relation==='brother' || props.location.state.relation==='son'?(Man):(Woman))} alt="Logo"/>}
-         
+         </div>
           <br/>
-            <hr></hr>
+           {/*  
             <label>name</label>
             <label>{props.location.state.name} </label>
             <br/>
@@ -116,8 +118,23 @@ const UserSetting =(props)=>{
             <hr></hr>
             {props.location.state.relation === 'Me' && <label>Relation</label> &&
             <label>{props.location.state.relation} </label> && <br/>
-            && <hr/> }
+            && <hr/> }*/}
             <table><tbody>
+              <tr>
+                <td>Name</td>
+                <td>{props.location.state.name}</td>
+              </tr>
+              <hr/>
+              <tr>
+                <td>Mobile</td>
+                <td>{props.location.state.mobile}</td>
+              </tr>
+              <hr/>
+              <tr>
+                <td>Relation</td>
+                <td>{props.location.state.relation}</td>
+              </tr>
+              <hr/>
             <tr key='Health Status' name='Health Status' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
             <td name='Health Status'>Health Status</td><td></td>
             <td><FontAwesomeIcon  name='Health Status' icon={faAngleRight} color="#17416B" size={'lg'} /></td>
@@ -140,9 +157,9 @@ const UserSetting =(props)=>{
            <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
             <Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons>
-            {}
-            <Buttons disabled={props.location.state.relation !== 'Me'} bgColor={props.location.state.relation !== 'Me' ? '#F9E24D' : '#F0F3F5 '} onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>
-            
+            {props.location.state.relation !== 'Me' &&  <Buttons  onClick={(e)=>deleteProfileHandler(e)} ><label>Delete profile</label></Buttons>}
+           
+            </div>
           </form>) }
         </div>
     )

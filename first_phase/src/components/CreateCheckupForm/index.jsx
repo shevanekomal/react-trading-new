@@ -1,4 +1,6 @@
-import {InputBox,Buttons,DatePickerv1} from '../InputFields'
+import {InputBox,Buttons,DatePickerv1,SinglSelectDropDown,FormRow} from '../InputFields'
+import TextField from '@material-ui/core/TextField';
+import { Autocomplete } from '@autocomplete/material-ui';
 import React,{useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import Grid from '@material-ui/core/Grid';
@@ -10,12 +12,19 @@ import DatePicker from "react-datepicker";
 
 const CreateCheckupForm = (props) =>{
 
+  const {
+    checkup_names
+  } = useContext(FieldDataContext)
   const [isValidate,setValidate] = useState(false)
   const {
     createCheckup
   } = useContext(FieldDataContext)
   const [FormData,setFormData] = useState({
-    name:{
+    checkup_name:{
+      value:'',
+      error:''
+    },
+    self_checkup_name:{
       value:'',
       error:''
     },
@@ -46,7 +55,7 @@ const addCheckupHandler = (e) =>{
   let data = {}
 if(isValidate){
   data = {
-    name:FormData.name.value,
+    checkup_name:FormData.checkup_name.value,
     date:FormData.date.value,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
@@ -74,6 +83,7 @@ const deleteCheckupHandler = (e) =>{
 }
 
   const onChangehandler = (event) =>{
+    console.log(FormData)
     let value = event.target.value
     let error=''
     setFormData({
@@ -104,10 +114,26 @@ const deleteCheckupHandler = (e) =>{
     })
 
 };
+const defaultProps = {
+  options: checkup_names,
+  getOptionLabel: (option) => {
+    console.log(option.text)
+    return option.text
+  }
+};
   return(
     <div>
     { (<form >
-        
+      
+      <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
+       onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>
+       {FormData.checkup_name.value.includes('Others') && <FormRow
+          type="text"
+          label="Name"
+          name="self_checkup_name"
+          required={true}
+          changeHandler={onChangehandler}
+        />}
         <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
                 <DateRangeIcon />
@@ -149,6 +175,12 @@ const deleteCheckupHandler = (e) =>{
         />
          </Grid>
         </Grid>
+        <Autocomplete
+        {...defaultProps}
+        id="debug"
+        debug
+        renderInput={(params) => <TextField {...params} placeholder="aa" margin="normal" />}
+      />
         <Buttons onClick={(e)=>addCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DONE</Buttons>
         <Buttons onClick={(e)=>deleteCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DELETE</Buttons>
       </form>) }

@@ -269,7 +269,7 @@ const validate =(e)=>{
           <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
           {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
           <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
-          <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (aunts, uncles, cousins).</CheckboxesGroup>
+          <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}

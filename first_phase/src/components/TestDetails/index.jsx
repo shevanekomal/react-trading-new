@@ -90,7 +90,7 @@ const createCheckupHandler = () =>{
     <div className='TestDetails'>
     <div className='TestHeader'>
     <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
-      <SimpleAccordion header={'Tell me more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} conditions={testDetails.conditions} test_details={testDetails.test_details} other_info={testDetails.other_info} checkup_category={testDetails.checkup_category}/>
+      <SimpleAccordion header={'Click here to know more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} conditions={testDetails.conditions} test_details={testDetails.test_details} other_info={testDetails.other_info} checkup_category={testDetails.checkup_category}/>
        <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button>
     <div>
     <label>Upcoming</label>

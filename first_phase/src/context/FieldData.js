@@ -101,7 +101,8 @@ class FieldDataProvider extends Component {
   recommendedcount: 5},
   testDetails:{
         "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
-  }
+  },
+  checkup_names : [{text:'Others',value:'Others'},{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
 }
   initialContext = { ...this.state }
 getProfilePicture=(relation)=>{
