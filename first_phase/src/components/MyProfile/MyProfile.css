@@ -1,0 +1,41 @@
+
+.iconDiv :first-child{
+    display: flex;
+    width: 58px;
+    height: 48px;
+    left: 4px;
+    top: 4px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  /*.iconDiv :nth-child(2){
+    left: 50%;
+    top: 16px;
+    margin: 0px 16px;
+  }*/
+
+.iconDiv {
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 4px;
+
+position: static;
+width: 969px;
+height: 56px;
+left: 0px;
+top: 0px;
+margin: 40px 0px;
+background: linear-gradient(264.66deg, #FFFFFF 51.28%, rgba(255, 255, 255, 0) 83.1%), #A9D9FF;
+border-radius: 40px;
+}
+.calender {
+width: 969px;
+height: 88px;
+left: 0px;
+top: 96px;
+
+/* Saturated Blue */
+background: #EEF8FF;
+border: 1px solid #3168A7;
+}
