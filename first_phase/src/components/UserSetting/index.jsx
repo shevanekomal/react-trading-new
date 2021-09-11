@@ -97,11 +97,11 @@ const UserSetting =(props)=>{
     
       }
       return(
-        <div>
+        <div  className="settingContainer">
           
         { (<form >
           <div>
-          <div class="settingHeader">
+          <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? {OldMan}:{OldWoman})
           :(props.location.state.relation==='brother' || props.location.state.relation==='son'?(Man):(Woman))} alt="Logo"/>}
@@ -119,24 +119,26 @@ const UserSetting =(props)=>{
             {props.location.state.relation === 'Me' && <label>Relation</label> &&
             <label>{props.location.state.relation} </label> && <br/>
             && <hr/> }*/}
-            <table><tbody>
+            <table className='settingPersonalDetails'><tbody>
               <tr>
                 <td>Name</td>
                 <td>{props.location.state.name}</td>
               </tr>
-              <hr/>
+             
               <tr>
                 <td>Mobile</td>
                 <td>{props.location.state.mobile}</td>
               </tr>
-              <hr/>
               <tr>
                 <td>Relation</td>
                 <td>{props.location.state.relation}</td>
               </tr>
-              <hr/>
+              </tbody>
+
+              </table>
+              <table className='settingOtherDetails'><tbody>
             <tr key='Health Status' name='Health Status' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
-            <td name='Health Status'>Health Status</td><td></td>
+            <td name='Health Status'>Health Status</td>
             <td><FontAwesomeIcon  name='Health Status' icon={faAngleRight} color="#17416B" size={'lg'} /></td>
             </tr>
             <tr key='Health Checkups' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
@@ -156,9 +158,12 @@ const UserSetting =(props)=>{
           { saveOpen && 
            <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
-            <Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons>
-            {props.location.state.relation !== 'Me' &&  <Buttons  onClick={(e)=>deleteProfileHandler(e)} ><label>Delete profile</label></Buttons>}
+          <div style={{display:'flex'}}>
+          <Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons>
+            {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='red' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
            
+          </div>
+            
             </div>
           </form>) }
         </div>

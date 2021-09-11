@@ -30,8 +30,8 @@ const UserHome =(props)=>{
       { /* <Profile profileIcon={Man} name={'name'} history={props.history}/> */}
       {familyMembers.map(member=>(member.user_type ==='user'?(<Profile key={member.name} profileIcon={member.gender==='male'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} gender={member.gender} />):''))}
         <div className='FamilyMemberContainer'>
-          {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} />):
-          (<Profile key={member.name} profileIcon={member.relation==='brother' || member.relation==='son'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} />):''))}
+          {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />):
+          (<Profile key={member.name} profileIcon={member.relation==='brother' || member.relation==='son'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />):''))}
           <img src={Add_member} alt="Add_member Logo" onClick={clickHandler}/>
         </div>
       </div>

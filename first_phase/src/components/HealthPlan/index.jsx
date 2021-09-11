@@ -68,8 +68,11 @@ const HealthPlan = (props)=> {
         <div id="divToPrint" >
         <div  className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
-          <div>{testsRecommanded.recommendedcount} Recommended checkups</div><br />
-          <div>{testsRecommanded.selfAddedcount} Self-added checkups</div><br />
+          <div>
+
+          <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
+          <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
+          </div>
         </div>
         
         <div>

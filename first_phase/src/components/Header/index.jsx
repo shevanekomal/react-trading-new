@@ -59,7 +59,7 @@ const Header = () => {
         menu:false
       })
     }}></div>
-    <div className='HomeContainer' onClick={()=>{
+    <div className={!['/','/login'].includes(currentPath) && 'HomeContainer'} onClick={()=>{
       state.menu && setState({
         ...state,
         menu:false
@@ -83,7 +83,7 @@ const Header = () => {
         </div>
           </footer>
     </div>}
-    <div>
+    <div  className={width > 990 && !['/','/login'].includes(currentPath) && 'rightPannel'} >
     <Switch>
         <Route path="/" exact component={Register} />
         <Route path="/login" exact component={Login} />

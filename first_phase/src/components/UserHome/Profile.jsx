@@ -6,7 +6,7 @@ import React from 'react';
 import {Button,Menu,MenuItem} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-const Profile = ({profileIcon,name,history,user_id,relation,mobile,gender}) =>{
+const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gender}) =>{
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,10 +32,10 @@ const Profile = ({profileIcon,name,history,user_id,relation,mobile,gender}) =>{
     })
   }
     return (
-      <div >
+      <div className={user_type === 'subUser' ? 'ProfileContainer ' : 'ProfileContainer MainUser' }>
         <div className='Profile'>
           <img src={profileIcon} alt="Logo" onClick={clickHandler}/>
-          <div className='ButtonContainer'>
+          <div className='ProfileButtonContainer'>
             <div>+9</div>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <FontAwesomeIcon icon={faEllipsisV}/>

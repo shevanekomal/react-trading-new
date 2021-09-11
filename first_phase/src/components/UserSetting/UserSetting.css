@@ -3,4 +3,46 @@ width: 144px;
 height: 120px;
 left: 137px;
 top: 0px;
+margin: auto;
 }
+.settingPersonalDetails{
+  width: 100%;
+}
+.settingPersonalDetails tbody tr,.settingOtherDetails tbody tr:last-child{
+  border-bottom: 1px solid #F0F3F5 ;
+}
+.settingPersonalDetails,.settingOtherDetails{
+  margin: 20px;
+}
+.settingPersonalDetails tbody tr td:first-child{
+  width: 150px;
+  }
+  .settingPersonalDetails tbody tr td,.settingOtherDetails tbody tr td{
+padding: 10px;
+  }
+  .settingOtherDetails tbody tr td:first-child{
+    width: 340px;
+    }
+    .settingOtherDetails tbody tr td,.settingPersonalDetails tbody tr td{
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      /* identical to box height, or 150% */
+      
+      align-items: center;
+      letter-spacing: 0.005em;
+      
+      /* Black Text */
+      
+      color: #07213C;
+      
+      
+      /* Inside Auto Layout */
+      
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      margin: 0px 4px;
+    }

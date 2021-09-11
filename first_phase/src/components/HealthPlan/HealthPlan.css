@@ -1,5 +1,5 @@
 .HealthPlan{
-  padding: 20px;
+  padding: 35px;
 }
 .PlanHeader{
   width: 50%;
@@ -13,7 +13,7 @@
 } */
 .PlanHeader :nth-child(2){
   margin-left: 3%;
-  line-height: 3;
+  /* line-height: 3; */
 }
 .PlanHeader + div{
   margin-top: 20px;
