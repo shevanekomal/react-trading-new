@@ -119,7 +119,8 @@ addMember(data).then((response)=>{
         />
         
         <SinglSelectDropDown name={'Relation'} required={true} onChange ={onChangehandler}  isTooltip = {true} 
-        tooltipTitle = {'This helps us in giving you relevant recommendations.'} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}]} >Relation</SinglSelectDropDown>
+        tooltipTitle = {'This helps us in giving you relevant recommendations.'} options={[{text:'Sister',value:'sister'},{text:'Mother',value:'mother'},{text:'Brother',value:'brother'},{text:'Father',value:'father'},{text:'Son',value:'son'},{text:'Daughter',value:'daughter'}
+        ,{text:'Wife',value:'wife'},{text:'Husband',value:'husband'}]} >Relation</SinglSelectDropDown>
         </>}
         <br/>
        

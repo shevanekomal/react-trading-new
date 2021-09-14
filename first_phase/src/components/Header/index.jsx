@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Redirect,useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { FieldDataContext } from '../../context/FieldData'
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menubar from "./Menubar";
 import HealthPlan from "../HealthPlan";
@@ -13,6 +15,7 @@ import AddMemberForm from '../AddMemberForm'
 import UserSetting from '../UserSetting'
 import ShareWithMember from '../ShareWithMember'
 import CreateCheckupForm from '../CreateCheckupForm'
+import PdfViewer from '../PdfViewer'
 import Main_logo from '../../assets/Main_logo.svg'
 import {useWindowSize} from '../../utility'
 import linkedin from '../../assets/linkedin.svg'
@@ -21,6 +24,9 @@ import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
 
 const Header = () => {
+  const {
+    loginUserId
+  } = useContext(FieldDataContext)
   const currentPath = useLocation().pathname
   const deafulClasses = {
     homeLinkClass: "nav-item nav-link",
@@ -65,9 +71,10 @@ const Header = () => {
         menu:false
       })
     }}>
-    {width > 990 && !['/','/login'].includes(currentPath) && <div className='leftPannel'>
+    {width > 990 && !['/','/login','/addMemberself'].includes(currentPath) && <div className='leftPannel'>
     
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div>
+    {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
+      <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
       <div onClick={(e) =>addActiveCssOnClick(e)}>Share with Members</div>
       <div onClick={(e) =>addActiveCssOnClick(e)}>Tutorial</div>
       <div onClick={(e) =>addActiveCssOnClick(e)}>HiJeevan</div>
@@ -75,6 +82,7 @@ const Header = () => {
       <div onClick={(e) =>addActiveCssOnClick(e)}>About us</div>
       <div onClick={(e) =>addActiveCssOnClick(e)}>Sign out</div>
       <footer>
+          <div>contact@hijeevan.com</div>
           <div className="socialMediaContainer">
           <img src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />
@@ -92,10 +100,12 @@ const Header = () => {
         <Route path="/test" exact component={TestDetails} />
         <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
         <Route path='/addMember' exact component={AddMemberForm} name={`Let's Start`} />
+        <Route path='/addMemberself' exact component={AddMemberForm} name={`Let's Start`} />
         <Route path="/myProfile" exact component={MyProfile} />
         <Route path="/userSetting" exact component={UserSetting} />
         <Route path="/shareWithMember" exact component={ShareWithMember} />
         <Route path="/createCheckup" exact component={CreateCheckupForm} />
+        <Route path="/pdf" exact component={PdfViewer} />
         <Redirect to="/" />
       </Switch>
       </div>

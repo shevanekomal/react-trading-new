@@ -1,6 +1,6 @@
 import {InputBox,Buttons,DatePickerv1,SinglSelectDropDown,FormRow} from '../InputFields'
 import TextField from '@material-ui/core/TextField';
-import { Autocomplete } from '@autocomplete/material-ui';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import React,{useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +21,7 @@ const CreateCheckupForm = (props) =>{
   } = useContext(FieldDataContext)
   const [FormData,setFormData] = useState({
     checkup_name:{
-      value:'',
+      value:props.location.state.checkup_name,
       error:''
     },
     self_checkup_name:{
@@ -74,25 +74,42 @@ console.log(data)
 }
 }
 
-const deleteCheckupHandler = (e) =>{
+const deleteOrCancelCheckupHandler = (e) =>{
     let testName = props.location.state.testName
-    props.history.push({
+    if(testName != undefined){
+     // give backend call to delete checkup date
+      props.history.push({
         pathname: '/test',
         state: {testName,user_id:props.location.state.user_id}, // added by swap
-  })
+    })
+    }else{
+      //self added chekcup from health plan page 
+      props.history.push({
+        pathname: '/healthPlan',
+        state: {user_id:props.location.state.user_id}, // added by swap 
+      })
+    }
+   
 }
 
   const onChangehandler = (event) =>{
-    console.log(FormData)
-    let value = event.target.value
+    let value = '', name=''
+    if(event.target.name != undefined){
+      value = event.target.value
+      name = event.target.name
+    }else{
+      value = event.target.textContent
+      name = 'checkup_name'
+    }
     let error=''
     setFormData({
       ...FormData,
-      [event.target.name]:{
+      [name]:{
         value,
         error,
       }
     })
+    
   }
   const validate =(e)=>{
    
@@ -100,6 +117,7 @@ const deleteCheckupHandler = (e) =>{
   const [selectedDate, setSelectedDate] = React.useState(null);
   const [startDate, setStartDate] = useState(null);
   const handleDateChange = (date) => {
+    setStartDate(date)
    setSelectedDate(date);
 
   let error = ''
@@ -117,19 +135,27 @@ const deleteCheckupHandler = (e) =>{
 const defaultProps = {
   options: checkup_names,
   getOptionLabel: (option) => {
-    console.log(option.text)
     return option.text
   }
 };
   return(
     <div>
     { (<form >
-      
-      <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
-       onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>
+     { props.location.state.testName ?<label>{FormData.checkup_name.value}</label>  : <Autocomplete
+        {...defaultProps}
+        style={{ width: 300 }}
+        id="checkup_name"
+        name='checkup_name'
+        required={true}
+        validate={validate}
+        onChange={onChangehandler} error={FormData.checkup_name.error}
+        renderInput={(params) => <TextField {...params} name='checkup_name' placeholder="Type Checkup Name" margin="normal" />}
+      /> }
+     {/*  <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
+       onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>*/}
        {FormData.checkup_name.value.includes('Others') && <FormRow
           type="text"
-          label="Name"
+          label="Enter Checkup Name"
           name="self_checkup_name"
           required={true}
           changeHandler={onChangehandler}
@@ -145,7 +171,7 @@ const defaultProps = {
         required={true}
         dateFormat="dd/MM/yyyy"
         placeholder="Add Date"
-        onChange={date => setStartDate(date)} 
+        onChange={date => handleDateChange(date)} 
         />
            </Grid>
         </Grid>
@@ -175,15 +201,11 @@ const defaultProps = {
         />
          </Grid>
         </Grid>
-        <Autocomplete
-        {...defaultProps}
-        id="debug"
-        debug
-        renderInput={(params) => <TextField {...params} placeholder="aa" margin="normal" />}
-      />
+        
         <Buttons onClick={(e)=>addCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DONE</Buttons>
-        <Buttons onClick={(e)=>deleteCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DELETE</Buttons>
+        <Buttons onClick={(e)=>deleteOrCancelCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{props.location.state.testName ? 'DELETE':'CANCEL'}</Buttons>
       </form>) }
+      
     </div>
 )}
 export default CreateCheckupForm;

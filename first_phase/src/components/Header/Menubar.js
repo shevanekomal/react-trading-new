@@ -52,30 +52,39 @@ const currentState = useLocation().state
           <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/>
         </div>
         
-          <Link
+         {/* <Link
             className={state.homeLinkClass}
             to="/"
             onClick={() => addActiveCssOnClick('homeLinkClass')
             }
           >
             Home
-          </Link>
-          <Link
+          </Link>*/}
+          <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com/" >
+          Home
+          </a>
+         {/* <Link
             className={state.featureLinkClass}
-            to="/ourFeature"
+            to="https://www.hijeevan.com/"
             onClick={() => addActiveCssOnClick('featureLinkClass')
             }
           >
            Our Features
-          </Link>
-          <Link
+          </Link> */}
+          <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" >
+          Our Features
+          </a>
+         {/* <Link
             className={state.aboutLinkClass}
             to="/about"
             onClick={() => addActiveCssOnClick('aboutLinkClass')
             }
           >
             About Us
-          </Link>
+          </Link>*/}
+          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" >
+          About Us
+          </a>
           <Link
             className={state.resgisterLinkClass}
             to="/register"

@@ -12,9 +12,15 @@ const MyProfile =(props)=> {
   const healthStatusClickHandler = (user_id) =>{
     props.history.push({
       pathname: '/healthPlan',
-      state: {user_id:user_id}, // added by swap - here main user id needed
+      state: {user_id:user_id}, // added by swap 
     })
    }
+
+   const viewPDF = () => {
+    props.history.push({
+      pathname: '/pdf'
+    })
+  }
 
   
     return (
@@ -41,6 +47,7 @@ const MyProfile =(props)=> {
             <td><ArrowForwardIcon /></td>
           </tr>
         </table>
+        <button  onClick={viewPDF} >View PDF</button>
       </div>
     )
 }

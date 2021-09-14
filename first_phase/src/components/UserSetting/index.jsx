@@ -8,6 +8,8 @@ import Man from '../../assets/profile/Man.svg'
 import Woman from '../../assets/profile/Woman.svg'
 import OldMan from '../../assets/profile/Old-man.svg'
 import OldWoman from '../../assets/profile/Old-woman.svg'
+import Girl from '../../assets/profile/Girl.svg'
+import Boy from '../../assets/profile/Boy.svg'
 import './UserSetting.css'
 
 const UserSetting =(props)=>{
@@ -103,8 +105,8 @@ const UserSetting =(props)=>{
           <div>
           <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
-          <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? {OldMan}:{OldWoman})
-          :(props.location.state.relation==='brother' || props.location.state.relation==='son'?(Man):(Woman))} alt="Logo"/>}
+          <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
+          :(props.location.state.relation==='brother' || props.location.state.relation==='husband'?(Man):((props.location.state.relation==='son')?(Boy):props.location.state.relation==='daughter')?(Girl):(Woman))} alt="Logo"/>}
          </div>
           <br/>
            {/*  

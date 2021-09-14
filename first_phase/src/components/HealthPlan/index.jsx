@@ -41,6 +41,7 @@ const HealthPlan = (props)=> {
       state: {user_id:props.location.state.user_id}
     })
   }
+ 
   const downloadPDF = () => {
     const input = document.getElementById('divToPrint');
     html2canvas(input).then((canvas) => {
@@ -91,6 +92,7 @@ const HealthPlan = (props)=> {
           </div>)}
           </div>
           <button  onClick={downloadPDF} >Download</button>
+         
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <AddCircleIcon className = 'plusIcon' onClick={()=>createCheckupHandler()} /><span onClick={()=>createCheckupHandler()}>Create</span>
