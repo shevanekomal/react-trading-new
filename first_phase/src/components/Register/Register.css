@@ -78,13 +78,21 @@ margin-bottom: 30px;
     margin-left: 200px;
   }
 }
-
+@media only screen and (max-width: 768px) {
+ .RegisterContainer{
+   flex-wrap: wrap;
+ }
+}
 .jeevi_register,.jeevi_on_skates{
   width: 384px;
 height: 384px;
+}
+.jeevi_on_skates{
+  margin: auto;
 }
 .RegisterContainer,.AddMemberContainer,.LoginContainer{
   display: flex;
   margin-top: 90px;
   justify-content: space-around;
+  flex-wrap: wrap;
 }

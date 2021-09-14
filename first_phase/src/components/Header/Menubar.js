@@ -101,6 +101,7 @@ const currentState = useLocation().state
           </Link>
           <footer>
           <div className="navbar-toggler socialMediaContainer">
+          <div>contact@hijeevan.com</div>
           <img className="linkedinLogo" src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />
           <img src={facebook} alt="facebook Logo" />

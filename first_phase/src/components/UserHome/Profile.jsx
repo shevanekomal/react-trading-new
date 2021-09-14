@@ -33,11 +33,15 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
   }
     return (
       <div className={user_type === 'subUser' ? 'ProfileContainer ' : 'ProfileContainer MainUser' }>
-        <div className='Profile'>
-          <img src={profileIcon} alt="Logo" onClick={clickHandler}/>
-          <div className='ProfileButtonContainer'>
+      <div className='Profile'>
+      <table>
+        <tr> 
+          <td><img src={profileIcon} alt="Logo" onClick={clickHandler}/></td><td rowSpan='2'>
+          {/* <div className='ProfileButtonContainer'>
             <div>+9</div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            </div> */}
+          </td></tr>
+        <tr><div  className='NameHolder'>{name}</div><td>  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <FontAwesomeIcon icon={faEllipsisV}/>
             </Button>
             <Menu
@@ -48,10 +52,9 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
             >
               <MenuItem onClick={clickHandler}>Open</MenuItem>
               <MenuItem onClick={handleSettings}>Settings</MenuItem>
-            </Menu>
-        </div>
+            </Menu></td></tr>
+      </table>
       </div>
-      <div  className='NameHolder'>{name}</div>
     </div>
     )
   }

@@ -19,8 +19,8 @@ const SinglSelectDropDown = ({children,name,options,onChange,required,error,vali
     return (
       <div className='container'>
         <FormControl className='SinglSelectDropDown'required>
-         <InputLabel id="demo-simple-select-label" >{children}</InputLabel> 
-        {/*<label>{children} {required && <span style={{color:'red'}}>*</span>}</label>*/}
+        <label>{children} {required && <span style={{color:'red'}}>*</span>}</label>
+        <div style={{display:'flex'}}>
         <Select
           native
           onChange={onChange}
@@ -35,6 +35,7 @@ const SinglSelectDropDown = ({children,name,options,onChange,required,error,vali
         }
         </Select>
         {isTooltip && <CustomizedTooltip title={tooltipTitle} placement="bottom"><HelpIcon className = "TooltipClass"/></CustomizedTooltip> }
+        </div>
         { error && <FormHelperText id="outlined-weight-helper-text" style={{color:"red"}}>{error}</FormHelperText> }
       </FormControl>
       </div>

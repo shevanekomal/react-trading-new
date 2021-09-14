@@ -274,9 +274,11 @@ const validate =(e)=>{
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
+        <div style={{display:'flex'}}>
        {!self && <Buttons onClick={onSkipHandler} bgColor={'#F9E24D'}>Skip For Now</Buttons>}
        <Buttons onClick={onUpdateData}  disabled={isValidate} bgColor={!isValidate ? '#F9E24D' : '#F0F3F5 '}>Update</Buttons>
-        </form>
+       </div>
+       </form>
       </div>
     )
 }

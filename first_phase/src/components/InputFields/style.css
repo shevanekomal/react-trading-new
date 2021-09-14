@@ -68,6 +68,9 @@ label + .MuiInput-formControl {
 .MuiRadio-colorSecondary.Mui-checked,.MuiCheckbox-colorSecondary.Mui-checked {
   color:#3168A7!important
 }
+.RadioButton .MuiFormGroup-root{
+  margin-left: -10px;
+}
 /* ==========================DatePickers =================================================*/
 .DatePicker > div > div > input{
   width: 250px;
@@ -105,7 +108,7 @@ border-radius: 6px;
   margin: auto;
 }
 .container label {
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   margin-bottom: 5px;
   font-family: Open Sans;

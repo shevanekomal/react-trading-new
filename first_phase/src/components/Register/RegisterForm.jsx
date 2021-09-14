@@ -108,7 +108,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
               to="/login" >Login Now</Link></p>
          </div>
       </form>
-      {width> 990 && <img className='jeevi_register' src={jeevi_register} />}
+      {<img className='jeevi_register' src={jeevi_register} />}
       </div>
 )}
 export default RegisterForm

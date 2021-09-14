@@ -103,6 +103,7 @@ const UserSetting =(props)=>{
           
         { (<form >
           <div>
+          <div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons></div>
           <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
@@ -161,7 +162,7 @@ const UserSetting =(props)=>{
            <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
           <div style={{display:'flex'}}>
-          <Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons>
+          
             {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='red' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
            
           </div>

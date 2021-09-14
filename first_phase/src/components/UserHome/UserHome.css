@@ -62,8 +62,8 @@ color: #07213C;
 
 }
 @media only screen and (min-width: 990px) {
-.ProfileContainer{
-  flex-grow: 1;
+.AddMemberLogo,.ProfileContainer{
+  /* flex-grow: 1; */
   width: 33.33%;
   height: 100px;
   margin-top: 50px;
