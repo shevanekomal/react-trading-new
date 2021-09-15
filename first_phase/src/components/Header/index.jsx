@@ -24,12 +24,13 @@ import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
-import history from '../../utility/history';
-const Header = (props) => {
+import { useHistory } from "react-router-dom";
+const Header = () => {
   const {
     loginUserId,
     user_id
   } = useContext(FieldDataContext)
+  const history = useHistory();
   const currentPath = useLocation().pathname
   const deafulClasses = {
     homeLinkClass: "nav-item nav-link",
@@ -56,6 +57,13 @@ const Header = (props) => {
     temp.setAttribute('class','')
   }
   e.target.classList.toggle("active");
+
+  if(e.target.textContent === 'Sign out') {
+    window.localStorage.setItem('x-access-token','')
+    alert("logged out...")
+   // <Redirect to={{pathname: '/login'}}/>
+   history.push('/login');
+  }
   } 
   
   const [width, height] = useWindowSize();

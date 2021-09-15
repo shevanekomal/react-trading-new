@@ -186,7 +186,7 @@ getProfilePicture=(relation)=>{
           accessToken:result.data.accessToken,
           loginUserId:result.data.user_id,
         })
-        
+        window.localStorage.setItem('x-access-token',result.data.accessToken)
       } return result
     }),
     addDetails: debounce(async (data) => {

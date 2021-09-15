@@ -69,18 +69,21 @@ const HealthPlan = (props)=> {
         <div id="divToPrint" >
         <div  className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
-          <div>
-
+          { testsRecommanded.recommendedcount !== 0 &&  <div>
           <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
           <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
-          </div>
+          </div>}
+          { testsRecommanded.recommendedcount === 0 &&  <div>
+          <div>- Recommended checkups</div>
+          <div>- Self-added checkups</div>
+          </div>}
         </div>
         
         <div>
           <p>Recommended Checkups</p>
           <div>You should do all the checkups below. They are all recommended for you based on your health details.</div>
           <div>
-          Checkups with <img src={Health2} /> mean that you face average risk of the health conditions diagnosed by the checkup. 
+          Checkups with <img src={Health2} color = 'red' /> mean that you face average risk of the health conditions diagnosed by the checkup. 
           <br/>Checkups with <img src={Health} /> mean that you face above average risk based on your health deatils.
 
         </div>
