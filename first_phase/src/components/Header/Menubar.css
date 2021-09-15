@@ -82,7 +82,7 @@ button .hamberger:focus:not(:focus-visible) {
     }
 }
 .HomeContainer{
-  margin-top: 45px;
+  margin-top: 60px;
   /* display: flex; */
 }
 @media only screen and (min-width: 990px) {
@@ -137,7 +137,9 @@ line-height: 24px;
   z-index: 1;
 }
 .customNav{
-  height: 35px;
+  display: flex;
+  justify-content: space-between;
+  height: 58px;
   background-color: #A9D9FF;
 }
 .customNavBg{

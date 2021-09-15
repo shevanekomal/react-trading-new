@@ -10,7 +10,8 @@ import './Menubar.css'
 import { FieldDataContext } from '../../context/FieldData'
 const Menubar = ({state,setState,deafulClasses}) =>{
   const {
-    loginUserId
+    loginUserId,
+    user_id
   } = useContext(FieldDataContext)
 const currentPath = useLocation().pathname
 const currentState = useLocation().state
@@ -51,37 +52,13 @@ const currentState = useLocation().state
         <div className="navbar-toggler">
           <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/>
         </div>
-        
-         {/* <Link
-            className={state.homeLinkClass}
-            to="/"
-            onClick={() => addActiveCssOnClick('homeLinkClass')
-            }
-          >
-            Home
-          </Link>*/}
+          {['/ourFeature','/about','/register','/login','/'].includes(currentPath) ? (<>
           <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com/" >
           Home
           </a>
-         {/* <Link
-            className={state.featureLinkClass}
-            to="https://www.hijeevan.com/"
-            onClick={() => addActiveCssOnClick('featureLinkClass')
-            }
-          >
-           Our Features
-          </Link> */}
           <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" >
           Our Features
           </a>
-         {/* <Link
-            className={state.aboutLinkClass}
-            to="/about"
-            onClick={() => addActiveCssOnClick('aboutLinkClass')
-            }
-          >
-            About Us
-          </Link>*/}
           <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" >
           About Us
           </a>
@@ -99,6 +76,38 @@ const currentState = useLocation().state
           >
            Login
           </Link>
+          </>):(
+            <>
+            <Link
+            className={state.resgisterLinkClass}
+            to="/userHome"
+            state= {{self:true,user_id}}
+            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+          > Family Home
+          </Link>
+          <Link
+            className={state.resgisterLinkClass}
+            to="/"
+            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+          > Share with Members</Link>
+       <Link
+            className={state.resgisterLinkClass}
+            to="/"
+            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+          > Tutorial</Link>
+          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com" target='_blank'>
+          About Us
+          </a>
+          <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
+          Our Features
+          </a>
+          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
+          About Us
+          </a>
+          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="#" >
+          Sign out
+          </a>
+          </>)}
           <footer>
           <div className="navbar-toggler socialMediaContainer">
           <div>contact@hijeevan.com</div>

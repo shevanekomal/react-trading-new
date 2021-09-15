@@ -61,7 +61,6 @@ const UserSetting =(props)=>{
     }
     const healthStatusClickHandler = (e,user_id) =>{
      let name = e.target.name;
-    
      getHealthStatusDetails(user_id).then(result=>{
       //here in backend the user_id is of main user
       
@@ -70,7 +69,20 @@ const UserSetting =(props)=>{
       props.history.push({
             pathname: '/addRisk',
             state: {self,user_id:user_id,userHealthDetails:result.data}, // added by swap - here main user id needed
-      })
+     //Please note result.data should be same as the below format
+    //      {
+    //       gender:'male',
+    // birthdate:'06/04/1996',
+    // height:"5'5",
+    // weight:'55',
+    // diet:'Vegetarian',
+    // alcoholIntake:'Yes',
+    // smoking:'0',
+    // exercise:'Less than 30 minutes',
+    // diagnosedCondition:['None of the below'],
+    // familyHistoryConditions:['Cancer - Breast']
+    //     }
+  })
     } 
     })     
     }

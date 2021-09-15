@@ -63,7 +63,7 @@ const HealthStatusForm =(props)=> {
       error:""
     },
     alcoholIntake:{
-      value:false,
+      value:'',
       error:''
     },
     smoking:{
@@ -73,19 +73,33 @@ const HealthStatusForm =(props)=> {
 })
 
 useEffect(() => {
-  //temp added to solve disable option issue for sub user
-  disableConditions('diagnosedCondition',false);
-  disableConditions('familyHistoryConditions',false)
-},[])
+  // if(['None of the below'].includes(state.diagnosedCondition.value[0])){
+  //   disableConditions('diagnosedCondition',true)
+  // }
+  // if(['None of the below'].includes(state.familyHistoryConditions.value[0])){
+  //   disableConditions('familyHistoryConditions',true)
+  // }
+},[state.diagnosedCondition.value,state.familyHistoryConditions.value])
 useEffect(() => {
- 
- let userHealthDetails1 = props.location.state.userHealthDetails
+ //temp added to solve disable option issue for sub user
+ disableConditions('diagnosedCondition',false);
+ disableConditions('familyHistoryConditions',false)
+  let userHealthDetails1 = props.location.state.userHealthDetails
+  let obj = {};
+  console.log(obj,'obj')
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
-    let error = ''
-    let value = 'female'
-    updateValues('gender',value)
-  }
-  //userHealthDetails1 = ''
+    for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
+      obj[key] = {
+        value:value,
+        error:''
+      };
+    }
+    setSelectedDate(userHealthDetails1.birthdate)
+    setState({
+         ...state,
+         ...obj
+    })
+   }
 },[])
 
 useEffect(() => {
@@ -112,7 +126,7 @@ const updateValues = (name,value) =>{
   })
     console.log(state)
 }
-const [selectedDate, setSelectedDate] = React.useState(null);
+const [selectedDate, setSelectedDate] = React.useState(state.birthdate.value);
 const handleDateChange = (date) => {
   setSelectedDate(date);
 
@@ -252,23 +266,23 @@ const validate =(e)=>{
           <div className='TopicHeading'>Personal Details</div>
           {/* <SinglSelectDropDown name={'city'} required={true} options={cities} validate={validate} onChange={handleChange} error={state.city.error} >Pick your location</SinglSelectDropDown>
            */}
-          <RadioButton name={'gender'} required={true}  options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value}  error={state.gender.error}>Gender</RadioButton>
+          <RadioButton name={'gender'} required={true}  defaultValue={state.gender.value} options={gender}   validate={validate} onChange={handleChange} defaultValue={state.gender.value}  error={state.gender.error}>Gender</RadioButton>
           <DatePickerv1 name={'birthdate'}  required={true} defaultValue={selectedDate}  validate={validate} onChange={handleDateChange} error={state.birthdate.error}>Select your birthday</DatePickerv1>          
-          <CustomTextBox type={'text'} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'  validate={validate}  error={state.height.error}>Your Height</CustomTextBox>
-          <CustomTextBox type={'number'} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
+          <CustomTextBox type={'text'} defaultValue={state.height.value} setState={setState} state={state}  placeholder={`Eg: 5'6`} endAdornment="ft' in" required={true} name='height'  validate={validate}  error={state.height.error}>Your Height</CustomTextBox>
+          <CustomTextBox type={'number'} defaultValue={state.weight.value} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
         </div>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>LifeStyle Details</div>
-          <RadioButton name={'exercise'} required={true}  options={exercise}  validate={validate} onChange={handleChange} defaultValue={state.exercise.value} error={state.exercise.error} valueText = 'Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.'>How much moderate exercise do you usually do per week?
+          <RadioButton name={'exercise'} defaultValue={state.exercise.value} required={true}  options={exercise}  validate={validate} onChange={handleChange} defaultValue={state.exercise.value} error={state.exercise.error} valueText = 'Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.'>How much moderate exercise do you usually do per week?
            </RadioButton>
-          <RadioButton name={'diet'} required={true}  options={diet}  validate={validate} onChange={handleChange} defaultValue={state.diet.value} error={state.diet.error} >Select the most appropriate style of diet</RadioButton>
-          <RadioButton name={'alcoholIntake'} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error} valueText={'14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.'}>Do you usually drink around or more than 14 units of alcohol per week?
+          <RadioButton name={'diet'} defaultValue={state.diet.value} required={true}  options={diet}  validate={validate} onChange={handleChange} defaultValue={state.diet.value} error={state.diet.error} >Select the most appropriate style of diet</RadioButton>
+          <RadioButton name={'alcoholIntake'} defaultValue={state.alcoholIntake.value} required={true}  options={alcoholIntakeOption}  validate={validate} onChange={handleChange} error={state.alcoholIntake.error} valueText={'14 units is equivalent to around 6 bottles (650 ml) of average-strength beer or 10 small glasses of low-strength wine. A small shot of spirit (25 ml) is 1 unit each.'}>Do you usually drink around or more than 14 units of alcohol per week?
           
           </RadioButton>
-          <CustomTextBox type={'number'} setState={setState} state={state} required={true} name='smoking' validate={validate} error={state.smoking.error} valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
-          <CheckboxesGroup name='diagnosedCondition' required={true}  options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
+          <CustomTextBox type={'number'} defaultValue={state.smoking.value} setState={setState} state={state} required={true} name='smoking' validate={validate} error={state.smoking.error} valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
+          <CheckboxesGroup name='diagnosedCondition' required={true}  defaultValue={state.diagnosedCondition.value} options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
           {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
-          <CheckboxesGroup name='familyHistoryConditions' required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
+          <CheckboxesGroup name='familyHistoryConditions' defaultValue={state.familyHistoryConditions.value} required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>

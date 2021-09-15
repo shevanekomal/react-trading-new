@@ -6,12 +6,13 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
     setValue(event.target.value);
     onChange(event);
   };
+  const radioPattern = (name==='addNewField1') ? 'row':'column';
   return (
     <div className='container'>
     <FormControl className='RadioButton' component="fieldset" required>
     <label>{children} {required && <span style={{color:'red'}}>*</span>} </label>
     <label>{valueText}</label>
-    <RadioGroup aria-label={children} name={name} value={value} onChange={handleChange} onBlur={required && validate}>
+    <RadioGroup style={{flexDirection:`${radioPattern}`}}  aria-label={children} name={name} value={defaultValue || value} onChange={handleChange} onBlur={required && validate}>
     {
       options.map(option=>
         <FormControlLabel  key={option.value} value={option.value} control={<Radio />} label={option.text} />
