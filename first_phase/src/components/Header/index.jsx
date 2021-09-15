@@ -22,11 +22,12 @@ import linkedin from '../../assets/linkedin.svg'
 import instagram from '../../assets/instagram.svg'
 import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
-
+import { useHistory } from "react-router-dom";
 const Header = () => {
   const {
     loginUserId
   } = useContext(FieldDataContext)
+  const history = useHistory();
   const currentPath = useLocation().pathname
   const deafulClasses = {
     homeLinkClass: "nav-item nav-link",
@@ -53,6 +54,13 @@ const Header = () => {
     temp.setAttribute('class','')
   }
   e.target.classList.toggle("active");
+
+  if(e.target.textContent === 'Sign out') {
+    window.localStorage.setItem('x-access-token','')
+    alert("logged out...")
+   // <Redirect to={{pathname: '/login'}}/>
+   history.push('/login');
+  }
   } 
   
   const [width, height] = useWindowSize();

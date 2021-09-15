@@ -143,13 +143,15 @@ addMember(data).then((response)=>{
             tooltipTitle={'We will use this number to send reminders about your checkups. You can switch off & control what notifications you get later.'}
             
         />}
-        {
+        { /*
           !self && <div className='container'> <Link to="/shareWithMember">Am I an account creater or family member?</Link></div>
-        }
+        */}
         <Buttons onClick={(e)=>addMemberHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{!self?'Add Member':'Continue'}</Buttons>
         </div>
       </form>
-      {width> 990 && <img className='jeevi_on_skates' src={jeevi_on_skates} />}
+      { /* width> 990 && <img className='jeevi_on_skates' src={jeevi_on_skates} /> */}
+
+      { <img className='jeevi_on_skates' src={jeevi_on_skates} />}
       </div>
 
 

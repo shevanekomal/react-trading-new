@@ -141,7 +141,8 @@ const defaultProps = {
   return(
     <div>
     { (<form >
-     { props.location.state.testName ?<label>{FormData.checkup_name.value}</label>  : <Autocomplete
+     { (FormData.checkup_name.value!= undefined)&&<label>{FormData.checkup_name.value}</label> }
+     {FormData.checkup_name.value == undefined && <Autocomplete
         {...defaultProps}
         style={{ width: 300 }}
         id="checkup_name"
