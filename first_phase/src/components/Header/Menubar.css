@@ -150,3 +150,25 @@ line-height: 24px;
   width: 85%;
   float: right;
 }
+.mailId {
+  position: absolute;
+width: 168px;
+height: 20px;
+/* Text/Extra small text */
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+text-align: right;
+letter-spacing: 0.0215em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+}

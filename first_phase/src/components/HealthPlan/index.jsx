@@ -10,6 +10,7 @@ import Health2 from '../../assets/Health2.svg'
 import girl_with_plant from '../../assets/girl_with_plant.svg'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Add_test from '../../assets/Add_test.svg';
 
 const HealthPlan = (props)=> {
   let self = false;
@@ -83,7 +84,7 @@ const HealthPlan = (props)=> {
           <p>Recommended Checkups</p>
           <div>You should do all the checkups below. They are all recommended for you based on your health details.</div>
           <div>
-          Checkups with <img src={Health2} color = 'red' /> mean that you face average risk of the health conditions diagnosed by the checkup. 
+          Checkups with <img src={Health2} width="20" height="20"/> mean that you face average risk of the health conditions diagnosed by the checkup. 
           <br/>Checkups with <img src={Health} /> mean that you face above average risk based on your health deatils.
 
         </div>
@@ -98,7 +99,7 @@ const HealthPlan = (props)=> {
          
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
-          <AddCircleIcon className = 'plusIcon' onClick={()=>createCheckupHandler()} /><span onClick={()=>createCheckupHandler()}>Create</span>
+          <img className='add_test' src={Add_test} onClick={()=>createCheckupHandler()}/><span onClick={()=>createCheckupHandler()}>Create</span>
     
         </div>
       </div>

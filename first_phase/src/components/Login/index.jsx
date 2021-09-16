@@ -75,8 +75,8 @@ const [FormData,setFormData] = useState({
        { /*<CheckboxesGroup name='loginWithOtp'  options={[ {text:'Login with OTP instead of password',name:'loginWithOtp',checkd:false}]} />
           
         <p>Note: If you are the account creator, login using your password or OTP. 
-    If you are a family member, login using the OTP.</p>*/}
-    <div className='container'><Link to="/shareWithMember">Am I an account creater or family member?</Link></div>
+    If you are a family member, login using the OTP.</p>
+    <div className='container'><Link to="/shareWithMember">Am I an account creater or family member?</Link></div>*/}
     <Buttons onClick={(e)=>LoginHandler(e)}  disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>LOGIN</Buttons>
 
         <p>New here? <Link

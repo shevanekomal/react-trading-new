@@ -37,7 +37,8 @@ const Header = () => {
     featureLinkClass: "nav-item nav-link",
     aboutLinkClass: "nav-item nav-link",
     resgisterLinkClass: "nav-item nav-link",
-    loginLinkClass: "nav-item nav-link"}
+    loginLinkClass: "nav-item nav-link",
+    signOutLinkClass: "nav-item nav-link"}
   const [state, setState] = useState({
     menu: false,
     isOpen: false,
@@ -93,7 +94,7 @@ const Header = () => {
       <div onClick={(e) =>addActiveCssOnClick(e)}>About us</div>
       <div onClick={(e) =>addActiveCssOnClick(e)}>Sign out</div>
       <footer>
-          <div>contact@hijeevan.com</div>
+          <div className="mailId">contact@hijeevan.com</div>
           <div className="socialMediaContainer">
           <img src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />

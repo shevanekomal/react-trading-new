@@ -6,6 +6,7 @@ import facebook from '../../assets/facebook.svg'
 import whatsapp from '../../assets/whatsapp.svg'
 import Main_logo from '../../assets/Main_logo.svg'
 import { useLocation } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import './Menubar.css'
 import { FieldDataContext } from '../../context/FieldData'
 const Menubar = ({state,setState,deafulClasses}) =>{
@@ -13,6 +14,7 @@ const Menubar = ({state,setState,deafulClasses}) =>{
     loginUserId,
     user_id
   } = useContext(FieldDataContext)
+const history = useHistory();
 const currentPath = useLocation().pathname
 const currentState = useLocation().state
  
@@ -23,8 +25,15 @@ const currentState = useLocation().state
       menu: !state.menu
     });
   };
-  const addActiveCssOnClick = (linkClass) =>setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
-  
+  const addActiveCssOnClick = (linkClass) =>{
+    setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
+    if(linkClass === 'signOutLinkClass') {
+      window.localStorage.setItem('x-access-token','')
+      alert("logged out...")
+     // <Redirect to={{pathname: '/login'}}/>
+     history.push('/login');
+    }
+  }
   const show = state.menu ? "show" : "";
   const getLabel=(currentPath)=>{
     switch(currentPath){
@@ -82,21 +91,21 @@ const currentState = useLocation().state
             className={state.resgisterLinkClass}
             to="/userHome"
             state= {{self:true,user_id}}
-            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+            onClick={(e) =>addActiveCssOnClick('resgisterLinkClass',e)}
           > Family Home
           </Link>
-          <Link
+        {/*   <Link
             className={state.resgisterLinkClass}
             to="/"
             onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
-          > Share with Members</Link>
+          > Share with Members</Link> */}
        <Link
             className={state.resgisterLinkClass}
             to="/"
             onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
           > Tutorial</Link>
-          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com" target='_blank'>
-          About Us
+          <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
+         Hijeevan
           </a>
           <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
           Our Features
@@ -104,13 +113,13 @@ const currentState = useLocation().state
           <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
           About Us
           </a>
-          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="#" >
+          <a className={state.signOutLinkClass} onClick={() => addActiveCssOnClick('signOutLinkClass')} href="#" >
           Sign out
           </a>
           </>)}
           <footer>
           <div className="navbar-toggler socialMediaContainer">
-          <div>contact@hijeevan.com</div>
+          <div className="mailId">contact@hijeevan.com</div>
           <img className="linkedinLogo" src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />
           <img src={facebook} alt="facebook Logo" />
