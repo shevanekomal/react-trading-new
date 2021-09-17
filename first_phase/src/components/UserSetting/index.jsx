@@ -115,7 +115,7 @@ const UserSetting =(props)=>{
           
         { (<form >
           <div>
-          <div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} >Save Changes</Buttons></div>
+          <div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} bgColor={'#F9E24D'} >Save Changes</Buttons></div>
           <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
@@ -169,13 +169,13 @@ const UserSetting =(props)=>{
          
             { open && 
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this profile?</b></p>
-          <p>You won’t be able to reover the data associated with this profile once you delete it.</p></ModalWindow>}
+          <p>You won’t be able to recover the data associated with this profile once you delete it.</p></ModalWindow>}
           { saveOpen && 
            <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
           <div style={{display:'flex'}}>
           
-            {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='red' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
+            {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='#BC433B' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
            
           </div>
             

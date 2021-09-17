@@ -85,7 +85,7 @@ const HealthPlan = (props)=> {
           <div>You should do all the checkups below. They are all recommended for you based on your health details.</div>
           <div>
           Checkups with <img src={Health2} width="20" height="20"/> mean that you face average risk of the health conditions diagnosed by the checkup. 
-          <br/>Checkups with <img src={Health} /> mean that you face above average risk based on your health deatils.
+          <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health deatils.
 
         </div>
         </div>
