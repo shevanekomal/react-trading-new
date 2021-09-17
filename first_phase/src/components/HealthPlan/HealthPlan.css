@@ -17,7 +17,10 @@
 }
 .PlanHeader + div{
   margin-top: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  /* margin-bottom: 20px; */
 }
 .HealthPlan p{
   font-family: Open Sans;
@@ -34,7 +37,95 @@
   .PlanHeader :nth-child(2){
     margin: auto;
   }
-  .PlanHeader{
-    width: 100%;
+  .PlanHeader,.imgContainer,.NoHealthPlanContainer,.recommandedCheckupHeader,.PlanHeader + div{
+    width: 100%!important;
   }
+}
+.NoHealthPlanContainer{
+  width: 50%;
+  text-align: center;
+}
+.NoHealthPlanContainer span:first-child{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+/* or 143% */
+
+display: flex;
+letter-spacing: 0.0215em;
+
+/* Black Text */
+
+color: #07213C;
+
+}
+.NoHealthPlanContainer span:last-child{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 24px;
+/* identical to box height, or 171% */
+
+letter-spacing: 0.005em;
+text-transform: uppercase;
+
+/* Saturated Blue */
+
+color: #3168A7;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 0px 4px;
+}
+.SelfCheckup .recommandedCheckup,.recommandedCheckup{
+
+/* Text/Small Text Regular */
+
+font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+/* or 143% */
+
+letter-spacing: 0.0215em;
+
+/* Black 85 Text */
+
+color: rgba(7, 33, 60, 0.85);
+}
+.stripes{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: 0.005em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 8px 0px;
+}
+.imgContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
 }

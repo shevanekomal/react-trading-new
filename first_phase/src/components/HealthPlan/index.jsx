@@ -11,6 +11,7 @@ import girl_with_plant from '../../assets/girl_with_plant.svg'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import Add_test from '../../assets/Add_test.svg';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 const HealthPlan = (props)=> {
   let self = false;
@@ -69,36 +70,41 @@ const HealthPlan = (props)=> {
       <div className='HealthPlan'>
         <div id="divToPrint" >
         <div  className='PlanHeader'>
-          <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
+          <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /> </div>
           { testsRecommanded.recommendedcount !== 0 &&  <div>
           <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
           <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
           </div>}
           { testsRecommanded.recommendedcount === 0 &&  <div>
-          <div>- Recommended checkups</div>
-          <div>- Self-added checkups</div>
+          <div className='stripes'>- Recommended checkups</div>
+          <div className='stripes'>- Self-added checkups</div>
           </div>}
         </div>
         
-        <div>
-          <p>Recommended Checkups</p>
-          <div>You should do all the checkups below. They are all recommended for you based on your health details.</div>
-          <div>
+       
+        <div><p>Recommended Checkups</p><GetAppIcon  onClick={downloadPDF} /></div>
+        <div className='recommandedCheckup'>You should do all the checkups below. They are all recommended for you based on your health details.<br />
           Checkups with <img src={Health2} width="20" height="20"/> mean that you face average risk of the health conditions diagnosed by the checkup. 
           <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health deatils.
 
         </div>
-        </div>
        { testsRecommanded.recommendedcount !== 0 ? (testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test} clickHandler={clickHandler} />))
-        :(<div> <img src={girl_with_plant} />
-          <div>Update your health status to view your recommended checkups</div>
+        :(<> <div className='imgContainer'><img src={girl_with_plant} /></div>
+        <div className='NoHealthPlanContainer'>
+          <span>Update your health status to view your recommended checkups</span><br />
+          <span onClick={()=>{props.history.push({pathname:'/addRisk',state:{self,user_id:props.location.state.user_id}})}}>GO TO MY HEALTH STATUS</span>
+        </div>
+          {/* <div style={{textAlign: 'center'}} >Update your health status to view your recommended checkups
           <button className='BackButton' onClick={()=>{props.history.push({pathname:'/addRisk',state:{self,user_id:props.location.state.user_id}})}}>GO TO MY HEALTH STATUS</button>
-          </div>)}
+          
+          </div> */}
+          </>)}
           </div>
-          <button  onClick={downloadPDF} >Download</button>
+         
          
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
+          <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
           <img className='add_test' src={Add_test} onClick={()=>createCheckupHandler()}/><span onClick={()=>createCheckupHandler()}>Create</span>
     
         </div>

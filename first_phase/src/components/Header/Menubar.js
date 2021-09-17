@@ -44,6 +44,8 @@ const currentState = useLocation().state
   }
   return (
     <nav className={['/ourFeature','/about','/register','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
+      { !(currentState!=undefined && ['addMemberself','/addRisk'].includes(currentPath) && currentState.self) ? 
+<>
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
         <span className="navbar-toggler-icon" />
       </button>
@@ -54,7 +56,6 @@ const currentState = useLocation().state
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       } */}
 
-     { !(currentState!=undefined && !currentState.self) && 
 
       <div style={{padding: '10px'}}className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
@@ -119,7 +120,7 @@ const currentState = useLocation().state
           </>)}
           <footer>
           <div className="navbar-toggler socialMediaContainer">
-          <div className="mailId">contact@hijeevan.com</div>
+          <div className="contactText">contact@hijeevan.com</div>
           <img className="linkedinLogo" src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />
           <img src={facebook} alt="facebook Logo" />
@@ -130,6 +131,7 @@ const currentState = useLocation().state
 
         
       </div>
+      </> :<div></div>
     }
       <Link
             to={loginUserId?'/userHome':"/"}

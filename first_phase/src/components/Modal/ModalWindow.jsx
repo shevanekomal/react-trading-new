@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
+import {Buttons} from '../InputFields'
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -48,8 +48,9 @@ export default function ModalWindow({children,open,handleClose,handleOpen,handle
         <div style={modalStyle} className={classes.ModalWindow }>
       {children}
       <br />
-     <button name = {option1} className={'activeButtonStyle customButton'} onClick={()=>handleClose()}>{option1}</button>
-    { option2 !== '' && <button name = {option2} className={'activeButtonStyle customButton'} onClick={(e)=>handleClick(e)}>{option2}</button>}
+       
+     <Buttons name = {option1} onClick={()=>handleClose()} bgColor= '#F9E24D' >{option1}</Buttons>
+    { option2 !== '' && <Buttons name = {option2} onClick={(e)=>handleClick(e)} bgColor= '#F9E24D' >{option2}</Buttons>}
     </div>
       </Modal>
     </div>
