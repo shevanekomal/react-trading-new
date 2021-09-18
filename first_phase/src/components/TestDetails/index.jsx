@@ -4,7 +4,6 @@ import './TestDetails.css';
 import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Add_test from '../../assets/Add_test.svg';
 
   const TestDetails = (props)=> {
@@ -94,12 +93,16 @@ const createCheckupHandler = () =>{
       <SimpleAccordion header={'Click here to know more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} conditions={testDetails.conditions} test_details={testDetails.test_details} other_info={testDetails.other_info} checkup_category={testDetails.checkup_category}/>
        {/* <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button> */}
     <div>
+    <div className='TestDetailsContainer'>
     <label>Upcoming</label><br/>
-      <img className='add_test' src={Add_test} onClick={()=>createCheckupHandler()}/>
-    {/*<AddCircleIcon className = 'plusIcon' onClick={()=>createCheckupHandler()} />*/}<span onClick={()=>createCheckupHandler()}>Create</span>
+    <span onClick={()=>createCheckupHandler()}><img className='add_test' src={Add_test} onClick={()=>createCheckupHandler()}/>
+      {' '}Create</span><br /><br />
+    <label>Past</label>
     </div>
     <div>
-    <label>Past</label>
+    
+    </div>
+   
     </div>
     </div>
 

@@ -68,3 +68,26 @@
 .navbar-light .navbar-toggler{
   border: none;
 }
+.contactText{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+text-align: right;
+letter-spacing: 0.0215em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin: 8px 0px;
+}

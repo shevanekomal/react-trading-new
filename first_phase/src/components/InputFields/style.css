@@ -1,19 +1,19 @@
 
 /* ==========================Label Style =================================================*/
 .SinglSelectDropDown label ,.RadioButton label,.DatePicker div label,.DatePicker label,.CustomTextBoxLabel,.CheckboxHeader,.DatePicker1 label{
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.0215em;
-  color: #07213c;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
-  margin: 0px 0px;
-  text-align: left;
+  font-family: Open Sans!important;
+  font-style: normal!important;
+  font-weight: normal!important;
+  font-size: 14px!important;
+  line-height: 20px!important;
+  letter-spacing: 0.0215em!important;
+  color: #07213c!important;
+  flex: none!important;
+  order: 0!important;
+  align-self: stretch!important;
+  flex-grow: 0!important;
+  margin: 0px 0px!important;
+  text-align: left!important;
 }
 /* ==========================SinglSelectDropDown =================================================*/
 .SinglSelectDropDown,.RadioButtonant {

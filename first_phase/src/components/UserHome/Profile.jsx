@@ -36,12 +36,12 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
       <div className='Profile'>
       <table>
         <tr> 
-          <td><img src={profileIcon} alt="Logo" onClick={clickHandler}/></td><td rowSpan='2'>
+          <td colspan="2"><img src={profileIcon} alt="Logo" onClick={clickHandler}/></td>
           {/* <div className='ProfileButtonContainer'>
             <div>+9</div>
             </div> */}
-          </td></tr>
-        <tr><div  className='NameHolder'>{name}</div><td>  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          </tr>
+        <tr><td className='NameHolder'>{name}</td><td>  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <FontAwesomeIcon icon={faEllipsisV}/>
             </Button>
             <Menu

@@ -90,14 +90,29 @@ const Header = () => {
     
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
       <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Share with Members</div>
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Tutorial</div>
-      <div onClick={(e) =>addActiveCssOnClick(e)}>HiJeevan</div>
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Our Feaures</div>
-      <div onClick={(e) =>addActiveCssOnClick(e)}>About us</div>
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Sign out</div>
+      <div onClick={(e) =>{
+        alert("working on it..")
+        addActiveCssOnClick(e)}}>Share with Members</div>
+      <div onClick={(e) =>{
+        alert("working on it..")
+        addActiveCssOnClick(e)}}>Tutorial</div>
+      <div onClick={(e) =>{
+        window.open('https://www.hijeevan.com' , '_blank')
+        addActiveCssOnClick(e)}}>HiJeevan</div>
+      <div onClick={(e) =>{
+        window.open('https://www.hijeevan.com/our-features' , '_blank')
+        addActiveCssOnClick(e)}}>Our Feaures</div>
+      <div onClick={(e) =>{
+        window.open('https://www.hijeevan.com/about-us' , '_blank')
+        addActiveCssOnClick(e)}}>About us</div>
+      <div onClick={(e) =>{
+         window.localStorage.setItem('x-access-token','')
+         alert("logged out...")
+        history.push('/login');
+        addActiveCssOnClick(e)}}>Sign out</div>
+      
       <footer>
-          <div className="mailId">contact@hijeevan.com</div>
+          <div className="contactText">contact@hijeevan.com</div>
           <div className="socialMediaContainer">
           <img src={linkedin} alt="linkedin Logo" />
           <img src={instagram} alt="instagram Logo" />

@@ -10,8 +10,11 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
   return (
     <div className='container'>
     <FormControl className='RadioButton' component="fieldset" required>
+    <label style={{display: 'block'}}>{children}{required && <><span style={{color:'red'}}> *</span><br /></>}{valueText}</label><br/>
+     
+{/* 
     <label>{children} {required && <span style={{color:'red'}}>*</span>} </label>
-    <label>{valueText}</label>
+    <label>{valueText}</label> */}
     <RadioGroup style={{flexDirection:`${radioPattern}`}}  aria-label={children} name={name} value={`${radioPattern}` === 'row' ?value :(defaultValue || value)} onChange={handleChange} onBlur={required && validate}>
     {
       options.map(option=>
