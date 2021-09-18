@@ -8,7 +8,7 @@ import jeevi_on_skates from '../../assets/jeevi_on_skates.svg'
 
 const AddMemberForm = (props) =>{
   const [width] = useWindowSize();
-  const [isNumberIsDiff,setIsNumberDiff] = useState(true)
+  const [isNumberIsDiff,setIsNumberDiff] = useState(false)
   const [isValidate,setValidate] = useState(false)
   const {
     addMember
@@ -124,7 +124,7 @@ addMember(data).then((response)=>{
         </>}
         <br/>
        
-        <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} onChange={(e)=>{
+        <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} defaultValue={'no'} onChange={(e)=>{
           e.target.value === 'yes' ? setIsNumberDiff(true) : setIsNumberDiff(false)
         }}>{self ?('Is the phone number you used to register different than your whatsapp number?') :('Is the phone number above different than the members WhatsApp number?') } 
         </RadioButton>

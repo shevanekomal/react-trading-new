@@ -1,4 +1,5 @@
 export default function CheckboxesGroup({children,name,options,onChange,required,error,validate,label,defaultValue}) {
+  console.log(defaultValue)
   return (
     <div className='Checkbox'>
       <label className='CheckboxHeader'>{label}{required && <span style={{color:'red'}}>*</span>}{children}</label><br/>
