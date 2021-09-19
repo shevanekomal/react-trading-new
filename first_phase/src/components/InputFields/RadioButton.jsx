@@ -15,7 +15,7 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
 {/* 
     <label>{children} {required && <span style={{color:'red'}}>*</span>} </label>
     <label>{valueText}</label> */}
-    <RadioGroup style={{flexDirection:`${radioPattern}`}}  aria-label={children} name={name} value={defaultValue || value} onChange={handleChange} onBlur={required && validate}>
+    <RadioGroup style={{flexDirection:`${radioPattern}`}}  aria-label={children} name={name} value={`${radioPattern}` === 'row' ?value :(defaultValue || value)} onChange={handleChange} onBlur={required && validate}>
     {
       options.map(option=>
         <FormControlLabel  key={option.value} value={option.value} control={<Radio />} label={option.text} />

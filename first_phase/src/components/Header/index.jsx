@@ -64,6 +64,11 @@ const Header = () => {
     alert("logged out...")
    // <Redirect to={{pathname: '/login'}}/>
    history.push('/login');
+  }else if(e.target.textContent === 'Family Home') {
+    history.push({
+      pathname: '/userHome',
+      state: {self:true,user_id:user_id}, 
+    })
   }
   } 
   
@@ -75,6 +80,7 @@ const Header = () => {
     :<Menubar state={state} setState={setState} deafulClasses={deafulClasses} />}
   
   {/*above line modified by swap*/} 
+  
    <div onClick={()=>{
       state.menu && setState({
         ...state,
@@ -91,9 +97,9 @@ const Header = () => {
     
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
       <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
-      <div onClick={(e) =>{
+     {/* <div onClick={(e) =>{
         alert("working on it..")
-        addActiveCssOnClick(e)}}>Share with Members</div>
+        addActiveCssOnClick(e)}}>Share with Members</div>*/}
       <div onClick={(e) =>{
         alert("working on it..")
         addActiveCssOnClick(e)}}>Tutorial</div>
