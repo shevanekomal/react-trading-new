@@ -55,3 +55,8 @@
   
   color: #07213C;
  }
+ @media only screen and (min-width: 990px) {
+ .TestDetails{
+  width: 50%
+ }
+}

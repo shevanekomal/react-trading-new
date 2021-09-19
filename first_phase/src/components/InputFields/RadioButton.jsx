@@ -10,7 +10,7 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
   return (
     <div className='container'>
     <FormControl className='RadioButton' component="fieldset" required>
-    <label style={{display: 'block'}}>{children}{required && <><span style={{color:'red'}}> *</span><br /></>}{valueText}</label><br/>
+    <label style={{display: 'block'}}>{children}{required && <><span style={{color:'red'}}> *</span><br /></>}{valueText}</label>
      
 {/* 
     <label>{children} {required && <span style={{color:'red'}}>*</span>} </label>

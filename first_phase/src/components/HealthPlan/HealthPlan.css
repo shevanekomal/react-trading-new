@@ -53,7 +53,7 @@ font-size: 14px;
 line-height: 20px;
 /* or 143% */
 
-display: flex;
+/* display: flex; */
 letter-spacing: 0.0215em;
 
 /* Black Text */
@@ -126,6 +126,6 @@ margin: 8px 0px;
 }
 .imgContainer{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 50%;
 }

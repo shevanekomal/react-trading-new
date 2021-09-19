@@ -70,8 +70,9 @@ const Header = () => {
   const [width, height] = useWindowSize();
   return (
     <div className='Home'>
-    {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>} <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>
-    :(['/test'].includes(currentPath) ?<div className='customNav'> <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/> <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>:<Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
+    {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
+    <div>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>}</div> <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>
+    :<Menubar state={state} setState={setState} deafulClasses={deafulClasses} />}
   
   {/*above line modified by swap*/} 
    <div onClick={()=>{

@@ -48,9 +48,10 @@ export default function ModalWindow({children,open,handleClose,handleOpen,handle
         <div style={modalStyle} className={classes.ModalWindow }>
       {children}
       <br />
-       
+    <div style={{display:'flex'}}>
      <Buttons name = {option1} onClick={()=>handleClose()} bgColor= '#F9E24D' >{option1}</Buttons>
     { option2 !== '' && <Buttons name = {option2} onClick={(e)=>handleClick(e)} bgColor= '#F9E24D' >{option2}</Buttons>}
+    </div>
     </div>
       </Modal>
     </div>

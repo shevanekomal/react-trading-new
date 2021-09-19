@@ -66,6 +66,9 @@ color: #07213C;
     display: flex;
     justify-content: center;
   }
+  .AddMemberLogo img{
+    height: 160px;
+  }
 .AddMemberLogo,.ProfileContainer{
   /* flex-grow: 1; */
   width: 33.33%;

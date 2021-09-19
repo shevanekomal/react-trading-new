@@ -158,11 +158,11 @@ const UserSetting =(props)=>{
             </tr>
             <tr key='Health Checkups' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
             <td>Health Checkups</td>
-            <td> <CheckboxesGroup name='Health Checkups' onChange={handleChange} options={[ {text:'yes',value:''}]}  /> </td>
+            <td> <CheckboxesGroup withoutLable={true} name='Health Checkups' onChange={handleChange} options={[ {text:'yes',value:''}]}  /> </td>
             </tr>
             <tr key='Health advice and assessment' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
             <td>Health advice and assessment</td>
-            <td> <CheckboxesGroup name='Health advice and assessment' onChange={handleChange} options={[ {text:'yes',value:''}]}  /></td>
+            <td> <CheckboxesGroup withoutLable={true} name='Health advice and assessment' onChange={handleChange} options={[ {text:'yes',value:''}]}  /></td>
             </tr>
             </tbody>
           </table>
