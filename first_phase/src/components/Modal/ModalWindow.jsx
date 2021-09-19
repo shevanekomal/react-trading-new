@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalWindow({children,open,handleClose,handleOpen,handleClick,option1,option2}) {
+export default function ModalWindow({children,open,handleClose,handleOpen,handleClick,option1,option2,option1bgColor,option2bgColor,
+                                      option1buttonColor,option2buttonColor}) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -49,8 +50,8 @@ export default function ModalWindow({children,open,handleClose,handleOpen,handle
       {children}
       <br />
        
-     <Buttons name = {option1} onClick={()=>handleClose()} bgColor= '#F9E24D' >{option1}</Buttons>
-    { option2 !== '' && <Buttons name = {option2} onClick={(e)=>handleClick(e)} bgColor= '#F9E24D' >{option2}</Buttons>}
+     <Buttons name = {option1} onClick={()=>handleClose()} buttonColor = {option1buttonColor} bgColor= {option1bgColor} >{option1}</Buttons>
+    { option2 !== '' && <Buttons name = {option2} onClick={(e)=>handleClick(e)} buttonColor = {option2buttonColor} bgColor= {option2bgColor} >{option2}</Buttons>}
     </div>
       </Modal>
     </div>

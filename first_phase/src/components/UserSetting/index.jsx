@@ -87,7 +87,8 @@ const UserSetting =(props)=>{
     })     
     }
     const handleClick = (e)=>{
-       if(e.target.name === 'DELETE'){
+      console.log(e.target)
+       if(e.target.innerText === 'DELETE'){
             setOpen(false) 
             deleteMemberProfile(props.location.state.user_id).then(result=>{
               //here in backend the user_id is of main user
@@ -98,14 +99,14 @@ const UserSetting =(props)=>{
               })
             } 
           })
-       }else if(e.target.name === 'NO'){
+       }else if(e.target.innerText === 'NO'){
           setOpen(false) 
           setOpenSave(false)
           props.history.push({
             pathname: '/userHome',
             state: {self,user_id:user_id}, // added by swap - here main user id needed
         })
-       }else if(e.target.name === 'YES'){
+       }else if(e.target.innerText === 'YES'){
         setOpenSave(false) 
        }
     
@@ -168,10 +169,10 @@ const UserSetting =(props)=>{
           </table>
          
             { open && 
-          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this profile?</b></p>
+          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#BC433B' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this profile?</b></p>
           <p>You won’t be able to recover the data associated with this profile once you delete it.</p></ModalWindow>}
           { saveOpen && 
-           <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
+           <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option1buttonColor='#07213C' option2bgColor='#F9E24D' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
           </ModalWindow> }
           <div style={{display:'flex'}}>
           

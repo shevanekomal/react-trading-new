@@ -64,16 +64,22 @@ const Header = () => {
     alert("logged out...")
    // <Redirect to={{pathname: '/login'}}/>
    history.push('/login');
+  }else if(e.target.textContent === 'Family Home') {
+    history.push({
+      pathname: '/userHome',
+      state: {self:true,user_id:user_id}, 
+    })
   }
   } 
   
   const [width, height] = useWindowSize();
   return (
     <div className='Home'>
-    {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>} <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>
+    {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>} <Link to={loginUserId?'/userHome':"/"}><img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /></Link></div>
     :(['/test'].includes(currentPath) ?<div className='customNav'> <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/> <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>:<Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
   
   {/*above line modified by swap*/} 
+  
    <div onClick={()=>{
       state.menu && setState({
         ...state,
@@ -90,9 +96,9 @@ const Header = () => {
     
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
       <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
-      <div onClick={(e) =>{
+     {/* <div onClick={(e) =>{
         alert("working on it..")
-        addActiveCssOnClick(e)}}>Share with Members</div>
+        addActiveCssOnClick(e)}}>Share with Members</div>*/}
       <div onClick={(e) =>{
         alert("working on it..")
         addActiveCssOnClick(e)}}>Tutorial</div>
