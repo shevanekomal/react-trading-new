@@ -67,10 +67,18 @@ if(isValidate){
 
 addMember(data).then((response)=>{
   if(response.status){
-    props.history.push({
-          pathname: '/addRisk',
-          state: {self,user_id:response.data.user_id}, // added by swap
-        })
+    if(self){
+      props.history.push({
+        pathname: '/addRiskSelf',
+        state: {self,user_id:response.data.user_id}, // added by swap
+      })
+    }else{
+      props.history.push({
+        pathname: '/addRisk',
+        state: {self,user_id:response.data.user_id}, // added by swap
+      })
+    }
+   
   } 
 })
 }

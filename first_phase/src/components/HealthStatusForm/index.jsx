@@ -35,7 +35,7 @@ const HealthStatusForm =(props)=> {
       error:''
     },
     birthdate:{
-      value:new Date(),
+      value:new Date('01/06/2000'),
       error:""
     },
     height:{
@@ -231,11 +231,21 @@ if(!isValidate){
 }
 addDetails(data).then((response)=>{
   if(response.status){
-    self && updateUserId(response.data.user_id)
-    props.history.push({
-      pathname: '/userHome',
-     state: {self:true,user_id:response.data.user_id}
-    })
+   //temporary fix added by swap
+   console.log(response.data.user_id)
+    if(props.location.state.userHealthDetails != '' && props.location.state.userHealthDetails != undefined){
+      props.history.push({
+        pathname: '/userHome',
+       state: {self:true,user_id:userHealthDetails.main_userid}
+      })
+    }else{
+      self && updateUserId(response.data.user_id)
+      props.history.push({
+        pathname: '/userHome',
+       state: {self:true,user_id:response.data.user_id}
+      })
+    }
+   
   } 
   setLoader(false)
 })
@@ -294,7 +304,7 @@ const validate =(e)=>{
           <CheckboxesGroup name='familyHistoryConditions' defaultValue={state.familyHistoryConditions.value} required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
-          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
+          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option1bgColor='#F9E24D' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
         <div style={{display:'flex'}}>

@@ -99,7 +99,11 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             changeHandler={(e)=>onChangehandler(e)}
             
           />
-         <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By signing up, I agree to the terms',name:'By signing up, I agree to the terms'}]} /></p>
+         <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By using HiJeevan, you confirm that you accept our ',name:'By using HiJeevan, you confirm that you accept our '}]} />
+         <a style={{color:'blue'}} href="https://www.hijeevan.com/privacy-policy" target='_blank'>
+         Privacy Policy
+          </a>
+         </p>
          <Buttons onClick={(e)=>{
             e.preventDefault()
             isValidate && RegisterHandler() //setNextPageEnable(true)

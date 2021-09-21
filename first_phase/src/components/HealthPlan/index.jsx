@@ -106,7 +106,7 @@ const HealthPlan = (props)=> {
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
-          <img className='add_test' src={Add_test} onClick={()=>createCheckupHandler()}/><span onClick={()=>createCheckupHandler()}>Create</span>
+          <img className='add_test' src={Add_test} /><span >Create</span>
     
         </div>
       </div>
