@@ -15,6 +15,8 @@ import AddMemberForm from '../AddMemberForm'
 import UserSetting from '../UserSetting'
 import ShareWithMember from '../ShareWithMember'
 import CreateCheckupForm from '../CreateCheckupForm'
+import CalenderDetails from '../CalenderDetails'
+
 import PdfViewer from '../PdfViewer'
 import Main_logo from '../../assets/Main_logo.svg'
 import {useWindowSize} from '../../utility'
@@ -76,8 +78,20 @@ const Header = () => {
   return (
     <div className='Home'>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>}</div> <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/></div>
-    :<Menubar state={state} setState={setState} deafulClasses={deafulClasses} />}
+    <div>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
+      <Link
+            to={loginUserId?'/userHome':"/"}
+      >
+           <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
+          </Link>}</div>
+    :(['/test'].includes(currentPath) ? <div className='customNav'> <div> <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/></div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
+     <Link
+           to={loginUserId?'/userHome':"/"}
+     >
+          <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
+         </Link>}</div> : <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
   
   {/*above line modified by swap*/} 
   
@@ -114,7 +128,7 @@ const Header = () => {
         addActiveCssOnClick(e)}}>About us</div>
       <div onClick={(e) =>{
          window.localStorage.setItem('x-access-token','')
-         alert("logged out...")
+        // alert("logged out...")
         history.push('/login');
         addActiveCssOnClick(e)}}>Sign out</div>
       
@@ -133,6 +147,7 @@ const Header = () => {
         <Route path="/" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path='/addRisk' exact component={HealthStatusForm} name='HealthStatus'/>
+        <Route path='/addRiskSelf' exact component={HealthStatusForm} name='HealthStatus'/>
         <Route path="/healthPlan" exact component={HealthPlan} />
         <Route path="/test" exact component={TestDetails} />
         <Route path='/userHome' exact component={UserHome} name='HealthStatus'/>
@@ -143,6 +158,8 @@ const Header = () => {
         <Route path="/shareWithMember" exact component={ShareWithMember} />
         <Route path="/createCheckup" exact component={CreateCheckupForm} />
         <Route path="/pdf" exact component={PdfViewer} />
+        <Route path="/calender" exact component={CalenderDetails} />
+        
         <Redirect to="/" />
       </Switch>
       </div>

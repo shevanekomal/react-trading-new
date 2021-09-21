@@ -44,7 +44,7 @@ const currentState = useLocation().state
   }
   return (
     <nav className={['/ourFeature','/about','/register','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
-      { !(currentState!=undefined && ['/addMemberself','/addRisk'].includes(currentPath) && currentState.self) ? 
+      { !(currentState!=undefined && ['/addMemberself','/addRiskSelf'].includes(currentPath) && currentState.self) ? 
 <>
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
         <span className="navbar-toggler-icon" />
@@ -133,11 +133,13 @@ const currentState = useLocation().state
       </div>
       </> :<div></div>
     }
+     {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={loginUserId?'/userHome':"/"}
       >
            <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
-          </Link>
+          </Link>}
     </nav>
   );
 }

@@ -116,25 +116,14 @@ const UserSetting =(props)=>{
           
         { (<form >
           <div>
-          <div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} bgColor={'#F9E24D'} >Save Changes</Buttons></div>
+          {/*<div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} bgColor={'#F9E24D'} >Save Changes</Buttons></div>*/}
           <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
           :(props.location.state.relation==='brother' || props.location.state.relation==='husband'?(Man):((props.location.state.relation==='son')?(Boy):props.location.state.relation==='daughter')?(Girl):(Woman))} alt="Logo"/>}
          </div>
           <br/>
-           {/*  
-            <label>name</label>
-            <label>{props.location.state.name} </label>
-            <br/>
-            <hr></hr>
-            <label>Mobile</label>
-            <label>{props.location.state.mobile} </label>
-            <br/>
-            <hr></hr>
-            {props.location.state.relation === 'Me' && <label>Relation</label> &&
-            <label>{props.location.state.relation} </label> && <br/>
-            && <hr/> }*/}
+           
             <table className='settingPersonalDetails'><tbody>
               <tr>
                 <td>Name</td>
@@ -157,23 +146,20 @@ const UserSetting =(props)=>{
             <td name='Health Status'>Health Status</td>
             <td><FontAwesomeIcon  name='Health Status' icon={faAngleRight} color="#17416B" size={'lg'} /></td>
             </tr>
-            <tr key='Health Checkups' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
+           {/*} <tr key='Health Checkups' > 
             <td>Health Checkups</td>
             <td> <CheckboxesGroup withoutLable={true} name='Health Checkups' onChange={handleChange} options={[ {text:'yes',value:''}]}  /> </td>
             </tr>
-            <tr key='Health advice and assessment' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
+            <tr key='Health advice and assessment' > 
             <td>Health advice and assessment</td>
             <td> <CheckboxesGroup withoutLable={true} name='Health advice and assessment' onChange={handleChange} options={[ {text:'yes',value:''}]}  /></td>
-            </tr>
+        </tr>*/}
             </tbody>
           </table>
-         
-            { open && 
+          { open && 
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#BC433B' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this profile?</b></p>
           <p>You won’t be able to recover the data associated with this profile once you delete it.</p></ModalWindow>}
-          { saveOpen && 
-           <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option1buttonColor='#07213C' option2bgColor='#F9E24D' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
-          </ModalWindow> }
+
           <div style={{display:'flex'}}>
           
             {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='#BC433B' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
@@ -181,8 +167,13 @@ const UserSetting =(props)=>{
           </div>
             
             </div>
+          
           </form>) }
+                   {/* saveOpen && 
+           <ModalWindow open={saveOpen}  handleOpen={()=>setOpenSave(true)} handleClose ={()=>setOpenSave(false)} handleClick={handleClick} option1='NO' option1buttonColor='#07213C' option2bgColor='#F9E24D' option2 = 'YES'> <p><b>Do you want to save your changes?</b></p>
+          </ModalWindow> */}
         </div>
+        
     )
 }
 

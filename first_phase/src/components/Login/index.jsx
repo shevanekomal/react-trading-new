@@ -34,7 +34,7 @@ const [FormData,setFormData] = useState({
             state: { self:true,user_id:result.data.user_id }
             })
         }else{
-          alert("Login failed.Please try again!!")
+          alert(result.messages)
         }
         })
 }

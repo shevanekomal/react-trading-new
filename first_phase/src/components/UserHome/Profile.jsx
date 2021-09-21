@@ -22,14 +22,14 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
   };
   const clickHandler = ()=>{
     
-    /*history.push({
-      pathname: '/userSetting',
-     state: {user_id:user_id,name:name,relation:relation,mobile:mobile,gender:gender}
-    })*/
     history.push({
+      pathname: '/healthPlan',
+      state: {user_id:user_id}, // added by swap 
+    })
+    {/* history.push({
     pathname:"/myProfile",
     state:{user_id:user_id}
-    })
+    }) */}
   }
     return (
       <div className={user_type === 'subUser' ? 'ProfileContainer ' : 'ProfileContainer MainUser' }>

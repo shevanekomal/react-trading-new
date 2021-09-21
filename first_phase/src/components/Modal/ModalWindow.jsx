@@ -36,9 +36,6 @@ export default function ModalWindow({children,open,handleClose,handleOpen,handle
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
       <Modal
         open={open}
         onClose={handleClose}
