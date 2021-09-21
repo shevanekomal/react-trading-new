@@ -10,6 +10,9 @@
   letter-spacing: 0.005em!important;
   text-transform: uppercase!important;
 }
+.RegisterBtn .Button{
+  font-size: 18px!important;
+}
 /* active btn */
 .activeButtonStyle,.makeStyles-ModalWindow-23 button{
   background: #F9E24D!important;

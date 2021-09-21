@@ -44,7 +44,7 @@ const currentState = useLocation().state
   }
   return (
     <nav className={['/ourFeature','/about','/register','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
-      { !(currentState!=undefined && ['addMemberself','/addRisk'].includes(currentPath) && currentState.self) ? 
+      { !(currentState!=undefined && ['/addMemberself','/addRisk'].includes(currentPath) && currentState.self) ? 
 <>
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
         <span className="navbar-toggler-icon" />
