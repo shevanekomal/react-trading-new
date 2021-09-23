@@ -78,7 +78,7 @@ const Header = () => {
   return (
     <div className='Home'>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{currentPath=='/test' && <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{window.history.go(-1)}}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={loginUserId?'/userHome':"/"}

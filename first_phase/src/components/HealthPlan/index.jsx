@@ -41,7 +41,7 @@ const HealthPlan = (props)=> {
   const createCheckupHandler = () =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: {user_id:props.location.state.user_id}
+      state: {user_id:props.location.state.user_id,checkup_name:''}
     })
   }
  
@@ -106,7 +106,7 @@ const HealthPlan = (props)=> {
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
-          <img className='add_test' src={Add_test} /><span >Create</span>
+          <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span >Create</span>
     
         </div>
       </div>
