@@ -91,7 +91,7 @@ useEffect(() => {
  disableConditions('familyHistoryConditions',false)
   let userHealthDetails1 = props.location.state.userHealthDetails
   
-  console.log(obj,'obj')
+  console.log(userHealthDetails1)
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
         
@@ -106,7 +106,7 @@ useEffect(() => {
          ...state,
          ...obj
     })
-    console.log(state)
+    console.log(state.diagnosedCondition.value)
    }
 },[])
 
@@ -232,20 +232,18 @@ if(!isValidate){
 addDetails(data).then((response)=>{
   if(response.status){
    //temporary fix added by swap
-   console.log(response.data.user_id)
+  /* console.log(response.data.user_id)
     if(props.location.state.userHealthDetails != '' && props.location.state.userHealthDetails != undefined){
       props.history.push({
         pathname: '/userHome',
        state: {self:true,user_id:userHealthDetails.main_userid}
       })
-    }else{
+    }else{*/
       self && updateUserId(response.data.user_id)
       props.history.push({
         pathname: '/userHome',
        state: {self:true,user_id:response.data.user_id}
       })
-    }
-   
   } 
   setLoader(false)
 })
@@ -300,7 +298,7 @@ const validate =(e)=>{
           </RadioButton>
           <CustomTextBox type={'number'} defaultValue={state.smoking.value} setState={setState} state={state} required={true} name='smoking' validate={validate} error={state.smoking.error} valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
           <CheckboxesGroup name='diagnosedCondition' required={true}  defaultValue={state.diagnosedCondition.value} options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
-          {state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
+          { state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
           <CheckboxesGroup name='familyHistoryConditions' defaultValue={state.familyHistoryConditions.value} required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
            { open && 
@@ -308,7 +306,7 @@ const validate =(e)=>{
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
         <div style={{display:'flex'}}>
-       {!self && <Buttons onClick={onSkipHandler} bgColor={'#F9E24D'}>Skip For Now</Buttons>}
+       {!self && <Buttons onClick={onSkipHandler} bgColor={'#808080'}>Skip For Now</Buttons>}
        <Buttons onClick={onUpdateData}  disabled={isValidate} bgColor={!isValidate ? '#F9E24D' : '#F0F3F5 '}>Update</Buttons>
        </div>
        </form>

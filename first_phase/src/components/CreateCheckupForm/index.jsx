@@ -11,7 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import './CreateCheckupForm.css';
 const CreateCheckupForm = (props) =>{
-
+ 
   const {
     checkup_names
   } = useContext(FieldDataContext)
@@ -21,7 +21,7 @@ const CreateCheckupForm = (props) =>{
   } = useContext(FieldDataContext)
   const [FormData,setFormData] = useState({
     checkup_name:{
-      value:props.location.state.checkup_name,
+      value:'',
       error:''
     },
     self_checkup_name:{
@@ -145,8 +145,8 @@ const defaultProps = {
   return(
     <div>
     { (<form className='CreateCheckupContainer'>
-     { (FormData.checkup_name.value!= undefined)&&<label>{FormData.checkup_name.value}</label> }
-     {FormData.checkup_name.value == undefined && <Autocomplete
+     { (props.location.state.checkup_name!== '')?<label>{props.location.state.checkup_name}</label> 
+     :( <Autocomplete
         {...defaultProps}
         style={{ width: 300 }}
         id="checkup_name"
@@ -155,7 +155,7 @@ const defaultProps = {
         validate={validate}
         onChange={onChangehandler} error={FormData.checkup_name.error}
         renderInput={(params) => <TextField {...params} name='checkup_name' placeholder="Type Checkup Name" margin="normal" />}
-      /> }
+      />) }
      {/*  <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
        onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>*/}
        {FormData.checkup_name.value.includes('Others') && <FormRow

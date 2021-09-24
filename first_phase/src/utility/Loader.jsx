@@ -27,7 +27,7 @@ function Loader({loaded}) {
         <LoadingOverlay
           active={true}
           spinner={true}
-          text="Loading..."
+          text="Generating HealthPlans..."
         >
         </LoadingOverlay>
       </DarkBackground>

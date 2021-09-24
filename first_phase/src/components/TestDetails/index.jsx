@@ -95,7 +95,7 @@ const createCheckupHandler = () =>{
     <div>
     <div className='TestDetailsContainer'>
     <label>Upcoming</label><br/>
-    <span ><img className='add_test' src={Add_test} />
+    <span ><img className='add_test' src={Add_test} onClick={createCheckupHandler} />
       {' '}Create</span><br /><br />
     <label>Past</label>
     </div>

@@ -13,7 +13,8 @@ import Boy from '../../assets/profile/Boy.svg'
 import './UserSetting.css'
 
 const UserSetting =(props)=>{
-  let self = true;
+  let self = props.location.state.relation === 'Me' ? true :false;
+  
   const [state,setState] = useState({
     health_checkup:{
       value:'',
@@ -55,6 +56,7 @@ const UserSetting =(props)=>{
    }
    const deleteProfileHandler = (e) =>{
       e.preventDefault()
+      console.log(props.location.state.relation)
         //show pop for confirm delete.
         setOpen(true)
         
@@ -65,10 +67,20 @@ const UserSetting =(props)=>{
       //here in backend the user_id is of main user
       
     if(result.status){
-     // console.log(result)
+      console.log(result.data.gender)
+     if(result.data.gender != null){
       props.history.push({
-            pathname: '/addRisk',
-            state: {self,user_id:user_id,userHealthDetails:result.data}, // added by swap - here main user id needed
+        pathname: '/addRisk',
+        state: {self,user_id:user_id,userHealthDetails:result.data},
+     })
+    }else {
+
+      props.history.push({
+        pathname: '/addRisk',
+        state: {self,user_id:user_id},
+     })
+    }
+      // added by swap - here main user id needed
      //Please note result.data should be same as the below format
     //      {
     //       gender:'male',
@@ -82,7 +94,7 @@ const UserSetting =(props)=>{
     // diagnosedCondition:['None of the below'],
     // familyHistoryConditions:['Cancer - Breast']
     //     }
-  })
+  
     } 
     })     
     }
@@ -93,10 +105,13 @@ const UserSetting =(props)=>{
             deleteMemberProfile(props.location.state.user_id).then(result=>{
               //here in backend the user_id is of main user
             if(result.status){
+             if( props.location.state.relation !== 'Me') {
               props.history.push({
-                    pathname: '/userHome',
-                    state: {self,user_id:user_id}, // added by swap - here main user id needed
-              })
+                pathname: '/userHome',
+                state: {self,user_id:user_id}, 
+              })}else{
+                props.history.push("/")
+              } 
             } 
           })
        }else if(e.target.innerText === 'NO'){
@@ -120,7 +135,7 @@ const UserSetting =(props)=>{
           <div className="settingHeader">
           {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
-          :(props.location.state.relation==='brother' || props.location.state.relation==='husband'?(Man):((props.location.state.relation==='son')?(Boy):props.location.state.relation==='daughter')?(Girl):(Woman))} alt="Logo"/>}
+          :((props.location.state.relation==='brother' || props.location.state.relation==='husband')?(Man):((props.location.state.relation === 'son')?(Boy):(props.location.state.relation==='daughter'))?(Girl):(Woman))} alt="Logo"/>}
          </div>
           <br/>
            
@@ -157,12 +172,12 @@ const UserSetting =(props)=>{
             </tbody>
           </table>
           { open && 
-          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#BC433B' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this profile?</b></p>
-          <p>You won’t be able to recover the data associated with this profile once you delete it.</p></ModalWindow>}
+          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#BC433B' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this {props.location.state.relation !== 'Me' ? 'profile' : 'account'}?</b></p>
+          <p>You won’t be able to recover the data associated with this {props.location.state.relation !== 'Me' ? 'profile' : 'account'} once you delete it.</p></ModalWindow>}
 
           <div style={{display:'flex'}}>
           
-            {props.location.state.relation !== 'Me' &&  <Buttons buttonColor='#BC433B' onClick={(e)=>deleteProfileHandler(e)} >Delete profile</Buttons>}
+           <Buttons buttonColor='#BC433B' onClick={(e)=>deleteProfileHandler(e)} >{props.location.state.relation !== 'Me' ? 'Delete Profile' : 'Delete Account'}</Buttons>
            
           </div>
             
