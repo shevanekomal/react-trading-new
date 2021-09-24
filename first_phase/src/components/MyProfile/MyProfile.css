@@ -21,21 +21,257 @@ align-items: center;
 padding: 4px;
 
 position: static;
-width: 969px;
+width: 50%;
 height: 56px;
 left: 0px;
 top: 0px;
-margin: 40px 0px;
-background: linear-gradient(264.66deg, #FFFFFF 51.28%, rgba(255, 255, 255, 0) 83.1%), #A9D9FF;
+background: linear-gradient(264.66deg, #FFFFFF 11.28%, rgba(255, 255, 255, 0) 83.1%), #A9D9FF;
 border-radius: 40px;
 }
-.calender {
-width: 969px;
+.curentDateContainer {
 height: 88px;
 left: 0px;
 top: 96px;
-
-/* Saturated Blue */
 background: #EEF8FF;
 border: 1px solid #3168A7;
+border-left: none;
+border-right: none;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+}
+.curentDateContainer div:first-child span:first-child{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 22px;
+line-height: 32px;
+/* or 145% */
+
+display: flex;
+align-items: center;
+letter-spacing: 0.005em;
+}
+.curentDateContainer div:first-child span:nth-child(2){
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  align-items: center;
+  letter-spacing: 0.0215em;
+  color: #07213C;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+.curentDateContainer div:last-child span{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+align-items: center;
+letter-spacing: 0.005em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 1;
+flex-grow: 0;
+margin: 0px 4px;
+}
+.ProfileContainer > div:first-child{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.ProfileContainer div:first-child svg{
+  margin-top: 10px;
+}
+.ProfileContainer{
+  padding: 20px;
+  width: 100%;
+}
+.Updates{
+  margin-top: 30px;
+}
+.Updates .ProfileButtonContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 6px;
+  margin-top: 7px;
+}
+.Updates .ProfileButtonContainer span{
+  background: #008068;
+    border-radius: 15px;
+    width: 18px;
+    height: 20px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+.Updates div:first-child{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+.UpdatesHeader div:first-child{
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.005em;
+  
+  /* Saturated Blue */
+  
+  color: #3168A7;
+  
+  
+  /* Inside Auto Layout */
+  
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 4px;
+}
+.UpdatesHeader{
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+align-items: center;
+text-align: right;
+letter-spacing: 0.0215em;
+color: rgba(7, 33, 60, 0.85);
+flex: none;
+order: 2;
+flex-grow: 1;
+margin: 0px 4px;
+}
+.Updates > hr{
+  color: #3168A7;
+  height: 1px;
+  
+}
+.Updates > div:nth-child(2){
+  border: 1px solid #3168A7;
+  border-left:none ;
+  border-right:none ;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  overflow: scroll;
+  height: 300px;
+}
+.healthPlanNavigation span{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 32px;
+  /* identical to box height, or 145% */
+  
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  
+  /* Saturated Blue */
+  
+  color: #3168A7;
+  
+}
+.healthPlanNavigation svg{
+  color: #17416B;
+}
+
+.ProfileContainer button{
+  border: none;
+  background: transparent;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #17416B;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.005em;
+}
+.UpdateContainerHeader{
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: 0.0015em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 4px 0px;
+}
+.UpdateContainerSubHeader{
+  display: flex;
+  justify-content: space-between;
+}
+.UpdateContainerSubHeader div:first-child{
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+letter-spacing: 0.0215em;
+color: #07213C;
+flex: none;
+order: 0;
+flex-grow: 1;
+margin: 0px 0px;
+width: 80%;
+}
+.tagHolder{
+  text-align: center;
+  width: 200px;
+  height: 24px;
+  background: #FFD3B1;
+  border-radius: 16px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.0215em;
+  color: #07213C;
+}
+.checkup{
+ background: #DAEDEB!important;
+}
+.checkupType{
+  font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 24px;
+/* identical to box height, or 150% */
+
+letter-spacing: 0.005em;
+
+/* Black Text */
+
+color: #07213C;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 8px 0px;
 }
