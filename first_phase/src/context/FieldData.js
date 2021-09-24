@@ -98,7 +98,11 @@ class FieldDataProvider extends Component {
           ]
       }
   ],
-  recommendedcount: 5},
+  SelfAdded:[
+    {"checkup_name" : "oral","provider":"aa","provider_website":"www.abc.com"}
+  ],
+  recommendedcount: 5,
+  selfAddedcount:1},
   testDetails:{
         "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
   },
@@ -288,10 +292,10 @@ getProfilePicture=(relation)=>{
       })
       return result
     }),
-    createCheckup: debounce(async (data) => {
+    createSelfAddedPlan: debounce(async (data) => {
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: '/createCheckup',
+        urlEndpoint: '/createSelfAddedPlan',
         data,
       })
       return result

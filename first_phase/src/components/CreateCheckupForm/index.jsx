@@ -13,12 +13,11 @@ import './CreateCheckupForm.css';
 const CreateCheckupForm = (props) =>{
  
   const {
-    checkup_names
+    checkup_names,
+    createSelfAddedPlan
   } = useContext(FieldDataContext)
   const [isValidate,setValidate] = useState(false)
-  const {
-    createCheckup
-  } = useContext(FieldDataContext)
+  
   const [FormData,setFormData] = useState({
     checkup_name:{
       value:'',
@@ -62,24 +61,35 @@ if(isValidate){
     user_id:props.location.state.user_id,  // added by swap
 }
 console.log(data)
-/*createCheckup(data).then((response)=>{
-  if(response.status){
-      let testName = props.location.state.testName
+if(props.location.state.checkup_name!== ''){
+ /* if(response.status){
+       
     props.history.push({
         pathname: '/test',
         state: {testName,user_id:props.location.state.user_id}, // added by swap
   })
-  } 
-})*/
+  } */
+}else{
+  createSelfAddedPlan(data).then((response)=>{
+    if(response.status){
+      props.history.push({
+        pathname: '/healthPlan',
+        state: {user_id:props.location.state.user_id}, // added by swap 
+      })
+    }
+  })
 }
-props.history.push({
+
+}
+/*props.history.push({
   pathname: '/calender',
   //state: {testName,user_id:props.location.state.user_id}, // added by swap
-})
+})*/
 }
 
 const deleteOrCancelCheckupHandler = (e) =>{
     let testName = props.location.state.testName
+    console.log(testName)
     if(testName != undefined){
      // give backend call to delete checkup date
       props.history.push({

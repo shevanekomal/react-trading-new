@@ -15,6 +15,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const HealthPlan = (props)=> {
+
   let self = false;
   const {
     getCheckupDetails,
@@ -22,6 +23,7 @@ const HealthPlan = (props)=> {
     getHealthPlanDetails,
     user_id
   } = useContext(FieldDataContext)
+  console.log(testsRecommanded.SelfAdded)
   const clickHandler=(test,testName)=>{
     
     getCheckupDetails(test.checkup_id,props.location.state.user_id).then(result=>{
@@ -89,7 +91,7 @@ const HealthPlan = (props)=> {
           <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health deatils.
 
         </div>}
-       { testsRecommanded.recommendedcount !== 0 ? (testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test} clickHandler={clickHandler} />))
+       { testsRecommanded.recommendedcount !== 0 ? (testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test}  planType = 'recomm' clickHandler={clickHandler} />))
         :(<> <div className='imgContainer'><img src={girl_with_plant} /></div>
         <div className='NoHealthPlanContainer'>
           <span>Update your health status to view your recommended checkups</span><br />
@@ -107,7 +109,7 @@ const HealthPlan = (props)=> {
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
           <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span >Create</span>
-    
+          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' />))}
         </div>
       </div>
     )
