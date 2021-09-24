@@ -179,7 +179,7 @@ getProfilePicture=(relation)=>{
         urlEndpoint: '/login',
         data,
       })
-      console.log('result '+result.data)
+      
       if(result.status){
         this.setState({
           ...this.state,

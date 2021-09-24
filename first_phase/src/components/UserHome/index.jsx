@@ -18,10 +18,15 @@ const UserHome =(props)=>{
     user_id
     }=useContext(FieldDataContext)
     const clickHandler = ()=>{
-      props.history.push({
-        pathname: '/addMember',
-        state: {self:false,user_id :user_id}
-      })
+      if(familyMembers.length >= 6){
+          alert('You can add maximum 6 members only.')
+      }else{
+        props.history.push({
+          pathname: '/addMember',
+          state: {self:false,user_id :user_id}
+        })
+      }
+     
     }
     useEffect(() => {
      getFamilyMembers()
