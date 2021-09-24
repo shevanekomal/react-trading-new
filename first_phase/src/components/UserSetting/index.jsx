@@ -67,8 +67,8 @@ const UserSetting =(props)=>{
       //here in backend the user_id is of main user
       
     if(result.status){
-      console.log(result.data.gender)
-     if(result.data.gender != null){
+      console.log(result.data.height)
+     if(result.data.height != null){
       props.history.push({
         pathname: '/addRisk',
         state: {self,user_id:user_id,userHealthDetails:result.data},
@@ -133,9 +133,10 @@ const UserSetting =(props)=>{
           <div>
           {/*<div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} bgColor={'#F9E24D'} >Save Changes</Buttons></div>*/}
           <div className="settingHeader">
-          {props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
+          <img src={props.location.state.profileIcon}  alt="Logo"/>
+          { /* props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
-          :((props.location.state.relation==='brother' || props.location.state.relation==='husband')?(Man):((props.location.state.relation === 'son')?(Boy):(props.location.state.relation==='daughter'))?(Girl):(Woman))} alt="Logo"/>}
+        :((props.location.state.relation==='brother' || props.location.state.relation==='husband')?(Man):((props.location.state.relation === 'son')?(Boy):(props.location.state.relation==='daughter'))?(Girl):(Woman))} alt="Logo"/> */}
          </div>
           <br/>
            

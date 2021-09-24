@@ -108,7 +108,7 @@ const HealthPlan = (props)=> {
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
-          <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span >Create</span>
+          <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span onClick={createCheckupHandler} >Create</span>
           { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' />))}
         </div>
       </div>

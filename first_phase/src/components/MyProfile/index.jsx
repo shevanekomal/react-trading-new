@@ -3,12 +3,6 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight,faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import PlusCircle from '../../assets/PlusCircle.png'
-import Man from '../../assets/profile/Man.svg'
-import Woman from '../../assets/profile/Woman.svg'
-import OldMan from '../../assets/profile/Old-man.svg'
-import OldWoman from '../../assets/profile/Old-woman.svg'
-import Girl from '../../assets/profile/Girl.svg'
-import Boy from '../../assets/profile/Boy.svg'
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import UpdatePanelStrip from './UpdatePanelStrip';
@@ -51,20 +45,42 @@ const getUpdateComponent =(keyWord)=>{
     } 
   }
 }
+
+const handleSettings = () => {
+  props.history.push({
+    pathname: '/userSetting',
+   state: {user_id:props.location.state.user_id,name:props.location.state.name,relation:props.location.state.relation,mobile:props.location.state.mobile,profileIcon:props.location.state.profileIcon}
+  })
+
+};
+
+const handleCalender = () => {
+  props.history.push({
+    pathname: '/calender',
+    state: {user_id:props.location.state.user_id}, // added by swap
+  })
+};
+
+const createCheckupHandler = () =>{
+  props.history.push({
+    pathname: '/createCheckup',
+    state: {user_id:props.location.state.user_id,checkup_name:''}
+  })
+}
   
     return (
       <div className='ProfileContainer'>
         <div>
-          <span className="iconDiv"><img src={Man}></img> Manan</span>
-          <SettingsIcon />
+          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> {props.location.state.name}</span>
+          <SettingsIcon onClick={handleSettings}/>
         </div>
         <div className="curentDateContainer">
         <div>
           <span>{new Date().toLocaleString('en-us',{day:'numeric'}) +' '+ new Date().toLocaleString('en-us',{month:'long', year:'numeric'}) }</span>
-          <span>Open Calender</span>{' '}<FontAwesomeIcon  name='Health Status' icon={faAngleRight} color="#17416B" size={'sm'} />
+          <span onClick={handleCalender}>Open Calender</span>{' '}<FontAwesomeIcon  name='calender' icon={faAngleRight} onClick={handleCalender} color="#17416B" size={'sm'} />
         </div>
         <div style={{margin:'auto',marginRight:'0px'}}>
-        <img src={PlusCircle} alt="Add_member Logo" /> <span>Create</span>
+        <img src={PlusCircle} alt="Add_member Logo" onClick={createCheckupHandler} /> <span onClick={createCheckupHandler}>Create</span>
         </div>
         </div>
         <div className="Updates">
