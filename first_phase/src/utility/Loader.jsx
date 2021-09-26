@@ -21,13 +21,13 @@ const DarkBackground = styled.div`
     `}
 `;
 
-function Loader({loaded}) {
+function Loader({loaded,text}) {
   return (
       <DarkBackground disappear={loaded}>
         <LoadingOverlay
           active={true}
           spinner={true}
-          text="Generating HealthPlans..."
+          text={text}
         >
         </LoadingOverlay>
       </DarkBackground>

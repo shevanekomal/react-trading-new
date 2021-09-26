@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FieldDataContext } from '../../context/FieldData' 
 import {useState,useContext,useEffect} from 'react'
 import {useWindowSize} from '../../utility'
+import jeevi_register from '../../assets/jeevi_register.png'
  
 
 const Login =(props)=> {
@@ -83,6 +84,7 @@ const [FormData,setFormData] = useState({
             to="/register" >Register Now</Link></p>
             </div>
     </form>
+    {<img className='jeevi_register' src={jeevi_register} />}
     </div>
 
     )

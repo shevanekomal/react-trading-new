@@ -57,7 +57,7 @@ const currentState = useLocation().state
       } */}
 
 
-      <div style={{padding: '10px'}}className={"collapse navbar-collapse " + show}>
+      <div style={{padding: '10px'}} className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
         <div className="navbar-toggler">
           <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/>

@@ -168,7 +168,7 @@ const defaultProps = {
      { (props.location.state.checkup_name!== '')?<label>{props.location.state.checkup_name}</label> 
      :( <Autocomplete
         {...defaultProps}
-        style={{ width: 300 }}
+        className='Autocomplete'
         id="checkup_name"
         name='checkup_name'
         required={true}

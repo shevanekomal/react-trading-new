@@ -1,12 +1,28 @@
 import './MyProfile.css'
-import { useState } from 'react';
+import { useState,useEffect,useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight,faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import PlusCircle from '../../assets/PlusCircle.png'
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import UpdatePanelStrip from './UpdatePanelStrip';
+import { FieldDataContext } from '../../context/FieldData'
 const MyProfile =(props)=> {
+  
+  const {
+    getUserNotifications
+  } = useContext(FieldDataContext)
+  const [result,setResult] = useState({})
+  //reffer below result
+  // const result={
+  //   updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
+  //   day:'Today'
+  // }
+  useEffect(()=>{
+    getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
+      (result.status) ? setResult(result.data): alert(result.messages || "something went wrong!!")
+  })
+  },[])
   const healthStatusClickHandler = (user_id) =>{
     props.history.push({
       pathname: '/healthPlan',
@@ -19,10 +35,7 @@ const [isRead,setIsRead]=useState(false)
       pathname: '/pdf'
     })
   }
-  const result={
-    updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
-    day:'Today'
-  }
+ 
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
@@ -69,7 +82,7 @@ const createCheckupHandler = () =>{
 }
   
     return (
-      <div className='ProfileContainer'>
+      <div className='MyProfileContainer'>
         <div>
           <span className="iconDiv"><img src={props.location.state.profileIcon}></img> {props.location.state.name}</span>
           <SettingsIcon onClick={handleSettings}/>

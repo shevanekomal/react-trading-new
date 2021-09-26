@@ -99,7 +99,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             changeHandler={(e)=>onChangehandler(e)}
             
           />
-         <p><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By using HiJeevan, you confirm that you accept our ',name:'By using HiJeevan, you confirm that you accept our '}]} />
+         <p style={{textAlign:'left'}}><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By using HiJeevan, you confirm that you accept our ',name:'By using HiJeevan, you confirm that you accept our '}]} />
          <a style={{color:'blue'}} href="https://www.hijeevan.com/privacy-policy" target='_blank'>
          Privacy Policy
           </a>
