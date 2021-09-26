@@ -275,7 +275,7 @@ const validate =(e)=>{
 
     return (
       <div className='FormContainer'>
-      <Loader loaded={isLoaded}/>
+      <Loader  text={'Generating HealthPlans...'} loaded={isLoaded}/>
         <h2>Set up your health details. This will allow us to create a personalized health experience for you</h2>
         <p>Please note: Your information is safe with us. It will be used to personalize the healthcare information you receive. It will not be used for marketing or advertising purposes.</p>
         <form name='details' style={{padding:'2%'}}>
