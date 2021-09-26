@@ -52,8 +52,37 @@ justify-content: center;
 .CreateCheckupContainer .provider{
   width: 100%;
 }
+.provider{
+  border-bottom: 1px solid #dcd8d8;
+}
 @media only screen and (min-width: 990px) {
 .CreateCheckupContainer{
   width: 50%;
 }
+}
+.Autocomplete{
+  display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px;
+
+
+height: 40px;
+
+/* White Text */
+
+background: #FCFEFF;
+/* Blue Primary */
+
+border: 1px solid #A9D9FF;
+border-radius: 6px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+margin: 8px 0px;
+width: 100%;
 }

@@ -31,8 +31,9 @@ const FormRow = ({ type, label, name, changeHandler ,required,error,isTooltip,to
   return (
     <div className="container">
       <label>{label}{required && <span style={{color:'red'}}>*</span>}</label>
+      
       <input type={type} name={name} onChange={changeHandler}  {...otherProps} required={required}/>
-      {isTooltip &&<Grid item>
+      {isTooltip &&<Grid item style={{display: '-webkit-inline-box'}}>
           <ClickAwayListener onClickAway={handleTooltipClose}>
             <div> <CustomizedTooltip title={tooltipTitle} placement="bottom"   onClose={handleTooltipClose}
                 open={open}

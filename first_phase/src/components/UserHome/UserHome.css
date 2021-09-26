@@ -69,8 +69,7 @@ color: #07213C;
   .AddMemberLogo img{
     height: 160px;
   }
-  /* .ProfileContainer, */
-.AddMemberLogo{
+.AddMemberLogo,.ProfileContainer{
   /* flex-grow: 1; */
   width: 33.33%;
   height: 100px;

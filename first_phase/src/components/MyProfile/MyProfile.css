@@ -89,15 +89,15 @@ order: 1;
 flex-grow: 0;
 margin: 0px 4px;
 }
-.ProfileContainer > div:first-child{
+.MyProfileContainer > div:first-child{
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.ProfileContainer div:first-child svg{
+.MyProfileContainer div:first-child svg{
   margin-top: 10px;
 }
-.ProfileContainer{
+.MyProfileContainer{
   padding: 20px;
   width: 100%;
 }
@@ -189,7 +189,7 @@ margin: 0px 4px;
   color: #17416B;
 }
 
-.ProfileContainer button{
+.MyProfileContainer button{
   border: none;
   background: transparent;
   margin-top: 10px;

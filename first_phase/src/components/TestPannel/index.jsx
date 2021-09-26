@@ -15,8 +15,8 @@ const [width] = useWindowSize();
             {width < 600 ? (<><td>{el.checkup_name}</td><td><FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></td> </>):<td><span style={{textDecoration:'underline',    cursor: 'pointer'}}>{el.checkup_name}</span></td>}
             <td></td>
             </tr>))) 
-            :(<tr  onClick={()=>clickHandler(test.checkup_name) }>
-              {width < 600 ? (<><td>{test.checkup_name}</td><td><FontAwesomeIcon icon={faAngleRight} color="#17416B" size={'lg'} /></td> </>):<td><span style={{textDecoration:'underline',    cursor: 'pointer'}}>{test.checkup_name}</span></td>}
+            :(<tr  onClick={()=>clickHandler(test.checkup_name) }><td></td>
+              {width < 600 ? (<><td>{test.checkup_name}</td><td><FontAwesomeIcon icon={faAngleRight} color="#17416B" /></td> </>):<td><span style={{textDecoration:'underline',    cursor: 'pointer'}}>{test.checkup_name}</span></td>}
             <td></td>
              </tr>)}
             </tbody>
