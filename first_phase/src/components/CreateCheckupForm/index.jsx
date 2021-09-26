@@ -14,7 +14,8 @@ const CreateCheckupForm = (props) =>{
  
   const {
     checkup_names,
-    createSelfAddedPlan
+    createSelfAddedPlan,
+    createEvent
   } = useContext(FieldDataContext)
   const [isValidate,setValidate] = useState(false)
   
@@ -58,17 +59,23 @@ if(isValidate){
     date:FormData.date.value,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
-    user_id:props.location.state.user_id,  // added by swap
+    user_id:props.location.state.user_id,
+    checkup_id:props.location.state.checkup_id
 }
 console.log(data)
-if(props.location.state.checkup_name!== ''){
- /* if(response.status){
-       
-    props.history.push({
-        pathname: '/test',
-        state: {testName,user_id:props.location.state.user_id}, // added by swap
-  })
-  } */
+if(props.location.state.checkup_id!== ''){
+  let checkup_name = props.location.state.checkup_name
+  let testName = props.location.state.testName
+  let checkup_id = props.location.state.checkup_id
+  createEvent(data).then((response)=>{
+    if(response.status){ 
+      props.history.push({
+          pathname: '/test',
+          state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}, // added by swap
+    })
+    } 
+  });
+  
 }else{
   createSelfAddedPlan(data).then((response)=>{
     if(response.status){

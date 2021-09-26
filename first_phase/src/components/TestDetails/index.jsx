@@ -63,6 +63,7 @@ import Add_test from '../../assets/Add_test.svg';
 const fetchDetails=(checkupId)=>{
   getCheckupDetails(checkupId,props.location.state.user_id).then(result=>{
     if(result.status){
+      console.log(result.data)
       props.history.push({
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}

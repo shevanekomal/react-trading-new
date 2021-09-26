@@ -300,6 +300,14 @@ getProfilePicture=(relation)=>{
       })
       return result
     }),
+    createEvent: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/createEvent',
+        data,
+      })
+      return result
+    }),
     getUserNotifications:debounce(async(user_id,user_type)=>{
       const result = await httpClient({
         method: 'POST',
