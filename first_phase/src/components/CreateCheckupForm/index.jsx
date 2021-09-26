@@ -88,13 +88,16 @@ if(props.location.state.checkup_name!== ''){
 }
 
 const deleteOrCancelCheckupHandler = (e) =>{
+    let checkup_name = props.location.state.checkup_name
     let testName = props.location.state.testName
-    console.log(testName)
-    if(testName != undefined){
+    let checkup_id = props.location.state.checkup_id
+    if(checkup_name != undefined && testName != undefined){
      // give backend call to delete checkup date
+
       props.history.push({
         pathname: '/test',
-        state: {testName,user_id:props.location.state.user_id}, // added by swap
+        state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}
+       , // added by swap
     })
     }else{
       //self added chekcup from health plan page 
@@ -221,7 +224,7 @@ const defaultProps = {
         </Grid>
         <div style={{display:'flex',justifyContent:'center'}}>
         <Buttons onClick={(e)=>addCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DONE</Buttons>
-        <Buttons onClick={(e)=>deleteOrCancelCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>{props.location.state.testName ? 'DELETE':'CANCEL'}</Buttons>
+        <Buttons onClick={(e)=>deleteOrCancelCheckupHandler(e)}  bgColor={'#F0F3F5'} buttonColor='#BC433B' >{props.location.state.testName ? 'DELETE':'CANCEL'}</Buttons>
         </div>
       </form>) }
       

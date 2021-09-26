@@ -300,6 +300,21 @@ getProfilePicture=(relation)=>{
       })
       return result
     }),
+    getUserNotifications:debounce(async(user_id,user_type)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/getUserNotifications/'+user_id+'/'+user_type
+      })
+      if(result.status){
+        this.setState({
+          ...this.state,
+        //  userHealthDetails:result.data
+        })
+        return result
+      }else{
+        console.log("Error",result)
+      }
+    }),
   }
 
   render() {

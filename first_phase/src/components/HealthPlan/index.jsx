@@ -25,7 +25,6 @@ const HealthPlan = (props)=> {
   } = useContext(FieldDataContext)
   console.log(testsRecommanded.SelfAdded)
   const clickHandler=(test,testName)=>{
-    
     getCheckupDetails(test.checkup_id,props.location.state.user_id).then(result=>{
       props.history.push({
         pathname: '/test',
@@ -109,7 +108,7 @@ const HealthPlan = (props)=> {
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
           <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span onClick={createCheckupHandler} >Create</span>
-          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' />))}
+          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={clickHandler} />))}
         </div>
       </div>
     )

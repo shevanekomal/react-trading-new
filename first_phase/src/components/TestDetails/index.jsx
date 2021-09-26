@@ -83,7 +83,7 @@ const navigationHandler =(type)=>{
 const createCheckupHandler = () =>{
   props.history.push({
     pathname: '/createCheckup',
-    state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
+    state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}
   })
 }
   return (
