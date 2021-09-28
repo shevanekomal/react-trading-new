@@ -4,12 +4,6 @@ import { useState,useContext } from 'react';
 import { FieldDataContext } from '../../context/FieldData'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import Man from '../../assets/profile/Man.svg'
-import Woman from '../../assets/profile/Woman.svg'
-import OldMan from '../../assets/profile/Old-man.svg'
-import OldWoman from '../../assets/profile/Old-woman.svg'
-import Girl from '../../assets/profile/Girl.svg'
-import Boy from '../../assets/profile/Boy.svg'
 import './UserSetting.css'
 
 const UserSetting =(props)=>{

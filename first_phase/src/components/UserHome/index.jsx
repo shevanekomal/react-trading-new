@@ -9,9 +9,13 @@ import Boy from '../../assets/profile/Boy.svg'
 import './UserHome.css'
 import { FieldDataContext } from '../../context/FieldData' 
 import Profile from './Profile'
+import {Alerts} from '../InputFields'
+import {useState} from 'react'
 
 const UserHome =(props)=>{
- 
+  let alertMsg = '';
+  const [open, setOpen] = useState(false);
+
   const {
     familyMembers,
     getFamilyMembers,
@@ -19,7 +23,8 @@ const UserHome =(props)=>{
     }=useContext(FieldDataContext)
     const clickHandler = ()=>{
       if(familyMembers.length >= 6){
-          alert('You can add maximum 6 members only.')
+        alertMsg = 'You can add maximum 6 members only.'
+        setOpen(true);
       }else{
         props.history.push({
           pathname: '/addMember',
@@ -42,8 +47,12 @@ const UserHome =(props)=>{
           <div className='AddMemberLogo'>
           <img src={Add_member} alt="Add_member Logo" onClick={clickHandler}/>
           </div>
-          
+          { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="error" title="Error" content={'You can add maximum 6 members only'} 
+           vertical= 'top' horizontal= 'center' />}
         </div>
+       
       </div>
     )
 }

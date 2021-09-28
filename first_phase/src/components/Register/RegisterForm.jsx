@@ -84,7 +84,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
           />
           <FormRow
             type="password"
-            label="Create Password"
+            label="Create password"
             name="password"
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
@@ -92,7 +92,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
           />
           <FormRow
             type="password"
-            label="Confirm Password"
+            label="Confirm password"
             name="confirmPassword"
             required={true}
             error = {FormData.confirmPassword.error}

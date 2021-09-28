@@ -9,6 +9,8 @@ import { useLocation } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import './Menubar.css'
 import { FieldDataContext } from '../../context/FieldData'
+import {Alerts} from '../InputFields'
+
 const Menubar = ({state,setState,deafulClasses}) =>{
   const {
     loginUserId,
@@ -17,7 +19,7 @@ const Menubar = ({state,setState,deafulClasses}) =>{
 const history = useHistory();
 const currentPath = useLocation().pathname
 const currentState = useLocation().state
- 
+const [open, setOpen] = useState(false);
   const toggleMenu = (event) => {
     event.stopPropagation();
     setState({
@@ -29,7 +31,8 @@ const currentState = useLocation().state
     setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
     if(linkClass === 'signOutLinkClass') {
       window.localStorage.setItem('x-access-token','')
-      alert("logged out...")
+      setOpen(true)
+     // alert("logged out...")
      // <Redirect to={{pathname: '/login'}}/>
      history.push('/login');
     }
@@ -129,7 +132,10 @@ const currentState = useLocation().state
           </footer>
         </div>
 
-        
+        { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="success" title="Success" content={'logged out...'} 
+           vertical= 'top' horizontal= 'center' />}
       </div>
       </> :<div></div>
     }
@@ -141,6 +147,7 @@ const currentState = useLocation().state
            <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
           </Link>}
     </nav>
+    
   );
 }
 export default Menubar

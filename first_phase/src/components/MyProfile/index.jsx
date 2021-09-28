@@ -7,20 +7,27 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import UpdatePanelStrip from './UpdatePanelStrip';
 import { FieldDataContext } from '../../context/FieldData'
+import {Alerts} from '../InputFields'
 const MyProfile =(props)=> {
   
   const {
     getUserNotifications
   } = useContext(FieldDataContext)
   const [result,setResult] = useState({})
+  const [open, setOpen] = useState(false);
+  let alertMsg = ''
   //reffer below result
   // const result={
   //   updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
   //   day:'Today'
   // }
   useEffect(()=>{
+    console.log("in use effect")
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
-      (result.status) ? setResult(result.data): alert(result.messages || "something went wrong!!")
+      console.log(result)
+      alertMsg = result.messages || "something went wrong!!"
+      (result.status) ? setResult(result.data): (setOpen(true))
+     
   })
   },[])
   const healthStatusClickHandler = (user_id) =>{
@@ -119,6 +126,10 @@ const createCheckupHandler = () =>{
           <ArrowForwardIcon />
         </div>
         <button  onClick={viewPDF} >View PDF</button>
+        { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="error" title="Error" content={"Something went wrong."} 
+           />}
       </div>
     )
 }

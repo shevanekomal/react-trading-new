@@ -5,13 +5,15 @@ import { FieldDataContext } from '../../context/FieldData'
 import {useState,useContext,useEffect} from 'react'
 import {useWindowSize} from '../../utility'
 import jeevi_register from '../../assets/jeevi_register.png'
- 
+import {Alerts} from '../InputFields'
 
 const Login =(props)=> {
 const {
 loginUser,
 updateUserId
 }=useContext(FieldDataContext)
+const [alertMsg, setAlertMsg] = useState('');
+const [open, setOpen] = useState(false);
 const [width, height] = useWindowSize();
 const [FormData,setFormData] = useState({
     mobileNumber:'',
@@ -28,14 +30,14 @@ const [FormData,setFormData] = useState({
         isValidate && loginUser({Mobile_Number:FormData.mobileNumber,password:FormData.password}).then((result)=>{
          
         if(result.status){
-          console.log(result.data.user_id)
             updateUserId(result.data.user_id)
             props.history.push({
               pathname: '/userHome',
             state: { self:true,user_id:result.data.user_id }
             })
         }else{
-          alert(result.messages)
+          setAlertMsg(result.messages)         
+          setOpen(true)
         }
         })
 }
@@ -85,6 +87,10 @@ const [FormData,setFormData] = useState({
             </div>
     </form>
     {<img className='jeevi_register' src={jeevi_register} />}
+    { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="error" title="Error" content={alertMsg}
+           vertical= 'top' horizontal= 'center' />}
     </div>
 
     )

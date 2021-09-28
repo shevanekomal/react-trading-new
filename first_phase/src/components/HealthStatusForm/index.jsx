@@ -191,6 +191,7 @@ const handleChange =(e) =>{
       return
     }
     let arr = state[name].value
+    console.log(arr)
     !arr.includes(`${e.target.value}`)?arr.push(e.target.value):arr=[...arr.slice(0,arr.indexOf(e.target.value)),...arr.slice(arr.indexOf(e.target.value)+1)] 
       value=arr
   }

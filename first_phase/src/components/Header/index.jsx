@@ -27,6 +27,8 @@ import whatsapp from '../../assets/whatsapp.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
+import {Alerts} from '../InputFields'
+
 const Header = (props) => {
   const {
     loginUserId,
@@ -54,6 +56,7 @@ const Header = (props) => {
     background:'#A9D9FF',
     padding:'5px'
   }
+  const [open, setOpen] = useState(false);
   const addActiveCssOnClick = (e) =>{
   let temp =  e.target.parentElement.children
   for ( temp of temp) {
@@ -63,7 +66,8 @@ const Header = (props) => {
 
   if(e.target.textContent === 'Sign out') {
     window.localStorage.setItem('x-access-token','')
-    alert("logged out...")
+   // alert("logged out...")
+   setOpen(true)
    // <Redirect to={{pathname: '/login'}}/>
    history.push('/login');
   }else if(e.target.textContent === 'Family Home') {
@@ -129,6 +133,7 @@ const Header = (props) => {
       <div onClick={(e) =>{
          window.localStorage.setItem('x-access-token','')
         // alert("logged out...")
+        setOpen(true)
         history.push('/login');
         addActiveCssOnClick(e)}}>Sign out</div>
       
@@ -163,6 +168,10 @@ const Header = (props) => {
         <Redirect to="/" />
       </Switch>
       </div>
+      { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="success" title="Success" content={'logged out...'} 
+           vertical= 'top' horizontal= 'center' />}
      </div> 
     </div>
   );
