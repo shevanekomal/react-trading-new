@@ -311,8 +311,3 @@ width: 0px;
 .TooltipClass{
   color:#17416B
 }
-div[class^="makeStyles-appointment"] {
-  height: 5px;
-  background: #ffff00;
-  width: 80%;
-}

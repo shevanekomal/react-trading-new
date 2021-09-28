@@ -1,0 +1,109 @@
+.CalenderContainer{
+  padding: 5px;
+  margin-top: 20px;
+}
+.CalenderContainer > div:nth-child(1){
+display: flex;
+justify-content: flex-end;
+margin: 20px;
+}
+.CalenderContainer td{
+  border: 1px solid #A9D9FF;
+  height: 70px;
+}
+div[class^='Cell-dayOfWeek-'],.CalenderContainer td{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.0215em;
+  color:#07213C ;
+}
+div[class^='Cell-today-']{
+height:100%;
+width:100%;
+border-radius: 0px;
+margin-top:0px;
+padding: 1rem;
+background: #3168A7;
+}
+.CalenderContainer table tbody{
+  border: 1px solid #A9D9FF;
+}
+div[class^='Cell-text-'],div[class^='Cell-today-']{
+  padding: 1rem;
+}
+div[class^="makeStyles-appointment"] {
+  height: 7px;
+  background: #ffff00;
+  margin-top: 1.2rem;
+}
+.MuiPaper-elevation1{
+  box-shadow: none!important;
+} 
+.checkupDetails{
+  margin: 30px;
+}
+.checkupDetails label{
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+letter-spacing: 0.002em;
+color: #17416B;
+}
+
+/* remove all below css till comment and check another view */
+.MuiToolbar-root > button:first-child{
+display: none;
+width: 0px;
+}
+.MuiToolbar-regular{
+  border-radius: 8px;
+  background: #A9D9FF!important;
+  padding: 8px;
+}
+.MuiButton-label{
+  font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 24px;
+align-items: center;
+text-align: center;
+letter-spacing: 0.002em;
+color: #17416B;
+flex: none;
+order: 1;
+flex-grow: 1;
+margin: 0px 0px;
+}
+.MuiIconButton-label svg{
+  fill:  #3168A7!important;
+}
+.MuiToolbar-root div button:nth-child(4)
+{
+display: none;
+width: 0px;
+}
+.MuiToolbar-root {
+  align-items: unset!important;
+  display: block!important;
+}
+.FlexibleSpace-flexibleSpace-8 {
+  margin-left: 0px!important;
+  display: none!important;
+}
+div[class^="RootBase-root-"] {
+  display: flex;
+  justify-content: space-between;
+}
+div[class^="RootBase-root-"] button:nth-child(2){
+order: 4;
+}
+.OpenButton-textButton-6 {
+  display: block!important;
+}
+/* cmt end */
