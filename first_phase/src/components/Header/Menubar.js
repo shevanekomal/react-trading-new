@@ -42,7 +42,8 @@ const [open, setOpen] = useState(false);
     switch(currentPath){
       case '/addMember': return currentState!=undefined && !currentState.self ? 'Add Member' :  `Let's Start`;
       case '/addRisk': return `Health Status`;
-      default : return currentPath.toUpperCase().replace('/','')
+      case '/healthPlan': return `Your Health Plan`;
+     // default : return currentPath.toUpperCase().replace('/','')
     }
   }
   return (
@@ -59,7 +60,7 @@ const [open, setOpen] = useState(false);
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       } */}
 
-
+{getLabel(currentPath)}
       <div style={{padding: '10px'}} className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
         <div className="navbar-toggler">
@@ -140,7 +141,7 @@ const [open, setOpen] = useState(false);
       </> :<div></div>
     }
      {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
-     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
+     <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={loginUserId?'/userHome':"/login"}
       >

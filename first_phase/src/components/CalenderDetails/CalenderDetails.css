@@ -60,12 +60,12 @@ color: #17416B;
 display: none;
 width: 0px;
 }
-.MuiToolbar-regular{
+.CalenderContainer .MuiToolbar-regular{
   border-radius: 8px;
   background: #A9D9FF!important;
   padding: 8px;
 }
-.MuiButton-label{
+.CalenderContainer .MuiButton-label{
   font-family: Open Sans;
 font-style: normal;
 font-weight: 600;
@@ -80,15 +80,15 @@ order: 1;
 flex-grow: 1;
 margin: 0px 0px;
 }
-.MuiIconButton-label svg{
+.CalenderContainer .MuiIconButton-label svg{
   fill:  #3168A7!important;
 }
-.MuiToolbar-root div button:nth-child(4)
+.CalenderContainer .MuiToolbar-root div button:nth-child(4)
 {
 display: none;
 width: 0px;
 }
-.MuiToolbar-root {
+.CalenderContainer .MuiToolbar-root {
   align-items: unset!important;
   display: block!important;
 }
@@ -96,11 +96,11 @@ width: 0px;
   margin-left: 0px!important;
   display: none!important;
 }
-div[class^="RootBase-root-"] {
+.CalenderContainer div[class^="RootBase-root-"] {
   display: flex;
   justify-content: space-between;
 }
-div[class^="RootBase-root-"] button:nth-child(2){
+.CalenderContainer div[class^="RootBase-root-"] button:nth-child(2){
 order: 4;
 }
 .OpenButton-textButton-6 {

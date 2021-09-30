@@ -36,7 +36,7 @@ export default class Schedular extends React.PureComponent {
     const { data } = this.state;
 
     return (
-      <Paper>
+      <Paper onClick={(e)=>{e.target.className.includes('Cell-text-') && this.props.clickHandler(e)}}>
         <Scheduler data={data}>
           <ViewState />
           <MonthView />

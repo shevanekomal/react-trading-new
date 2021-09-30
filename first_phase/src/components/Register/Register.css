@@ -69,9 +69,12 @@ margin-bottom: 30px;
 
 
 @media only screen and (min-width: 990px) {
-  .Register .Header,.Register p,.AddMemberContainer .Header,.LoginContainer .Header,.LoginContainer p{
+  .Register .Header,.AddMemberContainer .Header,.LoginContainer .Header,.LoginContainer p{
     text-align: left;
     margin-left: 290px;
+  }
+  .Register p{
+    margin-left: 218px;
   }
   .RegisterContainer .ButtonContainer,.LoginContainer .ButtonContainer
   {
@@ -90,9 +93,20 @@ height: 384px;
 /*.jeevi_on_skates{
   margin: auto;
 }*/
-.RegisterContainer,.AddMemberContainer,.LoginContainer{
+.RegisterContainer,.LoginContainer{
   display: flex;
   margin-top: 90px;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+.AddMemberContainer{
+  display: flex;
+  margin-top: 90px;
+  justify-content: space-around;
+ 
+}
+@media only screen and (max-width: 990px) {
+  .AddMemberContainer{
+    flex-wrap: wrap;
+  }
 }

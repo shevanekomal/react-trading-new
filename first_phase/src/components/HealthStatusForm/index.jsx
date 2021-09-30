@@ -93,9 +93,9 @@ useEffect(() => {
   
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
-        
+        let val =  (key == 'diagnosedCondition' || key == 'familyHistoryConditions') ? [...value] : value
       obj[key] = {
-        value:value,
+        value:val,
         error:''
       };
     }

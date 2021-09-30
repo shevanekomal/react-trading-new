@@ -8,6 +8,7 @@
   align-items: center;
   letter-spacing: 0.005em;
   color: #17416B!important;
+  margin-left: 12px;
 }
 .nav-item.nav-link.active,.active{
   background: #A9D9FF;
