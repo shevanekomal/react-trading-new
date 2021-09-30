@@ -8,7 +8,11 @@ import Loader from '../../utility/Loader'
 import {Alerts} from '../InputFields'
 const Register = (props) => {
  const [FormData,setFormData] = useState({
-    mobileNumber:{
+   Name: {
+     value:'',
+     error:''
+   },
+   mobile_number:{
       value:'',
       error:''
     },
@@ -34,12 +38,15 @@ registerUser
 const [isLoaded,setLoader] =useState(false)
 const RegisterHandler=()=>{
   setLoader(true)
-        registerUser({Mobile_Number:FormData.mobileNumber.value,password:FormData.password.value}).then((result)=>{
+        registerUser({name:FormData.Name.value,Mobile_Number:FormData.mobile_number.value,password:FormData.password.value}).then((result)=>{
            if(result.status){
-            props.history.push({
+           /* props.history.push({
               pathname: '/addMemberself',
               state: {self:true, user_id :result.data.user_id }     //Added by swap
-             
+            })*/
+            props.history.push({
+              pathname: '/addRiskSelf',
+              state: {self:true,user_id:result.data.user_id}, // added by swap
             })
            }else {
             alertMsg = result.messages || "something went wrong!!"
@@ -53,7 +60,7 @@ const RegisterHandler=()=>{
 
     return(
       <div><Loader text='Registration in progress..' loaded={isLoaded}/>{!+nextPageEnable?<RegisterForm setNextPageEnable={setNextPageEnable} RegisterHandler ={RegisterHandler} FormData={FormData} setFormData={setFormData} />:<OTPForm history={props.history} RegisterHandler={RegisterHandler}/>}
-       { open &&  <Alerts handleClose={()=>setOpen(false)} content = {'Mobile number already exist'}
+       { open &&  <Alerts handleClose={()=>setOpen(false)} content = {'Mobile number already exist'} autoHideDuration = '10000'
            isOpen={open} type="error" title="Error" />}
       </div>
     )

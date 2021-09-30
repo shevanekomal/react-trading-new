@@ -91,7 +91,6 @@ useEffect(() => {
  disableConditions('familyHistoryConditions',false)
   let userHealthDetails1 = props.location.state.userHealthDetails
   
-  console.log(userHealthDetails1)
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
         
@@ -106,8 +105,18 @@ useEffect(() => {
          ...state,
          ...obj
     })
-    console.log(state.diagnosedCondition.value)
+    //console.log(state.diagnosedCondition.value)
+   }else{
+    //below code for page reload
+    window.onbeforeunload = function() {
+      return true;
+    };
+
+    return () => {
+      window.onbeforeunload = null;
+    };
    }
+  
 },[])
 
 useEffect(() => {
@@ -251,6 +260,7 @@ addDetails(data).then((response)=>{
 }
 }
 const onSkipHandler = () =>{
+  console.log('on skip '+props.location.state.user_id)
   props.history.push({
     pathname: '/userHome',
    state: {self:true,user_id:props.location.state.user_id}
@@ -307,8 +317,8 @@ const validate =(e)=>{
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}
         </div>
         <div style={{display:'flex'}}>
-       {!self && <Buttons onClick={onSkipHandler} bgColor={'#808080'}>Skip For Now</Buttons>}
        <Buttons onClick={onUpdateData}  disabled={isValidate} bgColor={!isValidate ? '#F9E24D' : '#F0F3F5 '}>Update</Buttons>
+       {!self && <Buttons onClick={onSkipHandler} bgColor={'#F0F3F5'}>Skip For Now</Buttons>}
        </div>
        </form>
       </div>

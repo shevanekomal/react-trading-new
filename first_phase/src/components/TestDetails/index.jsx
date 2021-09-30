@@ -14,7 +14,18 @@ import Add_test from '../../assets/Add_test.svg';
     user_id
   } = useContext(FieldDataContext)
   useEffect(()=>{
-    !((props.location.state && props.location.state.user_id) || user_id) && props.history.push("/")
+ !((props.location.state && props.location.state.user_id) || user_id) && props.history.push("/")
+   //added below lines of code for refresh and commented above line by swap
+   console.log(props.location.state)
+  /* getCheckupDetails(props.location.state.checkup_id,props.location.state.user_id).then(result=>{
+    if(result.status){
+      console.log(result.data)
+      props.history.push({
+        pathname: '/test',
+        state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
+      })
+    }
+  })*/
   },[])
   let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
   let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
@@ -90,15 +101,15 @@ const createCheckupHandler = () =>{
   return (
     <div className='TestDetails'>
     <div className='TestHeader'>
-    <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div>{checkup_name}<div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
+    <div><a><FontAwesomeIcon icon={faArrowLeft} color="#17416B" size={'lg'} onClick={()=>navigationHandler('prev')}/></a></div><div></div><b>{checkup_name}</b><div></div><a><FontAwesomeIcon icon={faArrowRight} color="#17416B" size={'lg'} onClick={()=>navigationHandler('next')} /></a></div>
       <SimpleAccordion header={'Click here to know more'} recommended_details={testDetails.recomm_level} whyrecommended_details={testDetails.why_recommended} frequency = {testDetails.frequency} conditions={testDetails.conditions} test_details={testDetails.test_details} other_info={testDetails.other_info} checkup_category={testDetails.checkup_category}/>
        {/* <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button> */}
     <div>
     <div className='TestDetailsContainer'>
-    <label>Upcoming</label><br/>
+    <label>Upcoming Checkups</label><br/>
     <span ><img className='add_test' src={Add_test} onClick={createCheckupHandler} />
       {' '}Create</span><br /><br />
-    <label>Past</label>
+    <label>Past Checkups</label>
     </div>
     <div>
     

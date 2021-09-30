@@ -53,6 +53,15 @@ const [FormData,setFormData] = useState({
       }
       setValidate(tempValidate)
   }, [FormData])
+  useEffect(() => {
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    return () => {
+        window.onbeforeunload = null;
+    };
+}, []);
 
     return (
       
@@ -89,7 +98,7 @@ const [FormData,setFormData] = useState({
     {<img className='jeevi_register' src={jeevi_register} />}
     { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="error" title="Error" content={alertMsg}
+           isOpen={open} type="error" title="Error" content={alertMsg} autoHideDuration = '10000'
            vertical= 'top' horizontal= 'center' />}
     </div>
 

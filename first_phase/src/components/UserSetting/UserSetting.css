@@ -3,7 +3,8 @@ width: 144px;
 height: 120px;
 left: 137px;
 top: 0px;
-margin: auto;
+/*margin: auto; below line added by swap*/
+margin: 0px 160px; 
 }
 .settingPersonalDetails{
   width: 100%;

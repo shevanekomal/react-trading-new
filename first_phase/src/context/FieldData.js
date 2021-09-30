@@ -174,6 +174,7 @@ getProfilePicture=(relation)=>{
           loginUserId:result.data.user_id,
         })
         window.localStorage.setItem('x-access-token',result.data.accessToken)
+        window.localStorage.setItem('user_id',result.data.user_id)
       }
       return result
     }),
@@ -191,6 +192,7 @@ getProfilePicture=(relation)=>{
           loginUserId:result.data.user_id,
         })
         window.localStorage.setItem('x-access-token',result.data.accessToken)
+        window.localStorage.setItem('user_id',result.data.user_id)
       } return result
     }),
     addDetails: debounce(async (data) => {
@@ -244,10 +246,11 @@ getProfilePicture=(relation)=>{
         console.log("Error",result)
       }
     }),
-    getFamilyMembers:debounce(async()=>{
+    getFamilyMembers:debounce(async(user_id)=>{
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: '/getFamilyMembers/'+this.state.user_id
+        //urlEndpoint: '/getFamilyMembers/'+this.state.user_id
+        urlEndpoint: '/getFamilyMembers/'+user_id
       })
       if(result.status){
         //process result.data here
@@ -320,6 +323,7 @@ getProfilePicture=(relation)=>{
         })
         return result
       }else{
+        alert("Error",result.messages)
         console.log("Error",result)
       }
     }),

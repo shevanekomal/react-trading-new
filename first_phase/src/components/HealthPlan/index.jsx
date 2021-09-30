@@ -1,8 +1,7 @@
 import './HealthPlan.css'
-import {useContext,useEffect} from 'react'
+import {useContext,useEffect,useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardList,faAngleRight} from "@fortawesome/free-solid-svg-icons";
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TestPannel from '../TestPannel'
 import { FieldDataContext } from '../../context/FieldData'
 import Health from '../../assets/Health.svg'
@@ -13,9 +12,11 @@ import html2canvas from 'html2canvas';
 import Add_test from '../../assets/Add_test.svg';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import {Alerts} from '../InputFields'
 
 const HealthPlan = (props)=> {
-
+  const [open, setOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
   let self = false;
   const {
     getCheckupDetails,
@@ -47,6 +48,7 @@ const HealthPlan = (props)=> {
   }
  
   const downloadPDF = () => {
+    setInfoOpen(true)
     const input = document.getElementById('divToPrint');
     html2canvas(input).then((canvas) => {
     const componentWidth = input.offsetWidth
@@ -65,6 +67,8 @@ const HealthPlan = (props)=> {
 
     pdf.addImage(imgData, 'PNG', 0, 0, componentWidth, componentHeight)
     pdf.save('Healthplans.pdf')
+    setInfoOpen(false)
+    setOpen(true)
   })
     
   }
@@ -76,6 +80,7 @@ const HealthPlan = (props)=> {
           { testsRecommanded.recommendedcount !== 0 &&  <div>
           <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
           <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
+          <div>{<GetAppIcon  onClick={downloadPDF} />} Download and Print</div>
           </div>}
           { testsRecommanded.recommendedcount === 0 &&  <div>
           <div className='stripes'>- Recommended checkups</div>
@@ -84,7 +89,7 @@ const HealthPlan = (props)=> {
         </div>
         
        
-        <div><p>Recommended Checkups</p>{ testsRecommanded.recommendedcount !== 0 && <GetAppIcon  onClick={downloadPDF} />}</div>
+        <div><p>Recommended Checkups</p>{/* testsRecommanded.recommendedcount !== 0 && <GetAppIcon  onClick={downloadPDF} /> */}</div>
         { testsRecommanded.recommendedcount !== 0 && <div className='recommandedCheckup'>You should do all the checkups below. They are all recommended for you based on your health details.<br />
           Checkups with <img src={Health2} width="20" height="20"/> mean that you face average risk of the health conditions diagnosed by the checkup. 
           <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health deatils.
@@ -103,13 +108,20 @@ const HealthPlan = (props)=> {
           </>)}
           </div>
          
-         
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
           <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span onClick={createCheckupHandler} >Create</span>
           { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={clickHandler} />))}
         </div>
+        { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="success" title="Success" content={'Health plans downloaded successfully'} 
+           autoHideDuration = '6000'/>}
+         { infoOpen &&  <Alerts
+          handleClose ={()=>setInfoOpen(false)} 
+           isOpen={infoOpen} type="info" title="Info" content={'Downloading in progress'} 
+           autoHideDuration = '10000'/>}
       </div>
     )
 }

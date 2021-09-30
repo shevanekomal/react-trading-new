@@ -1,11 +1,13 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 
 const UpdatePanelStrip=(props) =>{
-  const {header,subHeader,tag,actionPath} = props
+  const history = useHistory();
+  const {header,subHeader,tag,actionPath,self,user_id} = props
   return (<div className='UpdateContainer' onClick={()=>{
-     props.history.push({
+     history.push({
         pathname: actionPath,
-        //state: {self,user_id:response.data.user_id}, // added by swap
+        state: {self:self,user_id:user_id}, // added by swap
       })
   }}>
     <div className='UpdateContainerHeader'>

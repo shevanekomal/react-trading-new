@@ -7,14 +7,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
 import {useState} from 'react'
 
-export default function Alerts({isOpen,handleClose,content,type,title}) {
+export default function Alerts({isOpen,handleClose,content,type,title,autoHideDuration}) {
   const [state, setState] = useState({
     vertical: 'top',
     horizontal: 'center',
   });
   const { vertical, horizontal } = state;
   return (
-    <Snackbar anchorOrigin={{ vertical, horizontal }} open={isOpen} autoHideDuration={10000} onClose={()=>handleClose()} >
+    <Snackbar anchorOrigin={{ vertical, horizontal }} open={isOpen} autoHideDuration={autoHideDuration} onClose={()=>handleClose()} >
         <Alert
         severity={type}
           action={

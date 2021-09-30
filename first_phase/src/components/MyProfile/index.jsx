@@ -13,16 +13,16 @@ const MyProfile =(props)=> {
   const {
     getUserNotifications
   } = useContext(FieldDataContext)
-  const [result,setResult] = useState({})
+  const [result,setResult] = useState({ updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
+  day:'Today'})
   const [open, setOpen] = useState(false);
   let alertMsg = ''
   //reffer below result
-  // const result={
-  //   updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
-  //   day:'Today'
-  // }
+   /*const result={
+     updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
+     day:'Today'
+   }*/
   useEffect(()=>{
-    console.log("in use effect")
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
       console.log(result)
       alertMsg = result.messages || "something went wrong!!"
@@ -46,22 +46,22 @@ const [isRead,setIsRead]=useState(false)
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
-      return <UpdatePanelStrip header={"Welcome! Let's start by learning about your body."} subHeader={'View all your recommended tests in Your Health Plan'} tag='advice' actionPath='/' />
+      return <UpdatePanelStrip header={"Welcome! Let's start by learning about your body."} subHeader={'View all your recommended tests in Your Health Plan'} tag='advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'advice':{
-      return <UpdatePanelStrip header={"Everything you need to know."} subHeader={'Read it here.'} tag='advice' actionPath='/' />
+      return <UpdatePanelStrip header={"Everything you need to know."} subHeader={'Read it here.'} tag='advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'addMember':{
-      return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} tag='advise' actionPath='/userHome' />
+      return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} tag='advise' actionPath='/userHome' self='false' user_id={props.location.state.user_id} />
     }
     case 'healthStatus':{
-      return <UpdatePanelStrip header={"Update health status ."} subHeader={'To get your recommended checkups'} tag='checkup' actionPath='/addRisk' />
+      return <UpdatePanelStrip header={"Update health status."} subHeader={'To get your recommended checkups'} tag='checkup' actionPath='/addRisk' self='false' user_id={props.location.state.user_id} />
     }
-    case 'PastCheckup ':{
-      return <UpdatePanelStrip header={"Update your past checkup dates ."} subHeader={'When was the last time you did the routine blood tests? We will automatically tell you when the next one is due!'} tag='checkup' actionPath='/healthPlan' />
+    case 'pastCheckup':{
+      return <UpdatePanelStrip header={"Update your past checkup dates ."} subHeader={'When was the last time you did the routine blood tests? We will automatically tell you when the next one is due!'} tag='checkup' actionPath='/healthPlan' user_id={props.location.state.user_id}/>
     }
     case 'reminder':{
-      return <UpdatePanelStrip header={"Reminder: You have a checkup tomorrow."} subHeader={'Remember to take your past records & any questions you have.'} tag='checkup' actionPath='/calender' />
+      return <UpdatePanelStrip header={"Reminder: You have a checkup tomorrow."} subHeader={'Remember to take your past records & any questions you have.'} tag='checkup' actionPath='/calender' self='true' user_id={props.location.state.user_id} />
     } 
   }
 }
@@ -128,7 +128,7 @@ const createCheckupHandler = () =>{
         <button  onClick={viewPDF} >View PDF</button>
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="error" title="Error" content={"Something went wrong."} 
+           isOpen={open} type="error" title="Error" content={"Something went wrong."} autoHideDuration = '10000'
            />}
       </div>
     )

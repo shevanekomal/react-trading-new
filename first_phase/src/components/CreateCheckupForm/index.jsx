@@ -50,20 +50,35 @@ const CreateCheckupForm = (props) =>{
     setValidate(tempValidate)
   }, [FormData])
   
+  useEffect(() => {
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    return () => {
+        window.onbeforeunload = null;
+    };
+}, []);
+
 const addCheckupHandler = (e) =>{
   e.preventDefault()
   let data = {}
 if(isValidate){
+  let checkup_name = ''
+  if(FormData.checkup_name.value.includes('Others')){
+    checkup_name = FormData.self_checkup_name.value
+  }else
+  checkup_name = FormData.checkup_name.value
   data = {
-    checkup_name:FormData.checkup_name.value,
+    checkup_name:checkup_name,
     date:FormData.date.value,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
     user_id:props.location.state.user_id,
     checkup_id:props.location.state.checkup_id
 }
-console.log(data)
-if(props.location.state.checkup_id!== ''){
+console.log(props.location.state.checkup_id)
+if(props.location.state.checkup_id !== undefined&& props.location.state.checkup_id !== ''){
   let checkup_name = props.location.state.checkup_name
   let testName = props.location.state.testName
   let checkup_id = props.location.state.checkup_id

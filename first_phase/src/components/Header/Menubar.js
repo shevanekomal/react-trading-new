@@ -134,7 +134,7 @@ const [open, setOpen] = useState(false);
 
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="success" title="Success" content={'logged out...'} 
+           isOpen={open} type="success" title="Success" content={'logged out...'} autoHideDuration = '6000'
            vertical= 'top' horizontal= 'center' />}
       </div>
       </> :<div></div>
@@ -142,7 +142,7 @@ const [open, setOpen] = useState(false);
      {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
       <Link
-            to={loginUserId?'/userHome':"/"}
+            to={loginUserId?'/userHome':"/login"}
       >
            <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
           </Link>}

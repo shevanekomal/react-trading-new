@@ -28,6 +28,16 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
       setValidate(tempValidate)
   }, [FormData])
 
+  useEffect(() => {
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    return () => {
+        window.onbeforeunload = null;
+    };
+}, []);
+
   const onChangehandler = (event) =>{
     let value = event.target.value
     let error=''
@@ -51,7 +61,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
       })
     }*/
        
-    if(event.target.name ==='mobileNumber' && value.length < 10){
+    if(event.target.name ==='mobile_number' && value.length < 10){
          error = 'Please enter valid Mobile number'
         }
     if(event.target.name ==='confirmPassword' && value!= FormData.password.value){
@@ -72,16 +82,27 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
       <div>
       {width> 990 && <div className='Header'>Register</div>}
       <FormRow
-            type="number"
-            label="Mobile number"
-            name="mobileNumber"
+            type="text"
+            label="Name"
+            name="Name"
             required={true}
             changeHandler={(e)=>onChangehandler(e)}
-            error = {FormData.mobileNumber.error}
+            error = {FormData.Name.error}
+            onInput = {(e) =>{ 
+             // e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
+            }}
+       />
+      <FormRow
+            type="number"
+            label="Mobile number"
+            name="mobile_number"
+            required={true}
+            changeHandler={(e)=>onChangehandler(e)}
+            error = {FormData.mobile_number.error}
             onInput = {(e) =>{ 
               e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,10)
             }}
-          />
+       />
           <FormRow
             type="password"
             label="Create password"
@@ -99,9 +120,10 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
             changeHandler={(e)=>onChangehandler(e)}
             
           />
-         <p style={{textAlign:'left'}}><CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By using HiJeevan, you confirm that you accept our ',name:'By using HiJeevan, you confirm that you accept our '}]} />
+          {/* <CheckboxesGroup name='loginWithOtp'  onChange={(e)=>onChangehandler(e)} options={[ {text:'By using HiJeevan, you confirm that you accept our ',name:'By using HiJeevan, you confirm that you accept our '}]} />*/}
+         <p style={{textAlign:'left'}}>By using HiJeevan, you confirm that you accept our 
          <a style={{color:'blue'}} href="https://www.hijeevan.com/privacy-policy" target='_blank'>
-         Privacy Policy
+          Privacy Policy
           </a>
          </p>
          <Buttons onClick={(e)=>{

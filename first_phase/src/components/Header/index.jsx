@@ -66,6 +66,7 @@ const Header = (props) => {
 
   if(e.target.textContent === 'Sign out') {
     window.localStorage.setItem('x-access-token','')
+    window.localStorage.setItem('user_id','')
    // alert("logged out...")
    setOpen(true)
    // <Redirect to={{pathname: '/login'}}/>
@@ -132,6 +133,7 @@ const Header = (props) => {
         addActiveCssOnClick(e)}}>About us</div>
       <div onClick={(e) =>{
          window.localStorage.setItem('x-access-token','')
+         window.localStorage.setItem('user_id','')
         // alert("logged out...")
         setOpen(true)
         history.push('/login');
@@ -170,7 +172,7 @@ const Header = (props) => {
       </div>
       { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="success" title="Success" content={'logged out...'} 
+           isOpen={open} type="success" title="Success" content={'logged out...'} autoHideDuration = '6000'
            vertical= 'top' horizontal= 'center' />}
      </div> 
     </div>

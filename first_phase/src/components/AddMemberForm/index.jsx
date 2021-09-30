@@ -18,10 +18,10 @@ const AddMemberForm = (props) =>{
       value:'',
       error:''
     },
-    whatsAppNumber:{
+  /*  whatsAppNumber:{
       value:'',
       error:''
-    },
+    },*/
     Number:{
       value:'',
       error:''
@@ -43,14 +43,28 @@ const AddMemberForm = (props) =>{
         setValidate(false)
         return;
       }
-      if(key === 'whatsAppNumber' && isNumberIsDiff == true && value.value=== ''){
+      if(key === 'Number' && value.value=== ''){
         setValidate(false)
         return;
       }
+     /* if(key === 'whatsAppNumber' && isNumberIsDiff == true && value.value=== ''){
+        setValidate(false)
+        return;
+      }*/
     }
     setValidate(tempValidate)
     console.log(isValidate)
   }, [FormData,isNumberIsDiff])
+
+  useEffect(() => {
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    return () => {
+        window.onbeforeunload = null;
+    };
+}, []);
   
 const addMemberHandler = (e) =>{
   e.preventDefault()
@@ -59,7 +73,7 @@ if(isValidate){
   data = {
     name:FormData.name.value,
     Number:FormData.Number.value,
-    whatsAppNumber:FormData.whatsAppNumber.value,
+    //whatsAppNumber:FormData.whatsAppNumber.value,
     userType:self ? 'user' : 'subUser',
     Relation:!self ? FormData.Relation.value: '',
     user_id:props.location.state.user_id,  // added by swap
@@ -67,7 +81,7 @@ if(isValidate){
 
 addMember(data).then((response)=>{
   if(response.status){
-    if(self){
+  /*  if(self){
       props.history.push({
         pathname: '/addRiskSelf',
         state: {self,user_id:response.data.user_id}, // added by swap
@@ -77,7 +91,11 @@ addMember(data).then((response)=>{
         pathname: '/addRisk',
         state: {self,user_id:response.data.user_id}, // added by swap
       })
-    }
+    }*/
+    props.history.push({
+      pathname: '/addRisk',
+      state: {self,user_id:response.data.user_id}, // added by swap
+    })
    
   } 
 })
@@ -86,8 +104,8 @@ addMember(data).then((response)=>{
   const onChangehandler = (event) =>{
     let value = event.target.value
     let error=''
-    if((event.target.name ==='Number' || event.target.name ==='whatsAppNumber') && value.length < 10){
-         error = 'Please enter valid Mobile number'
+    if(event.target.name ==='Number' && value.length < 10){
+         error = 'Please enter valid mobile number'
         }
     setFormData({
       ...FormData,
@@ -131,7 +149,7 @@ addMember(data).then((response)=>{
         ,{text:'Wife',value:'wife'},{text:'Husband',value:'husband'}]} >Relation</SinglSelectDropDown>
         </>}
         <br/>
-       
+        { /*
         <RadioButton name={'addNewField1'} required={true}  options={[ {text:'yes',value:'yes'}, {text:'No',value:'no'}]} defaultValue={'no'} onChange={(e)=>{
           e.target.value === 'yes' ? setIsNumberDiff(true) : setIsNumberDiff(false)
         }}>{self ?('Is the phone number you used to register different than your whatsapp number?') :('Is the phone number above different than the members WhatsApp number?') } 
@@ -151,6 +169,7 @@ addMember(data).then((response)=>{
             tooltipTitle={'We will use this number to send reminders about your checkups. You can switch off & control what notifications you get later.'}
             
         />}
+        */}
         { /*
           !self && <div className='container'> <Link to="/shareWithMember">Am I an account creater or family member?</Link></div>
         */}

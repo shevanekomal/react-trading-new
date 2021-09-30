@@ -28,13 +28,14 @@ const UserHome =(props)=>{
       }else{
         props.history.push({
           pathname: '/addMember',
-          state: {self:false,user_id :user_id}
+         // state: {self:false,user_id :user_id}
+         state: {self:false,user_id :window.localStorage.getItem('user_id')}
         })
       }
      
     }
     useEffect(() => {
-     getFamilyMembers()
+     getFamilyMembers(window.localStorage.getItem('user_id'))
     }, [])
     return (
       <div className='UserHome'>
@@ -49,7 +50,7 @@ const UserHome =(props)=>{
           </div>
           { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="error" title="Error" content={'You can add maximum 6 members only'} 
+           isOpen={open} type="error" title="Error" content={'You can add maximum 6 members only'} autoHideDuration = '10000'
            vertical= 'top' horizontal= 'center' />}
         </div>
        
