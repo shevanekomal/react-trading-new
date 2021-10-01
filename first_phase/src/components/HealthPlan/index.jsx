@@ -40,10 +40,10 @@ const HealthPlan = (props)=> {
     }
     getHealthPlanDetails(props.location.state.user_id)
   },[])
-  const createCheckupHandler = () =>{
+  const createCheckupHandler = (test) =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: {user_id:props.location.state.user_id,checkup_name:''}
+      state: test ? {...test} :{user_id:props.location.state.user_id,checkup_name:''}
     })
   }
  
@@ -112,7 +112,7 @@ const HealthPlan = (props)=> {
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
           <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span onClick={createCheckupHandler} >Create</span>
-          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={clickHandler} />))}
+          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={()=>createCheckupHandler(test)} />))}
         </div>
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 

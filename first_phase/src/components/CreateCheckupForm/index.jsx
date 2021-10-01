@@ -18,14 +18,14 @@ const CreateCheckupForm = (props) =>{
     createEvent
   } = useContext(FieldDataContext)
   const [isValidate,setValidate] = useState(false)
-  
+	
   const [FormData,setFormData] = useState({
     checkup_name:{
       value:'',
       error:''
     },
     self_checkup_name:{
-      value:'',
+      value:props?.location?.state?.checkup_name || '',
       error:''
     },
     date:{
@@ -33,11 +33,11 @@ const CreateCheckupForm = (props) =>{
       error:''
     },
     provider:{
-      value:'',
+      value:props?.location?.state?.provider || '',
       error:''
     },
     provider_website:{
-      value:'',
+      value:props?.location?.state?.provider_website || '',
       error:''
     },
   }) 
@@ -45,7 +45,9 @@ const CreateCheckupForm = (props) =>{
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
-     
+      if((!!value.error || value.value=='' || (value.value && value.value.length == 0) ) && key!='checkup_name' && key!='provider' && key!='provider_website'){ 
+        tempValidate = false;
+       }
     }
     setValidate(tempValidate)
   }, [FormData])
@@ -227,6 +229,7 @@ const defaultProps = {
           placeholder="Add Provider"
           required={true}
           changeHandler={onChangehandler}
+          defaultValue={FormData.provider.value} 
         />
           </Grid>
         </Grid>
@@ -241,6 +244,7 @@ const defaultProps = {
           required={true}
           className='provider'
           changeHandler={onChangehandler}
+          defaultValue={FormData.provider_website.value}
         />
          </Grid>
         </Grid>

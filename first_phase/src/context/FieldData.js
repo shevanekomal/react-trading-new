@@ -343,6 +343,18 @@ getProfilePicture=(relation)=>{
         console.log("Error",result)
       }
     }),
+    getAppointments:debounce(async(month)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/getAppointments/'+month
+      })
+      if(result.status){
+        return result
+      }else{
+        alert("Error",result.messages)
+        console.log("Error",result)
+      }
+    }),
   }
 
   render() {
