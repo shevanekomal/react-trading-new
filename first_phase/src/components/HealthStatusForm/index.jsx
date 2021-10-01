@@ -78,12 +78,12 @@ let obj = {
   },
 };
 useEffect(() => {
-  // if(['None of the below'].includes(state.diagnosedCondition.value[0])){
-  //   disableConditions('diagnosedCondition',true)
-  // }
-  // if(['None of the below'].includes(state.familyHistoryConditions.value[0])){
-  //   disableConditions('familyHistoryConditions',true)
-  // }
+  if(['None of the below'].includes(state.diagnosedCondition.value[0])){
+    disableConditions('diagnosedCondition',true)
+  }
+  if(['None of the below'].includes(state.familyHistoryConditions.value[0])){
+    disableConditions('familyHistoryConditions',true)
+  }
 },[state.diagnosedCondition.value,state.familyHistoryConditions.value])
 useEffect(() => {
  //temp added to solve disable option issue for sub user
@@ -93,9 +93,8 @@ useEffect(() => {
   
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
-        let val =  (key == 'diagnosedCondition' || key == 'familyHistoryConditions') ? [...value] : value
       obj[key] = {
-        value:val,
+        value:(key == 'diagnosedCondition' || key == 'familyHistoryConditions') ? [...value] : value,
         error:''
       };
     }
