@@ -24,10 +24,10 @@ const Register = (props) => {
       value:'',
       error:''
     },
-    loginWithOtp:{
+   /* loginWithOtp:{
       value:'',
       error:''
-    },
+    },*/
   }) 
   const [open, setOpen] = useState(false);
   let alertMsg='';

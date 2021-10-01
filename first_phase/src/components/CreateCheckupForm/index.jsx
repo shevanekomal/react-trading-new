@@ -68,16 +68,17 @@ if(isValidate){
   if(FormData.checkup_name.value.includes('Others')){
     checkup_name = FormData.self_checkup_name.value
   }else
-  checkup_name = FormData.checkup_name.value
+  checkup_name = FormData.checkup_name.value  
   data = {
     checkup_name:checkup_name,
-    date:FormData.date.value,
+   // date:FormData.date.value,
+   date:selectedDate,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
     user_id:props.location.state.user_id,
     checkup_id:props.location.state.checkup_id
 }
-console.log(props.location.state.checkup_id)
+//console.log(props.location.state.checkup_id)
 if(props.location.state.checkup_id !== undefined&& props.location.state.checkup_id !== ''){
   let checkup_name = props.location.state.checkup_name
   let testName = props.location.state.testName
@@ -158,18 +159,17 @@ const deleteOrCancelCheckupHandler = (e) =>{
   const handleDateChange = (date) => {
     setStartDate(date)
    setSelectedDate(date);
-
+    console.log(date)
   let error = ''
   let value = date;
 
   setFormData({
     ...FormData,
     ['date']:{
-        value,
+      value:date,
         error:error
     }
     })
-
 };
 const defaultProps = {
   options: checkup_names,

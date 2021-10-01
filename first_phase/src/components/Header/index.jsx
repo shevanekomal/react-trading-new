@@ -78,19 +78,34 @@ const Header = (props) => {
     })
   }
   } 
-  
+  const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+  };
+  const redirectToHealthPlan = () => { 
+   let user_id1 = window.localStorage.getItem('subuser_id')
+    history.push({
+      pathname:'/healthPlan',
+      state:{user_id :user_id1}
+    })
+
+  };
   const [width, height] = useWindowSize();
   return (
+    
     <div className='Home'>
+      <div>
+    {/*<TestDetails parentCallback = {handleCallback}/>
+    <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
+    </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{currentPath=='/test' && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.goBack()}}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{currentPath=='/test' && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={redirectToHealthPlan}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={loginUserId?'/userHome':"/"}
       >
            <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
           </Link>}</div>
-    :(['/test'].includes(currentPath) ? <div className='customNav'> <div> <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>{history.push({pathname:'/healthPlan',state:{user_id}})}}/></div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    :(['/test'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={redirectToHealthPlan}/></div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
      <Link
            to={loginUserId?'/userHome':"/"}

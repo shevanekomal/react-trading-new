@@ -11,11 +11,14 @@ import {Alerts} from '../InputFields'
 const MyProfile =(props)=> {
   
   const {
-    getUserNotifications
+    getUserNotifications,
+    getRecommendedAndSelfAddedCount
   } = useContext(FieldDataContext)
   const [result,setResult] = useState({ updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
   day:'Today'})
   const [open, setOpen] = useState(false);
+  const [recommCount, SetRecommCount] = useState(0);
+  const [selfCount, SetSelfCount] = useState(0);
   let alertMsg = ''
   //reffer below result
    /*const result={
@@ -24,11 +27,18 @@ const MyProfile =(props)=> {
    }*/
   useEffect(()=>{
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
-      console.log(result)
+   //   console.log(result)
       alertMsg = result.messages || "something went wrong!!"
       (result.status) ? setResult(result.data): (setOpen(true))
      
   })
+  //to get recommended and self added count
+  getRecommendedAndSelfAddedCount(props.location.state.user_id).then((result)=>{
+    if(result.status){
+      SetRecommCount(result.data.recommendedcount)
+      SetSelfCount(result.data.selfAddedCount)
+    }
+})
   },[])
   const healthStatusClickHandler = (user_id) =>{
     props.history.push({
@@ -117,8 +127,8 @@ const createCheckupHandler = () =>{
         <div className='PlanHeader'>
           <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
-          <span className='checkupType'>{0} Recommended checkups</span><br />
-          <span className='checkupType'>{0} Self-added checkups</span></div>
+          <span className='checkupType'>{recommCount} Recommended checkups</span><br />
+          <span className='checkupType'>{selfCount} Self-added checkups</span></div>
           
         </div>
         <div className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>

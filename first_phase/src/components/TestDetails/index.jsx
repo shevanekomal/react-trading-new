@@ -14,9 +14,10 @@ import Add_test from '../../assets/Add_test.svg';
     user_id
   } = useContext(FieldDataContext)
   useEffect(()=>{
+  
  !((props.location.state && props.location.state.user_id) || user_id) && props.history.push("/")
    //added below lines of code for refresh and commented above line by swap
-   console.log(props.location.state)
+  // console.log(props.location.state)
   /* getCheckupDetails(props.location.state.checkup_id,props.location.state.user_id).then(result=>{
     if(result.status){
       console.log(result.data)
@@ -26,11 +27,14 @@ import Add_test from '../../assets/Add_test.svg';
       })
     }
   })*/
+  //sendDataToParent('aa')
+  window.localStorage.setItem('subuser_id',props.location.state.user_id)
+  
   },[])
-  let checkup_id = props.location.state!=undefined ?  props.location.state.checkup_id : ''
-  let checkup_name = props.location.state!=undefined ? props.location.state.checkup_name : ''
+  let checkup_id =  props.location != undefined && props.location.state!=undefined ?  props.location.state.checkup_id : ''
+  let checkup_name =  props.location != undefined && props.location.state!=undefined ? props.location.state.checkup_name : ''
 
-  let testName = props.location.state!=undefined ?  props.location.state.testName : ''
+  let testName =  props.location != undefined && props.location.state!=undefined ?  props.location.state.testName : ''
 
   const getDetails=(direction)=>{
     let newCheckUpId = checkup_id;
@@ -74,7 +78,7 @@ import Add_test from '../../assets/Add_test.svg';
 const fetchDetails=(checkupId)=>{
   getCheckupDetails(checkupId,props.location.state.user_id).then(result=>{
     if(result.status){
-      console.log(result.data)
+     // console.log(result.data)
       props.history.push({
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}

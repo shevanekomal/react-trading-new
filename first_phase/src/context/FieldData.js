@@ -327,6 +327,22 @@ getProfilePicture=(relation)=>{
         console.log("Error",result)
       }
     }),
+    getRecommendedAndSelfAddedCount:debounce(async(user_id)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/getRecommendedAndSelfAddedCount/'+user_id
+      })
+      if(result.status){
+        this.setState({
+          ...this.state,
+        //  userHealthDetails:result.data
+        })
+        return result
+      }else{
+        alert("Error",result.messages)
+        console.log("Error",result)
+      }
+    }),
   }
 
   render() {

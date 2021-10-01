@@ -31,6 +31,7 @@ const [open, setOpen] = useState(false);
     setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
     if(linkClass === 'signOutLinkClass') {
       window.localStorage.setItem('x-access-token','')
+      window.localStorage.setItem('user_id','')
       setOpen(true)
      // alert("logged out...")
      // <Redirect to={{pathname: '/login'}}/>
@@ -43,7 +44,15 @@ const [open, setOpen] = useState(false);
     switch(currentPath){
       case '/addMember': return currentState!=undefined && !currentState.self ? 'Add Member' :  `Let's Start`;
       case '/addRisk': return `Health Status`;
+      case '/addRiskSelf': return `Health Status`;
       case '/healthPlan': return `Your Health Plan`;
+      case '/test': return `Your Health Plan`;
+      case '/userSetting': return `Settings`;
+      case '/myProfile': return `Your Profile`;
+      case '/calender': return `Calender`;
+      case '/createCheckup': return `Create`;
+      case '/login': return `Login`;
+      case '/': return `Register`;
      // default : return currentPath.toUpperCase().replace('/','')
     }
   }
@@ -144,7 +153,7 @@ const [open, setOpen] = useState(false);
      {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
-            to={loginUserId?'/userHome':"/login"}
+            to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
       >
            <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" />
           </Link>}
