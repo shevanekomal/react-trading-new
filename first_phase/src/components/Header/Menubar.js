@@ -32,6 +32,7 @@ const [open, setOpen] = useState(false);
     if(linkClass === 'signOutLinkClass') {
       window.localStorage.setItem('x-access-token','')
       window.localStorage.setItem('user_id','')
+      window.localStorage.setItem('subuser_id','')
       setOpen(true)
      // alert("logged out...")
      // <Redirect to={{pathname: '/login'}}/>
@@ -40,7 +41,7 @@ const [open, setOpen] = useState(false);
   }
   const show = state.menu ? "show" : "";
   const getLabel=(currentPath)=>{
-    console.log(currentPath)
+    
     switch(currentPath){
       case '/addMember': return currentState!=undefined && !currentState.self ? 'Add Member' :  `Let's Start`;
       case '/addRisk': return `Health Status`;
@@ -51,8 +52,8 @@ const [open, setOpen] = useState(false);
       case '/myProfile': return `Your Profile`;
       case '/calender': return `Calender`;
       case '/createCheckup': return `Create`;
-      case '/login': return `Login`;
-      case '/': return `Register`;
+     // case '/login': return `Login`;
+      //case '/': return `Register`;
      // default : return currentPath.toUpperCase().replace('/','')
     }
   }
@@ -70,7 +71,7 @@ const [open, setOpen] = useState(false);
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       } */}
 
-<span className='pageHeader'>{getLabel(currentPath)}</span>
+      <span className='pageHeader'>{getLabel(currentPath)}</span>
       <div style={{padding: '10px'}} className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
         <div className="navbar-toggler">

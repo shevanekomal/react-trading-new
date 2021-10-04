@@ -1,4 +1,5 @@
 export default function CheckboxesGroup({children,withoutLable,name,options,onChange,required,error,validate,label,defaultValue}) {
+  
   return (
     <div className='Checkbox'>
       {!withoutLable && (<><label className='CheckboxHeader'>{label}{required && <span style={{color:'red'}}> *</span>}{children}</label><br/></>)}

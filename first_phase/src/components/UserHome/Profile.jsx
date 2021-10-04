@@ -36,7 +36,7 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
       <div className='Profile'>
       <table>
         <tr> 
-          <td colspan="2"><img src={profileIcon} alt="Logo" onClick={clickHandler}/></td>
+          <td colspan="2"><img src={profileIcon} alt="Logo" onClick={clickHandler} style={{cursor: 'pointer'}}/></td>
           {/* <div className='ProfileButtonContainer'>
             <div>+9</div>
             </div> */}

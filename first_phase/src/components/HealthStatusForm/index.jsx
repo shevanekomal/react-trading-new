@@ -94,7 +94,7 @@ useEffect(() => {
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
     for (const [key, value] of Object.entries(props.location.state.userHealthDetails)) {
       obj[key] = {
-        value:(key == 'diagnosedCondition' || key == 'familyHistoryConditions') ? [...value] : value,
+        value:(key == 'diagnosedCondition' || key == 'familyHistoryConditions') ? [...JSON.parse(value)] : value,
         error:''
       };
     }
@@ -104,7 +104,7 @@ useEffect(() => {
          ...state,
          ...obj
     })
-    //console.log(state.diagnosedCondition.value)
+   // console.log(state.diagnosedCondition.value)
    }else{
     //below code for page reload
     window.onbeforeunload = function() {
@@ -140,7 +140,7 @@ const updateValues = (name,value) =>{
       error:error
     }
   })
-    console.log(state)
+   // console.log(state)
 }
 const [selectedDate, setSelectedDate] = React.useState(state.birthdate.value);
 //const [selectedGender, setSelectedGender] = React.useState('female');
@@ -151,7 +151,7 @@ const handleDateChange = (date) => {
   let value = date;
 //  setSelectedDate(date);
 let age = _calculateAge(date)
-console.log(age)
+//console.log(age)
 if(new Date() < date){
   error = 'Please select date before today'
 }else if(age<19){
@@ -199,7 +199,7 @@ const handleChange =(e) =>{
       return
     }
     let arr = state[name].value
-    console.log(arr)
+    //console.log(arr)
     !arr.includes(`${e.target.value}`)?arr.push(e.target.value):arr=[...arr.slice(0,arr.indexOf(e.target.value)),...arr.slice(arr.indexOf(e.target.value)+1)] 
       value=arr
   }
@@ -259,7 +259,7 @@ addDetails(data).then((response)=>{
 }
 }
 const onSkipHandler = () =>{
-  console.log('on skip '+props.location.state.user_id)
+ // console.log('on skip '+props.location.state.user_id)
   props.history.push({
     pathname: '/userHome',
    state: {self:true,user_id:props.location.state.user_id}
@@ -308,7 +308,7 @@ const validate =(e)=>{
           </RadioButton>
           <CustomTextBox type={'number'} defaultValue={state.smoking.value} setState={setState} state={state} required={true} name='smoking' validate={validate} error={state.smoking.error} valueText='If you have never smoked, then enter 0. Calculate your pack-year by multiplying the number of packs of cigarettes smoked per day by the number of years you have smoked. For example, if you have smoked a pack a day for the last 20 years, or two packs a day for the last 10 years, you have 20 pack-years.'>How many pack-years have you smoked if you currently smoke or have quit within 15 years? </CustomTextBox>
           <CheckboxesGroup name='diagnosedCondition' required={true}  defaultValue={state.diagnosedCondition.value} options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
-          { state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
+          { state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' defaultValue={state.diagnosedCondition.value} onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
           <CheckboxesGroup name='familyHistoryConditions' defaultValue={state.familyHistoryConditions.value} required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
           <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
            { open && 

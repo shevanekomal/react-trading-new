@@ -53,7 +53,7 @@ const AddMemberForm = (props) =>{
       }*/
     }
     setValidate(tempValidate)
-    console.log(isValidate)
+    //console.log(isValidate)
   }, [FormData,isNumberIsDiff])
 
   useEffect(() => {

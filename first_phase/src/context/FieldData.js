@@ -287,6 +287,14 @@ getProfilePicture=(relation)=>{
       })
      return result
     }),
+    deleteCheckupEventPlan:debounce(async(data)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/deleteEvent/',
+        data
+      })
+     return result
+    }),
     addMember: debounce(async (data) => {
       const result = await httpClient({
         method: 'POST',
@@ -295,14 +303,14 @@ getProfilePicture=(relation)=>{
       })
       return result
     }),
-    createSelfAddedPlan: debounce(async (data) => {
+   /* createSelfAddedPlan: debounce(async (data) => {
       const result = await httpClient({
         method: 'POST',
         urlEndpoint: '/createSelfAddedPlan',
         data,
       })
       return result
-    }),
+    }),*/
     createEvent: debounce(async (data) => {
       const result = await httpClient({
         method: 'POST',
@@ -343,10 +351,10 @@ getProfilePicture=(relation)=>{
         console.log("Error",result)
       }
     }),
-    getAppointments:debounce(async(month)=>{
+    getAppointments:debounce(async(user_id)=>{
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: '/getAppointments/'+month
+        urlEndpoint: '/getUserEventsById/'+user_id
       })
       if(result.status){
         return result
