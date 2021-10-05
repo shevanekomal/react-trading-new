@@ -35,7 +35,12 @@ const UserHome =(props)=>{
      
     }
     useEffect(() => {
-     getFamilyMembers(window.localStorage.getItem('user_id'))
+     getFamilyMembers(window.localStorage.getItem('user_id')).then(result=>{
+      if(!result){   
+        props.history.push('/login')
+      }
+      });
+     
     }, [])
     return (
       <div className='UserHome'>

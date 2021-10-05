@@ -253,7 +253,9 @@ addDetails(data).then((response)=>{
         pathname: '/userHome',
        state: {self:true,user_id:response.data.user_id}
       })
-  } 
+  }else {
+    props.history.push('/login')
+  }
   setLoader(false)
 })
 }

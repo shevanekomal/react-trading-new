@@ -28,9 +28,17 @@ const MyProfile =(props)=> {
    }*/
   useEffect(()=>{
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
-   //   console.log(result)
-      alertMsg = result.messages || "something went wrong!!"
-      (result.status) ? setResult(result.data): (setOpen(true))
+   if(result.status){
+   
+     setResult(result.data)
+   }else {
+     alertMsg = result.messages || "something went wrong!!"
+     setOpen(true);
+     props.history.push({
+      pathname: '/login'
+    })
+   }
+      
      
   })
   //to get recommended and self added count
@@ -38,6 +46,10 @@ const MyProfile =(props)=> {
     if(result.status){
       SetRecommCount(result.data.recommendedcount)
       SetSelfCount(result.data.selfAddedCount)
+    }else {
+      props.history.push({
+        pathname: '/login'
+      })
     }
 })
   },[])
@@ -110,7 +122,7 @@ const createCheckupHandler = () =>{
         <div>
           <span>{new Date().toLocaleString('en-us',{day:'numeric'}) +' '+ new Date().toLocaleString('en-us',{month:'long', year:'numeric'}) }</span>
           <span style={{cursor: 'pointer'}} onClick={handleCalender}>Open Calender{' '}
-          <FontAwesomeIcon  name='calender' icon={faAngleRight} onClick={handleCalender} color="#17416B" size={'lm'} /></span>
+          <FontAwesomeIcon  name='calender' icon={faAngleRight} onClick={handleCalender} color="#17416B" size={'sm'} /></span>
         </div>
         <div style={{margin:'auto',marginRight:'0px'}}>
         <img src={PlusCircle} alt="Add_member Logo" onClick={createCheckupHandler} /> <span onClick={createCheckupHandler}>Create</span>

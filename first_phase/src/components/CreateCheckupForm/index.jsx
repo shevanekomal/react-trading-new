@@ -107,7 +107,9 @@ if(props.location.state.checkup_id !== undefined && props.location.state.checkup
           pathname: '/test',
           state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}, // added by swap
     })
-    } 
+    } else {
+      props.history.push('/login')
+    }
   });
   
 }else{
@@ -117,6 +119,8 @@ if(props.location.state.checkup_id !== undefined && props.location.state.checkup
         pathname: '/healthPlan',
         state: {user_id:props.location.state.user_id}, // added by swap 
       })
+    }else {
+      props.history.push('/login')
     }
   })
 }
@@ -159,6 +163,8 @@ const deleteOrCancelCheckupHandler = (e) =>{
            })
           }
         
+       } else {
+        props.history.push('/login')
        }
       })
     }else{

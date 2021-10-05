@@ -24,9 +24,12 @@ const HealthPlan = (props)=> {
     getHealthPlanDetails,
     user_id
   } = useContext(FieldDataContext)
-  console.log(testsRecommanded.SelfAdded)
+  
   const clickHandler=(test,testName)=>{
     getCheckupDetails(test.checkup_id,props.location.state.user_id).then(result=>{
+      if(result.status){
+        
+      }
       props.history.push({
         pathname: '/test',
         state: { ...test,testName,user_id:props.location.state.user_id}
@@ -38,7 +41,14 @@ const HealthPlan = (props)=> {
        props.history.push('/');
       return
     }
-    getHealthPlanDetails(props.location.state.user_id)
+    getHealthPlanDetails(props.location.state.user_id).then(result=>{
+      if(!result){   
+        props.history.push({
+          pathname: '/login'
+        })
+      }
+    });
+    
   },[])
   const createCheckupHandler = () =>{
     props.history.push({

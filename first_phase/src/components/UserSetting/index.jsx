@@ -89,7 +89,9 @@ const UserSetting =(props)=>{
     // familyHistoryConditions:['Cancer - Breast']
     //     }
   
-    } 
+    } else {
+      props.history.push('/login')
+    }
     })     
     }
     const handleClick = (e)=>{
@@ -105,7 +107,9 @@ const UserSetting =(props)=>{
               })}else{
                 props.history.push("/")
               } 
-            } 
+            } else {
+              props.history.push("/login")
+            }
           })
        }else if(e.target.innerText === 'NO'){
           setOpen(false) 

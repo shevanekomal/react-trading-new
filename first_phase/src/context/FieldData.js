@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
 import debounce from 'debounce-promise'
 import httpClient from './httpClient'
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar';
+import  { Redirect } from 'react-router-dom'
+import { Link } from "react-router-dom";
 const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
+
+  constructor(props) {
+    super(props);
+    this.positionState = {
+      vertical: 'top',
+      horizontal: 'center'
+    };
+
+    const {vertical,horizontal } = this.positionState;
+  }
   state = {
+    open:false,
      accessToken:'',
      user_id:null,
      userHealthDetails:[{}],
@@ -214,8 +232,6 @@ getProfilePicture=(relation)=>{
           ...this.state,
           testDetails:result.data
         })
-      }else{
-        console.log("Error",result)
       }
       return result
     }),
@@ -243,7 +259,8 @@ getProfilePicture=(relation)=>{
         })
         return true
       }else{
-        console.log("Error",result)
+        this.setState({ ...this.state,open:true})
+        return false
       }
     }),
     getFamilyMembers:debounce(async(user_id)=>{
@@ -260,7 +277,8 @@ getProfilePicture=(relation)=>{
         })
         return true
       }else{
-        console.log("Error",result)
+        this.setState({ ...this.state,open:true})
+        return false
       }
     }),
     //below 2 calls added by swap
@@ -275,10 +293,9 @@ getProfilePicture=(relation)=>{
           ...this.state,
           userHealthDetails:result.data
         })
-        return result
-      }else{
-        console.log("Error",result)
+        
       }
+      return result
     }),
     deleteMemberProfile:debounce(async(user_id)=>{
       const result = await httpClient({
@@ -329,11 +346,9 @@ getProfilePicture=(relation)=>{
           ...this.state,
         //  userHealthDetails:result.data
         })
-        return result
-      }else{
-        alert("Error",result.messages)
-        console.log("Error",result)
+       
       }
+      return result
     }),
     getRecommendedAndSelfAddedCount:debounce(async(user_id)=>{
       const result = await httpClient({
@@ -345,29 +360,23 @@ getProfilePicture=(relation)=>{
           ...this.state,
         //  userHealthDetails:result.data
         })
-        return result
-      }else{
-        alert("Error",result.messages)
-        console.log("Error",result)
+       
       }
+      return result
     }),
     getAppointments:debounce(async(user_id)=>{
       const result = await httpClient({
         method: 'POST',
         urlEndpoint: '/getUserEventsById/'+user_id
       })
-      if(result.status){
         return result
-      }else{
-        alert("Error",result.messages)
-        console.log("Error",result)
-      }
     }),
   }
 
   render() {
     return (
-      <FieldDataContext.Provider
+      <>
+         <FieldDataContext.Provider
         value={{
           ...this.state,
           ...this.methods
@@ -375,6 +384,28 @@ getProfilePicture=(relation)=>{
       >
         {this.props.children}
       </FieldDataContext.Provider>
+      { this.state.open && <Snackbar style={{ height: "160%" }}
+        open={this.state.open} autoHideDuration='6000' onClose={()=>this.setState({open:false})}  >
+      <Alert
+        severity={'error'}
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={()=>this.setState({open:false})} 
+            >
+              <CloseIcon  fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+        <AlertTitle><b>{'Error'}</b></AlertTitle>
+        {'Logged out. Please login again'}
+        </Alert>
+        </Snackbar>}
+    
+      </>
     )
   }
 }

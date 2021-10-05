@@ -26,6 +26,8 @@ import Add_test from '../../assets/Add_test.svg';
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
       })
+    }else {
+      props.history.push('/login')
     }
   })
   //sendDataToParent('aa')
@@ -84,6 +86,8 @@ const fetchDetails=(checkupId)=>{
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
       })
+    }else {
+      props.history.push('/login')
     }
   })
 }

@@ -31,6 +31,8 @@ const CalenderDetails =(props)=>{
      if(result.data.Events.length > 0)
         setResult(result.data.Events)
      // console.log(appointments)
+    }else {
+      props.history.push('/login')
     }
   })
   
