@@ -11,8 +11,6 @@ import {
   AppointmentTooltip
 } from "@devexpress/dx-react-scheduler-material-ui";
 
-
-
 export default class Schedular extends React.PureComponent {
   constructor(props) {
     super(props);

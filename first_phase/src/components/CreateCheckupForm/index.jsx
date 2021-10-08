@@ -10,13 +10,18 @@ import DateRangeIcon from '@material-ui/icons/DateRange'
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import './CreateCheckupForm.css';
+import { useHistory } from "react-router-dom";
+
 const CreateCheckupForm = (props) =>{
  
   const {
     checkup_names,
-    createSelfAddedPlan,
-    createEvent
+    //createSelfAddedPlan,
+    createEvent,
+    deleteCheckupEventPlan
   } = useContext(FieldDataContext)
+  const history = useHistory();
+
   const [isValidate,setValidate] = useState(false)
 	
   const [FormData,setFormData] = useState({
@@ -45,14 +50,25 @@ const CreateCheckupForm = (props) =>{
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
-      if((!!value.error || value.value=='' || (value.value && value.value.length == 0) ) && key!='checkup_name' && key!='provider' && key!='provider_website'){ 
+      if((!!value.error || value.value=='' || (value.value && value.value.length == 0) )&&key!='self_checkup_name' && key!='date'&&key!='checkup_name' && key!='provider' && key!='provider_website'){ 
         tempValidate = false;
+        
+       }
+       if(key ==='self_checkup_name' && FormData.checkup_name.value.includes('Others') && value.value==''){
+        tempValidate = false;
+       }
+       if(key ==='checkup_name' && value.value != 'Others' && value.value != '' ){
+        tempValidate = true;
        }
     }
     setValidate(tempValidate)
   }, [FormData])
   
   useEffect(() => {
+    console.log(props.location.state.checkup_date)
+    { (props.location.state.checkup_date != undefined && props.location.state.checkup_date  != '' )
+     ?setStartDate(new Date(props.location.state.checkup_date.split('T')[0])) :setStartDate(new Date())}
+    
     window.onbeforeunload = function() {
         return true;
     };
@@ -74,14 +90,14 @@ if(isValidate){
   data = {
     checkup_name:checkup_name,
    // date:FormData.date.value,
-   date:selectedDate,
+    date:startDate,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
     user_id:props.location.state.user_id,
     checkup_id:props.location.state.checkup_id
 }
-//console.log(props.location.state.checkup_id)
-if(props.location.state.checkup_id !== undefined&& props.location.state.checkup_id !== ''){
+//console.log(data)
+if(props.location.state.checkup_id !== undefined && props.location.state.checkup_id !== null && props.location.state.checkup_id !== ''){
   let checkup_name = props.location.state.checkup_name
   let testName = props.location.state.testName
   let checkup_id = props.location.state.checkup_id
@@ -91,16 +107,20 @@ if(props.location.state.checkup_id !== undefined&& props.location.state.checkup_
           pathname: '/test',
           state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}, // added by swap
     })
-    } 
+    } else {
+      props.history.push('/login')
+    }
   });
   
 }else{
-  createSelfAddedPlan(data).then((response)=>{
+  createEvent(data).then((response)=>{
     if(response.status){
       props.history.push({
         pathname: '/healthPlan',
         state: {user_id:props.location.state.user_id}, // added by swap 
       })
+    }else {
+      props.history.push('/login')
     }
   })
 }
@@ -113,23 +133,48 @@ if(props.location.state.checkup_id !== undefined&& props.location.state.checkup_
 }
 
 const deleteOrCancelCheckupHandler = (e) =>{
-    let checkup_name = props.location.state.checkup_name
-    let testName = props.location.state.testName
-    let checkup_id = props.location.state.checkup_id
-    if(checkup_name != undefined && testName != undefined){
-     // give backend call to delete checkup date
 
-      props.history.push({
-        pathname: '/test',
-        state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}
-       , // added by swap
-    })
+    //if(checkup_name != undefined && testName != undefined){
+    if(e.target.innerText === 'DELETE'){
+      
+      let checkup_name = props.location.state.checkup_name
+      let testName = props.location.state.testName
+      let checkup_id = props.location.state.checkup_id
+      let data = {
+        checkup_id:checkup_id,
+        user_id:props.location.state.user_id,
+        checkup_name:checkup_name,
+        date:props.location.state.checkup_date
+      }
+     // console.log(data)
+       // give backend call to delete checkup event
+       deleteCheckupEventPlan(data).then((response)=>{
+        if(response.status){
+         // console.log(response)
+          if(response.messages == 'Self Added Event Deleted'){
+            props.history.push({
+              pathname: '/healthPlan',
+              state: {user_id:props.location.state.user_id}, // added by swap 
+            })
+          }else{
+            props.history.push({
+              pathname: '/test',
+              state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id},
+           })
+          }
+        
+       } else {
+        props.history.push('/login')
+       }
+      })
     }else{
+      //self added from calender page
       //self added chekcup from health plan page 
-      props.history.push({
+     /* props.history.push({
         pathname: '/healthPlan',
         state: {user_id:props.location.state.user_id}, // added by swap 
-      })
+      })*/
+      history.goBack()
     }
    
 }
@@ -161,10 +206,7 @@ const deleteOrCancelCheckupHandler = (e) =>{
   const handleDateChange = (date) => {
     setStartDate(date)
    setSelectedDate(date);
-    console.log(date)
   let error = ''
-  let value = date;
-
   setFormData({
     ...FormData,
     ['date']:{
@@ -191,16 +233,17 @@ const defaultProps = {
         required={true}
         validate={validate}
         onChange={onChangehandler} error={FormData.checkup_name.error}
-        renderInput={(params) => <TextField {...params} name='checkup_name' placeholder="Type Checkup Name" margin="normal" />}
+        renderInput={(params) => <TextField {...params} required={true} name='checkup_name' placeholder="Type Checkup Name" margin="normal" />}
       />) }
      {/*  <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
        onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>*/}
-       {FormData.checkup_name.value.includes('Others') && <FormRow
-          type="text"
-          label="Enter Checkup Name"
+       {FormData.checkup_name.value.includes('Others') &&  <InputBox
           name="self_checkup_name"
-          required={true}
+          placeholder="Enter Checkup Name *"
+          className='selfcheckup'
           changeHandler={onChangehandler}
+          required={true}
+          defaultValue={FormData.self_checkup_name.value}
         />}
         <Grid container spacing={1} alignItems="flex-end" >
             <Grid item>
@@ -227,7 +270,6 @@ const defaultProps = {
           name="provider"
           className='provider'
           placeholder="Add Provider"
-          required={true}
           changeHandler={onChangehandler}
           defaultValue={FormData.provider.value} 
         />
@@ -241,7 +283,6 @@ const defaultProps = {
          <InputBox
           name="provider_website"
           placeholder="Add Provider Website"
-          required={true}
           className='provider'
           changeHandler={onChangehandler}
           defaultValue={FormData.provider_website.value}
@@ -250,7 +291,7 @@ const defaultProps = {
         </Grid>
         <div style={{display:'flex',justifyContent:'center'}}>
         <Buttons onClick={(e)=>addCheckupHandler(e)} disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>DONE</Buttons>
-        <Buttons onClick={(e)=>deleteOrCancelCheckupHandler(e)}  bgColor={'#F0F3F5'} buttonColor='#BC433B' >{props.location.state.testName ? 'DELETE':'CANCEL'}</Buttons>
+        <Buttons onClick={(e)=>deleteOrCancelCheckupHandler(e)}  bgColor={'#F0F3F5'} buttonColor='#BC433B' >{props.location.state.checkup_name ? 'DELETE':'CANCEL'}</Buttons>
         </div>
       </form>) }
       

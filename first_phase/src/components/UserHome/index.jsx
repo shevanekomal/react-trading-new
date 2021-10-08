@@ -35,7 +35,12 @@ const UserHome =(props)=>{
      
     }
     useEffect(() => {
-     getFamilyMembers(window.localStorage.getItem('user_id'))
+     getFamilyMembers(window.localStorage.getItem('user_id')).then(result=>{
+      if(!result){   
+        props.history.push('/login')
+      }
+      });
+     
     }, [])
     return (
       <div className='UserHome'>
@@ -46,11 +51,11 @@ const UserHome =(props)=>{
           {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />): 
           (<Profile key={member.name} profileIcon={(member.relation==='brother' || member.relation==='husband')?(Man):((member.relation==='son')?(Boy):(member.relation==='daughter')?(Girl):(Woman))} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />):''))}
           <div className='AddMemberLogo'>
-          <img src={Add_member} alt="Add_member Logo" onClick={clickHandler}/>
+          <img style={{cursor: 'pointer'}} src={Add_member} alt="Add_member Logo" onClick={clickHandler}/>
           </div>
           { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
-           isOpen={open} type="error" title="Error" content={'You can add maximum 6 members only'} autoHideDuration = '10000'
+           isOpen={open} type="error" title="Error" content={'You can add maximum 5 family members only'} autoHideDuration = '10000'
            vertical= 'top' horizontal= 'center' />}
         </div>
        

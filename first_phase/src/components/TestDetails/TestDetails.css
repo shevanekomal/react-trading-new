@@ -55,6 +55,19 @@
   
   color: #07213C;
  }
+ .dateDetails{
+  width: 100%;
+}
+
+.dateDetails,.settingOtherDetails{
+  margin: 10px;
+}
+.dateDetails tbody tr td:first-child{
+  width: 600px;
+  }
+  .dateDetails tbody tr td,.settingOtherDetails tbody tr td{
+padding: 10px;
+  }
  @media only screen and (min-width: 990px) {
  .TestDetails{
   width: 50%

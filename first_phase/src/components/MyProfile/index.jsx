@@ -5,6 +5,7 @@ import { faAngleRight,faClipboardList } from "@fortawesome/free-solid-svg-icons"
 import PlusCircle from '../../assets/PlusCircle.png'
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import UpdatePanelStrip from './UpdatePanelStrip';
 import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
@@ -27,9 +28,17 @@ const MyProfile =(props)=> {
    }*/
   useEffect(()=>{
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
-   //   console.log(result)
-      alertMsg = result.messages || "something went wrong!!"
-      (result.status) ? setResult(result.data): (setOpen(true))
+   if(result.status){
+   
+     setResult(result.data)
+   }else {
+     alertMsg = result.messages || "something went wrong!!"
+     setOpen(true);
+     props.history.push({
+      pathname: '/login'
+    })
+   }
+      
      
   })
   //to get recommended and self added count
@@ -37,6 +46,10 @@ const MyProfile =(props)=> {
     if(result.status){
       SetRecommCount(result.data.recommendedcount)
       SetSelfCount(result.data.selfAddedCount)
+    }else {
+      props.history.push({
+        pathname: '/login'
+      })
     }
 })
   },[])
@@ -47,7 +60,8 @@ const MyProfile =(props)=> {
     })
    }
 const [isRead,setIsRead]=useState(false)
-   const viewPDF = () => {
+
+const viewPDF = () => {
     props.history.push({
       pathname: '/pdf'
     })
@@ -56,22 +70,22 @@ const [isRead,setIsRead]=useState(false)
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
-      return <UpdatePanelStrip header={"Welcome! Let's start by learning about your body."} subHeader={'View all your recommended tests in Your Health Plan'} tag='advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Welcome! Let's start by learning about your body."} subHeader={'View all your recommended tests in Your Health Plan'} tag='Advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'advice':{
-      return <UpdatePanelStrip header={"Everything you need to know."} subHeader={'Read it here.'} tag='advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Everything you need to know."} subHeader={'Read it here.'} tag='Advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'addMember':{
-      return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} tag='advise' actionPath='/userHome' self='false' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} actionPath='/userHome' self='false' user_id={props.location.state.user_id} />
     }
     case 'healthStatus':{
-      return <UpdatePanelStrip header={"Update health status."} subHeader={'To get your recommended checkups'} tag='checkup' actionPath='/addRisk' self='false' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Update health status."} subHeader={'To get your recommended checkups'} tag='Checkup' actionPath='/addRisk' self='false' user_id={props.location.state.user_id} />
     }
     case 'pastCheckup':{
-      return <UpdatePanelStrip header={"Update your past checkup dates ."} subHeader={'When was the last time you did the routine blood tests? We will automatically tell you when the next one is due!'} tag='checkup' actionPath='/healthPlan' user_id={props.location.state.user_id}/>
+      return <UpdatePanelStrip header={"Update your past checkup dates ."} subHeader={'When was the last time you did the routine blood tests? We will automatically tell you when the next one is due!'} tag='Checkup' actionPath='/healthPlan' user_id={props.location.state.user_id}/>
     }
     case 'reminder':{
-      return <UpdatePanelStrip header={"Reminder: You have a checkup tomorrow."} subHeader={'Remember to take your past records & any questions you have.'} tag='checkup' actionPath='/calender' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Reminder: You have a checkup tomorrow."} subHeader={'Remember to take your past records & any questions you have.'} tag='Checkup' actionPath='/calender' self='true' user_id={props.location.state.user_id} />
     } 
   }
 }
@@ -87,7 +101,7 @@ const handleSettings = () => {
 const handleCalender = () => {
   props.history.push({
     pathname: '/calender',
-    state: {user_id:props.location.state.user_id}, // added by swap
+    state: {user_id:props.location.state.user_id},
   })
 };
 
@@ -100,14 +114,15 @@ const createCheckupHandler = () =>{
   
     return (
       <div className='MyProfileContainer'>
-        <div>
+        <div style={{marginTop:'20px'}}>
           <span className="iconDiv"><img src={props.location.state.profileIcon}></img> {props.location.state.name}</span>
-          <SettingsIcon onClick={handleSettings}/>
+          <SettingsIcon style={{cursor: 'pointer'}} onClick={handleSettings}/>
         </div>
         <div className="curentDateContainer">
         <div>
           <span>{new Date().toLocaleString('en-us',{day:'numeric'}) +' '+ new Date().toLocaleString('en-us',{month:'long', year:'numeric'}) }</span>
-          <span onClick={handleCalender}>Open Calender</span>{' '}<FontAwesomeIcon  name='calender' icon={faAngleRight} onClick={handleCalender} color="#17416B" size={'sm'} />
+          <span style={{cursor: 'pointer'}} onClick={handleCalender}>Open Calender{' '}
+          <FontAwesomeIcon  name='calender' icon={faAngleRight} onClick={handleCalender} color="#17416B" size={'sm'} /></span>
         </div>
         <div style={{margin:'auto',marginRight:'0px'}}>
         <img src={PlusCircle} alt="Add_member Logo" onClick={createCheckupHandler} /> <span onClick={createCheckupHandler}>Create</span>
@@ -118,24 +133,24 @@ const createCheckupHandler = () =>{
           <div>Updates{!isRead &&<span className='ProfileButtonContainer'><span>{result.updatesList.length}</span></span>}</div>
           <div onClick={()=>{setIsRead(true)}}>Mark as read</div>
         </div>
-        <div className='UpdatesList'>
+        <div style={{cursor: 'pointer'}} className='UpdatesList'>
         <center>{result.day}</center>
         {result.updatesList.map(keyWord=>getUpdateComponent(keyWord))}
         </div>
 
         </div>
         <div className='PlanHeader'>
-          <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /></div>
+          <div><FontAwesomeIcon style={{marginTop: '2px'}} icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
-          <span className='checkupType'>{recommCount} Recommended checkups</span><br />
-          <span className='checkupType'>{selfCount} Self-added checkups</span></div>
+          <span className='checkupType'>{recommCount === 0 ?'-': recommCount} Recommended checkups</span><br />
+          <span className='checkupType'>{selfCount === 0 ? '-': selfCount} Self-added checkups</span></div>
           
         </div>
-        <div className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+        <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
           <span>Your Health Plan</span>
           <ArrowForwardIcon />
         </div>
-        <button  onClick={viewPDF} >View PDF</button>
+      {/*   <button  onClick={viewPDF} >View PDF</button>*/}
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
            isOpen={open} type="error" title="Error" content={"Something went wrong."} autoHideDuration = '10000'

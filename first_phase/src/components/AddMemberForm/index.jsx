@@ -53,7 +53,7 @@ const AddMemberForm = (props) =>{
       }*/
     }
     setValidate(tempValidate)
-    console.log(isValidate)
+    //console.log(isValidate)
   }, [FormData,isNumberIsDiff])
 
   useEffect(() => {
@@ -97,7 +97,9 @@ addMember(data).then((response)=>{
       state: {self,user_id:response.data.user_id}, // added by swap
     })
    
-  } 
+  } else {
+    props.history.push('/login')
+  }
 })
 }
 }

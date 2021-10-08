@@ -7,6 +7,7 @@ import { FieldDataContext } from '../../context/FieldData'
 import Add_test from '../../assets/Add_test.svg';
 
   const TestDetails = (props)=> {
+    let key = 0;
   const {
     getCheckupDetails,
     testsRecommanded,
@@ -18,15 +19,17 @@ import Add_test from '../../assets/Add_test.svg';
  !((props.location.state && props.location.state.user_id) || user_id) && props.history.push("/")
    //added below lines of code for refresh and commented above line by swap
   // console.log(props.location.state)
-  /* getCheckupDetails(props.location.state.checkup_id,props.location.state.user_id).then(result=>{
+   getCheckupDetails(props.location.state.checkup_id,props.location.state.user_id).then(result=>{
     if(result.status){
-      console.log(result.data)
+      //console.log(result.data)
       props.history.push({
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
       })
+    }else {
+      props.history.push('/login')
     }
-  })*/
+  })
   //sendDataToParent('aa')
   window.localStorage.setItem('subuser_id',props.location.state.user_id)
   
@@ -83,6 +86,8 @@ const fetchDetails=(checkupId)=>{
         pathname: '/test',
         state: {checkup_id, checkup_name,testName,user_id:props.location.state.user_id}
       })
+    }else {
+      props.history.push('/login')
     }
   })
 }
@@ -102,6 +107,10 @@ const createCheckupHandler = () =>{
     state: {checkup_id,checkup_name,testName,user_id:props.location.state.user_id}
   })
 }
+ const eventDetailsClickHandler=(key,date,provider,provider_website)=>{
+  // console.log(date)
+   //console.log(key)
+  }
   return (
     <div className='TestDetails'>
     <div className='TestHeader'>
@@ -110,10 +119,31 @@ const createCheckupHandler = () =>{
        {/* <button className='BackButton' onClick={()=>{props.history.push({pathname:'/healthPlan',state:{user_id}})}}>Back</button> */}
     <div>
     <div className='TestDetailsContainer'>
-    <label>Upcoming Checkups</label><br/>
-    <span ><img className='add_test' src={Add_test} onClick={createCheckupHandler} />
+    <label>Upcoming Checkups</label>
+    <table className='dateDetails'>
+      <tbody>
+    
+      { (testDetails.upcomingEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span style={{textDecoration:'underline', cursor: 'pointer'}}>{event.date}</span></td>
+                <td>{event.provider}</td>
+                  </tr> )
+        )
+      }
+      </tbody>       
+    </table>
+    <span style={{cursor: 'pointer'}}><img className='add_test' src={Add_test} onClick={createCheckupHandler} />
       {' '}Create</span><br /><br />
     <label>Past Checkups</label>
+    <table className='dateDetails'>
+      <tbody>
+    
+      { (testDetails.pastEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span style={{textDecoration:'underline', cursor: 'pointer'}}>{event.date}</span></td>
+                <td>{event.provider}</td>
+                  </tr> )
+        )
+      }
+      
+      </tbody>       
+    </table>
     </div>
     <div>
     

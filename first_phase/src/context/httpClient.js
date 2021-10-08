@@ -9,7 +9,7 @@ export default ({ method, urlEndpoint, params, module, headers, data,props }) =>
   let x_access_token = window.localStorage.getItem('x-access-token');
  // const history = useHistory();
   const currentPath = window.location.href
-  console.log(currentPath.split('/')[currentPath.split('/').length-1] !== '')
+  //console.log(currentPath.split('/')[currentPath.split('/').length-1] !== '')
   if(!x_access_token && currentPath.split('/')[currentPath.split('/').length-1] !== '' && !currentPath.includes('login')){
     alert("User logout!!")
   //  history.push('/login');

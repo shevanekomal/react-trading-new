@@ -24,9 +24,12 @@ const HealthPlan = (props)=> {
     getHealthPlanDetails,
     user_id
   } = useContext(FieldDataContext)
-  console.log(testsRecommanded.SelfAdded)
+  
   const clickHandler=(test,testName)=>{
     getCheckupDetails(test.checkup_id,props.location.state.user_id).then(result=>{
+      if(result.status){
+        
+      }
       props.history.push({
         pathname: '/test',
         state: { ...test,testName,user_id:props.location.state.user_id}
@@ -38,12 +41,26 @@ const HealthPlan = (props)=> {
        props.history.push('/');
       return
     }
-    getHealthPlanDetails(props.location.state.user_id)
+    getHealthPlanDetails(props.location.state.user_id).then(result=>{
+      if(!result){   
+        props.history.push({
+          pathname: '/login'
+        })
+      }
+    });
+    
   },[])
-  const createCheckupHandler = (test) =>{
+  const createCheckupHandler = () =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: test ? {...test} :{user_id:props.location.state.user_id,checkup_name:''}
+      state: {user_id:props.location.state.user_id,checkup_name:''}
+    })
+  }
+
+  const editCheckupHandler = (test) =>{
+    props.history.push({
+      pathname: '/createCheckup',
+      state: test ? {...test,user_id:props.location.state.user_id} :{user_id:props.location.state.user_id,checkup_name:''}
     })
   }
  
@@ -76,11 +93,11 @@ const HealthPlan = (props)=> {
       <div className='HealthPlan'>
         <div id="divToPrint" >
         <div  className='PlanHeader'>
-          <div><FontAwesomeIcon icon={faClipboardList} color="#17416B" size={'3x'} /> </div>
+          <div><FontAwesomeIcon style={{marginTop: '7px'}} icon={faClipboardList} color="#17416B" size={'3x'} /> </div>
           { testsRecommanded.recommendedcount !== 0 &&  <div>
           <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
           <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
-          <div>{<GetAppIcon  onClick={downloadPDF} />} Download and Print</div>
+          <div>{<GetAppIcon style={{cursor: 'pointer'}} onClick={downloadPDF} />} Download and Print</div>
           </div>}
           { testsRecommanded.recommendedcount === 0 &&  <div>
           <div className='stripes'>- Recommended checkups</div>
@@ -111,8 +128,8 @@ const HealthPlan = (props)=> {
           <div className='SelfCheckup'>
           <div>Self-Added Checkups</div>
           <div className='recommandedCheckup'>You can add any other checkups you do or want to do here.</div>
-          <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span onClick={createCheckupHandler} >Create</span>
-          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={()=>createCheckupHandler(test)} />))}
+          <img className='add_test' src={Add_test} onClick={createCheckupHandler} /><span style={{cursor: 'pointer'}}>Create</span>
+          { testsRecommanded.selfAddedcount !== 0 && (testsRecommanded.SelfAdded.map(test=> <TestPannel key = {test.checkup_name} testName = {test.checkup_name} test = {test} planType = 'self' clickHandler={()=>editCheckupHandler(test)} />))}
         </div>
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 

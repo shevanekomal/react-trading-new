@@ -52,9 +52,18 @@ justify-content: center;
 .CreateCheckupContainer .provider{
   width: 100%;
 }
-.provider{
+.provider,.selfcheckup,.inlineDatePicker{
   border-bottom: 1px solid #dcd8d8;
 }
+.inlineDatePicker {
+  margin-top: 15px;
+}
+.CreateCheckupContainer .selfcheckup{
+  width: 83%;
+  margin-left: 60px;
+  margin-top: 8px;
+}
+
 @media only screen and (min-width: 990px) {
 .CreateCheckupContainer{
   width: 50%;
@@ -83,6 +92,6 @@ flex: none;
 order: 0;
 align-self: stretch;
 flex-grow: 0;
-margin: 8px 0px;
-width: 100%;
+margin: 8px 30px;
+width: 90%;
 }

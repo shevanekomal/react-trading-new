@@ -50,7 +50,7 @@ const UserSetting =(props)=>{
    }
    const deleteProfileHandler = (e) =>{
       e.preventDefault()
-      console.log(props.location.state.relation)
+    //  console.log(props.location.state.relation)
         //show pop for confirm delete.
         setOpen(true)
         
@@ -61,7 +61,7 @@ const UserSetting =(props)=>{
       //here in backend the user_id is of main user
       
     if(result.status){
-      console.log(result.data.height)
+     // console.log(result.data.height)
      if(result.data.height != null){
       props.history.push({
         pathname: '/addRisk',
@@ -89,11 +89,12 @@ const UserSetting =(props)=>{
     // familyHistoryConditions:['Cancer - Breast']
     //     }
   
-    } 
+    } else {
+      props.history.push('/login')
+    }
     })     
     }
     const handleClick = (e)=>{
-      console.log(e.target)
        if(e.target.innerText === 'DELETE'){
             setOpen(false) 
             deleteMemberProfile(props.location.state.user_id).then(result=>{
@@ -106,7 +107,9 @@ const UserSetting =(props)=>{
               })}else{
                 props.history.push("/")
               } 
-            } 
+            } else {
+              props.history.push("/login")
+            }
           })
        }else if(e.target.innerText === 'NO'){
           setOpen(false) 
@@ -127,7 +130,7 @@ const UserSetting =(props)=>{
           <div>
           {/*<div style={{display:'flex',justifyContent:'flex-end',marginTop:'70px'}}><Buttons onClick={(e)=>saveSettingsHandler(e)} bgColor={'#F9E24D'} >Save Changes</Buttons></div>*/}
           <div className="settingHeader">
-          <img src={props.location.state.profileIcon}  alt="Logo"/>
+          <img style={{marginTop:'40px'}} src={props.location.state.profileIcon}  alt="Logo"/>
           { /* props.location.state.relation === 'Me' ?(<img src={ props.location.state.gender==='male'?(Man):(Woman)} alt="Logo"/>):
           <img src={(props.location.state.relation === 'father' || props.location.state.relation==='mother') ?(props.location.state.relation === 'father' ? (OldMan):(OldWoman))
         :((props.location.state.relation==='brother' || props.location.state.relation==='husband')?(Man):((props.location.state.relation === 'son')?(Boy):(props.location.state.relation==='daughter'))?(Girl):(Woman))} alt="Logo"/> */}
@@ -154,7 +157,7 @@ const UserSetting =(props)=>{
               <table className='settingOtherDetails'><tbody>
             <tr key='Health Status' name='Health Status' onClick={(e)=>healthStatusClickHandler(e,props.location.state.user_id)} > 
             <td name='Health Status'>Health Status</td>
-            <td><FontAwesomeIcon  name='Health Status' icon={faAngleRight} color="#17416B" size={'lg'} /></td>
+            <td><FontAwesomeIcon style={{cursor: 'pointer'}}  name='Health Status' icon={faAngleRight} color="#17416B" size={'lg'} /></td>
             </tr>
            {/*} <tr key='Health Checkups' > 
             <td>Health Checkups</td>
