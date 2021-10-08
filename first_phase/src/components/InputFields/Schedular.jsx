@@ -7,7 +7,8 @@ import {
   Toolbar,
   DateNavigator,
   Appointments,
-  TodayButton
+  TodayButton,
+  AppointmentTooltip
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 
@@ -28,10 +29,15 @@ export default class Schedular extends React.PureComponent {
         <Scheduler data={data}>
           <ViewState />
           <MonthView />
+         
           <Toolbar />
           <DateNavigator />
           <TodayButton />
           <Appointments />
+          <AppointmentTooltip
+            showCloseButton
+            showOpenButton
+          />
         </Scheduler>
       </Paper>
     );
