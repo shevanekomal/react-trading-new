@@ -94,22 +94,22 @@ const HealthPlan = (props)=> {
         <div id="divToPrint" >
         <div  className='PlanHeader'>
           <div><FontAwesomeIcon style={{marginTop: '7px'}} icon={faClipboardList} color="#17416B" size={'3x'} /> </div>
-          { testsRecommanded.recommendedcount !== 0 &&  <div>
-          <div>{testsRecommanded.recommendedcount} Recommended checkups</div>
-          <div>{testsRecommanded.selfAddedcount} Self-added checkups</div>
-          <div>{<GetAppIcon style={{cursor: 'pointer'}} onClick={downloadPDF} />} Download and Print</div>
+          { {/*testsRecommanded.recommendedcount !== 0 */} &&  <div>
+          <div>{testsRecommanded.recommendedcount} &nbsp;Recommended checkups</div>
+          <div>{testsRecommanded.selfAddedcount} &nbsp; Self-added checkups</div>
+          <div>{<GetAppIcon style={{cursor: 'pointer'}} onClick={downloadPDF} />} Download and Share</div>
           </div>}
-          { testsRecommanded.recommendedcount === 0 &&  <div>
+          {/* testsRecommanded.recommendedcount === 0 &&  <div>
           <div className='stripes'>- Recommended checkups</div>
           <div className='stripes'>- Self-added checkups</div>
-          </div>}
+          </div*/}
         </div>
         
        
         <div><p>Recommended Checkups</p>{/* testsRecommanded.recommendedcount !== 0 && <GetAppIcon  onClick={downloadPDF} /> */}</div>
         { testsRecommanded.recommendedcount !== 0 && <div className='recommandedCheckup'>You should do all the checkups below. They are all recommended for you based on your health details.<br />
           Checkups with <img src={Health2} width="20" height="20"/> mean that you face average risk of the health conditions diagnosed by the checkup. 
-          <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health deatils.
+          <br/>Checkups with <img src={Health} width="20" height="20" /> mean that you face above average risk based on your health details.
 
         </div>}
        { testsRecommanded.recommendedcount !== 0 ? (testsRecommanded.Recommended.map(test=> <TestPannel key = {test.testName} testName = {test.testName} test = {test}  planType = 'recomm' clickHandler={clickHandler} />))

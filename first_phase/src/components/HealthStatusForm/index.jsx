@@ -1,4 +1,5 @@
 import React,{useContext,useState, useEffect} from 'react'
+import { useLocation } from "react-router-dom";
 import {SinglSelectDropDown,RadioButton,DatePicker,DatePickerv1,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
@@ -17,12 +18,15 @@ const HealthStatusForm =(props)=> {
     familyHistoryConditions,
     addDetails,
     disableConditions,
+    disableHistoryConditions,
     alcoholIntakeOption,
     otherConditions,
     updateUserId,
     getHealthStatusDetails,
     userHealthDetails
   } = useContext(FieldDataContext)
+  const currentPath = useLocation().pathname
+
   const [isLoaded,setLoader] =useState(false)
   const [isValidate,setValidate] =useState(false)
   const [state,setState] = useState({
@@ -78,17 +82,18 @@ let obj = {
   },
 };
 useEffect(() => {
+ // console.log(state.diagnosedCondition.length)
+ 
   if(['None of the below'].includes(state.diagnosedCondition.value[0])){
     disableConditions('diagnosedCondition',true)
   }
   if(['None of the below'].includes(state.familyHistoryConditions.value[0])){
-    disableConditions('familyHistoryConditions',true)
+    disableHistoryConditions('familyHistoryConditions',true)
   }
 },[state.diagnosedCondition.value,state.familyHistoryConditions.value])
 useEffect(() => {
  //temp added to solve disable option issue for sub user
  disableConditions('diagnosedCondition',false);
- disableConditions('familyHistoryConditions',false)
   let userHealthDetails1 = props.location.state.userHealthDetails
   
   if(userHealthDetails1 != '' && userHealthDetails1 != undefined){
@@ -116,6 +121,10 @@ useEffect(() => {
     };
    }
   
+},[])
+
+useEffect(() => {
+  disableHistoryConditions('familyHistoryConditions',false)
 },[])
 
 useEffect(() => {
@@ -192,10 +201,14 @@ const handleChange =(e) =>{
     }
   }
   if(e.target.type === 'checkbox'){
+    console.log(e.target.name)
     let name = e.target.name
     if(e.target.value==='None of the below'){
       setState({...state,[name]:{value:e.target.checked?[e.target.value]:[],error:''}})
-      disableConditions(name,e.target.checked)
+      if(name === 'diagnosedCondition')
+        disableConditions(name,e.target.checked)
+      else
+        disableHistoryConditions(name,e.target.checked)
       return
     }
     let arr = state[name].value
@@ -260,7 +273,7 @@ addDetails(data).then((response)=>{
 })
 }
 }
-const onSkipHandler = () =>{
+const onSkipHandler = () => {
  // console.log('on skip '+props.location.state.user_id)
   props.history.push({
     pathname: '/userHome',
@@ -288,7 +301,7 @@ const validate =(e)=>{
     return (
       <div className='FormContainer'>
       <Loader  text={'Generating HealthPlans...'} loaded={isLoaded}/>
-        <h2>Set up your health details. This will allow us to create a personalized health experience for you</h2>
+        <h2>Set up {self ?'your' :`the member's`}  health details. This will allow us to create a personalized health experience for you.</h2>
         <p>Please note: Your information is safe with us. It will be used to personalize the healthcare information you receive. It will not be used for marketing or advertising purposes.</p>
         <form name='details' style={{padding:'2%'}}>
         <div className='DetailsContainer'>
@@ -301,7 +314,7 @@ const validate =(e)=>{
           <CustomTextBox type={'number'} defaultValue={state.weight.value} setState={setState} state={state}  placeholder={`Eg: 62 `} endAdornment="kg" required={true} name='weight'  validate={validate}  error={state.weight.error}>Your Weight</CustomTextBox>
         </div>
         <div className='DetailsContainer'>
-          <div className='TopicHeading'>LifeStyle Details</div>
+          <div className='TopicHeading'>Lifestyle Details</div>
           <RadioButton name={'exercise'}  required={true}  options={exercise}  validate={validate} onChange={handleChange} defaultValue={state.exercise.value} error={state.exercise.error} valueText = 'Moderate exercise is an activity that increases your heart-rate so at least a brisk walk.'>How much moderate exercise do you usually do per week?
            </RadioButton>
           <RadioButton name={'diet'}  required={true}  options={diet}  validate={validate} onChange={handleChange} defaultValue={state.diet.value} error={state.diet.error} >Select the most appropriate style of diet</RadioButton>
@@ -312,7 +325,8 @@ const validate =(e)=>{
           <CheckboxesGroup name='diagnosedCondition' required={true}  defaultValue={state.diagnosedCondition.value} options={diagnosedCondition}  validate={validate} onChange={handleChange} error={state.diagnosedCondition.error} label={'Select all conditions you have been diagnosed with'} />
           { state.diagnosedCondition.value.includes('Others') && <MultiSelectDropDown name='diagnosedCondition' defaultValue={state.diagnosedCondition.value} onMulitiselcetChange={onMulitiselcetChange} options={otherConditions} placeholder={'Select at least 1 value '} required={true} validate={validate}/>}
           <CheckboxesGroup name='familyHistoryConditions' defaultValue={state.familyHistoryConditions.value} required={true} options={familyHistoryConditions}  validate={validate} onChange={handleChange} error={state.familyHistoryConditions.error} label={'Select all conditions for which you have a family history'} >
-          <br/> Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents,aunts, uncles, cousins).</CheckboxesGroup>
+           Family history means at least one diagnosed case in your 1st degree relatives (parents or siblings or children). Or more than one diagnosed cases in your 2nd degree relatives (grandparents, aunts, uncles, cousins).</CheckboxesGroup>
+           
            { open && 
           <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} option1 = 'OKAY' option1bgColor='#F9E24D' option2 = ''><p>We are currently working with our expert doctors to create the medically best health plans for our younger members under the age of 18. </p>
           <p>Please do continue to create the profile where you will still be able to use all the other features. We will inform you as soon as we have the health plan ready!</p></ModalWindow>}

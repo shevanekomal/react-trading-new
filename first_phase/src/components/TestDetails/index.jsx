@@ -5,6 +5,7 @@ import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
 import Add_test from '../../assets/Add_test.svg';
+import Jeeva from '../../assets/Jeeva-upright-circles.svg';
 
   const TestDetails = (props)=> {
     let key = 0;
@@ -123,7 +124,7 @@ const createCheckupHandler = () =>{
     <table className='dateDetails'>
       <tbody>
     
-      { (testDetails.upcomingEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span style={{textDecoration:'underline', cursor: 'pointer'}}>{event.date}</span></td>
+      { (testDetails.upcomingEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span>{event.date}</span></td>
                 <td>{event.provider}</td>
                   </tr> )
         )
@@ -136,7 +137,7 @@ const createCheckupHandler = () =>{
     <table className='dateDetails'>
       <tbody>
     
-      { (testDetails.pastEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span style={{textDecoration:'underline', cursor: 'pointer'}}>{event.date}</span></td>
+      { (testDetails.pastEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span>{event.date}</span></td>
                 <td>{event.provider}</td>
                   </tr> )
         )
@@ -145,6 +146,10 @@ const createCheckupHandler = () =>{
       </tbody>       
     </table>
     </div>
+    <div  style={{display:'flex',justifyContent:'center'}}>
+    <img src={Jeeva} />
+    </div>
+    
     <div>
     
     </div>

@@ -170,12 +170,12 @@ const UserSetting =(props)=>{
             </tbody>
           </table>
           { open && 
-          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#BC433B' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this {props.location.state.relation !== 'Me' ? 'profile' : 'account'}?</b></p>
+          <ModalWindow open={open}  handleOpen={()=>setOpen(true)} handleClose ={()=>setOpen(false)} handleClick={(e)=> handleClick(e)} option2buttonColor='#07213C' option1buttonColor='#07213C' option1='NO' option2 = 'DELETE'> <p><b>Are you sure you want to delete this {props.location.state.relation !== 'Me' ? 'profile' : 'account'}?</b></p>
           <p>You won’t be able to recover the data associated with this {props.location.state.relation !== 'Me' ? 'profile' : 'account (family members as well)'} once you delete it.</p></ModalWindow>}
 
           <div style={{display:'flex'}}>
-          
-           <Buttons buttonColor='#BC433B' onClick={(e)=>deleteProfileHandler(e)} >{props.location.state.relation !== 'Me' ? 'Delete Profile' : 'Delete Account'}</Buttons>
+          {/*buttonColor='#BC433B'*/}
+           <Buttons  bgColor='#F9E24D' onClick={(e)=>deleteProfileHandler(e)} >{props.location.state.relation !== 'Me' ? 'Delete Profile' : 'Delete Account'}</Buttons>
            
           </div>
             

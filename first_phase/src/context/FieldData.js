@@ -124,7 +124,7 @@ class FieldDataProvider extends Component {
   testDetails:{
         "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
   },
-  checkup_names : [{text:'Others'},{text:'Complete Blood Count (CBC)'},
+  checkup_names : [{text:'Other'},{text:'Complete Blood Count (CBC)'},
   {text:'Lipid Profie'},
   {text:'Sugar Profile (HbA1c)'},
   {text:'Liver Function Test'},
@@ -244,6 +244,15 @@ getProfilePicture=(relation)=>{
       } 
       this.setState({[condition]:tempCondition})
     }),
+    disableHistoryConditions: debounce(async(condition,checked)=>{
+      let tempCondition = this.state[condition];
+      if(!checked){
+        tempCondition = tempCondition.map(el=>({name:el.name,text:el.text}))
+      }else{
+        tempCondition = tempCondition = tempCondition.map(el=>el.text !== 'None of the below' ? ({...el,disabled:checked,checked:false}):({...el}))
+      } 
+      this.setState({[condition]:tempCondition})
+    }),
     updateUserId : debounce(async(user_id)=>{
       this.setState({user_id})
     }),
@@ -307,7 +316,7 @@ getProfilePicture=(relation)=>{
     deleteCheckupEventPlan:debounce(async(data)=>{
       const result = await httpClient({
         method: 'POST',
-        urlEndpoint: '/deleteEvent/',
+        urlEndpoint: '/deleteEvent',
         data
       })
      return result

@@ -50,22 +50,24 @@ const CreateCheckupForm = (props) =>{
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
-      if((!!value.error || value.value=='' || (value.value && value.value.length == 0) )&&key!='self_checkup_name' && key!='date'&&key!='checkup_name' && key!='provider' && key!='provider_website'){ 
+      if((!!value.error || value.value=='' || (value.value && value.value.length == 0) )&&key!='self_checkup_name' && key!='date'&& key!='provider' && key!='provider_website'){ 
         tempValidate = false;
         
        }
-       if(key ==='self_checkup_name' && FormData.checkup_name.value.includes('Others') && value.value==''){
+       if(key ==='self_checkup_name' && FormData.checkup_name.value.includes('Other') && value.value==''){
         tempValidate = false;
        }
-       if(key ==='checkup_name' && value.value != 'Others' && value.value != '' ){
+       if(key ==='checkup_name' && value.value != 'Other' && value.value != '' ){
         tempValidate = true;
        }
+       if(props.location.state.checkup_name !== '')
+       tempValidate = true;
     }
     setValidate(tempValidate)
   }, [FormData])
   
   useEffect(() => {
-    console.log(props.location.state.checkup_date)
+  //  console.log(props.location.state.checkup_date)
     { (props.location.state.checkup_date != undefined && props.location.state.checkup_date  != '' )
      ?setStartDate(new Date(props.location.state.checkup_date.split('T')[0])) :setStartDate(new Date())}
     
@@ -82,14 +84,29 @@ const addCheckupHandler = (e) =>{
   e.preventDefault()
   let data = {}
 if(isValidate){
-  let checkup_name = ''
-  if(FormData.checkup_name.value.includes('Others')){
+  let checkup_name = '' , isOther = false;
+  let isUpdate = false;
+  let prevDate = '';
+  if(props.location.state.checkup_name !== '') {
+    checkup_name = props.location.state.checkup_name
+    isUpdate = true
+    prevDate = props.location.state.checkup_date;
+  }
+  else if(FormData.checkup_name.value.includes('Other')){
+    isOther = true;
     checkup_name = FormData.self_checkup_name.value
-  }else
-  checkup_name = FormData.checkup_name.value  
+    isUpdate = false
+  }else{
+    isUpdate = false
+    checkup_name = FormData.checkup_name.value
+  }
+  
   data = {
     checkup_name:checkup_name,
    // date:FormData.date.value,
+    prevDate:prevDate,
+    isUpdate:isUpdate,
+    isOther:isOther,
     date:startDate,
     provider:FormData.provider.value,
     provider_website:FormData.provider_website.value,
@@ -237,7 +254,7 @@ const defaultProps = {
       />) }
      {/*  <SinglSelectDropDown name='checkup_name' required={true} options={checkup_names} validate={validate}
        onChange={onChangehandler} error={FormData.checkup_name.error} placeholder={'Select at least 1 value'} >Select at least 1 value</SinglSelectDropDown>*/}
-       {FormData.checkup_name.value.includes('Others') &&  <InputBox
+       {FormData.checkup_name.value.includes('Other') &&  <InputBox
           name="self_checkup_name"
           placeholder="Enter Checkup Name *"
           className='selfcheckup'

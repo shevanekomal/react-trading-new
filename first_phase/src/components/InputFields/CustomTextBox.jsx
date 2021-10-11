@@ -20,7 +20,7 @@ const CustomTextBox=({type,name,state,setState,endAdornment,children,required,va
   return (
     <div>
     <label className='CustomTextBoxLabel'>{children}{required && <span style={{color:'red'}}>*</span>}</label>
-    <label className='CustomTextBoxLabel'>{valueText}</label>
+    <div className='subHeader' >{valueText}</div>
     <div className={endAdornment ? 'endAdornment CustomTextBox': 'CustomTextBox '}>
     <input type={type} name={name} value={state[name].value} {...fiedProps} onChange={e => {
        let value = e.target.value;

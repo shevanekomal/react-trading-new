@@ -20,10 +20,10 @@
 .TestSubHeader table tbody tr td {
   width: 50%;
 }
-.TestDetails{
+/*.TestDetails{
   background: url('../../assets/Jeeva-upright-circles.svg')  no-repeat center;
   height: 552px;
-}
+}*/
 .BackButton{
   border: none;
     background: transparent;

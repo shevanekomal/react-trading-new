@@ -28,7 +28,7 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
     }) */}
      history.push({
     pathname:"/myProfile",
-    state:{user_id:user_id,profileIcon:profileIcon,name:name,relation:relation,mobile:mobile}
+    state:{user_id:user_id,user_type:user_type,profileIcon:profileIcon,name:name,relation:relation,mobile:mobile}
     })
   }
     return (
@@ -41,7 +41,7 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
             <div>+9</div>
             </div> */}
           </tr>
-        <tr><td className='NameHolder'>{name}</td><td>  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <tr><td className='NameHolder'> {name !== undefined && name.split(' ')[0]}</td><td>  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             <FontAwesomeIcon icon={faEllipsisV}/>
             </Button>
             <Menu

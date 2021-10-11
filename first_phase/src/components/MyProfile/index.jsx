@@ -8,7 +8,8 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import UpdatePanelStrip from './UpdatePanelStrip';
 import { FieldDataContext } from '../../context/FieldData'
-import {Alerts} from '../InputFields'
+import {Alerts,Carousell} from '../InputFields'
+
 const MyProfile =(props)=> {
   
   const {
@@ -27,9 +28,9 @@ const MyProfile =(props)=> {
      day:'Today'
    }*/
   useEffect(()=>{
+   
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
    if(result.status){
-   
      setResult(result.data)
    }else {
      alertMsg = result.messages || "something went wrong!!"
@@ -70,16 +71,19 @@ const viewPDF = () => {
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
-      return <UpdatePanelStrip header={"Welcome! Let's start by learning about your body."} subHeader={'View all your recommended tests in Your Health Plan'} tag='Advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Know Yourself - Checkups"} subHeader={'Answer quick questions to learn if you are on top of your checkups.'} tag='Know' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'advice':{
-      return <UpdatePanelStrip header={"Everything you need to know."} subHeader={'Read it here.'} tag='Advice' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Know Yourself - Physical Wellbeing"} subHeader={'Take a minute to check your BMI & how your body is doing.'} tag='Know' actionPath='/' self='true' user_id={props.location.state.user_id} />
     }
     case 'addMember':{
       return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} actionPath='/userHome' self='false' user_id={props.location.state.user_id} />
     }
     case 'healthStatus':{
-      return <UpdatePanelStrip header={"Update health status."} subHeader={'To get your recommended checkups'} tag='Checkup' actionPath='/addRisk' self='false' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Welcome! To best experience your personalised health journey, click on these Updates one-by-one."} subHeader={'Start by updating your health status to view your personalised checkup plan.'} tag='Checkup' actionPath='/addRisk' self='false' user_id={props.location.state.user_id} />
+    }
+    case 'healthPlan':{
+      return <UpdatePanelStrip header={"Welcome! To best experience your personalised health journey, click on these Updates one-by-one."} subHeader={'Start by checking the personalised checkup plan made for you.'} tag='Checkup' actionPath='/healthPlan' user_id={props.location.state.user_id} />
     }
     case 'pastCheckup':{
       return <UpdatePanelStrip header={"Update your past checkup dates ."} subHeader={'When was the last time you did the routine blood tests? We will automatically tell you when the next one is due!'} tag='Checkup' actionPath='/healthPlan' user_id={props.location.state.user_id}/>
@@ -115,7 +119,7 @@ const createCheckupHandler = () =>{
     return (
       <div className='MyProfileContainer'>
         <div style={{marginTop:'20px'}}>
-          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> {props.location.state.name}</span>
+          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> <b>&nbsp;&nbsp;{props.location.state.name}</b></span>
           <SettingsIcon style={{cursor: 'pointer'}} onClick={handleSettings}/>
         </div>
         <div className="curentDateContainer">
@@ -130,8 +134,8 @@ const createCheckupHandler = () =>{
         </div>
         <div className="Updates">
         <div className='UpdatesHeader'>
-          <div>Updates{!isRead &&<span className='ProfileButtonContainer'><span>{result.updatesList.length}</span></span>}</div>
-          <div onClick={()=>{setIsRead(true)}}>Mark as read</div>
+          <div>Updates{/*!isRead &&<span className='ProfileButtonContainer'><span>{result.updatesList.length}</span></span>*/}</div>
+         {/*  <div onClick={()=>{setIsRead(true)}}>Mark as read</div> */}
         </div>
         <div style={{cursor: 'pointer'}} className='UpdatesList'>
         <center>{result.day}</center>
@@ -139,17 +143,41 @@ const createCheckupHandler = () =>{
         </div>
 
         </div>
+       
+          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+          <span>Your Medical Checkups</span>
+          <ArrowForwardIcon />
+          <br /><br />
+        </div>
         <div className='PlanHeader'>
           <div><FontAwesomeIcon style={{marginTop: '2px'}} icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
-          <span className='checkupType'>{recommCount === 0 ?'-': recommCount} Recommended checkups</span><br />
-          <span className='checkupType'>{selfCount === 0 ? '-': selfCount} Self-added checkups</span></div>
+          <span className='checkupType'>{recommCount} Recommended checkups</span><br />
+          <span className='checkupType'>{selfCount} &nbsp; Self-added checkups</span></div>
           
         </div>
         <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
-          <span>Your Health Plan</span>
+          <span>Your Healthy Habits</span>
           <ArrowForwardIcon />
+         </div>
+         <div className='CarousellHeader'>
+          <Carousell backgroundColorOdd='#EEF8FF' backgroundColorEven = '#E8F2FA'></Carousell>
         </div>
+          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+          <span>Know Yourself</span>
+          <ArrowForwardIcon />
+         </div>
+         <div className='CarousellHeader'>
+          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1'></Carousell>
+          </div>
+          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+          <span>Know Health Topics</span>
+          <ArrowForwardIcon />
+         </div>
+         <div className='CarousellHeader'>
+          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1'></Carousell>
+          </div>
+      
       {/*   <button  onClick={viewPDF} >View PDF</button>*/}
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 

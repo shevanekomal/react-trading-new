@@ -46,8 +46,8 @@ const [open, setOpen] = useState(false);
       case '/addMember': return currentState!=undefined && !currentState.self ? 'Add Member' :  `Let's Start`;
       case '/addRisk': return `Health Status`;
       case '/addRiskSelf': return `Health Status`;
-      case '/healthPlan': return `Your Health Plan`;
-      case '/test': return `Your Health Plan`;
+      case '/healthPlan': return `Your Medical Checkups`;
+      case '/test': return `Your Medical Checkups`;
       case '/userSetting': return `Settings`;
       case '/myProfile': return `Your Profile`;
       case '/calender': return `Calender`;
@@ -70,7 +70,6 @@ const [open, setOpen] = useState(false);
         Register
       </button></>):<div style={{margin:'0 auto'}}><span>{getLabel(currentPath)}</span></div>
       } */}
-
       <span className='pageHeader'>{getLabel(currentPath)}</span>
       <div style={{padding: '10px'}} className={"collapse navbar-collapse " + show}>
         <div className="navbar-nav">
@@ -152,6 +151,7 @@ const [open, setOpen] = useState(false);
       </> :<div></div>
     }
      {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}

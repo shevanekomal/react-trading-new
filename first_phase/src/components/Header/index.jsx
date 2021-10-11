@@ -95,6 +95,22 @@ const Header = (props) => {
 
   };
   const [width, height] = useWindowSize();
+  const getLabel=(currentPath)=>{
+    
+    switch(currentPath){
+      case '/addRisk': return `Health Status`;
+      case '/addRiskSelf': return `Health Status`;
+      case '/healthPlan': return `Your Medical Checkups`;
+      case '/test': return `Your Medical Checkups`;
+      case '/userSetting': return `Settings`;
+      case '/myProfile': return `Your Profile`;
+      case '/calender': return `Calender`;
+      case '/createCheckup': return `Create`;
+     // case '/login': return `Login`;
+      //case '/': return `Register`;
+     // default : return currentPath.toUpperCase().replace('/','')
+    }
+  }
   return (
     
     <div className='Home'>
@@ -143,7 +159,6 @@ const Header = (props) => {
       })
     }}>
     {width > 990 && !['/','/login','/addMemberself'].includes(currentPath) && <div className='leftPannel'>
-    
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
       <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
      {/* <div onClick={(e) =>{

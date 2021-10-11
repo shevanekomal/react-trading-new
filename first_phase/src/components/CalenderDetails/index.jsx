@@ -13,6 +13,7 @@ const CalenderDetails =(props)=>{
   const [appointments,setResult] = useState([])
 
   const clickHandler=(e)=>{
+    console.log(e)
    // e.preventDefault()
    //console.log(document.getElementsByClassName('appointment'))
    // let date = document.getElementsByClassName('MuiButton-label')[1].innerHTML
@@ -38,23 +39,19 @@ const CalenderDetails =(props)=>{
   
   },[])
   //sample data
-  /* const appointments = [
+   /*const appointments = [
     {
       title: 'Website Re-Design Plan',
       startDate: new Date(2021, 9, 24, 9, 30), //year month-1,date , hh mm
       endDate: new Date(2021, 9, 24, 11, 30),
+      provider: 'Room 1',
     },
     {
       title: 'Website Re-Design Plan',
       startDate: new Date(2021, 9, 25, 9, 30),
       endDate: new Date(2021, 9, 25, 11, 30),
-      provider:'aaaa'
+      provider: 'Room 2',
     },
-    {
-      title: 'Website Re-Design Plan',
-      startDate: new Date(2021, 8, 25, 9, 30),
-      endDate: new Date(2021, 8, 25, 11, 30),
-    }, 
   ];*/
   const createCheckupHandler = () =>{
     props.history.push({
@@ -68,16 +65,16 @@ const CalenderDetails =(props)=>{
     
      {appointments.length > 0 && <Schedular clickHandler={clickHandler} scheduledAppointments={appointments}/>}
      {appointments.length === 0 && <Schedular clickHandler={clickHandler} scheduledAppointments={appointments}/>}
-      <div className='checkupDetails'>
+     {/* <div className='checkupDetails'>
       <label>Checkups</label><br/>
-<div className='appointment'>
+ <div className='appointment'>
 <div>checkup name here</div>
-{/* add dynmamic chekup data here */}
+{ add dynmamic chekup data here }
 <div>
 <span><FontAwesomeIcon icon={faMapMarker} color="#17416B"  /> location</span>
 <span><FontAwesomeIcon icon={faLink} color="#17416B"  /> url</span></div>
-</div>
-      </div>
+</div> 
+</div>*/ }
      
     </div>
   )

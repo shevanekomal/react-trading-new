@@ -4,10 +4,24 @@
   font-family: Open Sans!important;
   font-style: normal!important;
   font-weight: normal!important;
-  font-size: 14px!important;
+  font-size: 16px!important;
   line-height: 20px!important;
   letter-spacing: 0.0215em!important;
   color: #07213c!important;
+  flex: none!important;
+  order: 0!important;
+  align-self: stretch!important;
+  flex-grow: 0!important;
+  margin: 0px 0px!important;
+  text-align: left!important;
+}
+.subHeader{
+  font-family: Open Sans!important;
+  font-style: normal!important;
+  font-weight: normal!important;
+  font-size: 14px!important;
+  line-height: 20px!important;
+  letter-spacing: 0.0215em!important;
   flex: none!important;
   order: 0!important;
   align-self: stretch!important;
@@ -311,3 +325,6 @@ width: 0px;
 .TooltipClass{
   color:#17416B
 }
+
+
+

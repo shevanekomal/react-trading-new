@@ -169,7 +169,8 @@ margin: 0px 4px;
   overflow: scroll;
   height: 300px;
 }
-.healthPlanNavigation span{
+
+.healthPlanNavigation{
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -179,7 +180,8 @@ margin: 0px 4px;
   display: flex;
   align-items: center;
   letter-spacing: 0.005em;
-  
+  justify-content: space-between;
+  width: 50%;
   /* Saturated Blue */
   
   color: #3168A7;
@@ -274,4 +276,18 @@ order: 0;
 align-self: stretch;
 flex-grow: 0;
 margin: 8px 0px;
+}
+
+.CarousellHeader{
+  width: 50%;
+  flex:none;
+}
+
+@media only screen and (max-width: 600px) {
+  .PlanHeader :nth-child(2){
+    margin: auto;
+  }
+  .PlanHeader,.healthPlanNavigation,.CarousellHeader,.PlanHeader + div{
+    width: 100%!important;
+  }
 }

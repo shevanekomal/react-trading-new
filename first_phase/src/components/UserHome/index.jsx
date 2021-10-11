@@ -46,7 +46,7 @@ const UserHome =(props)=>{
       <div className='UserHome'>
         <div className='heading'>Welcome to your Family Home</div>
       { /* <Profile profileIcon={Man} name={'name'} history={props.history}/> */}
-      {familyMembers.map(member=>(member.user_type ==='user'?(<Profile key={member.name} profileIcon={member.gender==='male'?(Man):(Woman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} gender={member.gender} />):''))}
+      {familyMembers.map(member=>(member.user_type ==='user'?(<Profile key={member.name} profileIcon={member.gender==='male'?(member.age < 26? (Boy) :(member.age >60?(OldMan):Man)):(member.age < 26? (Girl) :(member.age >60?(OldWoman):Woman))} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile} gender={member.gender} user_type = {member.user_type}/>):''))}
         <div className='FamilyMemberContainer'>
           {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />): 
           (<Profile key={member.name} profileIcon={(member.relation==='brother' || member.relation==='husband')?(Man):((member.relation==='son')?(Boy):(member.relation==='daughter')?(Girl):(Woman))} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />):''))}
