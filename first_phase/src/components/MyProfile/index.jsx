@@ -147,8 +147,8 @@ const createCheckupHandler = () =>{
           <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
           <span>Your Medical Checkups</span>
           <ArrowForwardIcon />
-          <br /><br />
         </div>
+        <br /><br />
         <div className='PlanHeader'>
           <div><FontAwesomeIcon style={{marginTop: '2px'}} icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
