@@ -31,10 +31,18 @@ const [FormData,setFormData] = useState({
          
         if(result.status){
             updateUserId(result.data.user_id)
-            props.history.push({
-              pathname: '/userHome',
-            state: { self:true,user_id:result.data.user_id }
-            })
+            if(result.data.isHealthStatusUpdated){
+              props.history.push({
+                pathname: '/userHome',
+              state: { self:true,user_id:result.data.user_id }
+              })
+            }else {
+              props.history.push({
+                pathname: '/addRiskSelf',
+                state: {self:true,user_id:result.data.user_id},
+              })
+            }
+           
         }else{
           setAlertMsg(result.messages)         
           setOpen(true)

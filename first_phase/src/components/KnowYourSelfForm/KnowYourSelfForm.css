@@ -1,0 +1,55 @@
+.YourFormContainer {
+    margin: 100px auto;
+    width: 90%;
+  }
+  .YourFormContainer p {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: initial;
+    letter-spacing: 0.0215em;
+    color: rgba(7, 33, 60, 0.85);
+  }
+  
+.YourFormContainer form .DetailsContainer{
+    border: 1px solid #a9d9ff;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 2%;
+    margin-top: 10px;
+  }
+  .YourFormContainer .TopicHeading {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: 0.005em;
+    color: #07213C;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 20px 0px;
+    text-align: center;
+  }
+  .YourFormContainer form .DetailsContainer > div{
+    margin-bottom: 20px;
+  }
+  @media only screen and (min-width: 990px) {
+  .YourFormContainer{
+    width: 50%;
+    margin: 0;
+    padding: 15px;
+  }
+  .DetailsContainer .container{
+  margin-left: 0px;
+  }
+  .YourFormContainer form .DetailsContainer{
+    border: none;
+  }
+  }

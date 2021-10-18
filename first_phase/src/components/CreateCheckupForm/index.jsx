@@ -129,11 +129,13 @@ if(props.location.state.checkup_id !== undefined && props.location.state.checkup
     }
   });
   
-}else{
+  }else{
   createEvent(data).then((response)=>{
     if(response.status){
+      let path = props.location.state.from ==='healthPlan' ? '/healthPlan' :'/calender'
+     // console.log(path)
       props.history.push({
-        pathname: '/healthPlan',
+        pathname: path,
         state: {user_id:props.location.state.user_id}, // added by swap 
       })
     }else {

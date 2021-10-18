@@ -149,7 +149,7 @@ const UserSetting =(props)=>{
               </tr>
               <tr>
                 <td>Relation</td>
-                <td>{props.location.state.relation}</td>
+                <td>{(props.location.state.relation).charAt(0).toUpperCase() + (props.location.state.relation).slice(1)}</td>
               </tr>
               </tbody>
 

@@ -1,4 +1,12 @@
-
+.MyProfileContainer .heading{
+  font-size: 25px;
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+margin-left: 40%;
+color: #17416B;
+padding: 10px;
+}
 .iconDiv :first-child{
     display: flex;
     width: 58px;
@@ -89,12 +97,12 @@ order: 1;
 flex-grow: 0;
 margin: 0px 4px;
 }
-.MyProfileContainer > div:first-child{
+.MyProfileContainer > div:nth-child(2){
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.MyProfileContainer div:first-child svg{
+.MyProfileContainer div:nth-child(2) svg{
   margin-top: 10px;
 }
 .MyProfileContainer{
@@ -281,6 +289,10 @@ margin: 8px 0px;
 .CarousellHeader{
   width: 50%;
   flex:none;
+}
+
+.MuiButton-root.Mui-disabled {
+  background:white!important;
 }
 
 @media only screen and (max-width: 600px) {

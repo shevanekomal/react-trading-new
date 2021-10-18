@@ -13,8 +13,10 @@ import Add_test from '../../assets/Add_test.svg';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import {Alerts} from '../InputFields'
+import {useWindowSize} from '../../utility'
 
 const HealthPlan = (props)=> {
+  const [width, height] = useWindowSize();
   const [open, setOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   let self = false;
@@ -53,14 +55,14 @@ const HealthPlan = (props)=> {
   const createCheckupHandler = () =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: {user_id:props.location.state.user_id,checkup_name:''}
+      state: {user_id:props.location.state.user_id,checkup_name:'',from:'healthPlan'}
     })
   }
 
   const editCheckupHandler = (test) =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: test ? {...test,user_id:props.location.state.user_id} :{user_id:props.location.state.user_id,checkup_name:''}
+      state: test ? {...test,user_id:props.location.state.user_id,from:'healthPlan'} :{user_id:props.location.state.user_id,checkup_name:'',from:'healthPlan'}
     })
   }
  
@@ -91,6 +93,7 @@ const HealthPlan = (props)=> {
   }
     return (
       <div className='HealthPlan'>
+        {width> 990 ? <div style={{marginTop:'-40px'}} className='heading'><b>Your Medical Checkups</b></div> :<div></div>}
         <div id="divToPrint" >
         <div  className='PlanHeader'>
           <div><FontAwesomeIcon style={{marginTop: '7px'}} icon={faClipboardList} color="#17416B" size={'3x'} /> </div>

@@ -1,0 +1,87 @@
+.ResultContainer {
+    margin: 100px auto;
+    width: 90%;
+  }
+
+  .ResultContainer .DetailsContainer{
+    border: 1px solid #a9d9ff;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 2%;
+    margin-top: 10px;
+  }
+
+  .ResultContainer p,.ResultContainer label {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: initial;
+    letter-spacing: 0.0215em;
+    color: rgba(7, 33, 60, 0.85);
+  }
+  
+  .ResultContainer .TopicHeading {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: 0.005em;
+    color: #07213C;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 20px 0px;
+    text-align: center;
+  }
+  .ResultContainer .SubHeading {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.0075em;
+    color: #07213C;
+   /* flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    margin: 20px 0px;
+  }
+.checkCircle {
+    margin-right: 10px;
+}
+  .ResultContainer .DetailsContainer > div{
+    margin-bottom: 20px;
+  }
+  .imgList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #07213C;
+    margin: 15px;
+    font-size:14px;
+  }
+  
+  @media only screen and (min-width: 990px) {
+  .ResultContainer{
+    width: 50%;
+    margin: 0;
+    padding: 15px;
+  }
+  .DetailsContainer .container{
+  margin-left: 0px;
+  }
+  .ResultContainer .DetailsContainer{
+    border: none;
+  }
+  }

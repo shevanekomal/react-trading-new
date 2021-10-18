@@ -27,15 +27,6 @@ const style = ({ palette }) => ({
   textCenter: {
     textAlign: 'center',
   },
-  firstRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/Lobby-4.jpg)',
-  },
-  secondRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-4.jpg)',
-  },
-  thirdRoom: {
-    background: 'url(https://js.devexpress.com/Demos/DXHotels/Content/Pictures/MeetingRoom-0.jpg)',
-  },
   header: {
     height: '260px',
     backgroundSize: 'cover',
@@ -44,6 +35,22 @@ const style = ({ palette }) => ({
     backgroundColor: 'rgba(255,255,255,0.65)',
   },
 });
+const Appointment = ({
+  children, style, ...restProps
+}) => (
+  <Appointments.Appointment
+    {...restProps}
+    style={{
+      ...style,
+      backgroundColor: '#ffff00',
+      height:'7px',
+      marginTop: '1.2rem',
+      
+    }}
+  >
+    {children}
+  </Appointments.Appointment>
+);
 
 const Content = withStyles(style, { name: 'Content' })(({
   children, appointmentData, classes, ...restProps
@@ -127,7 +134,7 @@ export default class Schedular extends React.PureComponent {
   }
 
   changeAppointmentChanges(appointmentChanges) {
-    console.log('change')
+    
     this.setState({ appointmentChanges });
   }
 
@@ -158,7 +165,8 @@ export default class Schedular extends React.PureComponent {
             console.log(response)
           }
         });*/
-        this.props.clickHandler(deleted)
+        this.props.clickHandler(data.filter(appointment => appointment.id === deleted)[0])
+
         data = data.filter(appointment => appointment.id !== deleted);
       }
       return { data };
@@ -183,12 +191,13 @@ export default class Schedular extends React.PureComponent {
           <Toolbar />
           <DateNavigator />
           <TodayButton />
-          <Appointments />
+          <Appointments 
+          appointmentComponent={Appointment}
+          />
           <ConfirmationDialog />
 
           <AppointmentTooltip
             contentComponent={Content}
-            showOpenButton
             showDeleteButton
             showCloseButton
           />

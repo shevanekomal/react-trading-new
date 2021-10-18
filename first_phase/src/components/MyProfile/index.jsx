@@ -9,9 +9,10 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import UpdatePanelStrip from './UpdatePanelStrip';
 import { FieldDataContext } from '../../context/FieldData'
 import {Alerts,Carousell} from '../InputFields'
+import {useWindowSize} from '../../utility'
 
 const MyProfile =(props)=> {
-  
+  const [width, height] = useWindowSize();
   const {
     getUserNotifications,
     getRecommendedAndSelfAddedCount
@@ -21,6 +22,9 @@ const MyProfile =(props)=> {
   const [open, setOpen] = useState(false);
   const [recommCount, SetRecommCount] = useState(0);
   const [selfCount, SetSelfCount] = useState(0);
+  const [items1, setItems1] = useState([]);
+  const [items2, setItems2] = useState([]);
+  const [items3, setItems3] = useState([]);
   let alertMsg = ''
   //reffer below result
    /*const result={
@@ -31,7 +35,10 @@ const MyProfile =(props)=> {
    
     getUserNotifications(props.location.state.user_id,props.location.state.user_type).then((result)=>{
    if(result.status){
-     setResult(result.data)
+     setResult(result.data.result)
+     setItems1(result.data.healthyHabits);
+     setItems2(result.data.knowYourSelf);
+     //setItems3(result.data.knowYourSelf);
    }else {
      alertMsg = result.messages || "something went wrong!!"
      setOpen(true);
@@ -53,13 +60,29 @@ const MyProfile =(props)=> {
       })
     }
 })
-  },[])
+//setItems1([{id:0,name:'Physical'},{id:1,name:'Mental'},{id:2,name:'Self-examination'},{id:3,name:'Dental'},{id:4,name:'Seasonal & Others'}]);
+  
+//setItems2([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
+
+setItems3([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
+
+},[])
   const healthStatusClickHandler = (user_id) =>{
     props.history.push({
       pathname: '/healthPlan',
       state: {user_id:user_id}, // added by swap 
     })
    }
+
+   const handleClick = () =>{
+    
+  //  console.log(name)
+    props.history.push({
+      pathname: '/knowYourself',
+      state: {user_id:props.location.state.user_id},
+    })
+   }
+
 const [isRead,setIsRead]=useState(false)
 
 const viewPDF = () => {
@@ -112,16 +135,21 @@ const handleCalender = () => {
 const createCheckupHandler = () =>{
   props.history.push({
     pathname: '/createCheckup',
-    state: {user_id:props.location.state.user_id,checkup_name:''}
+    state: {user_id:props.location.state.user_id,checkup_name:'',from:'calender'}
   })
 }
   
     return (
       <div className='MyProfileContainer'>
-        <div style={{marginTop:'20px'}}>
-          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> <b>&nbsp;&nbsp;{props.location.state.name}</b></span>
+         {width> 990 ? <div style={{marginTop:'-15px'}} className='heading'><b>Your Profile</b></div> :<div></div>}
+         
+        {width > 990 ?( <div> 
+          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> <b>&nbsp;&nbsp;{props.location.state.name !== undefined && props.location.state.name.split(' ')[0]}</b></span>
           <SettingsIcon style={{cursor: 'pointer'}} onClick={handleSettings}/>
-        </div>
+        </div>): ( <div style={{marginTop:'20px'}}> 
+          <span className="iconDiv"><img src={props.location.state.profileIcon}></img> <b>&nbsp;&nbsp;{props.location.state.name !== undefined && props.location.state.name.split(' ')[0]}</b></span>
+          <SettingsIcon style={{cursor: 'pointer'}} onClick={handleSettings}/>
+        </div>) }
         <div className="curentDateContainer">
         <div>
           <span>{new Date().toLocaleString('en-us',{day:'numeric'}) +' '+ new Date().toLocaleString('en-us',{month:'long', year:'numeric'}) }</span>
@@ -132,7 +160,7 @@ const createCheckupHandler = () =>{
         <img src={PlusCircle} alt="Add_member Logo" onClick={createCheckupHandler} /> <span onClick={createCheckupHandler}>Create</span>
         </div>
         </div>
-        <div className="Updates">
+        {result.updatesList.length > 0 && <div className="Updates">
         <div className='UpdatesHeader'>
           <div>Updates{/*!isRead &&<span className='ProfileButtonContainer'><span>{result.updatesList.length}</span></span>*/}</div>
          {/*  <div onClick={()=>{setIsRead(true)}}>Mark as read</div> */}
@@ -142,13 +170,13 @@ const createCheckupHandler = () =>{
         {result.updatesList.map(keyWord=>getUpdateComponent(keyWord))}
         </div>
 
-        </div>
+        </div>}
        
           <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
           <span>Your Medical Checkups</span>
           <ArrowForwardIcon />
         </div>
-        <br /><br />
+        <br />
         <div className='PlanHeader'>
           <div><FontAwesomeIcon style={{marginTop: '2px'}} icon={faClipboardList} color="#17416B" size={'3x'} /></div>
           <div>
@@ -156,29 +184,39 @@ const createCheckupHandler = () =>{
           <span className='checkupType'>{selfCount} &nbsp; Self-added checkups</span></div>
           
         </div>
-        <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+        <div  style={{cursor: 'pointer'}} className='healthPlanNavigation' 
+         onClick={(e)=>props.history.push({
+          pathname: '/gridListView',
+          state: {user_id:props.location.state.user_id,items:items1,name:'your healthy habits'}
+          })}>
           <span>Your Healthy Habits</span>
           <ArrowForwardIcon />
          </div>
          <div className='CarousellHeader'>
-          <Carousell backgroundColorOdd='#EEF8FF' backgroundColorEven = '#E8F2FA'></Carousell>
+          <Carousell backgroundColorOdd='#EEF8FF' backgroundColorEven = '#E8F2FA' props={props} items={items1} name='your healthy habits' ></Carousell>
         </div>
-          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>props.history.push({
+          pathname: '/gridListView',
+          state: {user_id:props.location.state.user_id,items:items2,name:'know yourself'}
+          })}>
           <span>Know Yourself</span>
           <ArrowForwardIcon />
          </div>
          <div className='CarousellHeader'>
-          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1'></Carousell>
+          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1' props={props} items={items2} name='know yourself' ></Carousell>
           </div>
-          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>healthStatusClickHandler(props.location.state.user_id)}>
+          <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>props.history.push({
+          pathname: '/gridListView',
+          state: {user_id:props.location.state.user_id,items:items3,name:'know health topics'}
+          })}>
           <span>Know Health Topics</span>
           <ArrowForwardIcon />
          </div>
          <div className='CarousellHeader'>
-          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1'></Carousell>
+          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1' props={props} items={items3} name='know health topics' ></Carousell>
           </div>
       
-      {/*   <button  onClick={viewPDF} >View PDF</button>*/}
+      {/*  <button  onClick={viewPDF} >View PDF</button> */}
         { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 
            isOpen={open} type="error" title="Error" content={"Something went wrong."} autoHideDuration = '10000'

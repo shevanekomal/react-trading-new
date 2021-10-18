@@ -10,6 +10,11 @@ import { useHistory } from "react-router-dom";
 import './Menubar.css'
 import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const Menubar = ({state,setState,deafulClasses}) =>{
   const {
@@ -27,6 +32,24 @@ const [open, setOpen] = useState(false);
       menu: !state.menu
     });
   };
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(true);
+  };
+  const CustomizedTooltip = withStyles(() => ({
+    tooltip: {
+      backgroundColor: '#07213C',
+      color: 'white',
+      border: '1.29682px solid #07213C',
+      borderradius: '2.66977px'
+    },
+  }))(Tooltip);
+  
   const addActiveCssOnClick = (linkClass) =>{
     setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
     if(linkClass === 'signOutLinkClass') {
@@ -52,6 +75,9 @@ const [open, setOpen] = useState(false);
       case '/myProfile': return `Your Profile`;
       case '/calender': return `Calender`;
       case '/createCheckup': return `Create`;
+      case '/knowYourself': return `Know Yourself`;
+      case '/healthyHabitsResult': return `Your Healthy Habits`;
+      case '/knowYourselfResult': return `Know Yourself`;
      // case '/login': return `Login`;
       //case '/': return `Register`;
      // default : return currentPath.toUpperCase().replace('/','')
@@ -115,9 +141,9 @@ const [open, setOpen] = useState(false);
             onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
           > Share with Members</Link> */}
        <Link
-            className={state.resgisterLinkClass}
+            className={state.loginLinkClass}
             to="/"
-            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+            onClick={() =>addActiveCssOnClick('loginLinkClass')}
           > Tutorial</Link>
           <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
          Hijeevan
@@ -135,10 +161,24 @@ const [open, setOpen] = useState(false);
           <footer>
           <div className="navbar-toggler socialMediaContainer">
           <div className="contactText">contact@hijeevan.com</div>
-          <img className="linkedinLogo" src={linkedin} alt="linkedin Logo" />
-          <img src={instagram} alt="instagram Logo" />
-          <img src={facebook} alt="facebook Logo" />
-          <img src={whatsapp} alt="whatsapp Logo" />
+          <div>Discliamer <Grid item style={{display: '-webkit-inline-box'}}>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+          <div className="contactText"> <CustomizedTooltip title={`Discliamer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
+               
+               open={tooltipOpen}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener><InfoIcon className = "TooltipClass" onClick={handleTooltipOpen}/></CustomizedTooltip> </div>
+                </ClickAwayListener>
+              </Grid></div>
+          <img style={{cursor: 'pointer'}} className="linkedinLogo" src={linkedin} alt="linkedin Logo"  onClick={(e) =>{
+        window.open(' https://www.linkedin.com/company/preventenable' , '_blank')}}/>
+          <img style={{cursor: 'pointer'}} src={instagram} alt="instagram Logo" onClick={(e) =>{
+        window.open('https://www.instagram.com/hi.jeevan/' , '_blank')}} />
+          <img style={{cursor: 'pointer'}} src={facebook} alt="facebook Logo" onClick={(e) =>{
+        window.open('https://www.facebook.com/preventenable' , '_blank')}} />
+          <img style={{cursor: 'pointer'}} src={whatsapp} alt="whatsapp Logo" onClick={(e) =>{
+        window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}}/>
         </div>
           </footer>
         </div>

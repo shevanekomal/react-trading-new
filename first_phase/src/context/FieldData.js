@@ -35,6 +35,11 @@ class FieldDataProvider extends Component {
      {text:"More than 1.5 hour and less than 2.5 hour",value:"More than 1.5 hour and less than 2.5 hour"},
     {text:"More than 2.5 hours",value:"More than 2.5 hours"}],
 
+    StrengthingExercise :[{text:"None",value:"None"},
+     {text:"Once a week",value:"Once a week"},
+     {text:"Twice a week",value:"Twice a week"},
+    {text:"Thrice or more times a week",value:"Thrice or more times a week"}],
+
     diagnosedCondition : [
     {text:'None of the below',name:'None of the below'},
     {text:'Diabetes',name:'Diabetes'},
@@ -121,11 +126,23 @@ class FieldDataProvider extends Component {
   ],
   recommendedcount: 5,
   selfAddedcount:1},
+  knowYourSelfResult:{
+    BMI: [],
+    waist :[],
+    excercise:[],
+    strengthingExcercise:[],
+    age:[],
+    sugar:[],
+    diet:[],
+    alcohol:[],
+    smoke:[],
+    medicalCheckups:[],
+  },
   testDetails:{
         "finalResult": "This checkup is highly recommended for you Because you have an existing chronic condition that puts you at higher risk and you smoke or have smoked in the past and you drink"
   },
   checkup_names : [{text:'Other'},{text:'Complete Blood Count (CBC)'},
-  {text:'Lipid Profie'},
+  {text:'Lipid Profile'},
   {text:'Sugar Profile (HbA1c)'},
   {text:'Liver Function Test'},
   {text:'Kidney Function Test'},
@@ -149,7 +166,7 @@ class FieldDataProvider extends Component {
   {text:'Fecal occult blood test'},
   {text:'Colonoscopy'},
   {text:'Physician'},
-  {text:'Geriatrician or Physican'},
+  {text:'Geriatrician or Physician'},
   {text:'Dentist'},
   {text:'ENT'},
   {text:'Ophthalmologist'},
@@ -379,6 +396,30 @@ getProfilePicture=(relation)=>{
         urlEndpoint: '/getUserEventsById/'+user_id
       })
         return result
+    }),
+    UpdateKnowYourselfDetails: debounce(async (data) => {
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/updateKnowYourselfDetails',
+        data,
+      })
+      return result
+    }),
+    getKnowYourSelfResult:debounce(async(user_id,name)=>{
+      const result = await httpClient({
+        method: 'POST',
+        urlEndpoint: '/knowYourselfEvaluation/'+user_id+'/'+name
+      })
+      if(result.status){
+        this.setState({
+          ...this.state,
+          knowYourSelfResult:result.data
+        })
+        return true
+      }else{
+        this.setState({ ...this.state,open:true})
+        return false
+      }
     }),
   }
 

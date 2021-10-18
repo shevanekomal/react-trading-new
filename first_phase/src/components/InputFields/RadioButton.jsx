@@ -1,6 +1,7 @@
 import {Radio,RadioGroup,FormControlLabel,FormControl,FormHelperText} from '@material-ui/core';
 import {useState} from 'react'
 const RadioButton =({children,name,options,defaultValue,onChange,required,error,validate,valueText})=> {
+ // console.log(onChange)
   const [value, setValue] = useState(defaultValue);
   const handleChange = (event) => {
     setValue(event.target.value);

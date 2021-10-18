@@ -13,23 +13,80 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 }*/
 ];
 
-export default function Carousell({backgroundColorEven,backgroundColorOdd,handleClick}) {
-  
-    const [items, setItems] = useState([1, 2, 3, 4, 5]);
+export default function Carousell({backgroundColorEven,backgroundColorOdd,props,items,name}) {
 
+    /*if(name ==='your healthy habits')
+        setItems(['Physical','Mental','Self-examination','Dental','Seasonal & Others'])
+    else if(name ==='know yourself')
+         setItems(['Medical Checkups','Physical Wellbeing','Sleep','Heart Health','Vitamin B12'])
+    else if(name ==='know health topics')
+         setItems(['Medical Checkups','Physical Wellbeing','Sleep','Heart Health','Vitamin B12']) */
+    
     const myArrow = ({ type, onClick, isEdge }) => {
         const pointer = type === consts.PREV ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />
         return (
-          <Button onClick={onClick} disabled={isEdge}>
+          <Button style={{visibility:'visible'}} onClick={onClick} disabled={isEdge}>
             {pointer}
           </Button>
         )
+    }
+    const handleClick = (e,name,isDone) => {
+   // console.log(name)
+        if(name === 'know yourself'){
+            if(isDone){
+                props.history.push({
+                  pathname: '/knowYourselfResult',
+                  state: {user_id:props.location.state.user_id,name:e.target.innerText}
+                })
+            }else if(e.target.innerText ==='Medical Checkups' || e.target.innerText ==='Physical Wellbeing' ){
+                props.history.push({
+                    pathname: '/knowYourself',
+                    state: {user_id:props.location.state.user_id,name:e.target.innerText},
+                })
+            }else {
+                alert('Upcoming in next week')
+            }
+        }else  if(name === 'your healthy habits'){
+            if(isDone){
+               
+                props.history.push({
+                  pathname: '/healthyHabitsResult',
+                  state: {user_id:props.location.state.user_id,name:e.target.innerText}
+                })
+            }
+            else if(e.target.innerText ==='Physical'){
+                props.history.push({
+                    pathname: '/knowYourself',
+                    state: {user_id:props.location.state.user_id,name:e.target.innerText},
+                })
+            }else {
+                alert('Upcoming in next week')
+            }
+        }else {
+            if(e.target.innerText === 'Physical Wellbeing'){
+                props.history.push({
+                  pathname: '/pdf',
+                  state: {user_id:props.location.state.user_id,pdfName:'physicalPDF'}
+                })
+              }else if(e.target.innerText === 'Medical Checkups') {
+                props.history.push({
+                  pathname: '/pdf',
+                  state: {user_id:props.location.state.user_id,pdfName:'medicalPDF'}
+                })
+              }else {
+                alert('Upcoming in next week')
+              }
+        }
+       
+       
     }
     return (
         <div >
             <Carousel renderArrow={myArrow} breakPoints={breakPoints} >
               {items.map((item) => (
-                 (item % 2 == 0)?(<div key={item} onClick={(e)=>console.log(e.target.innerText)}><Item onClickItem={(e)=>console.log(e.target.innerText)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item}>{item}</Item></div>):(<div key={item} onClick={(e)=>console.log(e.target.innerText)}><Item style={{backgroundColor:`${backgroundColorEven}`}} key={item}>{item}</Item> </div>)
+                 (item.id % 2 == 0)?
+                     (<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item.id}>{item.name}</Item>)
+                     :(<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor:`${backgroundColorEven}`}} key={item.id}>{item.name}</Item>)
                
               ))}
             </Carousel>

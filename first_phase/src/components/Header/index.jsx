@@ -28,6 +28,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import {Alerts} from '../InputFields'
+import KnowYourSelfForm from "../KnowYourSelfForm";
+import knowYourselfResult from "../KnowYourSelfResult";
+import HealthyHabitsResult from "../HealthyHabitsResult";
+import GridListView from "../GridListView";
+
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const Header = (props) => {
   const {
@@ -57,6 +67,24 @@ const Header = (props) => {
     padding:'5px'
   }
   const [open, setOpen] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setTooltipOpen(true);
+  };
+  const CustomizedTooltip = withStyles(() => ({
+    tooltip: {
+      backgroundColor: '#07213C',
+      color: 'white',
+      border: '1.29682px solid #07213C',
+      borderradius: '2.66977px'
+    },
+  }))(Tooltip);
+
   const addActiveCssOnClick = (e) =>{
   let temp =  e.target.parentElement.children
   for ( temp of temp) {
@@ -81,18 +109,22 @@ const Header = (props) => {
   } 
 
   const redirectToHealthPlan = (e) => { 
-    console.log(e.target.baseURI)
+   // console.log(e.target.baseURI)
   if(e.target.baseURI.includes('/test')){
     let user_id1 = window.localStorage.getItem('subuser_id')
     history.push({
       pathname:'/healthPlan',
       state:{user_id :user_id1}
     })
+  }else if (e.target.baseURI.includes('/pdf')){
+    history.push({
+      pathname: '/userHome',
+      state: {self:true,user_id:user_id}, 
+    })
   }else {
     history.goBack()
   }
    
-
   };
   const [width, height] = useWindowSize();
   const getLabel=(currentPath)=>{
@@ -106,6 +138,8 @@ const Header = (props) => {
       case '/myProfile': return `Your Profile`;
       case '/calender': return `Calender`;
       case '/createCheckup': return `Create`;
+      case '/knowYourself': return `Know Yourself`;
+      case '/healthyHabitsResult': return `Your Healthy Habits`;
      // case '/login': return `Login`;
       //case '/': return `Register`;
      // default : return currentPath.toUpperCase().replace('/','')
@@ -119,7 +153,7 @@ const Header = (props) => {
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/myProfile','/userSetting','/calender','/createCheckup'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{['/test','/myProfile','/userSetting','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
@@ -187,11 +221,25 @@ const Header = (props) => {
       
       <footer>
           <div className="contactText">contact@hijeevan.com</div>
+          <div style = {{display:'flex'}}>Discliamer <Grid item style={{display: '-webkit-inline-box'}}>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+          <div className="contactText"> <CustomizedTooltip title={`Discliamer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
+               
+               open={tooltipOpen}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener><InfoIcon className = "TooltipClass" onClick={handleTooltipOpen}/></CustomizedTooltip> </div>
+                </ClickAwayListener>
+              </Grid></div>
           <div className="socialMediaContainer">
-          <img src={linkedin} alt="linkedin Logo" />
-          <img src={instagram} alt="instagram Logo" />
-          <img src={facebook} alt="facebook Logo" />
-          <img src={whatsapp} alt="whatsapp Logo" />
+          <img style={{cursor: 'pointer'}} src={linkedin} alt="linkedin Logo" onClick={(e) =>{
+        window.open(' https://www.linkedin.com/company/preventenable' , '_blank')}}/>
+          <img style={{cursor: 'pointer'}} src={instagram} alt="instagram Logo" onClick={(e) =>{
+        window.open('https://www.instagram.com/hi.jeevan/' , '_blank')}}/>
+          <img style={{cursor: 'pointer'}} src={facebook} alt="facebook Logo" onClick={(e) =>{
+        window.open('https://www.facebook.com/preventenable' , '_blank')}} />
+          <img style={{cursor: 'pointer'}} src={whatsapp} alt="whatsapp Logo" onClick={(e) =>{
+        window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}}/>
         </div>
           </footer>
     </div>}
@@ -212,7 +260,10 @@ const Header = (props) => {
         <Route path="/createCheckup" exact component={CreateCheckupForm} />
         <Route path="/pdf" exact component={PdfViewer} />
         <Route path="/calender" exact component={CalenderDetails} />
-        
+        <Route path="/knowYourself" exact component={KnowYourSelfForm} />
+        <Route path="/knowYourselfResult" exact component={knowYourselfResult} />
+        <Route path="/healthyHabitsResult" exact component={HealthyHabitsResult} />
+        <Route path="/gridListView" exact component={GridListView} />
         <Redirect to="/" />
       </Switch>
       </div>

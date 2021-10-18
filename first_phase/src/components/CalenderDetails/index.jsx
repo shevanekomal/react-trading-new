@@ -2,27 +2,32 @@ import React,{useEffect,useContext,useState} from 'react'
 import {Schedular} from '../InputFields'
 import PlusCircle from '../../assets/PlusCircle.png'
 import './CalenderDetails.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMapMarker,faLink} from "@fortawesome/free-solid-svg-icons";
 import { FieldDataContext } from '../../context/FieldData'
+import {Alerts} from '../InputFields'
+import {useWindowSize} from '../../utility'
 const CalenderDetails =(props)=>{
-  
+  const [width, height] = useWindowSize();
   const {
-    getAppointments
+    getAppointments,
+    deleteCheckupEventPlan
   } = useContext(FieldDataContext)
   const [appointments,setResult] = useState([])
-
-  const clickHandler=(e)=>{
-    console.log(e)
-   // e.preventDefault()
-   //console.log(document.getElementsByClassName('appointment'))
+  const [open, setOpen] = useState(false);
+  const clickHandler=(data)=>{
+   
+    deleteCheckupEventPlan(data).then((response)=>{
+      if(response.status){
+        setOpen(true)
+      }
+    })
    // let date = document.getElementsByClassName('MuiButton-label')[1].innerHTML
    /* getAppointments(props.location.state.user_id).then(result=>{
       if(result.status){
         console.log(result)
       }
     })*/
-  }
+ 
+}
   useEffect(()=>{
    // clickHandler()
    let user_id = props.location.state.user_id
@@ -56,15 +61,21 @@ const CalenderDetails =(props)=>{
   const createCheckupHandler = () =>{
     props.history.push({
       pathname: '/createCheckup',
-      state: {user_id:props.location.state.user_id,checkup_name:''}
+      state: {user_id:props.location.state.user_id,checkup_name:'',from:'calender'}
     })
   }
   return (
     <div className='CalenderContainer'>
+      { /*width> 990 ? <div style={{marginTop:'-40px'}} className='heading'><b>Calender</b></div> :<div></div> */}
+        
     <div><span  onClick={createCheckupHandler} style={{cursor: 'pointer'}}><img src={PlusCircle} alt="Add_member Logo"  /> Create</span></div>
     
      {appointments.length > 0 && <Schedular clickHandler={clickHandler} scheduledAppointments={appointments}/>}
      {appointments.length === 0 && <Schedular clickHandler={clickHandler} scheduledAppointments={appointments}/>}
+     { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="success" title="Success" content={'Event deleted successfully'} autoHideDuration = '5000'
+           vertical= 'top' horizontal= 'center' />}
      {/* <div className='checkupDetails'>
       <label>Checkups</label><br/>
  <div className='appointment'>

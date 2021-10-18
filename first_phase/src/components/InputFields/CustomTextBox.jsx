@@ -40,7 +40,7 @@ const CustomTextBox=({type,name,state,setState,endAdornment,children,required,va
     onKeyDown={(e)=>{type==='number' ? restrictArrowEvent(e) : restrictAlphabet(e)}}
     onWheel={(e)=>{type==='number' && restrictArrowEvent(e)}}
     onBlur={required && validate} /> 
-    {endAdornment && <input type='text' value={endAdornment} readOnly />}
+    {endAdornment && (name === 'sugar' ? <input style={{width:'80px'}} type='text' value={endAdornment} readOnly />:<input type='text' value={endAdornment} readOnly />)}
     </div>
     { error && (<><span style={{color:"red"}}>{error}</span></>) }
     </div>

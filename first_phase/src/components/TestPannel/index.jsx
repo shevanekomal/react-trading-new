@@ -36,7 +36,8 @@ const [width] = useWindowSize();
          {planType === 'recomm' && <div><b>{test.testName ==='Diagnostic' ? 'Diagnostic Tests':test.testName+'s'}</b>&nbsp;
          <Grid item style={{display: '-webkit-inline-box'}}>
           <ClickAwayListener onClickAway={handleTooltipClose}>
-          <div> <CustomizedTooltip title={test.testName ==='Blood Test' ? (' You can get these checks done at your preferred lab. Make sure all these are included in the package you choose.Click on any checkup name to know more personalised details & organise your appointments.')
+          <div> <CustomizedTooltip title={test.testName ==='Blood Test' ? (' You can get these checks done at your preferred lab. Make sure all these are included in the package you choose. \n\n'+
+          'Click on any checkup name to know more personalised details & organise your appointments.')
           :(test.testName ==='Diagnostic' ?'You can get these checks done at your preferred diagnostic lab or hospital.':'You can visit your preferred doctors. Remember to ask the physician doctor about the vaccines listed here. ') } placement="bottom"   onClose={handleTooltipClose}
                
                open={open}
