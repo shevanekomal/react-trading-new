@@ -161,14 +161,15 @@ const [open, setOpen] = useState(false);
           <footer>
           <div className="navbar-toggler socialMediaContainer">
           <div className="contactText">contact@hijeevan.com</div>
-          <div>Discliamer <Grid item style={{display: '-webkit-inline-box'}}>
+          <div className="contactText">Discliamer<Grid item style={{display: '-webkit-inline-box'}}>
           <ClickAwayListener onClickAway={handleTooltipClose}>
-          <div className="contactText"> <CustomizedTooltip title={`Discliamer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
+           <CustomizedTooltip title={`Discliamer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
                
                open={tooltipOpen}
                 disableFocusListener
                 disableHoverListener
-                disableTouchListener><InfoIcon className = "TooltipClass" onClick={handleTooltipOpen}/></CustomizedTooltip> </div>
+                disableTouchListener><InfoIcon style={{width: '0.7em',
+    height: '0.7em'}}  className = "TooltipClass" onClick={handleTooltipOpen}/></CustomizedTooltip>
                 </ClickAwayListener>
               </Grid></div>
           <img style={{cursor: 'pointer'}} className="linkedinLogo" src={linkedin} alt="linkedin Logo"  onClick={(e) =>{
