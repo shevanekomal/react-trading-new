@@ -49,6 +49,7 @@ export default function PdfViewer(props) {
         file={pdf}
         options={{ workerSrc: "/pdf.worker.js" }}
         onLoadSuccess={onDocumentLoadSuccess}
+        className='customPdfContainer'
       >
         <Page pageNumber={pageNumber} />
       </Document>

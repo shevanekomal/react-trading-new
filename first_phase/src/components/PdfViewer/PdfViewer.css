@@ -1,14 +1,13 @@
-.PDFContainer {
+.PDFContainer,.customPdfContainer{
     margin: 100px auto;
     width: 90%;
   }
 
     
   @media only screen and (min-width: 990px) {
-    .PDFContainer{
+    .PDFContainer,.customPdfContainer{
       width: 50%;
       margin: 0;
       padding: 15px;
     }
-    
 }

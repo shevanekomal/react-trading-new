@@ -291,7 +291,7 @@ margin: 8px 0px;
   flex:none;
 }
 
-.MuiButton-root.Mui-disabled {
+.MyProfileContainer .MuiButton-root.Mui-disabled {
   background:white!important;
 }
 
