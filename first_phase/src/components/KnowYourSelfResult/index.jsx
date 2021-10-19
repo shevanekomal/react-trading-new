@@ -43,7 +43,7 @@ const KnowYourselfResult = (props)=> {
     if(e.target.innerText ==='CLICK TO SEE RECOMMENDATIONS'){
       props.history.push({
         pathname: '/healthyHabitsResult',
-        state: {user_id:props.location.state.user_id,name:props.location.state.name}
+        state: {user_id:props.location.state.user_id,name:'Physical'}
       })
     }else {
       props.history.push({
@@ -57,7 +57,8 @@ const KnowYourselfResult = (props)=> {
     return (
       <div className='ResultContainer'>
           <div className='TopicHeading'>{(props.location.state.name).toUpperCase()}</div>
-          <p>Here is your assessment based on your lifestyle status. You can act to manage your risks by clicking on the recommendations below.</p>
+          <p>{props.location.state.name === 'Physical Wellbeing' ?('Here is your assessment based on your lifestyle status. You can act to manage your risks by clicking on the recommendations below.')
+             :('Here is your assessment based on your checkup status. Act & learn more by clicking on the recommendations below.')}</p>
           {props.location.state.name === 'Physical Wellbeing' && <> <div className='DetailsContainer'>
           {knowYourSelfResult.BMI !== undefined && <>
             <div className='SubHeading'>{knowYourSelfResult.BMI.length > 0 && knowYourSelfResult.BMI.map(res => res.risk===0 ?<img className='checkCircle' src={ok} /> :<img className='checkCircle' src={warning} />)}{knowYourSelfResult.BMI.map(res => res.text)}</div>
