@@ -9,7 +9,7 @@ const RadioButton =({children,name,options,defaultValue,onChange,required,error,
   };
   const radioPattern = (name==='addNewField1') ? 'row':'column';
   return (
-    <div className='container'>
+    <div className='container' style={{paddingLeft:'0px'}}>
     <FormControl className='RadioButton' component="fieldset" required>
     <label style={{display: 'block'}}>{children}{required && <><span style={{color:'red'}}> *</span><br /></>}</label>
     <div className='subHeader' > {valueText}</div>

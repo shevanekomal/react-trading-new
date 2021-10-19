@@ -5,16 +5,20 @@ import { Button } from '@material-ui/core';
 import Carousel ,{ consts } from 'react-elastic-carousel';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import {useWindowSize} from '../../utility'
 
-const breakPoints = [
-  { width:600, itemsToShow: 2 ,itemsToScroll: 2},
- /* { width: 600, itemsToShow: 2, itemsToScroll: 2 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 }*/
-];
+
 
 export default function Carousell({backgroundColorEven,backgroundColorOdd,props,items,name}) {
 
+    const [width] = useWindowSize();
+    let itemToshow = width > 990 ? 2:1
+    const breakPoints = [
+        { width:600, itemsToShow: itemToshow ,itemsToScroll: itemToshow},
+       /* { width: 600, itemsToShow: 2, itemsToScroll: 2 },
+        { width: 768, itemsToShow: 3 },
+        { width: 1200, itemsToShow: 4 }*/
+      ];
     /*if(name ==='your healthy habits')
         setItems(['Physical','Mental','Self-examination','Dental','Seasonal & Others'])
     else if(name ==='know yourself')
@@ -85,8 +89,8 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
             <Carousel renderArrow={myArrow} breakPoints={breakPoints} >
               {items.map((item) => (
                  (item.id % 2 == 0)?
-                     (<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item.id}>{item.name}</Item>)
-                     :(<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor:`${backgroundColorEven}`}} key={item.id}>{item.name}</Item>)
+                     (<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>upcoming</div></div></Item>)
+                     :(<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor:`${backgroundColorEven}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>upcoming</div></div></Item>)
                
               ))}
             </Carousel>

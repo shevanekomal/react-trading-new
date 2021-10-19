@@ -94,3 +94,11 @@ order: 0!important;
 flex-grow: 0!important;
 margin: 8px 0px!important;
 }
+.react-pdf__Page__canvas,.react-pdf__Page__textContent{
+  width: 100%!important;
+}
+.react-pdf__Page__textContent span{
+  left: 0px!important;
+  white-space: break-spaces!important;
+  transform:none!important;
+}
