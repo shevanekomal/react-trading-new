@@ -171,9 +171,9 @@ const [open, setOpen] = useState(false);
           <img style={{cursor: 'pointer'}} src={whatsapp} alt="whatsapp Logo" onClick={(e) =>{
         window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}}/>
 
-<div className="contactText" style = {{display:'flex'}}>Discliamer
+<div className="contactText" style = {{display:'flex'}}>Disclaimer
           <ClickAwayListener onClickAway={handleTooltipClose}>
-          <span> <CustomizedTooltip title={`Discliamer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
+          <span> <CustomizedTooltip title={`Disclaimer: Empower Digital Health (OPC) Pvt. Ltd. provides all information only for informational purposes. It is not a substitute for professional medical advice, care, diagnosis or treatment. It is recommended to consult your doctor/physician in any case of a doubt. All information is only for preventive health management. It is not applicable for individuals less than 18, pregnant women, or individuals undergoing any treatment. For any chronic existing conditions, please follow your doctor's plan.` } placement="bottom"   onClose={handleTooltipClose}
                open={tooltipOpen}
                 disableFocusListener
                 disableHoverListener

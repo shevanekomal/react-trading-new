@@ -91,7 +91,7 @@ useEffect(() => {
   Object.entries(state).forEach(([key, value]) =>{
     if((!!value.error || value.value=='' || (value.value && value.value.length == 0) ) && key!='waist' ){ 
      //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
-     console.log('in check')
+    // console.log('in check')
       check = true;
     }
     
@@ -145,7 +145,8 @@ const onUpdateData = () =>{
   let data = {}
 
   if(!isValidate){
-    if(props.location.state.name === 'physical wellbeing'){
+   // console.log(props.location.state.name)
+    if(props.location.state.name === 'Physical Wellbeing'){
       data = {
         waist:state.waist.value,
         sugar:state.sugar.value,
@@ -202,7 +203,7 @@ const validate = (e)=>{
     return (
       <div className='YourFormContainer'>
      {/* <Loader  text={'Generating HealthPlans...'} loaded={isLoaded}/> */}
-        <p>To know your health risks, answer these questions to the best of your knowledge . If you do not know the answer to any of the questions, then you can come back later at fill this assessment.</p>
+        <p>To know your health risks, answer these questions to the best of your knowledge . If you do not know the answer to any of the questions, then you can come back later to fill this assessment.</p>
         <form name='details' style={{padding:'2%'}}>
         <div className='DetailsContainer'>
           <div className='TopicHeading'>{(props.location.state.name).toUpperCase()}</div>
@@ -210,7 +211,7 @@ const validate = (e)=>{
           <CustomTextBox type={'number'} defaultValue={state.waist.value} setState={setState} state={state}  placeholder={`Eg: 32 `} endAdornment="inches"  name='waist'  validate={validate}  error={state.waist.error} valueText = 'Place a tape measure just below your belly button. Breathe out naturally and take your measurement. Note that the pant or skirt waist size is often not the same as this.'>Your waist size</CustomTextBox>
           <RadioButton name={'exercise'}  required={true}  options={StrengthingExercise}  validate={validate} onChange={handleChange} defaultValue={state.exercise.value} error={state.exercise.error} valueText = 'E.g., push ups, squats or working out using equipment such as dumbbells, resistance bands, and some styles of yoga. Strengthening exercise is any activity that focuses on building muscular strength, endurance, and mass.'>How much strengthening exercise do you usually do per week?
            </RadioButton>
-           <CustomTextBox type={'number'} defaultValue={state.sugar.value} setState={setState} state={state}  placeholder={`Eg: 10 `} endAdornment="teaspoons" required={true} name='sugar'  validate={validate}  error={state.sugar.error} valueText = 'This should include sugar in everything except fresh vegetables, fruits, and milk. For example, in foods like packaged drinks, sweets, chai etc.'>This should include sugar in everything except fresh vegetables, fruits, and milk. For example, in foods like packaged drinks, sweets, chai etc.</CustomTextBox>
+           <CustomTextBox type={'number'} defaultValue={state.sugar.value} setState={setState} state={state}  placeholder={`Eg: 10 `} endAdornment="teaspoons" required={true} name='sugar'  validate={validate}  error={state.sugar.error} valueText = 'This should include sugar in everything except fresh vegetables, fruits, and milk. For example, in foods like packaged drinks, sweets, chai etc.'>Approximately, how many teaspoons of sugar (white sugar, brown sugar, jaggery, honey) do you consume per day?</CustomTextBox>
             </>
           }
           {props.location.state.name === 'Medical Checkups' && <>
@@ -229,7 +230,7 @@ const validate = (e)=>{
            <RadioButton name={'dentist'}  required={true}  options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.dentist.value} error={state2.dentist.error} >When did you last visit the dentist (after having symptoms or for a preventive checkup)?
            </RadioButton>
-           <RadioButton name={'covid'}  required={true}  options={[{text:'Got one',value:'Got onc'},{text:'Never',value:'Never'}]}  
+           <RadioButton name={'covid'}  required={true}  options={[{text:'Got one',value:'Got one'},{text:'Never',value:'Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.covid.value} error={state2.covid.error} >Apart from COVID19, have you discussed with your doctor about getting any other vaccine as an adult?
            </RadioButton>
              </>

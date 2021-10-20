@@ -48,7 +48,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                     state: {user_id:props.location.state.user_id,name:e.target.innerText},
                 })
             }else {
-                alert('Upcoming in next week')
+                alert('Upcoming...')
             }
         }else  if(name === 'your healthy habits'){
             if(isDone){
@@ -64,7 +64,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                     state: {user_id:props.location.state.user_id,name:e.target.innerText},
                 })
             }else {
-                alert('Upcoming in next week')
+                alert('Upcoming...')
             }
         }else {
             if(e.target.innerText === 'Physical Wellbeing'){
@@ -78,7 +78,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                   state: {user_id:props.location.state.user_id,pdfName:'medicalPDF'}
                 })
               }else {
-                alert('Upcoming in next week')
+                alert('Upcoming...')
               }
         }
        
@@ -89,8 +89,8 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
             <Carousel renderArrow={myArrow} breakPoints={breakPoints} >
               {items.map((item) => (
                  (item.id % 2 == 0)?
-                     (<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>upcoming</div></div></Item>)
-                     :(<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor:`${backgroundColorEven}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>upcoming</div></div></Item>)
+                     (<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor: `${backgroundColorOdd}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>{item.text}</div></div></Item>)
+                     :(<Item onClick={(e) => handleClick(e,name,item.isDone)} style={{backgroundColor:`${backgroundColorEven}`}} key={item.id}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>{item.text}</div></div></Item>)
                
               ))}
             </Carousel>

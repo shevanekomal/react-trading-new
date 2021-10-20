@@ -64,7 +64,7 @@ const MyProfile =(props)=> {
   
 //setItems2([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
 
-setItems3([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
+setItems3([{id:0,name:'Medical Checkups',text:''},{id:1,name:'Physical Wellbeing',text:''},{id:2,name:'Sleep',text:'Upcoming in 1 week'},{id:3,name:'Heart Health',text:'Upcoming'},{id:4,name:'Vitamin B12',text:'Upcoming'}]);
 
 },[])
   const healthStatusClickHandler = (user_id) =>{
@@ -94,10 +94,10 @@ const viewPDF = () => {
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
-      return <UpdatePanelStrip header={"Know Yourself - Checkups"} subHeader={'Answer quick questions to learn if you are on top of your checkups.'} tag='Know' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Know Yourself - Checkups"} subHeader={'Answer quick questions to learn if you are on top of your checkups.'} tag='Know' actionPath={items2.map((item) => (item.name === 'Medical Checkups') && (item.isDone ? '/knowYourselfResult':'/knowYourself') )} self='true' name={'Medical Checkups'} list = {result.updatesList} user_id={props.location.state.user_id} />
     }
     case 'advice':{
-      return <UpdatePanelStrip header={"Know Yourself - Physical Wellbeing"} subHeader={'Take a minute to check your BMI & how your body is doing.'} tag='Know' actionPath='/' self='true' user_id={props.location.state.user_id} />
+      return <UpdatePanelStrip header={"Know Yourself - Physical Wellbeing"} subHeader={'Take a minute to check your BMI & how your body is doing.'} tag='Know' actionPath={items2.map((item) => (item.name === 'Physical Wellbeing') && (item.isDone ? '/knowYourselfResult':'/knowYourself' ))} self='true' name={'Physical Wellbeing'} self='true' list = {result.updatesList} user_id={props.location.state.user_id} />
     }
     case 'addMember':{
       return <UpdatePanelStrip header={"Add your family members."} subHeader={'Create personalised health plans for your loved ones'} actionPath='/userHome' self='false' user_id={props.location.state.user_id} />

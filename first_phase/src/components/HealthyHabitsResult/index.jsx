@@ -27,7 +27,6 @@ const HealthyHabitsResult = (props)=> {
   } = useContext(FieldDataContext)
   
   useEffect(()=>{
-    console.log('in effect')
     getKnowYourSelfResult(props.location.state.user_id,props.location.state.name).then(result=>{
        // console.log(knowYourSelfResult)
     /*  if(!result){   
@@ -65,10 +64,10 @@ const HealthyHabitsResult = (props)=> {
             <label>{knowYourSelfResult.age.map(res => res.text)}</label> </>}
 
             <div className='SubHeading'><img className='checkCircle' src={movement} />Movement</div>
-            <label>Movement: You must have heard that it is recommended to walk around 10,000 steps per day. A quick way to check you do that is to just make sure you walk around 1 hour and 30 minutes as a part of your daily life like going to the shops, inside the house etc. </label>
+            <label>You must have heard that it is recommended to walk around 10,000 steps per day. A quick way to check you do that is to just make sure you walk around 1 hour and 30 minutes as a part of your daily life like going to the shops, inside the house etc. </label>
            
             <div className='SubHeading'><img className='checkCircle' src={Up_Arrow} />Stand up</div>
-            <label>Stand up: In your working hours, stand up after every 1 hour for bit of a walk around. Your bones will thank you forever!</label>
+            <label>In your working hours, stand up after every 1 hour for bit of a walk around. Your bones will thank you forever!</label>
 
         </div>
         <div className='DetailsContainer'>
@@ -78,7 +77,7 @@ const HealthyHabitsResult = (props)=> {
             <p>Sugar is tasty but sadly there is no nutritional benefit from added sugar and it is linked to higher risk of chronic conditions. So use your recommended sugar intake wisely. Use fruits and nuts to sweeten things instead of added sugar. Enjoy the occasional sweet or cake, but save your sugar spoons by avoiding soft drinks and packages foods.</p>
             </>}
             <div className='SubHeading'><img className='checkCircle' src={salt} />Salt</div>
-            <label>Salt: We are so used to the taste of salt but high intake of salt leads to increased heart disease risk. The World Health Organisation (WHO) recommends that adults consume less than 5 g (just under a teaspoon) of salt per day. Avoiding processed foods and a lot of salty snacks helps manage your salt intake.</label>
+            <label>We are so used to the taste of salt but high intake of salt leads to increased heart disease risk. The World Health Organisation (WHO) recommends that adults consume less than 5 g (just under a teaspoon) of salt per day. Avoiding processed foods and a lot of salty snacks helps manage your salt intake.</label>
             
             {knowYourSelfResult.bmi !== undefined && knowYourSelfResult.bmi.length > 0 && <> <div className='SubHeading'><img className='checkCircle' src={fried_chicken} />Proteins</div>
             <label>{knowYourSelfResult.bmi.map(res => res.text)}</label><br/>

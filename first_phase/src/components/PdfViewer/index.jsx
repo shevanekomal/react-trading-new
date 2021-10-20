@@ -1,7 +1,6 @@
 import React from "react";
-
 import SinglePagePDFViewer from "./PdfViewer";
-
+import './PdfViewer.css'
 /* This is required only if the project file is located 
 inside the app. Otherwise you can use the external link of the pdf file*/
 import medicalPDF from "./Medical_checkup_pdf_low.pdf";
