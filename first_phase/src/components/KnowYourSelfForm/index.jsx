@@ -91,7 +91,7 @@ useEffect(() => {
   Object.entries(state).forEach(([key, value]) =>{
     if((!!value.error || value.value=='' || (value.value && value.value.length == 0) ) && key!='waist' ){ 
      //check = (key == 'diagnosedCondition' && value.value.length == 1 && value.value[0] == 'Others') ? false : true
-     console.log('in check')
+    // console.log('in check')
       check = true;
     }
     
@@ -145,7 +145,7 @@ const onUpdateData = () =>{
   let data = {}
 
   if(!isValidate){
-    console.log(props.location.state.name)
+   // console.log(props.location.state.name)
     if(props.location.state.name === 'Physical Wellbeing'){
       data = {
         waist:state.waist.value,
@@ -230,7 +230,7 @@ const validate = (e)=>{
            <RadioButton name={'dentist'}  required={true}  options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.dentist.value} error={state2.dentist.error} >When did you last visit the dentist (after having symptoms or for a preventive checkup)?
            </RadioButton>
-           <RadioButton name={'covid'}  required={true}  options={[{text:'Got one',value:'Got onc'},{text:'Never',value:'Never'}]}  
+           <RadioButton name={'covid'}  required={true}  options={[{text:'Got one',value:'Got one'},{text:'Never',value:'Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.covid.value} error={state2.covid.error} >Apart from COVID19, have you discussed with your doctor about getting any other vaccine as an adult?
            </RadioButton>
              </>

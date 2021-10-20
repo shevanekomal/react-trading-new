@@ -13,7 +13,7 @@ export default function PdfViewer(props) {
   }
 
   function changePage(offset) {
-    console.log('offset ' + offset)
+    //console.log('offset ' + offset)
     setPageNumber(prevPageNumber => prevPageNumber + offset);
   }
 
@@ -22,7 +22,7 @@ export default function PdfViewer(props) {
   }
 
   function nextPage() {
-    console.log('next page ')
+    //console.log('next page ')
     changePage(1);
   }
 
@@ -40,7 +40,7 @@ export default function PdfViewer(props) {
          </div>
       </div>
      <br />*/}
-      <div style={{ width: 600 }}>
+     
       <Document
         file={pdf}
         options={{ workerSrc: "/pdf.worker.js" }}
@@ -52,7 +52,6 @@ export default function PdfViewer(props) {
       ))}
        {/*<Page pageNumber={pageNumber} width={600} /> */}
       </Document>
-      </div>
       
     </div>
   );

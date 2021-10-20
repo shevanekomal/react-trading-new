@@ -20,7 +20,7 @@ const GridListView =(props)=> {
               state: {user_id:props.location.state.user_id,name:e.target.innerText},
           })
       }else {
-        alert('Upcoming in next week')
+        alert('Upcoming...')
       }
     }else if(name === 'your healthy habits'){
         if(isDone){   
@@ -34,7 +34,7 @@ const GridListView =(props)=> {
               state: {user_id:props.location.state.user_id,name:e.target.innerText},
       })
       }else {
-        alert('Upcoming in next week')
+        alert('Upcoming...')
       }
     }else {
       if(e.target.innerText === 'Physical Wellbeing'){
@@ -48,7 +48,7 @@ const GridListView =(props)=> {
           state: {user_id:props.location.state.user_id,pdfName:'medicalPDF'}
         })
       }else {
-        alert('Upcoming in next week')
+        alert('Upcoming...')
       }
      
     }
@@ -57,9 +57,9 @@ const GridListView =(props)=> {
   }
 
     const images = props.location.state.items.map((item) => {
-        return (item.id % 2 == 0)?(<div style={{backgroundColor: `#DAEDEB`}} className='imgList' key={item.id} onClick={(e) => handleClick(e,props.location.state.name,item.isDone)}><b>{item.name}</b>
+        return (item.id % 2 == 0)?(<div style={{backgroundColor: `#DAEDEB`}} className='imgList' key={item.id} onClick={(e) => handleClick(e,props.location.state.name,item.isDone)}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>{item.text}</div></div>
         
-        </div>):(<div style={{backgroundColor:`#FFD3B1`}} className='imgList' key={item.id} onClick={(e) => handleClick(e,props.location.state.name,item.isDone)}><b>{item.name}</b></div>)
+        </div>):(<div style={{backgroundColor:`#FFD3B1`}} className='imgList' key={item.id} onClick={(e) => handleClick(e,props.location.state.name,item.isDone)}><div><div className='CarouselItem'>{item.name}</div><div className='CarouselItemFooter'>{item.text}</div></div></div>)
       });
       
       return  (

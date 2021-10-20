@@ -64,7 +64,7 @@ const MyProfile =(props)=> {
   
 //setItems2([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
 
-setItems3([{id:0,name:'Medical Checkups'},{id:1,name:'Physical Wellbeing'},{id:2,name:'Sleep'},{id:3,name:'Heart Health'},{id:4,name:'Vitamin B12'}]);
+setItems3([{id:0,name:'Medical Checkups',text:''},{id:1,name:'Physical Wellbeing',text:''},{id:2,name:'Sleep',text:'Upcoming in 1 week'},{id:3,name:'Heart Health',text:'Upcoming'},{id:4,name:'Vitamin B12',text:'Upcoming'}]);
 
 },[])
   const healthStatusClickHandler = (user_id) =>{
