@@ -194,19 +194,25 @@ const Header = (props) => {
     }}>
     {width > 990 && !['/','/login','/addMemberself'].includes(currentPath) && <div className='leftPannel'>
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
-      <div onClick={(e) =>addActiveCssOnClick(e)}>Family Home</div> 
+      <div 
+      //onClick={(e) =>addActiveCssOnClick(e)}
+      >Family Home</div> 
      {/* <div onClick={(e) =>{
         alert("working on it..")
         addActiveCssOnClick(e)}}>Share with Members</div>*/}
       <div onClick={(e) =>{
         alert("working on it..")
-        addActiveCssOnClick(e)}}>Tutorial</div>
+        //addActiveCssOnClick(e)
+        }}
+        >Tutorial</div>
       <div onClick={(e) =>{
         window.open('https://www.hijeevan.com' , '_blank')
-        addActiveCssOnClick(e)}}>HiJeevan</div>
+       // addActiveCssOnClick(e)
+       }}>HiJeevan</div>
       <div onClick={(e) =>{
         window.open('https://www.hijeevan.com/our-features' , '_blank')
-        addActiveCssOnClick(e)}}>Our Feaures</div>
+       // addActiveCssOnClick(e)
+       }}>Our Feaures</div>
       <div onClick={(e) =>{
         window.open('https://www.hijeevan.com/about-us' , '_blank')
         addActiveCssOnClick(e)}}>About us</div>
@@ -217,7 +223,8 @@ const Header = (props) => {
         // alert("logged out...")
         setOpen(true)
         history.push('/login');
-        addActiveCssOnClick(e)}}>Sign out</div>
+        //addActiveCssOnClick(e)
+        }}>Sign out</div>
       
       <footer>
           <div className="contactText">contact@hijeevan.com</div>
