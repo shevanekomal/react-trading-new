@@ -1,6 +1,6 @@
 import React,{useContext,useState, useEffect} from 'react'
 import { useLocation } from "react-router-dom";
-import {RadioButton,DatePicker,DatePickerv1,CheckboxesGroup,Buttons,CustomTextBox} from '../InputFields'
+import {RadioButton,DatePickerv1,CheckboxesGroup,Buttons,CustomTextBox} from '../InputFields'
 import './KnowYourSelfForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'

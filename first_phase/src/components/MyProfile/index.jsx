@@ -85,12 +85,12 @@ setItems3([{id:0,name:'Medical Checkups',text:''},{id:1,name:'Physical Wellbeing
 
 const [isRead,setIsRead]=useState(false)
 
-const viewPDF = () => {
+/*const viewPDF = () => {
     props.history.push({
       pathname: '/pdf'
     })
   }
- 
+ */
 const getUpdateComponent =(keyWord)=>{
   switch(keyWord){
     case 'welcome':{
