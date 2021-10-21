@@ -152,14 +152,14 @@ const Header = (props) => {
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
       >
            <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" />
           </Link>}</div>
-    :(['/test'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon style={{marginLeft:'10px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/></div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    :(['/test'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon style={{marginLeft:'10px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/></div> {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
      <Link
            to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
