@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import Item from "./Item";
+//import Item from "./Item";
 import { Button } from '@material-ui/core';
 //import Carousel from 'react-material-ui-carousel';
 import Carousel ,{ consts } from 'react-elastic-carousel';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import {useWindowSize} from '../../utility'
-
-
-
+import styled from "styled-components";
+const Item = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width:  150px;
+  color: #07213C;
+  margin: 15px;
+  font-size:14px;
+`;
 export default function Carousell({backgroundColorEven,backgroundColorOdd,props,items,name,list}) {
 
     const [width] = useWindowSize();
@@ -105,6 +113,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
         </div>
     );
 }
+
 /*export default function Carousell(props) {
     const items = [
         {
