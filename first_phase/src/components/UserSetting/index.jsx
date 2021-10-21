@@ -1,4 +1,4 @@
-import {Buttons,CheckboxesGroup} from '../InputFields'
+import {Buttons} from '../InputFields'
 import ModalWindow from '../Modal/ModalWindow'
 import { useState,useContext } from 'react';
 import { FieldDataContext } from '../../context/FieldData'
@@ -25,7 +25,7 @@ const UserSetting =(props)=>{
 
 })
   const [open, setOpen] = useState(false);
-  const [saveOpen, setOpenSave] = useState(false);
+  const [setOpenSave] = useState(false);
   
   const {
     deleteMemberProfile,

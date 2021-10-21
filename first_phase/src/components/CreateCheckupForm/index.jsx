@@ -1,19 +1,19 @@
-import {InputBox,Buttons,DatePickerv1,SinglSelectDropDown,FormRow} from '../InputFields'
+
+import React,{useState,useEffect,useContext} from 'react'
+import {InputBox,Buttons} from '../InputFields'
+import { FieldDataContext } from '../../context/FieldData'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import React,{useState,useEffect,useContext} from 'react'
-import { FieldDataContext } from '../../context/FieldData'
 import Grid from '@material-ui/core/Grid';
 import AttachmentOutlinedIcon from '@material-ui/icons/AttachmentOutlined';
 import RoomIcon from '@material-ui/icons/Room';
 import DateRangeIcon from '@material-ui/icons/DateRange'
-import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import './CreateCheckupForm.css';
 import { useHistory } from "react-router-dom";
 
 const CreateCheckupForm = (props) =>{
- 
   const {
     checkup_names,
     //createSelfAddedPlan,
@@ -46,13 +46,12 @@ const CreateCheckupForm = (props) =>{
       error:''
     },
   }) 
-  const {self} = props.location.state
+  //const {self} = props.location.state
   useEffect(() => {
     let tempValidate = true 
     for (const [key, value] of Object.entries(FormData)) {
       if((!!value.error || value.value=='' || (value.value && value.value.length == 0) )&&key!='self_checkup_name' && key!='date'&& key!='provider' && key!='provider_website'){ 
         tempValidate = false;
-        
        }
        if(key ==='self_checkup_name' && FormData.checkup_name.value.includes('Other') && value.value==''){
         tempValidate = false;
@@ -67,14 +66,11 @@ const CreateCheckupForm = (props) =>{
   }, [FormData])
   
   useEffect(() => {
-  //  console.log(props.location.state.checkup_date)
     { (props.location.state.checkup_date != undefined && props.location.state.checkup_date  != '' )
      ?setStartDate(new Date(props.location.state.checkup_date.split('T')[0])) :setStartDate(new Date())}
-    
     window.onbeforeunload = function() {
         return true;
     };
-
     return () => {
         window.onbeforeunload = null;
     };

@@ -3,7 +3,6 @@ import {FormRow,RadioButton,SinglSelectDropDown,Buttons} from '../InputFields'
 import {useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import {useWindowSize} from '../../utility'
-import { Link } from "react-router-dom";
 import jeevi_on_skates from '../../assets/jeevi_on_skates.svg'
 
 const AddMemberForm = (props) =>{
@@ -53,14 +52,12 @@ const AddMemberForm = (props) =>{
       }*/
     }
     setValidate(tempValidate)
-    //console.log(isValidate)
   }, [FormData,isNumberIsDiff])
 
   useEffect(() => {
     window.onbeforeunload = function() {
         return true;
     };
-
     return () => {
         window.onbeforeunload = null;
     };
@@ -182,7 +179,5 @@ addMember(data).then((response)=>{
 
       { <img className='jeevi_on_skates' src={jeevi_on_skates} />}
       </div>
-
-
 )}
 export default AddMemberForm;

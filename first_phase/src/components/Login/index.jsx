@@ -100,7 +100,7 @@ const [FormData,setFormData] = useState({
     <Buttons onClick={(e)=>LoginHandler(e)}  disabled={!isValidate} bgColor={isValidate ? '#F9E24D' : '#F0F3F5 '}>LOGIN</Buttons>
 
         <p>New here? <Link
-            to="/register" >Register Now</Link></p>
+            to="/" >Register Now</Link></p>
             </div>
     </form>
     {<img className='jeevi_register' src={jeevi_register} />}

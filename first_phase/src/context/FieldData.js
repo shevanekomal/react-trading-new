@@ -6,8 +6,6 @@ import AlertTitle from '@material-ui/lab/AlertTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
-import  { Redirect } from 'react-router-dom'
-import { Link } from "react-router-dom";
 const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
 
@@ -18,7 +16,7 @@ class FieldDataProvider extends Component {
       horizontal: 'center'
     };
 
-    const {vertical,horizontal } = this.positionState;
+    //const {vertical,horizontal } = this.positionState;
   }
   state = {
     open:false,

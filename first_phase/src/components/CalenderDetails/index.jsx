@@ -1,4 +1,4 @@
-import React,{useEffect,useContext,useState} from 'react'
+import React, {useEffect,useContext,useState} from 'react'
 import {Schedular} from '../InputFields'
 import PlusCircle from '../../assets/PlusCircle.png'
 import './CalenderDetails.css'
@@ -6,20 +6,19 @@ import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
 import {useWindowSize} from '../../utility'
 const CalenderDetails =(props)=>{
-  const [width, height] = useWindowSize();
-  const {
-    getAppointments,
-    deleteCheckupEventPlan
-  } = useContext(FieldDataContext)
-  const [appointments,setResult] = useState([])
-  const [open, setOpen] = useState(false);
-  const clickHandler=(data)=>{
-   
-    deleteCheckupEventPlan(data).then((response)=>{
-      if(response.status){
-        setOpen(true)
-      }
-    })
+const [width] = useWindowSize();
+const {
+  getAppointments,
+  deleteCheckupEventPlan
+} = useContext(FieldDataContext)
+const [appointments,setResult] = useState([])
+const [open, setOpen] = useState(false);
+const clickHandler=(data)=>{
+  deleteCheckupEventPlan(data).then((response)=>{
+    if(response.status){
+      setOpen(true)
+    }
+  })
    // let date = document.getElementsByClassName('MuiButton-label')[1].innerHTML
    /* getAppointments(props.location.state.user_id).then(result=>{
       if(result.status){
@@ -33,15 +32,12 @@ const CalenderDetails =(props)=>{
    let user_id = props.location.state.user_id
    getAppointments(user_id).then(result=>{
     if(result.status){
-    //  console.log(result.data.Events)
      if(result.data.Events.length > 0)
         setResult(result.data.Events)
-     // console.log(appointments)
     }else {
       props.history.push('/login')
     }
   })
-  
   },[])
   //sample data
    /*const appointments = [
@@ -86,7 +82,6 @@ const CalenderDetails =(props)=>{
 <span><FontAwesomeIcon icon={faLink} color="#17416B"  /> url</span></div>
 </div> 
 </div>*/ }
-     
     </div>
   )
 }

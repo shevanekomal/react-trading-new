@@ -13,7 +13,6 @@ import {Alerts} from '../InputFields'
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const Menubar = ({state,setState,deafulClasses}) =>{
@@ -84,7 +83,7 @@ const [open, setOpen] = useState(false);
     }
   }
   return (
-    <nav className={['/ourFeature','/about','/register','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
+    <nav className={['/ourFeature','/about','/','/login','/'].includes(currentPath)?"navbar navbar-expand-lg navbar-light ":"navbar navbar-expand-lg navbar-light customNavBg" }>
       { !(currentState!=undefined && ['/addMemberself','/addRiskSelf'].includes(currentPath) && currentState.self) ? 
 <>
     <button className="navbar-toggler hamberger" type="button" onClick={toggleMenu}>
@@ -102,7 +101,7 @@ const [open, setOpen] = useState(false);
         <div className="navbar-toggler">
           <img style={{margin: '5px',height:'32px'}} src = {Main_logo}/>
         </div>
-          {['/ourFeature','/about','/register','/login','/'].includes(currentPath) ? (<>
+          {['/ourFeature','/about','/','/login','/'].includes(currentPath) ? (<>
           <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com/" >
           Home
           </a>
@@ -114,15 +113,15 @@ const [open, setOpen] = useState(false);
           </a>
           <Link
             className={state.resgisterLinkClass}
-            to="/register"
-            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
+            to="/"
+            onClick={()=>addActiveCssOnClick('resgisterLinkClass')}
           >
             Register
           </Link>
           <Link
             className={state.loginLinkClass}
             to="/login"
-            onClick={() =>addActiveCssOnClick('loginLinkClass')}
+            onClick={()=>addActiveCssOnClick('loginLinkClass')}
           >
            Login
           </Link>
@@ -132,7 +131,7 @@ const [open, setOpen] = useState(false);
             className={state.resgisterLinkClass}
             to="/userHome"
             state= {{self:true,user_id}}
-            onClick={(e) =>addActiveCssOnClick('resgisterLinkClass',e)}
+            onClick={()=>addActiveCssOnClick('resgisterLinkClass')}
           > Family Home
           </Link>
         {/*   <Link
@@ -143,15 +142,15 @@ const [open, setOpen] = useState(false);
        <Link
             className={state.loginLinkClass}
             to="/"
-            onClick={() =>addActiveCssOnClick('loginLinkClass')}
+            onClick={()=>addActiveCssOnClick('loginLinkClass')}
           > Tutorial</Link>
-          <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
+          <a className={state.homeLinkClass} onClick={()=>addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
          Hijeevan
           </a>
-          <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
+          <a className={state.featureLinkClass} onClick={ ()=>addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
           Our Features
           </a>
-          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
+          <a className={state.aboutLinkClass} onClick={()=>addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
           About Us
           </a>
           <a className={state.signOutLinkClass} onClick={() => addActiveCssOnClick('signOutLinkClass')} href="#" >
@@ -194,7 +193,7 @@ const [open, setOpen] = useState(false);
       </div>
       </> :<div></div>
     }
-     {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+     {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
     
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link

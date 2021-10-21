@@ -21,7 +21,7 @@ export default function Alerts({isOpen,handleClose,content,type,title,autoHideDu
               aria-label="close"
               color="inherit"
               size="small"
-              onClick={()=>handleClose()}
+              onClick={handleClose}
             >
               <CloseIcon  fontSize="inherit" />
             </IconButton>
