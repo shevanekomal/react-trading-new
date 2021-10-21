@@ -37,7 +37,7 @@ const linkedin = lazy(() => import('../../assets/linkedin.svg'));
 const Main_logo = lazy(() => import('../../assets/Main_logo.svg'));
 const instagram = lazy(() => import('../../assets/instagram.svg'));
 const facebook = lazy(() => import('../../assets/facebook.svg'));
-const MainLogo = <LazyLoadImage
+const MainLogo = <img
 style={{margin: '5px',height:'32px'}}
 src={Main_logo} 
 alt="home Logo"
@@ -141,7 +141,7 @@ const Header = () => {
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
     <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
-    <LazyLoadImage
+    <img
       style={{margin: '5px',height:'39px'}}
       src={Main_logo}
       alt="home Logo"
@@ -211,23 +211,23 @@ const Header = () => {
       <footer>
           <div className="contactText">contact@hijeevan.com</div>
           <div className="socialMediaContainer">
-          <LazyLoadImage
+          <img
             style={{cursor: 'pointer'}} 
             src={linkedin} alt="linkedin Logo" 
             onClick={(e) =>window.open(' https://www.linkedin.com/company/preventenable' , '_blank')}
           />
-        <LazyLoadImage
+        <img
           style={{cursor: 'pointer'}} 
           src={instagram} alt="instagram Logo" 
           onClick={(e) => window.open('https://www.instagram.com/hi.jeevan/' , '_blank')}
         />
-        <LazyLoadImage
+        <img
            style={{cursor: 'pointer'}} 
            src={facebook} 
            alt="facebook Logo" 
            onClick={() =>window.open('https://www.facebook.com/preventenable' , '_blank')}
         />
-        <LazyLoadImage
+        <img
           style={{cursor: 'pointer'}} 
           src={whatsapp} alt="whatsapp Logo" 
           onClick={() => window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}

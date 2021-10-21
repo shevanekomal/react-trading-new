@@ -53,7 +53,7 @@ const UserHome =(props)=>{
           {familyMembers.map(member=>(member.user_type ==='subUser'?(member.relation==='father' || member.relation==='mother' )?(<Profile key={member.name} profileIcon={member.relation==='father' ?(OldMan):(OldWoman)} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} />): 
           (<Suspense fallback={<div>Loading...</div>}><Profile key={member.name} profileIcon={(member.relation==='brother' || member.relation==='husband')?(Man):((member.relation==='son')?(Boy):(member.relation==='daughter')?(Girl):(Woman))} name={member.name} history={props.history} user_id={member.user_id} relation={member.relation} mobile={member.mobile}  user_type = {member.user_type} /></Suspense>):''))}
           <div className='AddMemberLogo'>
-          <LazyLoadImage
+          <img
           style={{cursor: 'pointer'}} 
           src={Add_member} 
           alt="Add_member Logo" 
