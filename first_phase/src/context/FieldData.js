@@ -18,7 +18,7 @@ class FieldDataProvider extends Component {
       horizontal: 'center'
     };
 
-    //const {vertical,horizontal } = this.positionState;
+    const {vertical,horizontal } = this.positionState;
   }
   state = {
     open:false,

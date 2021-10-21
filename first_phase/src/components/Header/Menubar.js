@@ -115,14 +115,14 @@ const [open, setOpen] = useState(false);
           <Link
             className={state.resgisterLinkClass}
             to="/"
-            onClick={()=>addActiveCssOnClick('resgisterLinkClass')}
+            onClick={() =>addActiveCssOnClick('resgisterLinkClass')}
           >
             Register
           </Link>
           <Link
             className={state.loginLinkClass}
             to="/login"
-            onClick={()=>addActiveCssOnClick('loginLinkClass')}
+            onClick={() =>addActiveCssOnClick('loginLinkClass')}
           >
            Login
           </Link>
@@ -132,7 +132,7 @@ const [open, setOpen] = useState(false);
             className={state.resgisterLinkClass}
             to="/userHome"
             state= {{self:true,user_id}}
-            onClick={()=>addActiveCssOnClick('resgisterLinkClass')}
+            onClick={(e) =>addActiveCssOnClick('resgisterLinkClass',e)}
           > Family Home
           </Link>
         {/*   <Link
@@ -143,15 +143,15 @@ const [open, setOpen] = useState(false);
        <Link
             className={state.loginLinkClass}
             to="/"
-            onClick={()=>addActiveCssOnClick('loginLinkClass')}
+            onClick={() =>addActiveCssOnClick('loginLinkClass')}
           > Tutorial</Link>
-          <a className={state.homeLinkClass} onClick={()=>addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
+          <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>
          Hijeevan
           </a>
-          <a className={state.featureLinkClass} onClick={ ()=>addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
+          <a className={state.featureLinkClass} onClick={() => addActiveCssOnClick('featureLinkClass')} href="https://www.hijeevan.com/our-features" target='_blank'>
           Our Features
           </a>
-          <a className={state.aboutLinkClass} onClick={()=>addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
+          <a className={state.aboutLinkClass} onClick={() => addActiveCssOnClick('aboutLinkClass')} href="https://www.hijeevan.com/about-us" target='_blank'>
           About Us
           </a>
           <a className={state.signOutLinkClass} onClick={() => addActiveCssOnClick('signOutLinkClass')} href="#" >

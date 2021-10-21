@@ -1,4 +1,4 @@
-import {Buttons} from '../InputFields'
+import {Buttons,CheckboxesGroup} from '../InputFields'
 import ModalWindow from '../Modal/ModalWindow'
 import { useState,useContext } from 'react';
 import { FieldDataContext } from '../../context/FieldData'

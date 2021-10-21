@@ -1,17 +1,24 @@
-import { BrowserRouter as Switch, Route, Redirect,useLocation,Link } from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useState,useContext, Suspense, lazy } from "react";
+import { BrowserRouter as Switch, Route, Redirect,useLocation } from "react-router-dom";
+import { useState,useContext,Suspense,lazy } from "react";
 import { FieldDataContext } from '../../context/FieldData'
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Menubar from "./Menubar";
+import Main_logo from '../../assets/Main_logo.svg'
 import {useWindowSize} from '../../utility'
+import linkedin from '../../assets/linkedin.svg'
+import instagram from '../../assets/instagram.svg'
+import facebook from '../../assets/facebook.svg'
+import whatsapp from '../../assets/whatsapp.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import {Alerts} from '../InputFields'
-import {InfoIcon,} from '@material-ui/icons/Info';
+
+import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const HealthPlan = lazy(() => import('../HealthPlan'));
@@ -32,18 +39,9 @@ const HealthyHabitsResult = lazy(() => import('../HealthyHabitsResult'));
 const GridListView = lazy(() => import('../GridListView'));
 const UserHome = lazy(() => import('../UserHome'));
 
-const whatsapp = lazy(() => import('../../assets/whatsapp.svg'));
-const linkedin = lazy(() => import('../../assets/linkedin.svg'));
-const Main_logo = lazy(() => import('../../assets/Main_logo.svg'));
-const instagram = lazy(() => import('../../assets/instagram.svg'));
-const facebook = lazy(() => import('../../assets/facebook.svg'));
-const MainLogo = <img
-style={{margin: '5px',height:'32px'}}
-src={Main_logo} 
-alt="home Logo"
-  />
-const Header = () => {
+const Header = (props) => {
   const {
+     loginUserId,
     user_id
   } = useContext(FieldDataContext)
   const history = useHistory();
@@ -61,11 +59,20 @@ const Header = () => {
     menuClass: "",
     ...deafulClasses
   });
+  const HeaderStyle = {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height:'60px',
+    background:'#A9D9FF',
+    padding:'5px'
+  }
   const [open, setOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+
   const handleTooltipClose = () => {
     setTooltipOpen(false);
   };
+
   const handleTooltipOpen = () => {
     setTooltipOpen(true);
   };
@@ -89,7 +96,9 @@ const Header = () => {
     window.localStorage.setItem('x-access-token','')
     window.localStorage.setItem('user_id','')
     window.localStorage.setItem('subuser_id','')
+   // alert("logged out...")
    setOpen(true)
+   // <Redirect to={{pathname: '/login'}}/>
    history.push('/login');
   }else if(e.target.textContent === 'Family Home') {
     history.push({
@@ -131,33 +140,46 @@ const Header = () => {
       case '/createCheckup': return `Create`;
       case '/knowYourself': return `Know Yourself`;
       case '/healthyHabitsResult': return `Your Healthy Habits`;
+     // case '/login': return `Login`;
+      //case '/': return `Register`;
+     // default : return currentPath.toUpperCase().replace('/','')
     }
   }*/
   return (
+    
     <div className='Home'>
       <div>
     {/*<TestDetails parentCallback = {handleCallback}/>
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
-    <img
-      style={{margin: '5px',height:'39px'}}
-      src={Main_logo}
-      alt="home Logo"
-       /> :
+    <div>{['/test','/myProfile','/userSetting','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+     <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
       >
-           <MainLogo />
+           <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" />
           </Link>}</div>
     :(['/test'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon style={{marginLeft:'10px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/></div> {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
-    <MainLogo />:
-          <Link
+    <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
+     <Link
            to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
      >
-      <MainLogo />
-    </Link>}</div> : <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
+          <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
+         </Link>}</div> : <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
+  
+  {/*above line modified by swap*/} 
+   {/* {['/myProfile','/userSetting','/calender','/createCheckup'].includes(currentPath) && <div className='customNav'> 
+    <div>  <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>history.goBack()}/></div>
+    {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
+      <Link
+            to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
+      >
+           <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
+          </Link>}</div> }
+  */}
+  
    <div onClick={()=>{
       state.menu && setState({
         ...state,
@@ -210,29 +232,17 @@ const Header = () => {
       
       <footer>
           <div className="contactText">contact@hijeevan.com</div>
+          
+             
           <div className="socialMediaContainer">
-          <img
-            style={{cursor: 'pointer'}} 
-            src={linkedin} alt="linkedin Logo" 
-            onClick={(e) =>window.open(' https://www.linkedin.com/company/preventenable' , '_blank')}
-          />
-        <img
-          style={{cursor: 'pointer'}} 
-          src={instagram} alt="instagram Logo" 
-          onClick={(e) => window.open('https://www.instagram.com/hi.jeevan/' , '_blank')}
-        />
-        <img
-           style={{cursor: 'pointer'}} 
-           src={facebook} 
-           alt="facebook Logo" 
-           onClick={() =>window.open('https://www.facebook.com/preventenable' , '_blank')}
-        />
-        <img
-          style={{cursor: 'pointer'}} 
-          src={whatsapp} alt="whatsapp Logo" 
-          onClick={() => window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}
-         />
-
+          <img style={{cursor: 'pointer'}} src={linkedin} alt="linkedin Logo" onClick={(e) =>{
+        window.open(' https://www.linkedin.com/company/preventenable' , '_blank')}}/>
+          <img style={{cursor: 'pointer'}} src={instagram} alt="instagram Logo" onClick={(e) =>{
+        window.open('https://www.instagram.com/hi.jeevan/' , '_blank')}}/>
+          <img style={{cursor: 'pointer'}} src={facebook} alt="facebook Logo" onClick={(e) =>{
+        window.open('https://www.facebook.com/preventenable' , '_blank')}} />
+          <img style={{cursor: 'pointer'}} src={whatsapp} alt="whatsapp Logo" onClick={(e) =>{
+        window.open('https://wa.me/message/AJPD56WHMGCGJ1' , '_blank')}}/>
         </div>
         <div className="contactText" style = {{display:'flex'}}>Disclaimer
           <ClickAwayListener onClickAway={handleTooltipClose}>
@@ -247,9 +257,8 @@ const Header = () => {
           </footer>
     </div>}
     <div  className={width > 990 && !['/','/login'].includes(currentPath) && 'rightPannel'} >
-    
-    <Suspense fallback={<div>Loading...</div>}>
     <Switch>
+      <Suspense fallback={<h1>Still Loading…</h1>}>
         <Route path="/" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path='/addRisk' exact component={HealthStatusForm} name='HealthStatus'/>
@@ -269,8 +278,8 @@ const Header = () => {
         <Route path="/healthyHabitsResult" exact component={HealthyHabitsResult} />
         <Route path="/gridListView" exact component={GridListView} />
         <Redirect to="/" />
+        </Suspense>
       </Switch>
-      </Suspense>
       </div>
       { open &&  <Alerts
           handleClose ={()=>setOpen(false)} 

@@ -2,16 +2,14 @@ import { useContext, useState, useEffect, Suspense, lazy} from 'react';
 import { FieldDataContext } from '../../context/FieldData' 
 import './UserHome.css'
 import {Alerts} from '../InputFields'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-
-const Boy = lazy(() => import('../../assets/profile/Boy.svg'));
-const Man = lazy(() => import('../../assets/profile/Man.svg'));
-const Add_member = lazy(() => import('../../assets/Add_member.svg'));
-const Woman = lazy(() => import('../../assets/profile/Woman.svg'));
-const OldMan = lazy(() => import('../../assets/profile/Old-man.svg'));
-const OldWoman = lazy(() => import('../../assets/profile/Old-woman.svg'));
-const Girl = lazy(() => import('../../assets/profile/Girl.svg'));
-const Profile = lazy(() => import('./Profile'));
+import Boy from '../../assets/profile/Boy.svg'
+import Man from '../../assets/profile/Man.svg';
+import Add_member from '../../assets/Add_member.svg';
+import Woman from '../../assets/profile/Woman.svg';
+import OldMan from '../../assets/profile/Old-man.svg';
+import OldWoman from '../../assets/profile/Old-woman.svg'
+import Girl from '../../assets/profile/Girl.svg';
+import Profile from './Profile';
 
 const UserHome =(props)=>{
   //let alertMsg = '';
