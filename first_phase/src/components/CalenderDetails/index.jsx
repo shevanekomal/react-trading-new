@@ -6,7 +6,7 @@ import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
 import {useWindowSize} from '../../utility'
 const CalenderDetails =(props)=>{
-  const [width, height] = useWindowSize();
+ // const [width, height] = useWindowSize();
   const {
     getAppointments,
     deleteCheckupEventPlan

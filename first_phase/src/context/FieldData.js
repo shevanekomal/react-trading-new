@@ -6,8 +6,8 @@ import AlertTitle from '@material-ui/lab/AlertTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Snackbar from '@material-ui/core/Snackbar';
-import  { Redirect } from 'react-router-dom'
-import { Link } from "react-router-dom";
+//import  { Redirect } from 'react-router-dom'
+//import { Link } from "react-router-dom";
 const FieldDataContext = React.createContext()
 class FieldDataProvider extends Component {
 
@@ -18,14 +18,14 @@ class FieldDataProvider extends Component {
       horizontal: 'center'
     };
 
-    const {vertical,horizontal } = this.positionState;
+    //const {vertical,horizontal } = this.positionState;
   }
   state = {
     open:false,
      accessToken:'',
      user_id:null,
      userHealthDetails:[{}],
-     familyMembers:[{id:'45454',realtion:'daughter',profile:'Girl',name:'swap'}],
+     familyMembers:[{}],
      cities : [{text:'Pune',value:'pune'},{text:'Mumbai',value:'mumbai'}],
      gender : [{text:'Male',value:'male'},{text:'Female',value:'female'}],
      diet : [{text:"Vegetarian",value:"Vegetarian"},{text:"Non-vegetarian",value:"Non-vegetarian"}],
@@ -83,7 +83,7 @@ class FieldDataProvider extends Component {
       { key: "Prediabetes", cat: "Prediabetes" },
       { key: "Thyroid disease", cat: "Thyroid disease" }
     ],
-    testsRecommanded : {
+   /* testsRecommanded : {
       Recommended:[
       {
           "testName": "Blood Test",
@@ -125,7 +125,18 @@ class FieldDataProvider extends Component {
     {"checkup_name" : "oral","provider":"aa","provider_website":"www.abc.com"}
   ],
   recommendedcount: 5,
-  selfAddedcount:1},
+  selfAddedcount:1}*/
+  testsRecommanded : {
+    Recommended:[
+    { 
+    "testTypes": []
+     }
+],
+SelfAdded:[
+  {}
+],
+recommendedcount: 5,
+selfAddedcount:1},
   knowYourSelfResult:{
     BMI: [],
     waist :[],

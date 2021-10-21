@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft,faArrowRight,faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft,faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import './TestDetails.css';
 import {useContext, useEffect} from 'react'
 import {SimpleAccordion} from '../InputFields'
@@ -124,7 +124,7 @@ const createCheckupHandler = () =>{
     <table className='dateDetails'>
       <tbody>
     
-      { (testDetails.upcomingEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span>{event.date}</span></td>
+      { (testDetails.upcomingEvents.map(event=><tr key={event.key} > <td><span>{event.date}</span></td>
                 <td>{event.provider}</td>
                   </tr> )
         )
@@ -137,7 +137,7 @@ const createCheckupHandler = () =>{
     <table className='dateDetails'>
       <tbody>
     
-      { (testDetails.pastEvents.map(event=><tr key={event.key} onClick={eventDetailsClickHandler(event.key,event.date,event.provider,event.provider_website)}> <td><span>{event.date}</span></td>
+      { (testDetails.pastEvents.map(event=><tr key={event.key}> <td><span>{event.date}</span></td>
                 <td>{event.provider}</td>
                   </tr> )
         )

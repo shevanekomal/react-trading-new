@@ -1,4 +1,4 @@
-import {FormRow} from '../InputFields'
+/*import {FormRow} from '../InputFields'
 import { useState } from 'react'
 import RegisterForm from './RegisterForm'
 import {Link} from 'react-router-dom'
@@ -18,4 +18,4 @@ const OTPForm =({RegisterHandler})=> {
         onClick={(e)=>{e.preventDefault(); otpmEntered && RegisterHandler()}}>Register</button></form>
     )
 }
-export default OTPForm
+export default OTPForm */

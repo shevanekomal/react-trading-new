@@ -193,7 +193,7 @@ const createCheckupHandler = () =>{
           <ArrowForwardIcon />
          </div>
          <div className='CarousellHeader'>
-          <Carousell backgroundColorOdd='#EEF8FF' backgroundColorEven = '#E8F2FA' props={props} items={items1} name='your healthy habits' ></Carousell>
+          <Carousell backgroundColorOdd='#EEF8FF' backgroundColorEven = '#E8F2FA' props={props} items={items1} name='your healthy habits' list={result.updatesList}></Carousell>
         </div>
           <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>props.history.push({
           pathname: '/gridListView',
@@ -203,7 +203,7 @@ const createCheckupHandler = () =>{
           <ArrowForwardIcon />
          </div>
          <div className='CarousellHeader'>
-          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1' props={props} items={items2} name='know yourself' ></Carousell>
+          <Carousell backgroundColorOdd='#DAEDEB' backgroundColorEven = '#FFD3B1' props={props} items={items2} name='know yourself' list={result.updatesList} ></Carousell>
           </div>
           <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>props.history.push({
           pathname: '/gridListView',

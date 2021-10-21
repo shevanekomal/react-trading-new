@@ -13,7 +13,6 @@ import UserHome from '../UserHome'
 import MyProfile from '../MyProfile'
 import AddMemberForm from '../AddMemberForm'
 import UserSetting from '../UserSetting'
-import ShareWithMember from '../ShareWithMember'
 import CreateCheckupForm from '../CreateCheckupForm'
 import CalenderDetails from '../CalenderDetails'
 
@@ -36,7 +35,7 @@ import GridListView from "../GridListView";
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+//import Grid from '@material-ui/core/Grid';
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const Header = (props) => {
@@ -109,20 +108,25 @@ const Header = (props) => {
   } 
 
   const redirectToHealthPlan = (e) => { 
-   // console.log(e.target.baseURI)
+    console.log(e.target.baseURI)
+   e.preventDefault();
+   console.log(history)
   if(e.target.baseURI.includes('/test')){
     let user_id1 = window.localStorage.getItem('subuser_id')
     history.push({
       pathname:'/healthPlan',
       state:{user_id :user_id1}
     })
+  }else if(e.target.baseURI.includes('/healthPlan')){
+    history.push('/myProfile')
   }else {
     history.goBack()
+    
   }
    
   };
   const [width, height] = useWindowSize();
-  const getLabel=(currentPath)=>{
+  /*const getLabel=(currentPath)=>{
     
     switch(currentPath){
       case '/addRisk': return `Health Status`;
@@ -139,7 +143,7 @@ const Header = (props) => {
       //case '/': return `Register`;
      // default : return currentPath.toUpperCase().replace('/','')
     }
-  }
+  }*/
   return (
     
     <div className='Home'>
@@ -148,7 +152,7 @@ const Header = (props) => {
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/myProfile','/userSetting','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
@@ -163,6 +167,7 @@ const Header = (props) => {
           <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" />
          </Link>}</div> : <Menubar state={state} setState={setState} deafulClasses={deafulClasses} />)}
   
+
   {/*above line modified by swap*/} 
    {/* {['/myProfile','/userSetting','/calender','/createCheckup'].includes(currentPath) && <div className='customNav'> 
     <div>  <FontAwesomeIcon icon={faAngleLeft} color="#17416B" size={'3x'} onClick={()=>history.goBack()}/></div>
@@ -189,9 +194,13 @@ const Header = (props) => {
     }}>
     {width > 990 && !['/','/login','/addMemberself'].includes(currentPath) && <div className='leftPannel'>
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
-      <div 
+    <div onClick={(e) =>history.push({
+      pathname: '/userHome',
+      state: {self:true,user_id:user_id}, 
+    })}>Family Home</div> 
+   {/*  <div 
       //onClick={(e) =>addActiveCssOnClick(e)}
-      >Family Home</div> 
+   >Family Home</div> */}
      {/* <div onClick={(e) =>{
         alert("working on it..")
         addActiveCssOnClick(e)}}>Share with Members</div>*/}
@@ -260,7 +269,6 @@ const Header = (props) => {
         <Route path='/addMemberself' exact component={AddMemberForm} name={`Let's Start`} />
         <Route path="/myProfile" exact component={MyProfile} />
         <Route path="/userSetting" exact component={UserSetting} />
-        <Route path="/shareWithMember" exact component={ShareWithMember} />
         <Route path="/createCheckup" exact component={CreateCheckupForm} />
         <Route path="/pdf" exact component={PdfViewer} />
         <Route path="/calender" exact component={CalenderDetails} />

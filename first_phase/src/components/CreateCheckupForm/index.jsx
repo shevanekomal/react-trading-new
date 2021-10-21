@@ -1,4 +1,4 @@
-import {InputBox,Buttons,DatePickerv1,SinglSelectDropDown,FormRow} from '../InputFields'
+import {InputBox,Buttons} from '../InputFields'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import React,{useState,useEffect,useContext} from 'react'
@@ -220,11 +220,11 @@ const deleteOrCancelCheckupHandler = (e) =>{
   const validate =(e)=>{
    
   }
-  const [selectedDate, setSelectedDate] = React.useState(null);
+ // const [selectedDate, setSelectedDate] = React.useState(null);
   const [startDate, setStartDate] = useState(null);
   const handleDateChange = (date) => {
     setStartDate(date)
-   setSelectedDate(date);
+ //  setSelectedDate(date);
   let error = ''
   setFormData({
     ...FormData,

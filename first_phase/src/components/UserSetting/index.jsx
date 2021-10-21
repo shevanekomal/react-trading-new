@@ -1,4 +1,4 @@
-import {Buttons,CheckboxesGroup} from '../InputFields'
+import {Buttons} from '../InputFields'
 import ModalWindow from '../Modal/ModalWindow'
 import { useState,useContext } from 'react';
 import { FieldDataContext } from '../../context/FieldData'
@@ -9,7 +9,7 @@ import './UserSetting.css'
 const UserSetting =(props)=>{
   let self = props.location.state.relation === 'Me' ? true :false;
   
-  const [state,setState] = useState({
+  /*const [state,setState] = useState({
     health_checkup:{
       value:'',
       error:''
@@ -23,17 +23,17 @@ const UserSetting =(props)=>{
       error:''
     },
 
-})
+})*/
   const [open, setOpen] = useState(false);
-  const [saveOpen, setOpenSave] = useState(false);
+ // const [saveOpen, setOpenSave] = useState(false);
   
   const {
     deleteMemberProfile,
     getHealthStatusDetails,
-    userHealthDetails,
+   // userHealthDetails,
     user_id
   } = useContext(FieldDataContext)
-  const handleChange =(e) =>{
+  /*const handleChange =(e) =>{
     let value =  e.target.value;
     let error = ''
     setState({
@@ -47,7 +47,7 @@ const UserSetting =(props)=>{
   const saveSettingsHandler = (e) =>{
     e.preventDefault()
     setOpenSave(true)
-   }
+   }*/
    const deleteProfileHandler = (e) =>{
       e.preventDefault()
     //  console.log(props.location.state.relation)
@@ -56,7 +56,7 @@ const UserSetting =(props)=>{
         
     }
     const healthStatusClickHandler = (e,user_id) =>{
-     let name = e.target.name;
+    // let name = e.target.name;
      getHealthStatusDetails(user_id).then(result=>{
       //here in backend the user_id is of main user
       
@@ -113,13 +113,13 @@ const UserSetting =(props)=>{
           })
        }else if(e.target.innerText === 'NO'){
           setOpen(false) 
-          setOpenSave(false)
+        //  setOpenSave(false)
           props.history.push({
             pathname: '/userHome',
             state: {self,user_id:user_id}, // added by swap - here main user id needed
         })
        }else if(e.target.innerText === 'YES'){
-        setOpenSave(false) 
+        //setOpenSave(false) 
        }
     
       }
