@@ -100,19 +100,26 @@ const Header = () => {
   } 
 
   const redirectToHealthPlan = (e) => { 
+    console.log(e.target.baseURI)
+   e.preventDefault();
+   console.log(history)
   if(e.target.baseURI.includes('/test')){
     let user_id1 = window.localStorage.getItem('subuser_id')
     history.push({
       pathname:'/healthPlan',
       state:{user_id :user_id1}
     })
+  }else if(e.target.baseURI.includes('/healthPlan')){
+    history.push('/myProfile')
   }else {
     history.goBack()
+    
   }
    
   };
-  const [width] = useWindowSize();
-  const getLabel=(currentPath)=>{
+  const [width, height] = useWindowSize();
+  /*const getLabel=(currentPath)=>{
+    
     switch(currentPath){
       case '/addRisk': return `Health Status`;
       case '/addRiskSelf': return `Health Status`;
@@ -125,7 +132,7 @@ const Header = () => {
       case '/knowYourself': return `Know Yourself`;
       case '/healthyHabitsResult': return `Your Healthy Habits`;
     }
-  }
+  }*/
   return (
     <div className='Home'>
       <div>
@@ -133,10 +140,10 @@ const Header = () => {
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/myProfile','/userSetting','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
-      <LazyLoadImage
-           style={{margin: '5px',height:'39px'}}
-     src={Main_logo}
+    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <LazyLoadImage
+      style={{margin: '5px',height:'39px'}}
+      src={Main_logo}
       alt="home Logo"
        /> :
       <Link
@@ -165,9 +172,13 @@ const Header = () => {
     }}>
     {width > 990 && !['/','/login','/addMemberself'].includes(currentPath) && <div className='leftPannel'>
     {/*<Link onClick={(e) =>addActiveCssOnClick(e)} to={loginUserId?'/userHome':"/"}> Family Home</Link>*/}
-      <div 
+    <div onClick={(e) =>history.push({
+      pathname: '/userHome',
+      state: {self:true,user_id:user_id}, 
+    })}>Family Home</div> 
+   {/*  <div 
       //onClick={(e) =>addActiveCssOnClick(e)}
-      >Family Home</div> 
+   >Family Home</div> */}
      {/* <div onClick={(e) =>{
         alert("working on it..")
         addActiveCssOnClick(e)}}>Share with Members</div>*/}
@@ -250,7 +261,6 @@ const Header = () => {
         <Route path='/addMemberself' exact component={AddMemberForm} name={`Let's Start`} />
         <Route path="/myProfile" exact component={MyProfile} />
         <Route path="/userSetting" exact component={UserSetting} />
-        <Route path="/shareWithMember" exact component={ShareWithMember} />
         <Route path="/createCheckup" exact component={CreateCheckupForm} />
         <Route path="/pdf" exact component={PdfViewer} />
         <Route path="/calender" exact component={CalenderDetails} />

@@ -1,4 +1,4 @@
-import {FormRow,CheckboxesGroup,Buttons} from '../InputFields'
+import {FormRow,Buttons} from '../InputFields'
 import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {useWindowSize} from '../../utility'
@@ -28,7 +28,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
       setValidate(tempValidate)
   }, [FormData])
 
-  useEffect(() => {
+{/*  useEffect(() => {
     window.onbeforeunload = function() {
         return true;
     };
@@ -37,7 +37,7 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
         window.onbeforeunload = null;
     };
 }, []);
-
+*/}
   const onChangehandler = (event) =>{
     let value = event.target.value
     let error=''

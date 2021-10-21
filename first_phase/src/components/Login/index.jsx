@@ -61,7 +61,7 @@ const [FormData,setFormData] = useState({
       }
       setValidate(tempValidate)
   }, [FormData])
-  useEffect(() => {
+ {/* useEffect(() => {
     window.onbeforeunload = function() {
         return true;
     };
@@ -69,7 +69,7 @@ const [FormData,setFormData] = useState({
     return () => {
         window.onbeforeunload = null;
     };
-}, []);
+}, []);*/}
 
     return (
       

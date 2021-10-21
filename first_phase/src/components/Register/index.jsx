@@ -30,7 +30,7 @@ const Register = (props) => {
     },*/
   }) 
   const [open, setOpen] = useState(false);
-  let alertMsg='';
+  //let alertMsg='';
 const [nextPageEnable,setNextPageEnable] = useState(false)
 const {
 registerUser
@@ -49,7 +49,7 @@ const RegisterHandler=()=>{
               state: {self:true,user_id:result.data.user_id}, // added by swap
             })
            }else {
-            alertMsg = result.messages || "something went wrong!!"
+            //alertMsg = result.messages || "something went wrong!!"
             setOpen(true)
            }
           

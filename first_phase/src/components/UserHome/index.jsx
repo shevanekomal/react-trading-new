@@ -14,17 +14,17 @@ const Girl = lazy(() => import('../../assets/profile/Girl.svg'));
 const Profile = lazy(() => import('./Profile'));
 
 const UserHome =(props)=>{
-  let alertMsg = '';
+  //let alertMsg = '';
   const [open, setOpen] = useState(false);
 
   const {
     familyMembers,
     getFamilyMembers,
-    //user_id
+  //  user_id
     }=useContext(FieldDataContext)
     const clickHandler = ()=>{
       if(familyMembers.length >= 6){
-        alertMsg = 'You can add maximum 6 members only.'
+       // alertMsg = 'You can add maximum 6 members only.'
         setOpen(true);
       }else{
         props.history.push({

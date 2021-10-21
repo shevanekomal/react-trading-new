@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect,useContext} from 'react'
 import {InputBox,Buttons} from '../InputFields'
 import { FieldDataContext } from '../../context/FieldData'
@@ -216,11 +215,11 @@ const deleteOrCancelCheckupHandler = (e) =>{
   const validate =(e)=>{
    
   }
-  const [selectedDate, setSelectedDate] = React.useState(null);
+ // const [selectedDate, setSelectedDate] = React.useState(null);
   const [startDate, setStartDate] = useState(null);
   const handleDateChange = (date) => {
     setStartDate(date)
-   setSelectedDate(date);
+ //  setSelectedDate(date);
   let error = ''
   setFormData({
     ...FormData,

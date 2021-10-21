@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import React from 'react';
 import {Button,Menu,MenuItem} from '@material-ui/core';
-import SettingsIcon from '@material-ui/icons/Settings';
+//import SettingsIcon from '@material-ui/icons/Settings';
 
 const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gender}) =>{
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,11 +21,7 @@ const Profile = ({profileIcon,name,history,user_id,user_type,relation,mobile,gen
     })
   };
   const clickHandler = ()=>{
-    
-   {/* history.push({
-      pathname: '/healthPlan',
-      state: {user_id:user_id}, // added by swap 
-    }) */}
+
      history.push({
     pathname:"/myProfile",
     state:{user_id:user_id,user_type:user_type,profileIcon:profileIcon,name:name,relation:relation,mobile:mobile}

@@ -6,19 +6,20 @@ import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
 import {useWindowSize} from '../../utility'
 const CalenderDetails =(props)=>{
-const [width] = useWindowSize();
-const {
-  getAppointments,
-  deleteCheckupEventPlan
-} = useContext(FieldDataContext)
-const [appointments,setResult] = useState([])
-const [open, setOpen] = useState(false);
-const clickHandler=(data)=>{
-  deleteCheckupEventPlan(data).then((response)=>{
-    if(response.status){
-      setOpen(true)
-    }
-  })
+ // const [width, height] = useWindowSize();
+  const {
+    getAppointments,
+    deleteCheckupEventPlan
+  } = useContext(FieldDataContext)
+  const [appointments,setResult] = useState([])
+  const [open, setOpen] = useState(false);
+  const clickHandler=(data)=>{
+   
+    deleteCheckupEventPlan(data).then((response)=>{
+      if(response.status){
+        setOpen(true)
+      }
+    })
    // let date = document.getElementsByClassName('MuiButton-label')[1].innerHTML
    /* getAppointments(props.location.state.user_id).then(result=>{
       if(result.status){

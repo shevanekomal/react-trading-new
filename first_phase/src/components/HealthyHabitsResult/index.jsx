@@ -17,9 +17,9 @@ import sports from '../../assets/sports.svg';
 import {useWindowSize} from '../../utility'
 
 const HealthyHabitsResult = (props)=> {
-  const [width, height] = useWindowSize();
+  //const [width, height] = useWindowSize();
   
-  let self = false;
+  //let self = false;
   const {
     knowYourSelfResult,
     getKnowYourSelfResult,

@@ -9,7 +9,7 @@ import {useWindowSize} from '../../utility'
 
 
 
-export default function Carousell({backgroundColorEven,backgroundColorOdd,props,items,name}) {
+export default function Carousell({backgroundColorEven,backgroundColorOdd,props,items,name,list}) {
 
     const [width] = useWindowSize();
     let itemToshow = width > 990 ? 2:1
@@ -43,10 +43,14 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                   state: {user_id:props.location.state.user_id,name:e.target.innerText}
                 })
             }else if(e.target.innerText ==='Medical Checkups' || e.target.innerText ==='Physical Wellbeing' ){
-                props.history.push({
-                    pathname: '/knowYourself',
-                    state: {user_id:props.location.state.user_id,name:e.target.innerText},
-                })
+                if(list.includes('healthStatus')){
+                    alert('Please update your health status form first')
+                }else{
+                    props.history.push({
+                        pathname: '/knowYourself',
+                        state: {user_id:props.location.state.user_id,name:e.target.innerText},
+                    })
+                }
             }else {
                 alert('Upcoming...')
             }
@@ -59,10 +63,14 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                 })
             }
             else if(e.target.innerText ==='Physical'){
-                props.history.push({
-                    pathname: '/knowYourself',
-                    state: {user_id:props.location.state.user_id,name:e.target.innerText},
-                })
+                if(list.includes('healthStatus')){
+                    alert('Please update your health status form first')
+                }else{
+                    props.history.push({
+                        pathname: '/knowYourself',
+                        state: {user_id:props.location.state.user_id,name:e.target.innerText},
+                    })
+                }
             }else {
                 alert('Upcoming...')
             }

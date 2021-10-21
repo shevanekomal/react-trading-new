@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Document, Page } from "react-pdf";
-import {Buttons} from '../InputFields'
+//import {Buttons} from '../InputFields'
 import './PdfViewer.css'
 
 export default function PdfViewer(props) {
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page
+//  const [pageNumber, setPageNumber] = useState(1); //setting 1 to show fisrt page
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
-    setPageNumber(1);
+ //   setPageNumber(1);
   }
 
-  function changePage(offset) {
+ /* function changePage(offset) {
     //console.log('offset ' + offset)
     setPageNumber(prevPageNumber => prevPageNumber + offset);
   }
@@ -25,7 +25,7 @@ export default function PdfViewer(props) {
     //console.log('next page ')
     changePage(1);
   }
-
+*/
   const { pdf } = props;
 
   return (

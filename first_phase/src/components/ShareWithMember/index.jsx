@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+/*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle,faTimesCircle,faUser,faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -85,4 +85,4 @@ const ShareWithMember = () =>{
     </div>
     
 )}
-export default ShareWithMember;
+export default ShareWithMember;*/

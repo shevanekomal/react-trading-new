@@ -1,6 +1,6 @@
 import React,{useContext,useState, useEffect} from 'react'
 import { useLocation } from "react-router-dom";
-import {SinglSelectDropDown,RadioButton,DatePicker,DatePickerv1,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
+import {RadioButton,DatePickerv1,CheckboxesGroup,Buttons,MultiSelectDropDown,CustomTextBox} from '../InputFields'
 import './HealthStatusForm.css'
 import { FieldDataContext } from '../../context/FieldData'
 import ModalWindow from '../Modal/ModalWindow'
@@ -10,7 +10,7 @@ const HealthStatusForm =(props)=> {
   let self =  props.location.state.self
   
   const {
-    cities,
+  //  cities,
     gender,
     diet,
     exercise,
@@ -22,18 +22,18 @@ const HealthStatusForm =(props)=> {
     alcoholIntakeOption,
     otherConditions,
     updateUserId,
-    getHealthStatusDetails,
-    userHealthDetails
+   // getHealthStatusDetails,
+   // userHealthDetails
   } = useContext(FieldDataContext)
-  const currentPath = useLocation().pathname
+ // const currentPath = useLocation().pathname
 
   const [isLoaded,setLoader] =useState(false)
   const [isValidate,setValidate] =useState(false)
   const [state,setState] = useState({
-    city:{
+   /* city:{
       value:'pune',
       error:''
-      },
+      },*/
     gender:{
       value:'female',
       error:''
@@ -140,7 +140,7 @@ useEffect(() => {
   setValidate(check)
 }, [state])
 
-const updateValues = (name,value) =>{
+/*const updateValues = (name,value) =>{
   let error = ''
   setState({
     ...state,
@@ -150,7 +150,8 @@ const updateValues = (name,value) =>{
     }
   })
    // console.log(state)
-}
+}*/
+
 const [selectedDate, setSelectedDate] = React.useState(state.birthdate.value);
 //const [selectedGender, setSelectedGender] = React.useState('female');
 const handleDateChange = (date) => {
@@ -196,8 +197,6 @@ const handleChange =(e) =>{
     let age = _calculateAge(e.target.value)
     if(age<19){
       setOpen(true)
-      //value = '';
-     // error = 'Age is below 19'
     }
   }
   if(e.target.type === 'checkbox'){
@@ -235,7 +234,7 @@ const onUpdateData = () =>{
 
 if(!isValidate){
   data = {
-  city:state.city.value,
+ // city:state.city.value,
   gender:state.gender.value,
   birthdate:state.birthdate.value,
   height:state.height.value,
