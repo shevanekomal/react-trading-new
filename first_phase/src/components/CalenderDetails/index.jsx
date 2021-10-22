@@ -4,7 +4,7 @@ import PlusCircle from '../../assets/PlusCircle.png'
 import './CalenderDetails.css'
 import { FieldDataContext } from '../../context/FieldData'
 import {Alerts} from '../InputFields'
-import {useWindowSize} from '../../utility'
+//import {useWindowSize} from '../../utility'
 const CalenderDetails =(props)=>{
  // const [width, height] = useWindowSize();
   const {

@@ -142,7 +142,7 @@ const [open, setOpen] = useState(false);
           > Share with Members</Link> */}
        <Link
             className={state.loginLinkClass}
-            to="/"
+            to="/tutorial"
             onClick={() =>addActiveCssOnClick('loginLinkClass')}
           > Tutorial</Link>
           <a className={state.homeLinkClass} onClick={() => addActiveCssOnClick('homeLinkClass')} href="https://www.hijeevan.com" target='_blank'>

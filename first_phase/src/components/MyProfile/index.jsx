@@ -5,7 +5,7 @@ import { faAngleRight,faClipboardList } from "@fortawesome/free-solid-svg-icons"
 import PlusCircle from '../../assets/PlusCircle.png'
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+//import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import UpdatePanelStrip from './UpdatePanelStrip';
 import { FieldDataContext } from '../../context/FieldData'
 import {Alerts,Carousell} from '../InputFields'
@@ -17,7 +17,7 @@ const MyProfile =(props)=> {
     getUserNotifications,
     getRecommendedAndSelfAddedCount
   } = useContext(FieldDataContext)
-  const [result,setResult] = useState({ updatesList : ['welcome','advice','addMember','healthStatus','PastCheckup','reminder'],
+  const [result,setResult] = useState({ updatesList : [],
   day:'Today'})
   const [open, setOpen] = useState(false);
   const [recommCount, SetRecommCount] = useState(0);

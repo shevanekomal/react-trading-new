@@ -62,12 +62,14 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
     }*/
        
     if(event.target.name ==='mobile_number' && value.length < 10){
-         error = 'Please enter valid Mobile number'
-        }
+         error = 'Please enter valid mobile number'
+    }
     if(event.target.name ==='confirmPassword' && value!= FormData.password.value){
       error = 'Password and Confirm Password should be same'
     }
-   
+    if(event.target.name ==='password' && value.length < 15){
+      error = 'Password must be atleast 15 characters long'
+ }
     setFormData({
       ...FormData,
       [event.target.name]:{

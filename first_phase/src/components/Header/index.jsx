@@ -31,6 +31,7 @@ import KnowYourSelfForm from "../KnowYourSelfForm";
 import knowYourselfResult from "../KnowYourSelfResult";
 import HealthyHabitsResult from "../HealthyHabitsResult";
 import GridListView from "../GridListView";
+import Tutorial from "../Tutorial";
 
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -108,7 +109,7 @@ const Header = (props) => {
   } 
 
   const redirectToHealthPlan = (e) => { 
-    console.log(e.target.baseURI)
+  //  console.log(e.target.baseURI)
    e.preventDefault();
    console.log(history)
   if(e.target.baseURI.includes('/test')){
@@ -117,8 +118,6 @@ const Header = (props) => {
       pathname:'/healthPlan',
       state:{user_id :user_id1}
     })
-  }else if(e.target.baseURI.includes('/healthPlan')){
-    history.push('/myProfile')
   }else {
     history.goBack()
     
@@ -152,7 +151,7 @@ const Header = (props) => {
     <TestDetails props={props} sendDataToParent={sendDataToParent} />*/}
     </div>
     {(width > 990 && !['/','/login'].includes(currentPath))? <div className='customNav'>
-    <div>{['/test','/addRisk','/myProfile','/userSetting','/healthPlan','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    <div>{['/test','/addRisk','/myProfile','/userSetting','/calender','/createCheckup','/gridListView','/healthyHabitsResult','/pdf','/knowYourselfResult','/knowYourself','/addMember'].includes(currentPath) && <FontAwesomeIcon style={{marginLeft:'25px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/>}</div> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
      <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" /> :
       <Link
             to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
@@ -205,7 +204,8 @@ const Header = (props) => {
         alert("working on it..")
         addActiveCssOnClick(e)}}>Share with Members</div>*/}
       <div onClick={(e) =>{
-        alert("working on it..")
+       // alert("working on it..")
+       history.push('/tutorial')
         //addActiveCssOnClick(e)
         }}
         >Tutorial</div>
@@ -276,6 +276,7 @@ const Header = (props) => {
         <Route path="/knowYourselfResult" exact component={knowYourselfResult} />
         <Route path="/healthyHabitsResult" exact component={HealthyHabitsResult} />
         <Route path="/gridListView" exact component={GridListView} />
+        <Route path="/tutorial" exact component={Tutorial} />
         <Redirect to="/" />
       </Switch>
       </div>

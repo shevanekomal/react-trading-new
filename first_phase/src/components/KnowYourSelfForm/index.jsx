@@ -1,10 +1,10 @@
 import React,{useContext,useState, useEffect} from 'react'
 import { useLocation } from "react-router-dom";
-import {RadioButton,DatePickerv1,CheckboxesGroup,Buttons,CustomTextBox} from '../InputFields'
+import {RadioButton,Buttons,CustomTextBox} from '../InputFields'
 import './KnowYourSelfForm.css'
 import { FieldDataContext } from '../../context/FieldData'
-import ModalWindow from '../Modal/ModalWindow'
-import Loader from '../../utility/Loader'
+//import ModalWindow from '../Modal/ModalWindow'
+//import Loader from '../../utility/Loader'
 import { useHistory } from "react-router-dom";
 const KnowYourSelfForm =(props)=> {
   
@@ -141,12 +141,12 @@ const handleChange2 =(e) =>{
 }
 
 const onUpdateData = () =>{
-  setLoader(true)
+  //setLoader(true)
   let data = {}
 
   if(!isValidate){
    // console.log(props.location.state.name)
-    if(props.location.state.name === 'Physical Wellbeing'){
+    if(props.location.state.name === 'Physical Wellbeing' || props.location.state.name === 'Physical'){
       data = {
         waist:state.waist.value,
         sugar:state.sugar.value,
@@ -211,7 +211,7 @@ const validate = (e)=>{
           <CustomTextBox type={'number'} defaultValue={state.waist.value} setState={setState} state={state}  placeholder={`Eg: 32 `} endAdornment="inches"  name='waist'  validate={validate}  error={state.waist.error} valueText = 'Place a tape measure just below your belly button. Breathe out naturally and take your measurement. Note that the pant or skirt waist size is often not the same as this.'>Your waist size</CustomTextBox>
           <RadioButton name={'exercise'}  required={true}  options={StrengthingExercise}  validate={validate} onChange={handleChange} defaultValue={state.exercise.value} error={state.exercise.error} valueText = 'E.g., push ups, squats or working out using equipment such as dumbbells, resistance bands, and some styles of yoga. Strengthening exercise is any activity that focuses on building muscular strength, endurance, and mass.'>How much strengthening exercise do you usually do per week?
            </RadioButton>
-           <CustomTextBox type={'number'} defaultValue={state.sugar.value} setState={setState} state={state}  placeholder={`Eg: 10 `} endAdornment="teaspoons" required={true} name='sugar'  validate={validate}  error={state.sugar.error} valueText = 'This should include sugar in everything except fresh vegetables, fruits, and milk. For example, in foods like packaged drinks, sweets, chai etc.'>Approximately, how many teaspoons of sugar (white sugar, brown sugar, jaggery, honey) do you consume per day?</CustomTextBox>
+           <CustomTextBox type={'number'} defaultValue={state.sugar.value} setState={setState} state={state}  placeholder={`Eg: 10 `} endAdornment="teaspoons" required={true} name='sugar'  validate={validate}  error={state.sugar.error} valueText = 'This should include sugar in everything except fresh vegetables, fruits, and milk. For example, a 330 ml can of Coca-Cola contains roughly 7 teaspoons of sugar. A 330 ml pack of an average packaged juice also contains roughly around 6 teaspoons of sugar. One gulab jamun piece usually has 3-4 teaspoons of sugar.'>Approximately, how many teaspoons of sugar (white sugar, brown sugar, jaggery, honey) do you consume per day?</CustomTextBox>
             </>
           }
           {props.location.state.name === 'Medical Checkups' && <>
@@ -221,8 +221,8 @@ const validate = (e)=>{
            options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.vitamin.value} error={state2.vitamin.error} >When did you last do Vitamin B12 and Vitamin D blood tests?
            </RadioButton>
-           <RadioButton name={'ECG'}  required={true}  options={[{text:'Got it once',value:'Got it once'},{text:'Never',value:'Never'}]} 
-            validate={validate} onChange={handleChange2} defaultValue={state2.ECG.value} error={state2.ECG.error} >When did you last get an ECG or ECHO diagnostic test?
+           <RadioButton name={'ECG'}  required={true}  options={[{text:'Yes, atlease once',value:'Got it once'},{text:'Never',value:'Never'}]} 
+            validate={validate} onChange={handleChange2} defaultValue={state2.ECG.value} error={state2.ECG.error} >Have you ever done an ECG or ECHO diagnostic test?
            </RadioButton>
            <RadioButton name={'BP'}  required={true}  options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.BP.value} error={state2.BP.error} >When did you last measure your blood pressure (at home or at doctors)?

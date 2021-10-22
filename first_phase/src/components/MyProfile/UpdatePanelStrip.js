@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import { useHistory } from "react-router-dom";
+import {Alerts} from '../InputFields'
 
 const UpdatePanelStrip=(props) =>{
   const history = useHistory();
+  const [open, setOpen] = useState(false);
   const {header,subHeader,tag,actionPath,self,list,name,user_id} = props
   
   return (<div className='UpdateContainer' onClick={()=>{
@@ -11,6 +13,7 @@ const UpdatePanelStrip=(props) =>{
     //  console.log(list)
      if(list.includes('healthStatus')){
        alert('Please update your health status form first')
+     // setOpen(true)
      }else
       actionPath.map((path) => {path !== false &&  history.push({
         pathname: path,
@@ -33,6 +36,10 @@ const UpdatePanelStrip=(props) =>{
     <div>{subHeader} </div>{tag && <span className={'tagHolder ' + tag }>{tag}</span>}
     </div>
     <hr />
+    { open &&  <Alerts
+          handleClose ={()=>setOpen(false)} 
+           isOpen={open} type="Info" title="Info" content={'Please update your health status form first'} autoHideDuration = '2000'
+           vertical= 'top' horizontal= 'center' />}
     </div>
   )
 }
