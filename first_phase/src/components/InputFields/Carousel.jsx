@@ -51,7 +51,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                 }
             }else {
                // alert('Upcoming...')
-               console.log(text)
+             //  console.log(text)
                if(text === 'Upcoming in 1 week')
                    setMsg('This health topic is coming in 1 week. We will send you a notification when it is here.')
                else if(text === 'Upcoming in 2 weeks')
@@ -80,7 +80,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                 }
             }else {
                 //alert('Upcoming...')
-                console.log(text)
+               // console.log(text)
                 if(text === 'Upcoming in 1 week')
                     setMsg('This health topic is coming in 1 week. We will send you a notification when it is here.')
                 else if(text === 'Upcoming in 2 weeks')
@@ -103,7 +103,7 @@ export default function Carousell({backgroundColorEven,backgroundColorOdd,props,
                 })
               }else {
                 //alert('Upcoming...')
-                console.log(text)
+               // console.log(text)
                 if(text === 'Upcoming in 1 week')
                     setMsg('This health topic is coming in 1 week. We will send you a notification when it is here.')
                 else if(text === 'Upcoming in 2 weeks')

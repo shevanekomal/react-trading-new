@@ -1,6 +1,7 @@
 .FormContainer {
   margin: 100px auto;
   width: 90%;
+  margin-top: -20px;
 }
 .FormContainer p {
   font-family: Open Sans;

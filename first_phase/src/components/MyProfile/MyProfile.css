@@ -108,6 +108,7 @@ margin: 0px 4px;
 .MyProfileContainer{
   padding: 20px;
   width: 100%;
+  margin-top: -60px;
 }
 .Updates{
   margin-top: 30px;

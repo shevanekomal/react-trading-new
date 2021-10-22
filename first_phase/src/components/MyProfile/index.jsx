@@ -141,7 +141,7 @@ const createCheckupHandler = () =>{
   
     return (
       <div className='MyProfileContainer'>
-         {width> 990 ? <div style={{marginTop:'-15px'}} className='heading'><b>Your Profile</b></div> :<div></div>}
+         {width> 990 ? <div style={{marginTop:'40px'}} className='heading'><b>Your Profile</b></div> :<div></div>}
          
         {width > 990 ?( <div> 
           <span className="iconDiv"><img src={props.location.state.profileIcon}></img> <b>&nbsp;&nbsp;{props.location.state.name !== undefined && props.location.state.name.split(' ')[0]}</b></span>
@@ -187,7 +187,7 @@ const createCheckupHandler = () =>{
         <div  style={{cursor: 'pointer'}} className='healthPlanNavigation' 
          onClick={(e)=>props.history.push({
           pathname: '/gridListView',
-          state: {user_id:props.location.state.user_id,items:items1,name:'your healthy habits'}
+          state: {user_id:props.location.state.user_id,items:items1,name:'your healthy habits',list:result.updatesList}
           })}>
           <span>Your Healthy Habits</span>
           <ArrowForwardIcon />
@@ -197,7 +197,7 @@ const createCheckupHandler = () =>{
         </div>
           <div  style={{cursor: 'pointer'}} className='healthPlanNavigation'  onClick={(e)=>props.history.push({
           pathname: '/gridListView',
-          state: {user_id:props.location.state.user_id,items:items2,name:'know yourself'}
+          state: {user_id:props.location.state.user_id,items:items2,name:'know yourself',list:result.updatesList}
           })}>
           <span>Know Yourself</span>
           <ArrowForwardIcon />

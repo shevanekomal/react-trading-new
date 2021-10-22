@@ -1,12 +1,16 @@
 import './Tutorial.css'
-const Tutorial =()=>{
+import {useWindowSize} from '../../utility'
 
+const Tutorial =()=>{
+  const [width, height] = useWindowSize();
     return (
     <div className="TutorialContainer">
-     {/*}
-      <video className="videoContainer" width="350" height="500" controls >
-      <source src="/videos/Tutoriallandscape.mp4" type="video/mp4"/>
-    </video>*/}
+      {width> 990 ?(<video className="videoContainer" width="750" height="500" controls >
+      <source src="/videos/Tutorial_potrait.mov" type="video/mp4"/>
+    </video>) : (<video className="videoContainer" width="350" height="500" controls >
+      <source src="/videos/Tutorial_potrait.mov" type="video/mp4"/>
+    </video>)}
+      
       </div>
     );
 

@@ -83,7 +83,7 @@ class FieldDataProvider extends Component {
       { key: "Prediabetes", cat: "Prediabetes" },
       { key: "Thyroid disease", cat: "Thyroid disease" }
     ],
-   /* testsRecommanded : {
+    testsRecommanded : {
       Recommended:[
       {
           "testName": "Blood Test",
@@ -93,16 +93,7 @@ class FieldDataProvider extends Component {
                   "checkup_name": "Prostate Specific Antigen (PSA)",
                   "recomm_level": 1
               },
-              {
-                  "checkup_id": 2,
-                  "checkup_name": "Complete Blood Count (CBC)",
-                  "recomm_level": 2
-              },
-              {
-                  "checkup_id": 4,
-                  "checkup_name": "CA-125",
-                  "recomm_level": 1
-              }
+             
           ]
       },
       {
@@ -113,11 +104,7 @@ class FieldDataProvider extends Component {
                   "checkup_name": "Mammography",
                   "recomm_level": 0
               },
-              {
-                  "checkup_id": 5,
-                  "checkup_name": "Transvaginal ultrasound",
-                  "recomm_level": 0
-              }
+             
           ]
       }
   ],
@@ -125,8 +112,8 @@ class FieldDataProvider extends Component {
     {"checkup_name" : "oral","provider":"aa","provider_website":"www.abc.com"}
   ],
   recommendedcount: 5,
-  selfAddedcount:1}*/
-  testsRecommanded : {
+  selfAddedcount:1},
+ /* testsRecommanded : {
     Recommended:[
     { 
     "testTypes": []
@@ -136,7 +123,7 @@ SelfAdded:[
   {}
 ],
 recommendedcount: 5,
-selfAddedcount:1},
+selfAddedcount:1},*/
   knowYourSelfResult:{
     BMI: [],
     waist :[],

@@ -111,7 +111,7 @@ const Header = (props) => {
   const redirectToHealthPlan = (e) => { 
   //  console.log(e.target.baseURI)
    e.preventDefault();
-   console.log(history)
+  // console.log(history)
   if(e.target.baseURI.includes('/test')){
     let user_id1 = window.localStorage.getItem('subuser_id')
     history.push({
@@ -120,7 +120,7 @@ const Header = (props) => {
     })
   }else {
     history.goBack()
-    
+
   }
    
   };
@@ -158,7 +158,7 @@ const Header = (props) => {
       >
            <img style={{margin: '5px',height:'39px'}}src={Main_logo} alt="home Logo" />
           </Link>}</div>
-    :(['/test','/myProfile'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon style={{marginLeft:'10px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/></div><span className='pageHeader'>{getLabel(currentPath)}</span> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
+    :(['/test','/addRisk','/myProfile','/userSetting','/calender','/createCheckup','/healthyHabitsResult','/knowYourselfResult','/knowYourself'].includes(currentPath) ? <div className='customNav'> <div>  <FontAwesomeIcon style={{marginLeft:'10px'}} icon={faAngleLeft} color="#17416B" size={'3x'} onClick={(e)=>redirectToHealthPlan(e)}/></div><span className='pageHeader'>{getLabel(currentPath)}</span> {['/ourFeature','/about','/register','/login','/','/addMemberself','/addRiskSelf'].includes(currentPath) ?
     <img style={{margin: '5px',height:'32px'}}src={Main_logo} alt="home Logo" /> :
      <Link
            to={(window.localStorage.getItem('user_id',''))?'/userHome':"/login"}
@@ -219,7 +219,8 @@ const Header = (props) => {
        }}>Our Feaures</div>
       <div onClick={(e) =>{
         window.open('https://www.hijeevan.com/about-us' , '_blank')
-        addActiveCssOnClick(e)}}>About us</div>
+        //addActiveCssOnClick(e)
+        }}>About us</div>
       <div onClick={(e) =>{
          window.localStorage.setItem('x-access-token','')
          window.localStorage.setItem('user_id','')

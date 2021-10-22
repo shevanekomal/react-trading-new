@@ -1,6 +1,7 @@
 .ResultContainer {
     margin: 100px auto;
     width: 90%;
+    margin-top:-60px;
   }
 
   .ResultContainer .DetailsContainer{

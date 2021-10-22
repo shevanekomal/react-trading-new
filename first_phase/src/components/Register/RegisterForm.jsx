@@ -67,8 +67,8 @@ const RegisterForm =({FormData,setFormData,setNextPageEnable,RegisterHandler})=>
     if(event.target.name ==='confirmPassword' && value!= FormData.password.value){
       error = 'Password and Confirm Password should be same'
     }
-    if(event.target.name ==='password' && value.length < 15){
-      error = 'Password must be atleast 15 characters long'
+    if(event.target.name ==='password' && value.length < 7){
+      error = 'Password must be atleast 7 characters long'
  }
     setFormData({
       ...FormData,

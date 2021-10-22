@@ -4,7 +4,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import React,{useState,useEffect,useContext} from 'react'
 import { FieldDataContext } from '../../context/FieldData'
 import Grid from '@material-ui/core/Grid';
-import AttachmentOutlinedIcon from '@material-ui/icons/AttachmentOutlined';
+//import AttachmentOutlinedIcon from '@material-ui/icons/AttachmentOutlined';
+import DescriptionIcon from '@material-ui/icons/Description';
 import RoomIcon from '@material-ui/icons/Room';
 import DateRangeIcon from '@material-ui/icons/DateRange'
 import "react-datepicker/dist/react-datepicker.css";
@@ -296,12 +297,12 @@ const defaultProps = {
         </Grid>
         <Grid container spacing={1} alignItems="flex-end">
             <Grid item>
-                <AttachmentOutlinedIcon className='RoomIcon'/>
+                <DescriptionIcon className='RoomIcon'/>
             </Grid>
           <Grid item  item xs={10} sm={6} md={4} lg={10}>
          <InputBox
           name="provider_website"
-          placeholder="Add Provider Website"
+          placeholder="Add Notes"
           className='provider'
           changeHandler={onChangehandler}
           defaultValue={FormData.provider_website.value}

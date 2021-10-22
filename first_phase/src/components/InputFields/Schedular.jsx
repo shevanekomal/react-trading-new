@@ -3,9 +3,10 @@ import Paper from "@material-ui/core/Paper";
 import { ViewState ,EditingState, IntegratedEditing} from "@devexpress/dx-react-scheduler";
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import LinkIcon from '@material-ui/icons/Link';
+//import LinkIcon from '@material-ui/icons/Link';
+import DescriptionIcon from '@material-ui/icons/Description';
 import Room from '@material-ui/icons/Room';
-import { FieldDataContext } from '../../context/FieldData'
+//import { FieldDataContext } from '../../context/FieldData'
 import {
   Scheduler,
   MonthView,
@@ -64,7 +65,7 @@ const Content = withStyles(style, { name: 'Content' })(({
         <span>{appointmentData.provider}</span>
       </Grid>
       <Grid item xs={2} className={classes.textCenter}>
-        <LinkIcon className={classes.icon} />
+        <DescriptionIcon className={classes.icon} />
       </Grid>
       <Grid item xs={10}>
         <span>{appointmentData.provider_website}</span>

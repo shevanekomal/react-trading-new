@@ -221,7 +221,7 @@ const validate = (e)=>{
            options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
            validate={validate} onChange={handleChange2} defaultValue={state2.vitamin.value} error={state2.vitamin.error} >When did you last do Vitamin B12 and Vitamin D blood tests?
            </RadioButton>
-           <RadioButton name={'ECG'}  required={true}  options={[{text:'Yes, atlease once',value:'Got it once'},{text:'Never',value:'Never'}]} 
+           <RadioButton name={'ECG'}  required={true}  options={[{text:'Yes, atleast once',value:'Got it once'},{text:'Never',value:'Never'}]} 
             validate={validate} onChange={handleChange2} defaultValue={state2.ECG.value} error={state2.ECG.error} >Have you ever done an ECG or ECHO diagnostic test?
            </RadioButton>
            <RadioButton name={'BP'}  required={true}  options={[{text:'Within the last 1 year',value:'Within the last 1 year'},{text:'More than a year ago or Never',value:'More than a year ago or Never'}]}  
