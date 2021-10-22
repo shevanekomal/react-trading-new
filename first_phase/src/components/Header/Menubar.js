@@ -51,7 +51,9 @@ const [open, setOpen] = useState(false);
   }))(Tooltip);
   
   const addActiveCssOnClick = (linkClass) =>{
-    setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
+    //setState({ ...state, ...deafulClasses,[linkClass]:'nav-item nav-link active', menu: false }) 
+    setState({ ...state, ...deafulClasses, menu: false }) 
+    
     if(linkClass === 'signOutLinkClass') {
       window.localStorage.setItem('x-access-token','')
       window.localStorage.setItem('user_id','')
